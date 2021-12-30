@@ -13,6 +13,7 @@
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.6",
     "react-router-dom": "^5.2.0",
+    "react-scripts": "^5.0.0",
     "redux": "^4.0.5",
     "redux-thunk": "^2.4.1",
     "semistandard": "^16.0.1",
@@ -23,9 +24,7 @@
     "build": "react-scripts build",
     "eject": "react-scripts eject",
     "test": "semistandard && node *.js",
-    "fix": "semistandard --fix",
-    "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "fix": "semistandard --fix"
   },
   "eslintConfig": {
     "extends": [
@@ -54,13 +53,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@storybook/addon-actions": "^6.3.6",
-    "@storybook/addon-essentials": "^6.3.6",
-    "@storybook/addon-links": "^6.3.6",
-    "@storybook/node-logger": "^6.3.6",
-    "@storybook/preset-create-react-app": "^3.2.0",
-    "@storybook/react": "^6.3.6"
   }
 }

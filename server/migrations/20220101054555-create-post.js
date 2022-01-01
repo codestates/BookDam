@@ -38,8 +38,20 @@ module.exports = {
         type: Sequelize.DATE
       }
     });
+    await queryInterface.addConstraint("Posts", {
+      fields: ["user_Id"],
+      type: "foreign key",
+      name: "fk_Post_User",
+      references: {
+        table: "Users",
+        field: "id",
+      },
+      onDelete: "cascade",
+      onUpdate: "cascade",
+     })
   },
   down: async (queryInterface, Sequelize) => {
+    await queryInterface.removeConstraint("Posts", "fk_Post_User");
     await queryInterface.dropTable('Posts');
   }
 };

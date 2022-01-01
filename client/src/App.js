@@ -1,9 +1,9 @@
 import './App.css';
 import React from 'react';
 
-function App() {
+function App () {
   return (
-    <div className="App">
+    <div className='App'>
       We are Second Wind
     </div>
   );

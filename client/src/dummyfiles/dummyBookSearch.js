@@ -1,4 +1,4 @@
-const data = [
+export const data = [
   {
     title: "총, 균, 쇠 (무기 병균 금속은 인류의 운명을 어떻게 바꿨는가,퓰리처상 수상작)",
     image: "http://book.naver.com/bookdb/book_detail.naver?bid=2084345",

@@ -1,7 +1,7 @@
 import defaultUserImage from "../assets/images/defaultUserImage.png"
 
 
-const data = [{  
+export const data = [{  
   postData : [
     {
       id : 5,

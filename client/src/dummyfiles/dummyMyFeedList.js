@@ -1,6 +1,6 @@
 import defaultUserImage from "../assets/images/defaultUserImage.png"
 
-const data = [{
+export const data = [{
   postData : [
     {
       id : 1, // 이거는 post 테이블의 pk id 입니다!

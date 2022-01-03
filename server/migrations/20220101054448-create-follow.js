@@ -23,20 +23,20 @@ module.exports = {
         type: Sequelize.DATE
       }
     });
-    await queryInterface.addConstraint("Follows", {
-      fields: ["user_Id"],
-      type: "foreign key",
-      name: "fk_Follow_User",
+    await queryInterface.addConstraint('Follows', {
+      fields: ['user_Id'],
+      type: 'foreign key',
+      name: 'fk_Follow_User',
       references: {
-        table: "Users",
-        field: "id",
+        table: 'Users',
+        field: 'id'
       },
-      onDelete: "cascade",
-      onUpdate: "cascade",
-     })
+      onDelete: 'cascade',
+      onUpdate: 'cascade'
+    });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.removeConstraint("Follows", "fk_Follow_User");
+    await queryInterface.removeConstraint('Follows', 'fk_Follow_User');
     await queryInterface.dropTable('Follows');
   }
 };

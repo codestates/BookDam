@@ -1,15 +1,28 @@
-import './App.css';
 import React from 'react';
-import { FaUserPlus, FaUserAltSlash, FaUserCheck } from "react-icons/fa";
+
+import { Switch, Route } from 'react-router-dom';
+import Header from './components/Header/Header';
+import FeedPage from '../src/pages/FeedPage';
+import MyPage from '../src/pages/MyPage';
+import Footer from '../src/components/Footer/Footer';
 
 function App () {
   return (
-    <div className='App'>
-      We are Second Wind
-      <FaUserPlus/> Test
-      <FaUserAltSlash/> Test
-      <FaUserCheck/> Test
-    </div>
+    <>
+      <Header />
+        
+      <Switch>
+        <Route exact path='/' />
+        <Route path='/feedpage'>
+          <FeedPage />
+        </Route>
+        <Route path='/mypage'>
+          <MyPage />
+        </Route>
+      </Switch>
+
+      <Footer />
+    </>
   );
 }
 

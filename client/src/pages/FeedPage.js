@@ -1,6 +1,8 @@
 import React from 'react';
-import dummydata from '../dummyfiles/dummyFeedList'
-export function FeedPage () {
+
+
+export default function FeedPage () {
+
   // 피드 페이지 로직 
   // 1. Axios로 서버에 요청을 보내서 내 follow 목록 받아오기
   // 2. 받아온 follow 목록을 고차함수 map를 이용해 값 넣어서 리턴하기

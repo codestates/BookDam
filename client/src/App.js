@@ -1,25 +1,14 @@
-import './App.css';
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import IntroWrapper from './components/Intro/IntroWrapper';
+import Header from './components/Header/Header';
 
-function App() {
+function App () {
   return (
-    <BrowserRouter>
-      <div>
-        <main>
-          <IntroWrapper />
-          <section>
-            <Switch>
-              <Route exact path='/feedpage'>
-              </Route>
-              <Route exact path='/login'>
-              </Route>
-            </Switch>
-          </section>
-        </main>
-      </div>
-    </BrowserRouter>
+    <>
+      <IntroWrapper />
+      <Header />  
+    </>
   );
 }
 

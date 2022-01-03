@@ -1,5 +1,5 @@
 import React from 'react';
-
+import dummydata from '../dummyfiles/dummyFeedList'
 export function FeedPage () {
   // 피드 페이지 로직 
   // 1. Axios로 서버에 요청을 보내서 내 follow 목록 받아오기
@@ -8,6 +8,14 @@ export function FeedPage () {
   // 4. 이것들이 처리되면서 무한스크롤 구현하기
 
   // 1. 
+
+  // 더미데이터로 불러오는지 확인
+  const getFollowFeedList = () => {
+    dummydata.map((el, index) => {
+      return <div></div>
+    })
+  }
+
   return (
     <>
     </>

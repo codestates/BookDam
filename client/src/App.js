@@ -1,13 +1,15 @@
-import './App.css';
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import Header from './components/Header/Header';
 import FeedPage from '../src/pages/FeedPage';
 import MyPage from '../src/pages/MyPage';
+import Footer from '../src/components/Footer/Footer';
 
 function App () {
   return (
     <>
-      We are Second Wind
+      <Header />
+        
       <Switch>
         <Route exact path='/' />
         <Route path='/feedpage'>
@@ -17,6 +19,8 @@ function App () {
           <MyPage />
         </Route>
       </Switch>
+
+      <Footer />
     </>
   );
 }

@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Posts', {
+    await queryInterface.createTable('Articles', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -38,8 +38,20 @@ module.exports = {
         type: Sequelize.DATE
       }
     });
+    await queryInterface.addConstraint('Articles', {
+      fields: ['user_Id'],
+      type: 'foreign key',
+      name: 'fk_Article_User',
+      references: {
+        table: 'Users',
+        field: 'id'
+      },
+      onDelete: 'cascade',
+      onUpdate: 'cascade'
+    });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Posts');
+    await queryInterface.removeConstraint('Articles', 'fk_Article_User');
+    await queryInterface.dropTable('Articles');
   }
 };

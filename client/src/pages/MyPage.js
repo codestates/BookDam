@@ -1,11 +1,11 @@
 import React from 'react';
-import { HeaderContainer } from '../components/Header';
 
 export default function MyPage () {
   return (
     <>
+      <div>
       Welcome to BookDam MyPage
-      <HeaderContainer></HeaderContainer>
+      </div>
     </>
   );
 }

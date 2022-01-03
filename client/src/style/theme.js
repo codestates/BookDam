@@ -5,7 +5,6 @@ const size = {
 };
 
 const theme = {
-  backgroundColor: '#5dc175',
   mobile: `(max-width: ${size.mobile})`
 };
 

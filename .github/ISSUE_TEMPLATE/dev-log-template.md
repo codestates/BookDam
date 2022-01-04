@@ -1,7 +1,7 @@
 ---
 name: Dev-Log Template
 about: Dev-Log
-title: Dev-Log 제목 설정하기
+title: 22.01.00 Dev-Log
 labels: ''
 assignees: ''
 

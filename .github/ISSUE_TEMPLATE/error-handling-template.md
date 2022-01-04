@@ -1,7 +1,7 @@
 ---
 name: Error Handling Template
 about: Error Handling
-title: Error Handling 제목 설정하기
+title: 22.01.00 Error Handling
 labels: ''
 assignees: ''
 

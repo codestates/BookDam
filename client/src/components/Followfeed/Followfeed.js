@@ -68,7 +68,7 @@ export const Followfeed = ({followFeedList}) => {
               {el.userNickName}
             </UserNickName>
             <UserFollowIcon onClick={followHandler}>
-              {/* {isFollow ? <FaUserCheck/> : <FaUserPlus/>} */}
+              {isFollow ? <FaUserCheck/> : <FaUserPlus/>}
             </UserFollowIcon>
           </UserNameAndImage>
           <PostCreatedAt>

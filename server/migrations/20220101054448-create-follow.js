@@ -34,9 +34,21 @@ module.exports = {
       onDelete: 'cascade',
       onUpdate: 'cascade'
     });
+    await queryInterface.addConstraint('Follows', {
+      fields: ['follow_Id'],
+      type: 'foreign key',
+      name: 'fk_Follower_User',
+      references: {
+        table: 'Users',
+        field: 'id'
+      },
+      onDelete: 'cascade',
+      onUpdate: 'cascade'
+    });
   },
   down: async (queryInterface, Sequelize) => {
     await queryInterface.removeConstraint('Follows', 'fk_Follow_User');
+    await queryInterface.removeConstraint('Follows', 'fk_Follower_User');
     await queryInterface.dropTable('Follows');
   }
 };

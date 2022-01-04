@@ -7,13 +7,11 @@ export const IntroWholeContainer = styled.div`
   height: 2400px;
 `;
 
-export const SectionWrapperOne = styled.div`
-  margin: 10px;
+export const SectionWrapperOne =  styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  border: 2px solid red;
+  border: 1px solid red;
   height: 750px;
 `;
 
@@ -23,7 +21,7 @@ export const SectionContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  border: 2px solid black;
+  border: 3px solid black;
   margin: 10px;
 `;
 
@@ -31,10 +29,14 @@ export const SectionInfoContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid blue;
+  border: 3px solid blue;
   margin: 10px;
   width: 100%;
   height: 600px;
+
+  @media screen and (max-width: 770px) {
+    flex-direction: column;
+  }
 `;
 
 export const ImageContainer = styled.div`
@@ -53,7 +55,7 @@ export const TextContainer = styled.div`
   align-items: center;
   margin: 10px;
   border: 1px solid black;
-  height: 550px;
+  height: 450px;
   width: 450px;
 `;
 
@@ -77,7 +79,7 @@ export const ButtonContainer = styled.div`
   align-items: center;
 `;
 
-export const Button = styled.button`
+export const ButtonsInIntro = styled.button`
   width: 60px;
   height: 40px;
   margin: 10px;
@@ -105,7 +107,7 @@ export const SectionWrapperTwo = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
+  border: 1px solid red;
   height: 750px;
 `;
 
@@ -113,6 +115,6 @@ export const SectionWrapperThree = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
+  border: 1px solid red;
   height: 750px;
 `;

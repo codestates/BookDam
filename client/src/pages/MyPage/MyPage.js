@@ -1,11 +1,10 @@
 import React from 'react';
+import Mypage from '../../components/Mypage/Mypage';
 
 export default function MyPage () {
   return (
     <>
-      <div>
-      Welcome to BookDam MyPage
-      </div>
+      <Mypage />
     </>
   );
 }

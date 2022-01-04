@@ -1,4 +1,4 @@
-import defaultUserImage from "../assets/images/defaultUserImage.png"
+import defaultUserImage from '../assets/images/defaultUserImage.png';
 
 const data = [
     {
@@ -15,9 +15,9 @@ const data = [
       createdAt : "2021-12-29"
     },
     {
-      id : 6,
-      userId : "Donald Trump", // user 테이블에서 갖고 온다
-      userNickName : "White people!", // user 테이블에서 갖고 온다
+      id: 6,
+      userId: 'Donald Trump', // user 테이블에서 갖고 온다
+      userNickName: 'White people!', // user 테이블에서 갖고 온다
       user_id: 3,
       userImage : defaultUserImage,
       book_Title : "백설공주",
@@ -28,9 +28,9 @@ const data = [
       createdAt : "2021-12-27"
     },
     {
-      id : 13,
-      userId : "bookerT", // user 테이블에서 갖고 온다
-      userNickName : "bookerT", // user 테이블에서 갖고 온다
+      id: 13,
+      userId: 'bookerT', // user 테이블에서 갖고 온다
+      userNickName: 'bookerT', // user 테이블에서 갖고 온다
       user_id: 6,
       userImage : defaultUserImage,
       book_Title : "비트코인 블라블라",

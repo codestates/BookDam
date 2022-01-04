@@ -54,5 +54,5 @@ export const Searchuser = ({setFollowFeedList}) => {
         <UserSearchBtn onClick={getSearchUserFeedList}>검색</UserSearchBtn>
       </SearchUserContainer>
     </>
-  )
-}
+  );
+};

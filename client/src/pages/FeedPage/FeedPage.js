@@ -20,5 +20,5 @@ export function FeedPage () {
     <>
       <Feed />
     </>
-  )
+  );
 }

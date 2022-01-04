@@ -2,11 +2,16 @@ import styled from 'styled-components';
 
 export const MypageContainer = styled.div`
   display: flex;
-  height: 100vh;
+  width: 100%;
+  min-height: 100vh;
   flex-direction: column;
   align-items: center;
   flex-wrap: wrap;
   border: 1px solid black;
+
+  @media (max-width: 500px) {
+    width: 100%;
+  }
 `;
 
 // UserInfo 영역
@@ -49,7 +54,7 @@ export const NickNameFollowSection = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   margin-bottom: 5px;
-  /* border: 1px solid red; */
+  border: 1px solid red;
 `;
 
 export const NickName = styled.div`
@@ -86,7 +91,7 @@ export const FollowCount = styled.span`
   align-items: center;
   text-align: start;
   margin-left: 5px;
-`
+`;
 
 export const Follower = styled.div`
   display: flex;

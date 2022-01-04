@@ -10,7 +10,7 @@ export const NavbarContainer = styled.div`
   justify-content: space-between;
 `;
 
-//web일 때 뒤로가기 버튼 안 보이기
+// web일 때 뒤로가기 버튼 안 보이기
 export const BackSection = styled.div`  
   height: 40px;
   width: 5%;

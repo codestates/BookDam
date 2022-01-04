@@ -5,12 +5,9 @@ import {
 } from './FooterStyle';
 
 export default function Footer () {
-
   return (
     <>
-    <FooterContainer>
-      
-    </FooterContainer>
+      <FooterContainer />
     </>
-  )
+  );
 }

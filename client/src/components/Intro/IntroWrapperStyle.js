@@ -7,7 +7,7 @@ export const IntroWholeContainer = styled.div`
   height: 2400px;
 `;
 
-export const SectionWrapperOne =  styled.div`
+export const SectionWrapperOne = styled.div`
   margin: 10px;
   display: flex;
   justify-content: center;
@@ -101,7 +101,7 @@ export const Button = styled.button`
   }
 `;
 
-export const SectionWrapperTwo =  styled.div`
+export const SectionWrapperTwo = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -109,7 +109,7 @@ export const SectionWrapperTwo =  styled.div`
   height: 750px;
 `;
 
-export const SectionWrapperThree =  styled.div`
+export const SectionWrapperThree = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;

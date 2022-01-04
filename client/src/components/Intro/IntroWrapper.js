@@ -1,53 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { IntroWholeContainer, 
          SectionWrapperOne, SectionWrapperTwo, SectionWrapperThree, 
          SectionContainer, SectionInfoContainer, ImageContainer, TextContainer,
-         ButtonWrapper, ButtonContainer, Button  } from './IntroWrapperStyle'
-import { Link } from 'react-router-dom';
+         ButtonWrapper, ButtonContainer, ButtonsInIntro } from './IntroWrapperStyle';
+import { LoginModal } from '../Login/LoginModal';
+import { useSelector, useDispatch } from 'react-redux';
 
+function IntroWrapper () {
+  const state = useSelector(state => state.userInfo)
+  const [isOpenLoginModal, setIsOpenLoginModal] = useState(false);
 
-function IntroWrapper() {
+  const handleLogin = () => {
+    setIsOpenLoginModal(true);
+    document.body.style.overflow = "hidden";
+  }
+
     return (
         <>
           <IntroWholeContainer>
+            {isOpenLoginModal ? <LoginModal /> : null}
             <SectionWrapperOne>
-              <SectionContainer>
-                <SectionInfoContainer>{/* SectionInfo1 */}
-                  <ImageContainer>Image1</ImageContainer>
-                  <TextContainer>Text1</TextContainer>
-                </SectionInfoContainer>
-                <ButtonWrapper>
-                  <ButtonContainer>
-                    <Button>
-                      <Link to='/feedpage'>
-                        시작하기
-                      </Link>
-                    </Button>
-                    <Button>
-                      <Link to='/login'>
-                        로그인
-                      </Link>
-                    </Button>
-                  </ButtonContainer>
-                </ButtonWrapper>
-              </SectionContainer>
-            </SectionWrapperOne>
+                <SectionContainer>
+                  <SectionInfoContainer>{/* SectionInfo3 */}
+                    <ImageContainer>Image1</ImageContainer>
+                    <TextContainer>Text1</TextContainer>
+                  </SectionInfoContainer>
+                  <ButtonWrapper>
+                    <ButtonContainer>
+                      <ButtonsInIntro>시작하기</ButtonsInIntro>
+                      <ButtonsInIntro onClick={handleLogin}>로그인</ButtonsInIntro>
+                    </ButtonContainer>
+                  </ButtonWrapper>
+                </SectionContainer>
+              </SectionWrapperOne>
+
             <SectionWrapperTwo>
               <SectionInfoContainer>{/* SectionInfo2 */}
                 <ImageContainer>Image2</ImageContainer>
                 <TextContainer>Text1</TextContainer>
               </SectionInfoContainer>
             </SectionWrapperTwo>
+
             <SectionWrapperThree>
-            <SectionContainer>
+              <SectionContainer>
                 <SectionInfoContainer>{/* SectionInfo3 */}
-                  <ImageContainer>Image1</ImageContainer>
-                  <TextContainer>Text1</TextContainer>
+                  <ImageContainer>Image3</ImageContainer>
+                  <TextContainer>Text3</TextContainer>
                 </SectionInfoContainer>
                 <ButtonWrapper>
                   <ButtonContainer>
-                    <Button>시작하기</Button>
-                    <Button>로그인</Button>
+                    <ButtonsInIntro>시작하기</ButtonsInIntro>
+                    <ButtonsInIntro>로그인</ButtonsInIntro>
                   </ButtonContainer>
                 </ButtonWrapper>
               </SectionContainer>
@@ -55,6 +58,6 @@ function IntroWrapper() {
           </IntroWholeContainer>
         </>
     )
-}
+};
 
-export default IntroWrapper
+export default IntroWrapper;

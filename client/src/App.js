@@ -1,12 +1,14 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import IntroWrapper from './components/Intro/IntroWrapper';
-import Header from './components/Header/Header';
-import { FeedPage } from './pages/FeedPage/FeedPage';
+import Footer from './components/Footer/Footer';
+
 function App () {
   return (
     <>
-      <FeedPage />
+      <IntroWrapper />
+      <Footer />
+
     </>
   );
 }

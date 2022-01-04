@@ -12,11 +12,11 @@ export default function FeedPage () {
   // 1. 
 
   // 더미데이터로 불러오는지 확인
-  const getFollowFeedList = () => {
-    dummydata.map((el, index) => {
-      return <div></div>
-    })
-  }
+  // const getFollowFeedList = () => {
+  //   dummydata.map((el, index) => {
+  //     return <div></div>
+  //   })
+  // }
 
   return (
     <>

@@ -1,18 +1,20 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import IntroWrapper from './components/Intro/IntroWrapper';
-import Navbar from './components/Navbar/Navbar';
-import Footer from './components/Footer/Footer';
-import MyPage from './pages/MyPage/MyPage';
-
+import { IntroPage } from './pages/IntroPage/IntroPage';
+import { FeedPage } from './pages/FeedPage/FeedPage';
 
 function App () {
   return (
     <>
-      <IntroWrapper />
-      <Navbar />
-      <MyPage />
-      <Footer />
+      <Switch>
+        <Route exact path='/'>
+          <IntroPage />
+          <Footer />
+        </Route>
+        <Route exact path='/feedpage'>
+          <FeedPage />
+        </Route>
+      </Switch>
     </>
   );
 }

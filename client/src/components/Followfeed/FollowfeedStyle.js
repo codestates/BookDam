@@ -10,6 +10,7 @@ list-style-type: none;
 flex-wrap: wrap;
 border: 2px solid black;
 `;
+
 export const UserInfoContainer = styled.li`
 margin: 10px;
 border: 1px solid black;

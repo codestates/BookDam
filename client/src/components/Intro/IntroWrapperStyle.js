@@ -4,7 +4,7 @@ export const IntroWholeContainer = styled.div`
   border: 1px solid black;
   overflow: hidden;
   position: relative;
-  height: 2400px;
+  height: 2300px;
 `;
 
 export const SectionWrapperOne = styled.div`
@@ -34,7 +34,7 @@ export const SectionInfoContainer = styled.div`
   width: 100%;
   height: 600px;
 
-  @media screen and (max-width: 770px) {
+  @media screen and (max-width: 910px) {
     flex-direction: column;
   }
 `;
@@ -47,16 +47,22 @@ export const ImageContainer = styled.div`
   border: 1px solid black;
   height: 550px;
   width: 450px;
+  background-image: linear-gradient(rgba(0,170, 0, 0.1), rgba(0, 255, 0, 0.5));
 `;
 
 export const TextContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   margin: 10px;
   border: 1px solid black;
   height: 450px;
   width: 450px;
+`;
+
+export const TextHeaderContainer = styled.div`
+  /* border: 1px solid black; */
 `;
 
 export const ButtonWrapper = styled.div`

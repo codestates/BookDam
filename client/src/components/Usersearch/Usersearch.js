@@ -1,9 +1,9 @@
+import React, { useEffect, useState } from 'react';
 import {
   SearchUserContainer,
   UserSearchInput,
   UserSearchBtn,
   UpperContainer
-
 } from './UsersearchStyle';
 import { useEffect, useState } from 'react';
 import Axios from 'axios';

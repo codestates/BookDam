@@ -2,9 +2,9 @@ export const initialState =
 {
   userInfo:
     {
-      id: 1,
-      userId: 'test1',
-      userNickName: '민트초코깡',
+      id: '1',
+      userId: 'holystoryseo',
+      userNickName: '뿌리깊은나무',
       userImage: ''
     },
 

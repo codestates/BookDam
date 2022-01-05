@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux'; // 로그인 상태변경 테스트용
 import { Link } from 'react-router-dom';
 import {
   IntroWholeContainer,
@@ -16,16 +17,14 @@ import {
 } from './IntroWrapperStyle';
 import { LoginModal } from '../Login/LoginModal';
 import { SignupModal } from '../Signup/SignupModal';
-import { useSelector } from 'react-redux';
 
 export const IntroWrapper = () => {
-  const state = useSelector(state => state.testReducer);
-  const { userInfo } = state;
   const [isOpenLoginModal, setIsOpenLoginModal] = useState(false);
   const [isOpenSignupModal, setIsOpenSignupModal] = useState(false);
+  const state = useSelector(state => state.testReducer); // 로그인 상태변경 테스트용
+  const { isLogin, articleInfo, userInfo } = state; // 로그인 상태변경 테스트용
 
   const handleLoginModal = () => {
-    console.log(state);
     setIsOpenSignupModal(false);
     setIsOpenLoginModal(true);
     document.body.style.overflow = 'hidden'; // Login 모달창 열면서 스크롤 방지
@@ -60,7 +59,7 @@ export const IntroWrapper = () => {
         <SectionWrapperOne>
           <SectionContainer>
             <SectionInfoContainer>{/* SectionInfo3 */}
-              <ImageContainer>{userInfo.userId}</ImageContainer>
+              <ImageContainer>{userInfo.userNickName}</ImageContainer>
               <TextContainer>
                 <TextHeaderContainer>
                   <h1>Write</h1>
@@ -82,7 +81,7 @@ export const IntroWrapper = () => {
 
         <SectionWrapperTwo>
           <SectionInfoContainer>{/* SectionInfo2 */}
-            <TextContainer>Text1</TextContainer>
+            <TextContainer>{isLogin ?'true' : 'false'}</TextContainer>
             <ImageContainer>Image2</ImageContainer>
           </SectionInfoContainer>
         </SectionWrapperTwo>
@@ -91,7 +90,7 @@ export const IntroWrapper = () => {
           <SectionContainer>
             <SectionInfoContainer>{/* SectionInfo3 */}
               <ImageContainer>Image3</ImageContainer>
-              <TextContainer>Text3</TextContainer>
+              <TextContainer>{articleInfo[0].book_Title}</TextContainer>
             </SectionInfoContainer>
             <ButtonWrapper>
               <ButtonContainer>

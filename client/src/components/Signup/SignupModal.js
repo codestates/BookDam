@@ -12,7 +12,7 @@ import {
   InputPWCheckout,
   MoveToLoginModal
 } from './SignupModalStyle';
-import { Message, Errormessage } from '../GlobalMessage/GlobalMessage';
+import { Message, ErrorMessage } from '../GlobalMessage/GlobalMessage';
 import { LoginThemeBtn } from '../GlobalButton/GlobalButton';
 
 export const SignupModal = ({
@@ -35,7 +35,7 @@ export const SignupModal = ({
               <InputUserNickName />
               <InputPW />
               <InputPWCheckout />
-              <Errormessage />
+              <ErrorMessage />
               <LoginThemeBtn onClick={handleSignup}>가입하기</LoginThemeBtn>
               <Message>아이디가 있으신가요?
                 <MoveToLoginModal onClick={handleLoginModal}>로그인</MoveToLoginModal>

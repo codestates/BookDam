@@ -67,6 +67,7 @@ export const LoginThemeBtn = styled.button`  // 로그인 페이지 버튼 테�
   padding: 9px 12px;
   border-radius: 2px;
   font-size: 17px;
+  cursor: pointer;
 `;
 
 export const SocialLoginBtn = styled.button`

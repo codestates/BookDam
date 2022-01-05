@@ -1,4 +1,8 @@
-import { initialState } from "./initialState";
+import { initialState } from './initialState';
 
+const testReducer = (state = initialState, action) => {
 
-export default initialState;
+  return state;
+}
+
+export default testReducer;

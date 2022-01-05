@@ -11,11 +11,11 @@ import { Provider } from 'react-redux';
 
 ReactDOM.render(
   <BrowserRouter>
-    <ThemeProvider theme={theme}>
     <Provider store={store}>
+    <ThemeProvider theme={theme}>
       <App />
-    </Provider>
     </ThemeProvider>
+    </Provider>
   </BrowserRouter>,
   document.getElementById('root')
 );

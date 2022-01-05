@@ -31,27 +31,15 @@ module.exports = {
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.STRING
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
       }
     });
-    await queryInterface.addConstraint('Articles', {
-      fields: ['user_Id'],
-      type: 'foreign key',
-      name: 'fk_Article_User',
-      references: {
-        table: 'Users',
-        field: 'id'
-      },
-      onDelete: 'cascade',
-      onUpdate: 'cascade'
-    });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.removeConstraint('Articles', 'fk_Article_User');
     await queryInterface.dropTable('Articles');
   }
 };

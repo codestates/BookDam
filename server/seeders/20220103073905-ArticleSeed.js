@@ -12,7 +12,7 @@ module.exports = {
         book_Publisher: '미상',
         sentense: 'blahblahblahblah',
         comment: 'blahblahblahblah',
-        createdAt: new Date(),
+        createdAt: '2021-12-23',
         updatedAt: new Date()
       },
       {
@@ -24,7 +24,7 @@ module.exports = {
         book_Publisher: '미상',
         sentense: 'blahblahblahblah',
         comment: 'blahblahblahblah',
-        createdAt: new Date(),
+        createdAt: '2021-12-28',
         updatedAt: new Date()
       },
       {
@@ -36,7 +36,7 @@ module.exports = {
         book_Publisher: '미상',
         sentense: 'blahblahblahblah',
         comment: 'blahblahblahblah',
-        createdAt: new Date(),
+        createdAt: '2022-01-01',
         updatedAt: new Date()
       },
       {
@@ -48,7 +48,7 @@ module.exports = {
         book_Publisher: '미상',
         sentense: 'blahblahblahblah',
         comment: 'blahblahblahblah',
-        createdAt: new Date(),
+        createdAt: '2022-01-03',
         updatedAt: new Date()
       },
       {
@@ -60,7 +60,7 @@ module.exports = {
         book_Publisher: '미상',
         sentense: 'blahblahblahblah',
         comment: 'blahblahblahblah',
-        createdAt: new Date(),
+        createdAt: '2022-01-03',
         updatedAt: new Date()
       }
     ]);

@@ -16,14 +16,16 @@ import {
 } from './IntroWrapperStyle';
 import { LoginModal } from '../Login/LoginModal';
 import { SignupModal } from '../Signup/SignupModal';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 export const IntroWrapper = () => {
-  const state = useSelector(state => state.userInfo);
+  const state = useSelector(state => state.testReducer);
+  const { userInfo } = state;
   const [isOpenLoginModal, setIsOpenLoginModal] = useState(false);
   const [isOpenSignupModal, setIsOpenSignupModal] = useState(false);
 
   const handleLoginModal = () => {
+    console.log(state)
     setIsOpenSignupModal(false);
     setIsOpenLoginModal(true);
     document.body.style.overflow = 'hidden'; // Login 모달창 열면서 스크롤 방지
@@ -58,7 +60,7 @@ export const IntroWrapper = () => {
         <SectionWrapperOne>
           <SectionContainer>
             <SectionInfoContainer>{/* SectionInfo3 */}
-              <ImageContainer>Image1</ImageContainer>
+              <ImageContainer>{userInfo.userId}</ImageContainer>
               <TextContainer>
                 <TextHeaderContainer>
                   <h1>Write</h1>

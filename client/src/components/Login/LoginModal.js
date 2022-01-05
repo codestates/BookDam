@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   LoginModalWholeBackground,
   LoginModalWrapper,
@@ -9,7 +9,6 @@ import {
   InputId,
   InputPW
 } from './LoginModalStyle';
-import { SignupModal } from '../Signup/SignupModal';
 import { Message, Errormessage } from '../GlobalMessage/GlobalMessage';
 import { LoginThemeBtn } from '../GlobalButton/GlobalButton';
 

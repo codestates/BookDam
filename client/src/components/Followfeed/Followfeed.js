@@ -25,6 +25,7 @@ export const Followfeed = ({followFeedList}) => {
   // 팔로우 상태로 관리하게되면 클릭시 일괄적용되기 때문에
   // 개별로 접근해서 팔로우상태를 변경하는 함수가 필요함
 
+
   const followHandler = () => {
     setIsFollow(!isFollow)
     // 팔로우가 삭제될 때
@@ -54,7 +55,19 @@ export const Followfeed = ({followFeedList}) => {
     //   })
     // }
   }
+  // const isFollowCheck = (following) => {
+  //   for (let i = 0; i < followFeedList.length; i++) {
+  //     if (followFeedList[i].userId === following) {
+  //       return <FaUserCheck/>
+  //     } else {
+  //       return <FaUserPlus/>
+  //     }
+  //   }
+  // }
 
+  // 팔로우 정보까지 서버에서 받아와야 팔로우 아이콘 기능구현이 가능함.
+  // 팔로우 정보를 조회해서 팔로우 아이콘 클릭시마다 아이콘 변경해주는 함수와 함께 서버에 팔로우 삭제||등록 요청을 보내야 함.
+  
   const feedList = followFeedList.map((el) => {
     return (
       <UserInfoContainer>

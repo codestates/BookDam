@@ -8,13 +8,12 @@ import theme from '../src/style/theme';
 import store from './store/store';
 import { Provider } from 'react-redux';
 
-
 ReactDOM.render(
   <BrowserRouter>
     <ThemeProvider theme={theme}>
-    <Provider store={store}>
-      <App />
-    </Provider>
+      <Provider store={store}>
+        <App />
+      </Provider>
     </ThemeProvider>
   </BrowserRouter>,
   document.getElementById('root')

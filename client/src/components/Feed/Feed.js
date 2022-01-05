@@ -1,19 +1,18 @@
-import styled from "styled-components";
-import { useState } from 'react'
-import { Searchuser } from "../Usersearch/Usersearch";
-import { Followfeed } from "../Followfeed/Followfeed";
-import data from '../../dummyfiles/dummyFeedList'
+import styled from 'styled-components';
+import { useState } from 'react';
+import { Searchuser } from '../Usersearch/Usersearch';
+import { Followfeed } from '../Followfeed/Followfeed';
+import data from '../../dummyfiles/dummyFeedList';
 
-export const FeedContainer= styled.div`
+export const FeedContainer = styled.div`
 display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-`
+`;
 
 export const Feed = () => {
-
-  const [followFeedList, setFollowFeedList] = useState(data)
+  const [followFeedList, setFollowFeedList] = useState(data);
 
   /* 서버에 요청
   const getFollowFeed = () => {
@@ -33,9 +32,9 @@ export const Feed = () => {
   return (
     <>
       <FeedContainer>
-        <Searchuser setFollowFeedList={setFollowFeedList}/>
-        <Followfeed followFeedList={followFeedList}/>
+        <Searchuser setFollowFeedList={setFollowFeedList} />
+        <Followfeed followFeedList={followFeedList} />
       </FeedContainer>
     </>
-  )
-}
+  );
+};

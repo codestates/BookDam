@@ -7,7 +7,7 @@ export const IntroWholeContainer = styled.div`
   height: 2400px;
 `;
 
-export const SectionWrapperOne =  styled.div`
+export const SectionWrapperOne = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;

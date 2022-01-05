@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import logo from '../../assets/images/logo-bigw.png'
-
+import logo from '../../assets/images/logo-bigw.png';
 
 export const FooterContainer = styled.div`
   display: flex;
@@ -20,7 +19,7 @@ export const FooterInfo = styled.div`
 display: flex;
 flex-direction: row;
 justify-content: space-around;
-`
+`;
 export const FooterLogo = styled.img.attrs({
   src: logo,
   alt: '로고'
@@ -32,7 +31,7 @@ export const FooterLogo = styled.img.attrs({
       height: 50px;
       width: 70px;
     }
-`
+`;
 
 export const FooterContent = styled.ul`
   color: #E6E6E6;
@@ -48,7 +47,7 @@ export const FooterContent = styled.ul`
   @media (max-width:500px) {
     font-size: 9px;
   }
-`
+`;
 
 export const FooterCopyright = styled.div`
   color: #E6E6E6;
@@ -56,7 +55,7 @@ export const FooterCopyright = styled.div`
     @media (max-width:500px) {
       font-size: 12px;
     }
-`
+`;
 
 export const FooterTitle = styled.h3`
   font-weight: 900;
@@ -66,4 +65,4 @@ export const FooterTitle = styled.h3`
   @media (max-width:500px) {
     font-size: 9px;
   }
-`
+`;

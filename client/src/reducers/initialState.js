@@ -1,11 +1,11 @@
 export const initialState =
 {
-  "userInfo": [
+  userInfo: [
     {
-      "id": "",
-      "userId": "",
-      "userNickName": "",
-      "userImage": ""
-    },
-  ],
-}
+      id: '',
+      userId: '',
+      userNickName: '',
+      userImage: ''
+    }
+  ]
+};

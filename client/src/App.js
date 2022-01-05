@@ -1,14 +1,17 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import IntroWrapper from './components/Intro/IntroWrapper';
+import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
-import { Feed } from './components/Feed/Feed';
-import MyPage from './components/Mypage/Mypage';
+import MyPage from './pages/MyPage/MyPage';
+
 
 function App () {
   return (
     <>
       <IntroWrapper />
+      <Navbar />
+      <MyPage />
       <Footer />
     </>
   );

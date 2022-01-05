@@ -3,6 +3,7 @@ import {
   UserSearchInput,
   UserSearchBtn,
   UpperContainer
+
 } from './UsersearchStyle';
 import { useEffect, useState } from 'react';
 import Axios from 'axios';
@@ -14,6 +15,7 @@ export const Searchuser = ({ setFollowFeedList }) => {
   const handlerInputSearchUser = (e) => {
     setFilter(e.target.value);
   };
+
   // 유저 검색기능은 서버에서 데이터 처리가 어떻게 되는지에 따라 유형이 바뀌므로 추후 구현
   // 우선 더미데이터 상에서 필터 처리는 가능했음
 

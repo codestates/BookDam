@@ -54,6 +54,7 @@ export const Followfeed = ({ followFeedList }) => {
     //   })
     // }
   };
+
   // const isFollowCheck = (following) => {
   //   for (let i = 0; i < followFeedList.length; i++) {
   //     if (followFeedList[i].userId === following) {

@@ -1,3 +1,7 @@
 import { initialState } from './initialState';
 
-export default initialState;
+const testReducer = (state = initialState, action) => {
+  return state;
+};
+
+export default testReducer;

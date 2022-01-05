@@ -1,12 +1,16 @@
 import styled from 'styled-components';
 
-export const FeedContentContainer = styled.div`
+export const FeedContentContainer = styled.ul`
 display: flex;
+flex-direction: row;
+justify-content: center;
 align-items: center;
-align-content: center;
+padding: 0%;
+list-style-type: none;
 flex-wrap: wrap;
+border: 2px solid black;
 `;
-export const UserInfoContainer = styled.div`
+export const UserInfoContainer = styled.li`
 margin: 10px;
 border: 1px solid black;
 height: 400px;

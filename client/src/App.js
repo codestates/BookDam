@@ -5,6 +5,7 @@ import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import MyPage from './pages/MyPage/MyPage';
 
+
 function App () {
   return (
     <>
@@ -12,7 +13,6 @@ function App () {
       <Navbar />
       <MyPage />
       <Footer />
-
     </>
   );
 }

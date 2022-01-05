@@ -25,7 +25,7 @@ export const IntroWrapper = () => {
   const [isOpenSignupModal, setIsOpenSignupModal] = useState(false);
 
   const handleLoginModal = () => {
-    console.log(state)
+    console.log(state);
     setIsOpenSignupModal(false);
     setIsOpenLoginModal(true);
     document.body.style.overflow = 'hidden'; // Login 모달창 열면서 스크롤 방지

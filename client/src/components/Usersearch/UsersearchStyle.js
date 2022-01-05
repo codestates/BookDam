@@ -1,13 +1,21 @@
 import styled from 'styled-components';
 
+export const UpperContainer = styled.div`
+height: 30px;
+width: 100%;
+display: flex;
+justify-content: flex-end;
+align-items: flex-end;
+`;
 export const SearchUserContainer = styled.div`
 height: 20px;
 width: 150px;
+margin-right: 15px;
 border: 0.5px solid #5dc175;
-`
+`;
 export const UserSearchInput = styled.input.attrs({
-  type: "text",
-  placeholder: " 사용자 이름"
+  type: 'text',
+  placeholder: ' 사용자 이름'
 })`
 text-align: left;
 height: 90%;
@@ -18,7 +26,7 @@ outline: none;
   &::placeholder {
     font-size: 10px;
   }
-`
+`;
 export const UserSearchBtn = styled.button`
 height: 100%;
 width: 25%;
@@ -27,4 +35,4 @@ float: right;
 font-size: 8px;
 color: #ffffff;
 background-color: #5dc175;
-`
+`;

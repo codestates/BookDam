@@ -93,5 +93,3 @@ SignOutBtn.defaultProps = {
     height: '30px'
   }
 };
-
-

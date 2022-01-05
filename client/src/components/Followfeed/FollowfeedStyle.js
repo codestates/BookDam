@@ -1,12 +1,16 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const FeedContentContainer = styled.div`
+export const FeedContentContainer = styled.ul`
 display: flex;
+flex-direction: row;
+justify-content: center;
 align-items: center;
-align-content: center;
+padding: 0%;
+list-style-type: none;
 flex-wrap: wrap;
-`
-export const UserInfoContainer= styled.div`
+border: 2px solid black;
+`;
+export const UserInfoContainer = styled.li`
 margin: 10px;
 border: 1px solid black;
 height: 400px;
@@ -21,8 +25,8 @@ justify-content: space-between;
 export const UserImageContainer = styled.div`
 height: 30px;
 width: 30px;
-`
-export const DefaultUserImage= styled.img`
+`;
+export const DefaultUserImage = styled.img`
 height: 100%;
 width: 100%;
 `;
@@ -32,8 +36,8 @@ display:flex;
 flex-direction: row;
 justify-content: left;
 align-items: center;
-`
-export const UserImage= styled.img`
+`;
+export const UserImage = styled.img`
 display: grid;
 justify-items: center;
 align-items: center;
@@ -49,14 +53,14 @@ left: 10px;
 margin-left: 10px;
 font-size: 15px;
 font-weight: 600;
-`
+`;
 export const UserFollowIcon = styled.div`
 height: 15px;
 width: 15px;
 margin-left: 5px;
 cursor: pointer;
-`
-export const PostCreatedAt= styled.div`
+`;
+export const PostCreatedAt = styled.div`
 margin-right: 10px;
 font-size: 10px;
 color: black;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import UserModifyModal from '../UserInfoModify/UserModifyModal';
-import example from '../../assets/images/defaultUserImage.png'
+import example from '../../assets/images/defaultUserImage.png';
 
 import {
   MypageContainer,
@@ -33,16 +33,17 @@ export default function MyPage () {
   // axios로 회원 정보 조회(유저 정보 및 아티클)
   // http://localhost:4000/user/:userId
 
-  const state = useSelector(state => state.articleReducer); // userReducer로 바꿀 것!
-  const { userInfo, userImage } = state;
-  
+  const userState = useSelector(state => state.articleReducer); // userReducer로 바꿀 것!
+  const articleState = useSelector(state => state.articleReducer);
+  const { userInfo } = userState;
+  const { articleInfo } = articleState;
+
   const [isOpneModyfyModal, setIsOpenModyfyModal] = useState(false);
 
   // 회원정보수정 버튼 누르면 회원정보수정 모달이 나오는 함수
   const openUserInfoModify = () => {
     setIsOpenModyfyModal(true);
   };
-  console.log(userInfo);
 
   return (
     <>
@@ -69,6 +70,7 @@ export default function MyPage () {
         </UserInfoContainer>
         <ArticleListTitle>수집 목록</ArticleListTitle>
         <ArticleListContainer>
+
           <ArticleWrap>
             <Article />
           </ArticleWrap>

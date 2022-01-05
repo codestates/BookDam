@@ -8,7 +8,7 @@ import MyPage from './pages/MyPage/MyPage';
 function App () {
   return (
     <>
-      {/* <IntroWrapper /> */}
+      <IntroWrapper />
       <Navbar />
       <MyPage />
       <Footer />

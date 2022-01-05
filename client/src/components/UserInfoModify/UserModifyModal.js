@@ -1,20 +1,15 @@
 import React from 'react';
 import {
   UserInfoModifyModalContainer,
-  UserInfoModifyContainer,
+  UserInfoModifyContainer
 } from './UserModifyModalStyle';
 
-
 export default function UserModifyModal () {
-
   return (
     <>
       <UserInfoModifyModalContainer>
-        <UserInfoModifyContainer>
-          
-        </UserInfoModifyContainer>
+        <UserInfoModifyContainer />
       </UserInfoModifyModalContainer>
     </>
-  )
+  );
 }
-  

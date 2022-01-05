@@ -4,8 +4,8 @@ import articleReducer from './articleReducer';
 
 const rootReducer = combineReducers({
   testReducer,
-  articleReducer,
-  
+  articleReducer
+
 });
 
 export default rootReducer;

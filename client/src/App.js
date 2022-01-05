@@ -1,14 +1,21 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import IntroWrapper from './components/Intro/IntroWrapper';
+import { IntroPage } from './pages/IntroPage/IntroPage';
+import { FeedPage } from './pages/FeedPage/FeedPage';
 import Footer from './components/Footer/Footer';
 
 function App () {
   return (
     <>
-      <IntroWrapper />
-      <Footer />
-
+      <Switch>
+        <Route exact path='/'>
+          <IntroPage />
+          <Footer />
+        </Route>
+        <Route exact path='/feedpage'>
+          <FeedPage />
+        </Route>
+      </Switch>
     </>
   );
 }

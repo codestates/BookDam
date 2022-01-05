@@ -1,63 +1,105 @@
 import React, { useState } from 'react';
-import { IntroWholeContainer, 
-         SectionWrapperOne, SectionWrapperTwo, SectionWrapperThree, 
-         SectionContainer, SectionInfoContainer, ImageContainer, TextContainer,
-         ButtonWrapper, ButtonContainer, ButtonsInIntro } from './IntroWrapperStyle';
+import { Link } from 'react-router-dom';
+import {
+  IntroWholeContainer,
+  SectionWrapperOne,
+  SectionWrapperTwo,
+  SectionWrapperThree,
+  SectionContainer,
+  SectionInfoContainer,
+  ImageContainer,
+  TextContainer,
+  TextHeaderContainer,
+  ButtonWrapper,
+  ButtonContainer,
+  ButtonsInIntro
+} from './IntroWrapperStyle';
 import { LoginModal } from '../Login/LoginModal';
+import { SignupModal } from '../Signup/SignupModal';
 import { useSelector, useDispatch } from 'react-redux';
 
-function IntroWrapper () {
-  const state = useSelector(state => state.userInfo)
+export const IntroWrapper = () => {
+  const state = useSelector(state => state.userInfo);
   const [isOpenLoginModal, setIsOpenLoginModal] = useState(false);
+  const [isOpenSignupModal, setIsOpenSignupModal] = useState(false);
 
-  const handleLogin = () => {
+  const handleLoginModal = () => {
+    setIsOpenSignupModal(false);
     setIsOpenLoginModal(true);
-    document.body.style.overflow = "hidden";
-  }
+    document.body.style.overflow = 'hidden'; // Login 모달창 열면서 스크롤 방지
+  };
 
-    return (
-        <>
-          <IntroWholeContainer>
-            {isOpenLoginModal ? <LoginModal /> : null}
-            <SectionWrapperOne>
-                <SectionContainer>
-                  <SectionInfoContainer>{/* SectionInfo3 */}
-                    <ImageContainer>Image1</ImageContainer>
-                    <TextContainer>Text1</TextContainer>
-                  </SectionInfoContainer>
-                  <ButtonWrapper>
-                    <ButtonContainer>
-                      <ButtonsInIntro>시작하기</ButtonsInIntro>
-                      <ButtonsInIntro onClick={handleLogin}>로그인</ButtonsInIntro>
-                    </ButtonContainer>
-                  </ButtonWrapper>
-                </SectionContainer>
-              </SectionWrapperOne>
+  const handleSignupModal = () => {
+    setIsOpenLoginModal(false);
+    setIsOpenSignupModal(true);
+    document.body.style.overflow = 'hidden'; // Signup 모달창 열면서 스크롤 방지
+  };
 
-            <SectionWrapperTwo>
-              <SectionInfoContainer>{/* SectionInfo2 */}
-                <ImageContainer>Image2</ImageContainer>
-                <TextContainer>Text1</TextContainer>
-              </SectionInfoContainer>
-            </SectionWrapperTwo>
+  const handleCloseSignupModal = () => {
+    setIsOpenSignupModal(false);
+    document.body.style.overflow = 'hidden';
+  };
 
-            <SectionWrapperThree>
-              <SectionContainer>
-                <SectionInfoContainer>{/* SectionInfo3 */}
-                  <ImageContainer>Image3</ImageContainer>
-                  <TextContainer>Text3</TextContainer>
-                </SectionInfoContainer>
-                <ButtonWrapper>
-                  <ButtonContainer>
-                    <ButtonsInIntro>시작하기</ButtonsInIntro>
-                    <ButtonsInIntro>로그인</ButtonsInIntro>
-                  </ButtonContainer>
-                </ButtonWrapper>
-              </SectionContainer>
-            </SectionWrapperThree>
-          </IntroWholeContainer>
-        </>
-    )
+  return (
+    <>
+      <IntroWholeContainer>
+        {isOpenLoginModal
+          ? <LoginModal
+              setIsOpenLoginModal={setIsOpenLoginModal}
+              handleSignupModal={handleSignupModal}
+            />
+          : null}
+        {isOpenSignupModal
+          ? <SignupModal
+              handleCloseSignupModal={handleCloseSignupModal}
+              handleLoginModal={handleLoginModal}
+            />
+          : null}
+        <SectionWrapperOne>
+          <SectionContainer>
+            <SectionInfoContainer>{/* SectionInfo3 */}
+              <ImageContainer>Image1</ImageContainer>
+              <TextContainer>
+                <TextHeaderContainer>
+                  <h1>Write</h1>
+                </TextHeaderContainer>
+                <h2>책에서 본 감명 깊은 문장을</h2>
+                <h2>기록할 수 있어요</h2>
+              </TextContainer>
+            </SectionInfoContainer>
+            <ButtonWrapper>
+              <ButtonContainer>
+                <Link to='/feedpage'>
+                  <ButtonsInIntro>시작하기</ButtonsInIntro>
+                </Link>
+                <ButtonsInIntro onClick={handleLoginModal}>로그인</ButtonsInIntro>
+              </ButtonContainer>
+            </ButtonWrapper>
+          </SectionContainer>
+        </SectionWrapperOne>
+
+        <SectionWrapperTwo>
+          <SectionInfoContainer>{/* SectionInfo2 */}
+            <TextContainer>Text1</TextContainer>
+            <ImageContainer>Image2</ImageContainer>
+          </SectionInfoContainer>
+        </SectionWrapperTwo>
+
+        <SectionWrapperThree>
+          <SectionContainer>
+            <SectionInfoContainer>{/* SectionInfo3 */}
+              <ImageContainer>Image3</ImageContainer>
+              <TextContainer>Text3</TextContainer>
+            </SectionInfoContainer>
+            <ButtonWrapper>
+              <ButtonContainer>
+                <ButtonsInIntro>시작하기</ButtonsInIntro>
+                <ButtonsInIntro>로그인</ButtonsInIntro>
+              </ButtonContainer>
+            </ButtonWrapper>
+          </SectionContainer>
+        </SectionWrapperThree>
+      </IntroWholeContainer>
+    </>
+  );
 };
-
-export default IntroWrapper;

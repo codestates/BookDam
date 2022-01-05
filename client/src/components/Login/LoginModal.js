@@ -1,29 +1,46 @@
-import React from 'react';
-import { LoginModalWholeBackground, LoginModalContainer, CloseButton, InputContainer,
-         LoginTitle, InputId, InputPW  } from './LoginModalStyle';
+import React, { useState } from 'react';
+import {
+  LoginModalWholeBackground,
+  LoginModalWrapper,
+  LoginCloseButton,
+  LoginModalContainer,
+  LoginTitle,
+  InputContainer,
+  InputId,
+  InputPW
+} from './LoginModalStyle';
+import { SignupModal } from '../Signup/SignupModal';
 import { Message, Errormessage } from '../GlobalMessage/GlobalMessage';
 import { LoginThemeBtn } from '../GlobalButton/GlobalButton';
-import { Link, useHistory } from 'react-router-dom';
 
-export const LoginModal = () => {
+export const LoginModal = ({
+  setIsOpenLoginModal,
+  handleSignupModal,
+  handleCloseSignupModal
+}) => {
+  const handleCloseLoginModal = () => {
+    setIsOpenLoginModal(false);
+    document.body.style.overflow = 'unset'; // 스크롤 방지 해제
+  };
 
   return (
     <div>
       <LoginModalWholeBackground>
-        <LoginModalContainer>
-          <LoginTitle>BookDam 로그인</LoginTitle>
+        <LoginModalWrapper>
+          <LoginCloseButton onClick={handleCloseLoginModal}>&times;</LoginCloseButton>
+          <LoginModalContainer>
+            <LoginTitle>BookDam</LoginTitle>
             <InputContainer>
               <InputId />
               <InputPW />
               <Errormessage />
               <LoginThemeBtn>로그인</LoginThemeBtn>
               <Message>아직 아이디가 없으신가요? 👇</Message>
-              <LoginThemeBtn>
-              <Link to='./signup' style={{ color: 'inherit', textDecoration: 'none' }}>회원가입</Link>
-              </LoginThemeBtn>
+              <LoginThemeBtn handleCloseSignupModal={handleCloseSignupModal} onClick={handleSignupModal}>회원가입</LoginThemeBtn>
             </InputContainer>
-        </LoginModalContainer>
+          </LoginModalContainer>
+        </LoginModalWrapper>
       </LoginModalWholeBackground>
     </div>
   );
-}
+};

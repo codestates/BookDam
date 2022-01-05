@@ -1,19 +1,18 @@
+import React, { useEffect, useState } from 'react';
 import {
   SearchUserContainer,
   UserSearchInput,
   UserSearchBtn
-} from "./UsersearchStyle"
-import { useEffect, useState } from "react"
-import Axios from "axios"
-import data from "../../dummyfiles/dummyFeedList"
+} from './UsersearchStyle';
+import Axios from 'axios';
+import data from '../../dummyfiles/dummyFeedList';
 
-export const Searchuser = ({setFollowFeedList}) => {
-  
-  const [filter, setFilter] = useState([])
+export const Searchuser = ({ setFollowFeedList }) => {
+  const [filter, setFilter] = useState([]);
 
   const handlerInputSearchUser = (e) => {
-    setFilter(e.target.value)
-  }
+    setFilter(e.target.value);
+  };
 
   // useEffect(() => {
   //   console.log(filter)
@@ -29,28 +28,28 @@ export const Searchuser = ({setFollowFeedList}) => {
   // }, [filter])
 
   const getSearchUserFeedList = (result) => {
-      setFollowFeedList(result)
-      console.log('?')
-  }
+    setFollowFeedList(result);
+    console.log('?');
+  };
   useEffect(() => {
-    console.log(filter)
+    console.log(filter);
     const filterData = data.filter((el) => {
-      return el.userNickName.indexOf(filter) > -1
-        })
-    getSearchUserFeedList(filterData)
-  }, [filter])
+      return el.userNickName.indexOf(filter) > -1;
+    });
+    getSearchUserFeedList(filterData);
+  }, [filter]);
 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
-      getSearchUserFeedList()
-      console.log('검색 엔터 입력')
+      getSearchUserFeedList();
+      console.log('검색 엔터 입력');
     }
-  }
+  };
 
   return (
     <>
       <SearchUserContainer>
-        <UserSearchInput value={filter} onChange={handlerInputSearchUser} onKeyPress={handleKeyPress}/>
+        <UserSearchInput value={filter} onChange={handlerInputSearchUser} onKeyPress={handleKeyPress} />
         <UserSearchBtn onClick={getSearchUserFeedList}>검색</UserSearchBtn>
       </SearchUserContainer>
     </>

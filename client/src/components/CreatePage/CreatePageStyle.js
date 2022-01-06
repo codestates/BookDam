@@ -4,9 +4,7 @@ export const IntroWholeContainer = styled.div`
   border: 1px solid black;
   overflow: hidden;
   position: relative;
-  height: 2300px;
-  max-width: 2400px;
-  width: 100vw;
+  height: 2400px;
 `;
 
 export const SectionWrapperOne = styled.div`
@@ -18,7 +16,7 @@ export const SectionWrapperOne = styled.div`
 `;
 
 export const SectionContainer = styled.div`
-  /* width: 100%; */
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -33,7 +31,7 @@ export const SectionInfoContainer = styled.div`
   align-items: center;
   border: 3px solid blue;
   margin: 10px;
-  /* width: 100%; */
+  width: 100%;
   height: 600px;
 
   @media screen and (max-width: 910px) {

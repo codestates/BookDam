@@ -82,9 +82,9 @@ export const InputContainer = styled.div`
 
 // Signup: title
 export const SignupTitle = styled.div`
-  color: #4D94E6;
+  color: #2cc05a;
   /* font-family: monospace; */
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: 600;
   text-align: center;
   margin: 1rem;
@@ -159,7 +159,7 @@ export const MoveToLoginModal = styled.span`
   font-weight: bold;
   color: black;
   &:hover {
-    color: blue;
+    color: #2cc05a;
     cursor: pointer;
   }
 `;

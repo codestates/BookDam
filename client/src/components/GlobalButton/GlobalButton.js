@@ -54,9 +54,9 @@ overflow: hidden;
 `;
 
 export const LoginThemeBtn = styled.button`  // 로그인 페이지 버튼 테마
-  background: #4D94E6;
+  background: #2cc05a;
   border: none;
-  color: white;
+  color: black;
   width: 60%;
   height: 40px;
   display: flex;

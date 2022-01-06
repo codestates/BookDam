@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux'; // 로그인 상태변경 테스트용
+import { useSelector } from 'react-redux'; // 로그인 상태변경 테스트용
 import { Link } from 'react-router-dom';
 import {
   IntroWholeContainer,
@@ -21,24 +21,24 @@ import { SignupModal } from '../Signup/SignupModal';
 export const IntroWrapper = () => {
   const [isOpenLoginModal, setIsOpenLoginModal] = useState(false);
   const [isOpenSignupModal, setIsOpenSignupModal] = useState(false);
-  const state = useSelector(state => state.testReducer); // 로그인 상태변경 테스트용
-  const { isLogin, articleInfo, userInfo } = state; // 로그인 상태변경 테스트용
+  const state = useSelector(state => state.loginReducer); // 로그인 상태변경 테스트용
+  const { isGuest, isLogin, articleInfo, userInfo } = state; // 로그인 상태변경 테스트용
 
-  const handleLoginModal = () => {
+  const handleLoginModal = () => { // 버튼 클릭시 로그인 모달 열기
     setIsOpenSignupModal(false);
     setIsOpenLoginModal(true);
     document.body.style.overflow = 'hidden'; // Login 모달창 열면서 스크롤 방지
   };
 
-  const handleSignupModal = () => {
+  const handleSignupModal = () => { // 버튼 클릭시 회원가입 모달 열기
     setIsOpenLoginModal(false);
     setIsOpenSignupModal(true);
     document.body.style.overflow = 'hidden'; // Signup 모달창 열면서 스크롤 방지
   };
 
-  const handleCloseSignupModal = () => {
+  const handleCloseSignupModal = () => { // 버튼 클릭시 회원가입 모달 닫기
     setIsOpenSignupModal(false);
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = 'unset';
   };
 
   return (
@@ -81,8 +81,8 @@ export const IntroWrapper = () => {
 
         <SectionWrapperTwo>
           <SectionInfoContainer>{/* SectionInfo2 */}
-            <TextContainer>{isLogin ?'true' : 'false'}</TextContainer>
-            <ImageContainer>Image2</ImageContainer>
+            <TextContainer>로그인 성공여부{isLogin ? 'true' : 'false'}</TextContainer>
+            <ImageContainer>게스트 처리여부{isGuest ? 'true' : 'false'}</ImageContainer>
           </SectionInfoContainer>
         </SectionWrapperTwo>
 
@@ -94,8 +94,10 @@ export const IntroWrapper = () => {
             </SectionInfoContainer>
             <ButtonWrapper>
               <ButtonContainer>
-                <ButtonsInIntro>시작하기</ButtonsInIntro>
-                <ButtonsInIntro>로그인</ButtonsInIntro>
+                <Link to='/feedpage'>
+                  <ButtonsInIntro>시작하기</ButtonsInIntro>
+                </Link>
+                <ButtonsInIntro onClick={handleLoginModal}>로그인</ButtonsInIntro>
               </ButtonContainer>
             </ButtonWrapper>
           </SectionContainer>

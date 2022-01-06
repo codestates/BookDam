@@ -17,7 +17,7 @@ function App () {
           <Footer />
         </Route>
         <Route path='/mypage'>
-        <MyPage />
+          <MyPage />
         </Route>
         <Route exact path='/feedpage'>
           <FeedPage />

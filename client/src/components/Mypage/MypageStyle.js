@@ -18,16 +18,15 @@ export const MypageContainer = styled.div`
 // UserInfo 영역
 export const UserInfoContainer = styled.div`
   display: flex;
-  width: 50%;
   height: 90px;
   margin: 10px;
   padding: 5px;
-  border: 1px solid black;
+  border: 1px solid skyblue;
 
-  @media (max-width: 500px) {
+  /* @media (max-width: 500px) {
     width: 480px;
     padding: 0;
-  }
+  } */
 `;
 
 export const UserImgSection = styled.div`
@@ -146,17 +145,16 @@ export const ArticleListTitle = styled.div`
   padding: 5px;
   /* border: 1px solid black; */
 
-    @media (max-width: 500px) {
+    /* @media (max-width: 500px) {
     width: 480px;
     padding: 0;
-  }
+  } */
 `;
 
 // Article 영역 (목록)
 export const ArticleListContainer = styled.div`
   display: flex;
   height: 450px;
-  width: 50%;
   flex-direction: row;
   justify-content: flex-start;
   align-content: flex-start;
@@ -164,10 +162,10 @@ export const ArticleListContainer = styled.div`
   padding: 5px;
   /* border: 1px solid black; */
 
-  @media (max-width: 500px) {
+  /* @media (max-width: 500px) {
     width: 480px;
     padding: 0;
-  }
+  } */
 `;
 
 export const ArticleWrap = styled.div`

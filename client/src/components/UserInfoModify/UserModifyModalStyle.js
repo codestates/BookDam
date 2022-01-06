@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-
 // 모달: 전체 배경, background
 export const UserInfoModifyModalContainer = styled.div`
   position: fixed;

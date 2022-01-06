@@ -17,7 +17,7 @@ import {
   SignOutBtn
 } from './UserModifyModalStyle';
 import { Errormessage } from '../GlobalMessage/GlobalMessage';
-import { IoClose } from "react-icons/io5";
+import { IoClose } from 'react-icons/io5';
 
 // 회원정보수정 PATCH
 // http://localhost:4000/user/:user_Id
@@ -47,7 +47,7 @@ export function UserModifyModal ({ closeUserInfoModify }) {
   // input handler
   const handleInputNickName = (e) => {
     if (userInfo.userNickName === e.target.value) {
-      setNickNameErrorMessage('기존과 동일한 닉네임입니다')
+      setNickNameErrorMessage('기존과 동일한 닉네임입니다');
     } else {
       setNickNameErrorMessage('');
       setModifyUserInputInfo({
@@ -59,7 +59,7 @@ export function UserModifyModal ({ closeUserInfoModify }) {
 
   const handleInputPW = (e) => {
     if (e.target.value.length > 0 && isValidPassword.test(e.target.value) === false) {
-      setPasswordErrorMessage('8자리 이상의 문자+숫자 조합으로 만들어주세요')
+      setPasswordErrorMessage('8자리 이상의 문자+숫자 조합으로 만들어주세요');
     } else {
       setPasswordErrorMessage('');
       setModifyUserInputInfo({
@@ -72,21 +72,18 @@ export function UserModifyModal ({ closeUserInfoModify }) {
   const handlePWCheck = (e) => {
     if (password.length === 0) {
       setPwChkErrorMessage('');
-    }
-    else if (e.target.value === password) {
+    } else if (e.target.value === password) {
       setPwChkErrorMessage('');
       setPasswordChk(true);
     } else {
-      setPwChkErrorMessage('비밀번호가 일치하지 않습니다')
+      setPwChkErrorMessage('비밀번호가 일치하지 않습니다');
     }
   };
 
-
   const changeUserInfo = () => {
 
-  }
-  
-  
+  };
+
   return (
     <>
       <UserInfoModifyModalContainer>

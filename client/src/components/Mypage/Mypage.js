@@ -45,15 +45,17 @@ export default function MyPage () {
   // 회원정보수정 모달 창을 닫는 함수
   const closeUserInfoModify = () => {
     setIsOpenModifyModal(false);
-  }
+  };
 
   return (
     // axios.get 회원정보 조회
     <>
       <MypageContainer>
-        {isOpneModifyModal ? 
-        <UserModifyModal
-          closeUserInfoModify={closeUserInfoModify} userInfo={userInfo} /> : null}
+        {isOpneModifyModal
+          ? <UserModifyModal
+              closeUserInfoModify={closeUserInfoModify} userInfo={userInfo}
+            />
+          : null}
         <UserInfoContainer>
           <UserImgSection>
             <UserImage src={example} />
@@ -71,7 +73,8 @@ export default function MyPage () {
               </FollowContainer>
             </NickNameFollowSection>
             <UserModifyBtn
-              onClick={openUserInfoModify}>
+              onClick={openUserInfoModify}
+            >
               회원정보수정
             </UserModifyBtn>
           </UserInfoSection>

@@ -4,7 +4,7 @@ import { IntroPage } from './pages/IntroPage/IntroPage';
 import { FeedPage } from './pages/FeedPage/FeedPage';
 import Navbar from '../src/components/Navbar/Navbar';
 import Footer from '../src/components/Footer/Footer';
-import MyPage from '../src/pages/MyPage/MyPage'
+import MyPage from '../src/pages/MyPage/MyPage';
 
 function App () {
   return (

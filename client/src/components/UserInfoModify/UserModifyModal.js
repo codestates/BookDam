@@ -16,7 +16,7 @@ import {
   ModificationBtn,
   SignOutBtn
 } from './UserModifyModalStyle';
-import { Errormessage } from '../GlobalMessage/GlobalMessage';
+import { ErrorMessage } from '../GlobalMessage/GlobalMessage';
 import { IoClose } from 'react-icons/io5';
 
 // 회원정보수정 PATCH
@@ -99,11 +99,11 @@ export function UserModifyModal ({ closeUserInfoModify }) {
           </UserInfoSection>
           <UserInfoEditSection>
             <NickNameInput onChange={handleInputNickName} />
-            <Errormessage>{nickNameErrorMessage}</Errormessage>
+            <ErrorMessage>{nickNameErrorMessage}</ErrorMessage>
             <PasswordInput onChange={handleInputPW} />
-            <Errormessage>{passwordErrorMessage}</Errormessage>
+            <ErrorMessage>{passwordErrorMessage}</ErrorMessage>
             <PasswordChkInput onChange={handlePWCheck} />
-            <Errormessage>{pwChkErrorMessage}</Errormessage>
+            <ErrorMessage>{pwChkErrorMessage}</ErrorMessage>
             <UserInfoModifyBtnSection>
               <ModificationBtn>회원정보 수정</ModificationBtn>
               <SignOutBtn>회원탈퇴</SignOutBtn>

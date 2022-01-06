@@ -13,10 +13,11 @@ function App () {
       <Header />
       <Switch>
         <Route exact path='/'>
-          <Navbar />
           <IntroPage />
-          <MyPage />
           <Footer />
+        </Route>
+        <Route path='/mypage'>
+        <MyPage />
         </Route>
         <Route exact path='/feedpage'>
           <FeedPage />

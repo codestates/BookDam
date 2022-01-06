@@ -86,6 +86,8 @@ module.exports = {
     if (!same) {
       return res.status(400).json({ message: 'failure' });
     }
+
+    // 에러 처리할 수 있도록 await 빼기
     const deleteArticle = await ArticleModel.destroy({
       where: {
         user_id: id
@@ -181,10 +183,11 @@ module.exports = {
         res.status(401).json({ message: 'failure' });
       });
   },
-  search: async (req, res) => { // follow 하기 위해서 유저 검색
+  search: (req, res) => { // follow 하기 위해서 유저 검색
     const name = req.query.name;
+    console.log(name)
     if (!name) return res.status(400).json({ message: 'failure' });
-    userData = await UserModel.findAll({
+    UserModel.findAll({
       attributes: { exclude: ['updatedAt', 'createdAt', 'password'] },
       where: {
         [Op.or]: [
@@ -193,7 +196,12 @@ module.exports = {
         ]
       },
       include: [{ model: ArticleModel }, { model: FollowModel }]
-    });
-    res.json(userData);
+    })
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((error) => {
+      res.status(401).json({ message: 'failure' });
+    })
   }
 };

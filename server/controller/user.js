@@ -185,7 +185,7 @@ module.exports = {
   },
   search: (req, res) => { // follow 하기 위해서 유저 검색
     const name = req.query.name;
-    console.log(name)
+    console.log(name);
     if (!name) return res.status(400).json({ message: 'failure' });
     UserModel.findAll({
       attributes: { exclude: ['updatedAt', 'createdAt', 'password'] },
@@ -197,11 +197,11 @@ module.exports = {
       },
       include: [{ model: ArticleModel }, { model: FollowModel }]
     })
-    .then((result) => {
-      res.status(200).json(result);
-    })
-    .catch((error) => {
-      res.status(401).json({ message: 'failure' });
-    })
+      .then((result) => {
+        res.status(200).json(result);
+      })
+      .catch((error) => {
+        res.status(401).json({ message: 'failure' });
+      });
   }
 };

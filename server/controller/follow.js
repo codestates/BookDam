@@ -3,7 +3,7 @@ const { Follow: FollowModel } = require('../models');
 module.exports = {
   post: (req, res) => {
     const id = parseInt(req.params.user_Id, 10);
-    const follow_Id = req.query.follow_Id; 
+    const follow_Id = req.query.follow_Id;
     if (Number.isNaN(id)) return res.status(400).json({ message: 'failure' });
     if (!follow_Id) return res.status(400).json({ message: 'failure' });
     FollowModel.findOrCreate({
@@ -27,9 +27,9 @@ module.exports = {
         res.status(401).json({ message: 'failure' });
       });
   },
-  delete: async (req, res) => { 
-    const id = parseInt(req.params.user_Id, 10); 
-    const follow_Id = req.query.follow_Id; 
+  delete: async (req, res) => {
+    const id = parseInt(req.params.user_Id, 10);
+    const follow_Id = req.query.follow_Id;
     if (Number.isNaN(id)) return res.status(400).json({ message: 'failure' });
     if (!follow_Id) return res.status(400).json({ message: 'failure' });
     FollowModel.destroy({

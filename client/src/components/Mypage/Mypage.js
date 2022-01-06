@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import UserModifyModal from '../UserInfoModify/UserModifyModal';
+import { UserModifyModal } from '../UserInfoModify/UserModifyModal';
 import example from '../../assets/images/defaultUserImage.png';
 
 import {
@@ -24,7 +24,7 @@ import {
 } from './MypageStyle';
 
 export default function MyPage () {
-  // 1. 상태관리 요소 : userImage, userNickName, article
+  // 1. 상태관리 요소 : userImage, userNickName, article, follow, follower
   // 2. follow, follower : 서버에 count 요청
   // 3. 함수 : 회원정보수정 버튼을 누를 시 회원정보수정 모달로 연결, 무한스크롤 관련 버튼 실행 또는 액션,
   // 아티클 map으로 출력하기 -> 무한스크롤로 아티클 노출
@@ -33,22 +33,29 @@ export default function MyPage () {
   // axios로 회원 정보 조회(유저 정보 및 아티클)
   // http://localhost:4000/user/:userId
 
-  const userState = useSelector(state => state.articleReducer); // userReducer로 바꿀 것!
-  const articleState = useSelector(state => state.articleReducer);
+  const userState = useSelector(state => state.userInfoReducer);
   const { userInfo } = userState;
-  const { articleInfo } = articleState;
 
-  const [isOpneModyfyModal, setIsOpenModyfyModal] = useState(false);
+  const [isOpneModifyModal, setIsOpenModifyModal] = useState(false);
 
   // 회원정보수정 버튼 누르면 회원정보수정 모달이 나오는 함수
   const openUserInfoModify = () => {
-    setIsOpenModyfyModal(true);
+    setIsOpenModifyModal(true);
+  };
+  // 회원정보수정 모달 창을 닫는 함수
+  const closeUserInfoModify = () => {
+    setIsOpenModifyModal(false);
   };
 
   return (
+    // axios.get 회원정보 조회
     <>
       <MypageContainer>
-        {isOpneModyfyModal ? <UserModifyModal /> : null}
+        {isOpneModifyModal
+          ? <UserModifyModal
+              closeUserInfoModify={closeUserInfoModify} userInfo={userInfo}
+            />
+          : null}
         <UserInfoContainer>
           <UserImgSection>
             <UserImage src={example} />
@@ -65,7 +72,11 @@ export default function MyPage () {
                 </Follower>
               </FollowContainer>
             </NickNameFollowSection>
-            <UserModifyBtn onClick={openUserInfoModify}>회원정보수정</UserModifyBtn>
+            <UserModifyBtn
+              onClick={openUserInfoModify}
+            >
+              회원정보수정
+            </UserModifyBtn>
           </UserInfoSection>
         </UserInfoContainer>
         <ArticleListTitle>수집 목록</ArticleListTitle>

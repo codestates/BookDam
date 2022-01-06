@@ -11,5 +11,5 @@ export const Errormessage = styled.div`
   color: #e53935;
   font-size: smaller;
   text-align: center;
-  margin: 1rem;
+  margin: 0.3rem;
 `;

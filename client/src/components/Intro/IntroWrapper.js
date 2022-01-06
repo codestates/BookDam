@@ -19,7 +19,7 @@ import { SignupModal } from '../Signup/SignupModal';
 import { useSelector } from 'react-redux';
 
 export const IntroWrapper = () => {
-  const state = useSelector(state => state.testReducer);
+  const state = useSelector(state => state.userInfoReducer);
   const { userInfo } = state;
   const [isOpenLoginModal, setIsOpenLoginModal] = useState(false);
   const [isOpenSignupModal, setIsOpenSignupModal] = useState(false);
@@ -39,7 +39,7 @@ export const IntroWrapper = () => {
 
   const handleCloseSignupModal = () => {
     setIsOpenSignupModal(false);
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = 'unset';
   };
 
   return (

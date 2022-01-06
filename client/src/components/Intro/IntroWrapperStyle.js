@@ -17,12 +17,11 @@ export const SectionWrapperOne = styled.div`
 `;
 
 export const SectionContainer = styled.div`
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  border: 3px solid black;
+  border: 1px solid black;
   margin: 10px;
 `;
 
@@ -32,7 +31,6 @@ export const SectionInfoContainer = styled.div`
   align-items: center;
   border: 3px solid blue;
   margin: 10px;
-  width: 100%;
   height: 600px;
 
   @media screen and (max-width: 910px) {
@@ -93,8 +91,8 @@ export const ButtonsInIntro = styled.button`
   border-style: none;
   border-radius: 10px;
   font-size: 14px;
-  background: #2D9BF0;
-  color: #ffffff;
+  background: #2cc05a;
+  color: black;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   transition: all 0.1s ease-in-out;
   cursor: pointer;

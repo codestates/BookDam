@@ -26,7 +26,7 @@ export const LoginModalWrapper = styled.div`
   display: flex;
   flex-direction: column;
   border-radius: 3%;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 
   @media screen and (max-width: 500px) {
     width: 100%;
@@ -82,9 +82,9 @@ export const InputContainer = styled.div`
 
 // Login: title
 export const LoginTitle = styled.div`
-  color: #4D94E6;
+  color: #2cc05a;
   /* font-family: monospace; */
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: 600;
   text-align: center;
   margin: 1rem;

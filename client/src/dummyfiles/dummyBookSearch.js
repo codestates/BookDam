@@ -16,5 +16,8 @@ export const data = [
     image: 'http://book.naver.com/bookdb/book_detail.naver?bid=7052192',
     author: '재레드 다이아몬드(대학교수) 저',
     puclisher: 'VintageBooks'
+  },
+  {
+    title: '개발'
   }
 ];

@@ -1,7 +1,7 @@
-import { LOGIN_ACTION } from '../actions/loginAction';
+import { LOGIN_ACTION } from '../actions/userInfoAction';
 import { initialState } from './initialState';
 
-const loginReducer = (state = initialState, action) => {
+const userInfoReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_ACTION:
       return { ...state, isGuest: action.isGuest, isLogin: action.isLogin, userInfo: action.payload };
@@ -11,4 +11,4 @@ const loginReducer = (state = initialState, action) => {
   }
 };
 
-export default loginReducer;
+export default userInfoReducer;

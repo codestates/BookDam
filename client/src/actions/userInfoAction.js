@@ -1,7 +1,7 @@
 // action types
 export const LOGIN_ACTION = 'LOGIN_ACTION';
 
-export const loginAction = (userInfo) => {
+export const userInfoAction = (userInfo) => {
   return {
     type: LOGIN_ACTION,
     isGuest: false,

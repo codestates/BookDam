@@ -13,7 +13,7 @@ import {
 } from './LoginModalStyle';
 import { Message, ErrorMessage } from '../GlobalMessage/GlobalMessage';
 import { LoginThemeBtn } from '../GlobalButton/GlobalButton';
-import { loginAction } from '../../actions/loginAction';
+import { userInfoAction } from '../../actions/userInfoAction';
 
 export const LoginModal = ({ setIsOpenLoginModal, handleSignupModal, handleCloseSignupModal }) => {
   const [loginInfo, setLoginInfo] = useState({ userId: '', password: '' });
@@ -68,7 +68,7 @@ export const LoginModal = ({ setIsOpenLoginModal, handleSignupModal, handleClose
       });
 
       if (resultData) {
-        dispatch(loginAction(resultData));
+        dispatch(userInfoAction(resultData));
         setIsOpenLoginModal(false);
         document.body.style.overflow = 'unset'; // 스크롤 방지 해제
       }

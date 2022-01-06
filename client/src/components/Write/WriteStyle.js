@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const IntroWholeContainer = styled.div`
+export const CreateWholeContainer = styled.div`
   border: 1px solid black;
   overflow: hidden;
   position: relative;

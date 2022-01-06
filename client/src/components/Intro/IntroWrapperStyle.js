@@ -5,7 +5,7 @@ export const IntroWholeContainer = styled.div`
   overflow: hidden;
   position: relative;
   height: 2300px;
-  max-width: 2400px;
+  /* max-width: 2400px; */
   width: 100vw;
 `;
 

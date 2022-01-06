@@ -2,6 +2,7 @@ import React from 'react';
 import Logo from '../../assets/images/logo-bigb.png';
 import { FaArrowLeft } from 'react-icons/fa';
 import { IoMenu } from 'react-icons/io5';
+import { Link } from 'react-router-dom';
 
 import {
   NavbarContainer,
@@ -25,12 +26,18 @@ export default function Navbar () {
           <FaArrowLeft />
         </BackSection>
         <LogoSection>
-          <LogoImage src={Logo} />
+          <Link to='/'><LogoImage src={Logo} /></Link>
         </LogoSection>
         <NavMenuSection>
-          <NavMenu>Write</NavMenu>
-          <NavMenu>Feed</NavMenu>
-          <NavMenu>MyPage</NavMenu>
+          <NavMenu>
+            <Link to='/createPage'>Write</Link>
+          </NavMenu>
+          <NavMenu>
+            <Link to='/feedPage'>Feed</Link>
+          </NavMenu>
+          <NavMenu>
+            <Link to='/mypage'>mypage</Link>
+          </NavMenu>
         </NavMenuSection>
         <UserSection>
           <UserImage />

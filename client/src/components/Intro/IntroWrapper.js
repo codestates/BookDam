@@ -21,7 +21,7 @@ import { SignupModal } from '../Signup/SignupModal';
 export const IntroWrapper = () => {
   const [isOpenLoginModal, setIsOpenLoginModal] = useState(false);
   const [isOpenSignupModal, setIsOpenSignupModal] = useState(false);
-  const state = useSelector(state => state.loginReducer); // 로그인 상태변경 테스트용
+  const state = useSelector(state => state.userInfoReducer); // 로그인 상태변경 테스트용
   const { isGuest, isLogin, articleInfo, userInfo } = state; // 로그인 상태변경 테스트용
 
   const handleLoginModal = () => { // 버튼 클릭시 로그인 모달 열기

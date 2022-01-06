@@ -5,6 +5,7 @@ export const IntroWholeContainer = styled.div`
   overflow: hidden;
   position: relative;
   height: 2300px;
+  width: 100vw;
 `;
 
 export const SectionWrapperOne = styled.div`

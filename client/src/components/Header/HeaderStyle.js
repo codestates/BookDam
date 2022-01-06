@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const HeaderContainer = styled.div`
   height: 70px;
   position: fixed;
-  width: 100%;
+  width: 100vw;
   z-index: 100;
   /* border: 1px solid black; */
 `;

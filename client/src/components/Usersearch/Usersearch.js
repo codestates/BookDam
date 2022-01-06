@@ -5,7 +5,6 @@ import {
   UserSearchBtn,
   UpperContainer
 } from './UsersearchStyle';
-import { useEffect, useState } from 'react';
 import Axios from 'axios';
 import data from '../../dummyfiles/dummyFeedList';
 

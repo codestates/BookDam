@@ -1,7 +1,7 @@
 ---
 name: KPT 회고 Template
 about: KPT 회고
-title: KPT 회고 제목 설정하기
+title: Final Project 0주차 0요일 KPT 회고
 labels: ''
 assignees: ''
 

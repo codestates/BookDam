@@ -18,12 +18,11 @@ export const SectionWrapperOne = styled.div`
 `;
 
 export const SectionContainer = styled.div`
-  /* width: 100%; */
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  border: 3px solid black;
+  border: 1px solid black;
   margin: 10px;
 `;
 
@@ -33,7 +32,6 @@ export const SectionInfoContainer = styled.div`
   align-items: center;
   border: 3px solid blue;
   margin: 10px;
-  /* width: 100%; */
   height: 600px;
 
   @media screen and (max-width: 910px) {

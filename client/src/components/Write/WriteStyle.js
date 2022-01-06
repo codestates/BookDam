@@ -1,126 +1,118 @@
 import styled from 'styled-components';
 
-export const CreateWholeContainer = styled.div`
+export const WriteWholeContainer = styled.div`
   border: 1px solid black;
   overflow: hidden;
   position: relative;
-  height: 2400px;
+  height: 1000px;
+  width: 100vw;
 `;
 
-export const SectionWrapperOne = styled.div`
+export const SearchBookWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid red;
-  height: 750px;
+  /* border: 1px solid red; */
+  height: 30%;
 `;
 
-export const SectionContainer = styled.div`
-  width: 100%;
+export const SearchBookContainer = styled.div`
+  width: 970px;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  border: 3px solid black;
-  margin: 10px;
-`;
-
-export const SectionInfoContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: row;
   border: 3px solid blue;
-  margin: 10px;
-  width: 100%;
-  height: 600px;
-
-  @media screen and (max-width: 910px) {
-    flex-direction: column;
-  }
 `;
 
-export const ImageContainer = styled.div`
+export const SearchBookInfoContainer = styled.div`
+  width: 60%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid red;
+`;
+
+export const SearchBookInfoUpper = styled.div`
+  width: 100%;
+  height: 20%;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+`;
+
+export const SearchContainer = styled.div`
+  margin-top: 10px;
+  margin-left: 5%;
+  width: 300px;
+  border: 3px solid #e5e5e5;
+  height: 60%;
+  display: flex;
+  justify-content: flex-end;
+`;
+
+export const SearchInputcontainer = styled.input`
+  width: 100%;
+  border: 1px solid #e5e5e5;
+  outline: none;
+`;
+
+export const SearchClick = styled.div`
+  width: 50px;
+  /* border: 1px solid black; */
+  height: 100%;
+  text-align: center;
+  line-height: 220%;
+  background: #E6E6E6;
+`;
+
+export const SearchBookInfoLower = styled.div`
+  width: 100%;
+  height: 80%;
+  border: 1px solid black;
+`;
+
+export const SearchBookImageContainer = styled.div`
+  width: 40%;
+  height: 100%;
+  border: 2px solid black;
+`;
+
+export const WriteArticleWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 10px;
-  border: 1px solid black;
-  height: 550px;
-  width: 450px;
-  background-image: linear-gradient(rgba(0,170, 0, 0.1), rgba(0, 255, 0, 0.5));
+  /* border: 1px solid red; */
+  height: 50%;
 `;
 
-export const TextContainer = styled.div`
+export const WriteArticleContainer = styled.div`
+  width: 970px;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin: 10px;
-  border: 1px solid black;
-  height: 450px;
-  width: 450px;
+  border: 2px solid blue;
 `;
 
-export const TextHeaderContainer = styled.div`
-  /* border: 1px solid black; */
-`;
-
-export const ButtonWrapper = styled.div`
-  margin: 10px;
-  border: 2px solid green;
-  width: 100%;
-  height: 70px;
+export const ArticleButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  /* border: 1px solid red; */
+  height: 20%;
 `;
 
-export const ButtonContainer = styled.div`
-  margin: 5px;
-  border: 2px solid red;
-  width: 400px;
-  height: 55px;
+export const ArticleButtonContainer = styled.div`
+  width: 970px;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-`;
-
-export const ButtonsInIntro = styled.button`
-  width: 60px;
-  height: 40px;
-  margin: 10px;
-  border-style: none;
-  border-radius: 10px;
-  font-size: 14px;
-  background: #2cc05a;
-  color: black;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  transition: all 0.1s ease-in-out;
-  cursor: pointer;
-  text-align: center;
-  outline: none;
-  white-space: nowrap;
-  overflow: hidden;
-  &:hover {
-    color: #ffffff;
-  }
-  &:active {
-    background: #2683C9;
-  }
-`;
-
-export const SectionWrapperTwo = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid red;
-  height: 750px;
-`;
-
-export const SectionWrapperThree = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid red;
-  height: 750px;
+  flex-direction: column;
+  border: 2px solid blue;
 `;

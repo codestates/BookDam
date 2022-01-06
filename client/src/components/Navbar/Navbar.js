@@ -30,13 +30,13 @@ export default function Navbar () {
         </LogoSection>
         <NavMenuSection>
           <NavMenu>
-            <Link to='/createPage'>Write</Link>
+            <Link to='/createPage' style={{ textDecoration: 'none' }}>Write</Link>
           </NavMenu>
           <NavMenu>
-            <Link to='/feedPage'>Feed</Link>
+            <Link to='/feedPage' style={{ textDecoration: 'none' }}>Feed</Link>
           </NavMenu>
           <NavMenu>
-            <Link to='/mypage'>mypage</Link>
+            <Link to='/mypage' style={{ textDecoration: 'none' }}>mypage</Link>
           </NavMenu>
         </NavMenuSection>
         <UserSection>

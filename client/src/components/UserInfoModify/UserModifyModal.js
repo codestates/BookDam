@@ -70,7 +70,10 @@ export function UserModifyModal ({ closeUserInfoModify }) {
   };
 
   const handlePWCheck = (e) => {
-    if (e.target.value === password) {
+    if (password.length === 0) {
+      setPwChkErrorMessage('');
+    }
+    else if (e.target.value === password) {
       setPwChkErrorMessage('');
       setPasswordChk(true);
     } else {

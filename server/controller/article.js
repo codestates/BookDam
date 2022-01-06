@@ -17,7 +17,7 @@ module.exports = {
       .catch((error) => {
         res.status(401).json({ message: 'failure' });
       });
-  },
+  }, 
   post: (req, res) => {
   },
   patch: (req, res) => {

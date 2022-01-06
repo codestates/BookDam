@@ -1,7 +1,7 @@
 // const { User: UserModel, Article: ArticleModel, Follow: FollowModel } = require('../models');
 const request = require('request');
-const client_id = 'fmdv_GkjQ94MNOR2bQJ4';
-const client_secret = 'zmEK6jOZcO';
+const client_id = process.env.Client_ID;
+const client_secret = process.env.Client_Secret;
 
 module.exports = {
   get: (req, res) => {

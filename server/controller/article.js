@@ -1,9 +1,15 @@
 const { User: UserModel, Article: ArticleModel, Follow: FollowModel } = require('../models');
+const jwt = require('jsonwebtoken');
 
 module.exports = {
-  get: (req, res) => {
+  get: (req, res) => { // test done
     const id = parseInt(req.params.user_Id, 10);
     if (Number.isNaN(id)) return res.status(400).json({ message: 'failure' });
+    const cookie = req.cookies.jwt;
+    if (!cookie) return res.status(401).json({ message: '로그인 유저가 아닙니다.' });
+    const userInfo = jwt.verify(cookie, process.env.ACCESS_SECRET);
+    if (id !== userInfo.id) return res.status(400).json({ message: 'failure' });
+
     UserModel.findAll({
       attributes: { exclude: ['updatedAt', 'createdAt', 'password'] },
       include: [{ model: ArticleModel, attributes: { exclude: ['id', 'updatedAt'] } },
@@ -12,16 +18,21 @@ module.exports = {
       // nest: true
     })
       .then((result) => {
-        res.status(200).json(result);
+        res.status(200).json({ articleData: result });
       })
       .catch((error) => {
-        res.status(400).json({ message: 'failure' });
+        res.status(400).json({ message: 'failure', error: error });
       });
   },
-  post: (req, res) => {
+  post: (req, res) => { // test done
     // 데이터가 들어오면 책 썸네일은 path로 받는다.
     const id = parseInt(req.params.user_Id, 10);
     if (Number.isNaN(id)) return res.status(400).json({ message: 'failure' });
+    const cookie = req.cookies.jwt;
+    if (!cookie) return res.status(401).json({ message: '로그인 유저가 아닙니다.' });
+    const userInfo = jwt.verify(cookie, process.env.ACCESS_SECRET);
+    if (id !== userInfo.id) return res.status(400).json({ message: 'failure' });
+
     const articleInfo = req.body.articleInfo;
     const now = new Date();
     const utcNow = now.getTime() + (now.getTimezoneOffset() * 60 * 1000);
@@ -43,14 +54,20 @@ module.exports = {
         res.status(200).json({ message: 'success', articleInfo: result });
       })
       .catch((error) => {
-        res.status(400).json({ message: 'failure' });
+        res.status(400).json({ message: 'failure', error: error });
       });
   },
-  patch: async (req, res) => {
+  patch: async (req, res) => { // test done
     const id = parseInt(req.params.user_Id, 10);
     if (Number.isNaN(id)) return res.status(400).json({ message: 'failure' });
-    const article_Id = req.query.article_Id;
-    if (!article_Id) return res.status(400).json({ message: 'failure' });
+    const cookie = req.cookies.jwt;
+    if (!cookie) return res.status(401).json({ message: '로그인 유저가 아닙니다.' });
+    const userInfo = jwt.verify(cookie, process.env.ACCESS_SECRET);
+    if (id !== userInfo.id) return res.status(400).json({ message: 'failure' });
+
+    const article_Id = parseInt(req.query.article_Id, 10);
+    if (Number.isNaN(article_Id)) return res.status(400).json({ message: 'failure' });
+
     const articleInfo = req.body.articleInfo;
     ArticleModel.update({
       sentence: articleInfo.sentence,
@@ -71,30 +88,36 @@ module.exports = {
           .then((result) => {
             res.status(200).json({ message: 'success', userInfo: result });
           })
-          .catch(() => {
-            res.status(401).json({ message: 'failure' });
+          .catch((error) => {
+            res.status(401).json({ message: 'failure', error: error });
           });
       })
       .catch(() => {
-        res.status(401).json({ message: 'failure' });
+        res.status(401).json({ message: 'failure', error: error });
       });
   },
   delete: (req, res) => {
     const id = parseInt(req.params.user_Id, 10);
     if (Number.isNaN(id)) return res.status(400).json({ message: 'failure' });
-    const article_Id = req.query.article_Id;
-    if (!article_Id) return res.status(400).json({ message: 'failure' });
+    const cookie = req.cookies.jwt;
+    if (!cookie) return res.status(401).json({ message: '로그인 유저가 아닙니다.' });
+    const userInfo = jwt.verify(cookie, process.env.ACCESS_SECRET);
+    if (id !== userInfo.id) return res.status(400).json({ message: 'failure' });
+
+    const article_Id = parseInt(req.query.article_Id, 10);
+    if (Number.isNaN(article_Id)) return res.status(400).json({ message: 'failure' });
     ArticleModel.destroy({
       where: {
         id: article_Id,
         user_Id: id
       }
     })
-      .then(() => {
-        res.status(200).json({ message: 'success' });
+      .then((result) => {
+        if (result === 1) res.status(200).json({ message: 'success' });
+        else res.status(401).json({ message: '나의 게시물이 아닙니다.' });
       })
-      .catch(() => {
-        res.status(401).json({ message: 'failure' });
+      .catch((error) => {
+        res.status(401).json({ message: 'failure', error: error });
       });
   }
 };

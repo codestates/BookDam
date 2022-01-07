@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { data } from '../../dummyfiles/dummyBookSearch';
+import walden from '../../assets/images/walden_thumbnail.jpeg';
 import {
   WriteWholeContainer,
   SearchBookWrapper,
@@ -10,11 +11,19 @@ import {
   SearchInputcontainer,
   SearchClick,
   SearchBookInfoLower,
+  SearchBookTitleAuthorContainer,
+  SearchBookTitleContainer,
+  SearchBookAuthorontainer,
   SearchBookImageContainer,
+  BookThumbnailContainer,
+  BookThumbnail,
   WriteArticleWrapper,
   WriteArticleContainer,
+  WriteSentenceSection,
+  WriteCommentSection,
   ArticleButtonWrapper,
-  ArticleButtonContainer
+  ArticleButtonContainer,
+  AticleButtonSection
 } from './WriteStyle';
 
 export const Write = () => {
@@ -40,18 +49,34 @@ export const Write = () => {
                 <SearchClick onClick={bookSearch}>검색</SearchClick>
               </SearchContainer>
             </SearchBookInfoUpper>
-            <SearchBookInfoLower />
+            <SearchBookInfoLower>
+              <SearchBookTitleAuthorContainer>
+                <SearchBookTitleContainer />
+                <SearchBookAuthorontainer />
+              </SearchBookTitleAuthorContainer>
+            </SearchBookInfoLower>
           </SearchBookInfoContainer>
-          <SearchBookImageContainer />
+          <SearchBookImageContainer>
+            <BookThumbnailContainer>
+              <BookThumbnail src={walden}/>
+            </BookThumbnailContainer>
+          </SearchBookImageContainer>
         </SearchBookContainer>
       </SearchBookWrapper>
 
       <WriteArticleWrapper>
-        <WriteArticleContainer />
+        <WriteArticleContainer>
+          <WriteSentenceSection />
+          <WriteCommentSection />
+        </WriteArticleContainer>
       </WriteArticleWrapper>
 
       <ArticleButtonWrapper>
-        <ArticleButtonContainer />
+        <ArticleButtonContainer>
+          <AticleButtonSection>
+            
+          </AticleButtonSection>
+        </ArticleButtonContainer>
       </ArticleButtonWrapper>
     </WriteWholeContainer>
   );

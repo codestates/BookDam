@@ -40,18 +40,16 @@ export const SearchBookInfoUpper = styled.div`
   height: 20%;
   border: 2px solid black;
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const SearchContainer = styled.div`
-  margin-top: 10px;
-  margin-left: 5%;
-  width: 300px;
+  width: 80%;
   border: 3px solid #e5e5e5;
   height: 60%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
 `;
 
 export const SearchInputcontainer = styled.input`
@@ -67,11 +65,37 @@ export const SearchClick = styled.div`
   text-align: center;
   line-height: 220%;
   background: #E6E6E6;
+  pointer: cursor;
 `;
 
 export const SearchBookInfoLower = styled.div`
   width: 100%;
   height: 80%;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const SearchBookTitleAuthorContainer = styled.div`
+  width: 80%;
+  height: 80%;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
+
+export const SearchBookTitleContainer = styled.div`
+  width: 80%;
+  height: 40%;
+  border: 1px solid black;
+`;
+
+export const SearchBookAuthorontainer = styled.div`
+  width: 80%;
+  height: 40%;
   border: 1px solid black;
 `;
 
@@ -79,7 +103,25 @@ export const SearchBookImageContainer = styled.div`
   width: 40%;
   height: 100%;
   border: 2px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
+
+export const BookThumbnailContainer = styled.div`
+  width: 50%;
+  height: 90%;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+`;
+
+export const BookThumbnail = styled.img`
+  width: 100%;
+  margin: 0;
+`
 
 export const WriteArticleWrapper = styled.div`
   display: flex;
@@ -99,6 +141,18 @@ export const WriteArticleContainer = styled.div`
   border: 2px solid blue;
 `;
 
+export const WriteSentenceSection = styled.div`
+  width: 90%;
+  height: 55%;
+  border: 1px solid red;
+`;
+
+export const WriteCommentSection = styled.div`
+  width: 90%;
+  height: 35%;
+  border: 1px solid red;
+`;
+
 export const ArticleButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -111,8 +165,15 @@ export const ArticleButtonContainer = styled.div`
   width: 970px;
   height: 100%;
   display: flex;
+  
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  border: 2px solid blue;
+  border: 1px solid blue;
+`;
+
+export const AticleButtonSection = styled.div`
+  border: 1px solid red;
+  width: 90%;
+  height: 80%;
 `;

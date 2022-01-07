@@ -4,8 +4,10 @@ module.exports = {
   post: (req, res) => {
     const id = parseInt(req.params.user_Id, 10);
     const follow_Id = req.query.follow_Id;
-    if (Number.isNaN(id)) return res.status(400).json({ message: 'failure' });
     if (!follow_Id) return res.status(400).json({ message: 'failure' });
+    if (Number.isNaN(id)) return res.status(400).json({ message: 'failure' });
+    if (Number.isNaN(follow_Id)) return res.status(400).json({ message: 'failure' });
+    if (Number.isNaN(id) === Number.isNaN(follow_Id)) return res.status(400).json({ message: '본인을 팔로우 할 수 없습니다.' });
     FollowModel.findOrCreate({
       where: {
         user_Id: id,

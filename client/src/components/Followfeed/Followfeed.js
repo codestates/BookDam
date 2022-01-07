@@ -77,6 +77,7 @@ export const Followfeed = ({ followFeedList }) => {
             </UserNickName>
             <UserFollowIcon value={el.user_id} onClick={followHandler}>
               {el["Articles.user_Id"] === el["Follows.follow_Id"] ? '팔로우' : '팔로우 추가'}
+
             </UserFollowIcon>
           </UserNameAndImage>
           <PostCreatedAt>

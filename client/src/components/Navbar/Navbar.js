@@ -1,7 +1,9 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import Logo from '../../assets/images/logo-bigb.png';
 import { FaArrowLeft } from 'react-icons/fa';
 import { IoMenu } from 'react-icons/io5';
+import { Link } from 'react-router-dom';
 
 import {
   NavbarContainer,
@@ -18,6 +20,9 @@ import {
 } from './NavbarStyle';
 
 export default function Navbar () {
+  const userState = useSelector(state => state.userInfoReducer);
+  const { userInfo } = userState;
+
   return (
     <>
       <NavbarContainer>
@@ -25,16 +30,22 @@ export default function Navbar () {
           <FaArrowLeft />
         </BackSection>
         <LogoSection>
-          <LogoImage src={Logo} />
+          <Link to='/'><LogoImage src={Logo} /></Link>
         </LogoSection>
         <NavMenuSection>
-          <NavMenu>Write</NavMenu>
-          <NavMenu>Feed</NavMenu>
-          <NavMenu>MyPage</NavMenu>
+          <NavMenu>
+            <Link to='/createPage' style={{ textDecoration: 'none' }}>Write</Link>
+          </NavMenu>
+          <NavMenu>
+            <Link to='/feedPage' style={{ textDecoration: 'none' }}>Feed</Link>
+          </NavMenu>
+          <NavMenu>
+            <Link to='/mypage' style={{ textDecoration: 'none' }}>mypage</Link>
+          </NavMenu>
         </NavMenuSection>
         <UserSection>
           <UserImage />
-          <UserNickName>민트초코깡</UserNickName>
+          <UserNickName>{userInfo.userNickName}</UserNickName>
         </UserSection>
         <SideMenuSection>
           <IoMenu />

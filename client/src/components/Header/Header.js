@@ -11,15 +11,15 @@ export default function Header () {
     <>
       <HeaderContainer>
         <Navbar />
-        <Route exact path='/createPage'>
-          <CreatePage />
-        </Route>
-        <Route exact path='/feedpage'>
-          <FeedPage />
-        </Route>
-        <Route exact path='/mypage'>
-          <MyPage />
-        </Route>
+          <Route exact path='/createPage'>
+            <CreatePage />
+          </Route>
+          <Route exact path='/feedpage'>
+            <FeedPage />
+          </Route>
+          <Route exact path='/mypage'>
+            <MyPage />
+          </Route>
       </HeaderContainer>
     </>
   );

@@ -23,7 +23,7 @@ module.exports = {
       book_Publisher: {
         type: Sequelize.STRING
       },
-      sentense: {
+      sentence: {
         type: Sequelize.STRING
       },
       comment: {

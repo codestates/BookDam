@@ -16,10 +16,14 @@ export const FooterContainer = styled.div`
     }
 `;
 export const FooterInfo = styled.div`
+border: 2px solid white;
 display: flex;
 flex-direction: row;
 justify-content: space-around;
+
+/* @media (max-width: ) */
 `;
+
 export const FooterLogo = styled.img.attrs({
   src: logo,
   alt: '로고'

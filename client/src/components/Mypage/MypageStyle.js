@@ -2,13 +2,13 @@ import styled from 'styled-components';
 
 export const MypageContainer = styled.div`
   display: flex;
-  width: 100%;
+  width: 2400px;
   min-height: 100vh;
   flex-direction: column;
   align-items: center;
   flex-wrap: nowrap;
   margin-top: 15px;
-  /* border: 1px solid black; */
+  border: 1px solid black;
 
   @media (max-width: 500px) {
     width: 100%;
@@ -18,7 +18,7 @@ export const MypageContainer = styled.div`
 // UserInfo 영역
 export const UserInfoContainer = styled.div`
   display: flex;
-  width: 50%;
+  /* width: 50%; */
   height: 90px;
   margin: 10px;
   padding: 5px;
@@ -156,7 +156,7 @@ export const ArticleListTitle = styled.div`
 export const ArticleListContainer = styled.div`
   display: flex;
   height: 450px;
-  width: 50%;
+  /* width: 50%; */
   flex-direction: row;
   justify-content: flex-start;
   align-content: flex-start;

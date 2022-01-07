@@ -4,7 +4,7 @@ export const IntroWholeContainer = styled.div`
   border: 1px solid black;
   overflow: hidden;
   position: relative;
-  height: 2300px;
+  height: 2400px;
 `;
 
 export const SectionWrapperOne = styled.div`

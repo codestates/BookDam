@@ -4,7 +4,12 @@ import { initialState } from './initialState';
 const userInfoReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_ACTION:
-      return { ...state, isGuest: action.isGuest, isLogin: action.isLogin, userInfo: action.payload };
+      return { 
+        ...state, 
+        isGuest: action.isGuest, 
+        isLogin: action.isLogin, 
+        userInfo: action.payload 
+      };
 
     default:
       return state;

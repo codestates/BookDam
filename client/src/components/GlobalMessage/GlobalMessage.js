@@ -7,7 +7,7 @@ export const Message = styled.div`
   margin: 1rem;
 `;
 
-export const ErrorMessage = styled.div`
+export const ErrorMessage = styled.span`
   color: #e53935;
   font-size: smaller;
   text-align: center;

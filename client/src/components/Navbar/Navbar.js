@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import Logo from '../../assets/images/logo-bigb.png';
 import { FaArrowLeft } from 'react-icons/fa';
 import { IoMenu } from 'react-icons/io5';
@@ -19,6 +20,9 @@ import {
 } from './NavbarStyle';
 
 export default function Navbar () {
+  const userState = useSelector(state => state.userInfoReducer);
+  const { userInfo } = userState;
+
   return (
     <>
       <NavbarContainer>
@@ -41,7 +45,7 @@ export default function Navbar () {
         </NavMenuSection>
         <UserSection>
           <UserImage />
-          <UserNickName>민트초코깡</UserNickName>
+          <UserNickName>{userInfo.userNickName}</UserNickName>
         </UserSection>
         <SideMenuSection>
           <IoMenu />

@@ -2,13 +2,13 @@ import styled from 'styled-components';
 
 export const MypageContainer = styled.div`
   display: flex;
-  width: 100%;
+  width: 2400px;
   min-height: 100vh;
   flex-direction: column;
   align-items: center;
   flex-wrap: nowrap;
   margin-top: 15px;
-  /* border: 1px solid black; */
+  border: 1px solid black;
 
   @media (max-width: 500px) {
     width: 100%;

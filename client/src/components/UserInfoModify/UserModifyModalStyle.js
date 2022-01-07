@@ -28,10 +28,6 @@ export const UserInfoModifyContainer = styled.div`
   background: white;
   border-radius: 10px;
   text-align: center;
-  
-  @media screen and (max-width: 500px) {
-    display: none;
-  }
 `;
 
 export const ModifyCloseSection = styled.div`
@@ -47,12 +43,7 @@ export const UserInfoSection = styled.div`
   display: flex;
   height: 90px;
   margin: 10px;
-  border: 1px solid blue;
-
-  /* @media (max-width: 500px) {
-    width: 480px;
-    padding: 0;
-  } */
+  /* border: 1px solid blue; */
 `;
 
 export const UserImgSection = styled.div`
@@ -75,7 +66,7 @@ export const UserNickName = styled.div`
   align-items: center;
   text-align: center;
   margin-left: 5px;
-  border: 1px solid green;
+  /* border: 1px solid green; */
 `;
 
 export const UserInfoEditSection = styled.div`
@@ -87,7 +78,7 @@ export const UserInfoEditSection = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  border: 1px solid skyblue;
+  /* border: 1px solid skyblue; */
 `;
 
 export const NickNameInput = styled.input.attrs({
@@ -109,6 +100,7 @@ export const PasswordInput = styled.input.attrs({
   placeholder: 'Password',
   type: 'password'
 })`
+  position: sticky;
   margin-top: 10px;
   border-radius: 2px;
   width: 60%;

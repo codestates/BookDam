@@ -71,11 +71,11 @@ module.exports = {
           .then((result) => {
             res.status(200).json({ message: 'success', userInfo: result });
           })
-          .catch((error) => {
+          .catch(() => {
             res.status(401).json({ message: 'failure' });
           });
       })
-      .catch((error) => {
+      .catch(() => {
         res.status(401).json({ message: 'failure' });
       });
   },
@@ -85,16 +85,16 @@ module.exports = {
     const article_Id = req.query.article_Id;
     if (!article_Id) return res.status(400).json({ message: 'failure' });
     ArticleModel.destroy({
-      where : {
+      where: {
         id: article_Id,
-        user_Id : id
+        user_Id: id
       }
     })
-    .then((result) => {
-      res.status(200).json({ message: 'success' });
-    })
-    .catch((error) => {
-      res.status(401).json({ message: 'failure' });
-    })
+      .then(() => {
+        res.status(200).json({ message: 'success' });
+      })
+      .catch(() => {
+        res.status(401).json({ message: 'failure' });
+      });
   }
 };

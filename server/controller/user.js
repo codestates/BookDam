@@ -175,11 +175,11 @@ module.exports = {
           .then((result) => {
             res.status(200).json({ message: 'success', userInfo: result });
           })
-          .catch((error) => {
+          .catch(() => {
             res.status(401).json({ message: 'failure' });
           });
       })
-      .catch((error) => {
+      .catch(() => {
         res.status(401).json({ message: 'failure' });
       });
   },

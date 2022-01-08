@@ -16,13 +16,13 @@ import userImage from '../../assets/images/defaultUserImage.png';
 
 export const Searchuser = ({ setFollowFeedList }) => {
   const [filter, setFilter] = useState([]);
-  const [hasInputValue, setHasInputValue] = useState(false)
+  const [hasInputValue, setHasInputValue] = useState(false);
 
   // const [searchUser, setSearchUser] = useState([])
 
-  const handlerInputSearchUser = (e) => {  // 인풋창에 입력된 값을 필터 상태에 넣어서 관리
+  const handlerInputSearchUser = (e) => { // 인풋창에 입력된 값을 필터 상태에 넣어서 관리
     setFilter(e.target.value);
-    e.target.value ? setHasInputValue(true) : setHasInputValue(false)
+    e.target.value ? setHasInputValue(true) : setHasInputValue(false);
   };
 
   // const userInfoState = useSelector(state => state.userInfoReducer);
@@ -37,9 +37,13 @@ export const Searchuser = ({ setFollowFeedList }) => {
   //     })
   //   }
   // }, [filter])
+  const callUserPage = () => {
+    // 클릭시 userInfo.id === el.id => MyPage
+    // else UserPage
 
+  };
   const getSearchUserFeedList = (result) => {
-    setFollowFeedList(result);
+    // setFollowFeedList(result);
   };
   // userInfo.id 와 userSearchDummyData[0].Follows.user_Id 가 일치할 때 filter에 입력된 유저는 내 팔로잉 대상이고
   // userSearchDummyData[0].Follows.follow_Id 를 조회해서 팔로우 추가 삭제 기능을 구현하면 된다.
@@ -52,8 +56,7 @@ export const Searchuser = ({ setFollowFeedList }) => {
   const filterData = data.filter((el) => {
     return el.userNickName.indexOf(filter) > -1;
   });
-  console.log(filter)
-
+  console.log(filter);
 
   useEffect(() => {
     // setSearchUser()
@@ -65,8 +68,8 @@ export const Searchuser = ({ setFollowFeedList }) => {
       getSearchUserFeedList(); // 인자값이 없어서 엔터나 버튼클릭시 에러 발생
     }
   };
-  
-  console.log(hasInputValue)
+
+  console.log(hasInputValue);
   return (
     <>
       <UpperContainer>
@@ -74,19 +77,20 @@ export const Searchuser = ({ setFollowFeedList }) => {
           <UserSearchInput value={filter} onChange={handlerInputSearchUser} onKeyPress={handleKeyPress} />
           <UserSearchBtn onClick={getSearchUserFeedList}>검색</UserSearchBtn>
         </SearchUserContainer>
-        {hasInputValue ? 
-        <UserSearchResultContainer>
-          {filterData.map((el) => {
-          return <li>
-            <UserSearchImagebox>
-              <UserSearchImage src={userImage} />
-            </UserSearchImagebox>
-            <div>{el.userNickName}</div>
-          </li>
-          
-          })}
-        </UserSearchResultContainer> 
-        : null}
+        {hasInputValue
+          ? <UserSearchResultContainer>
+            {filterData.slice(0, 9).map((el, index) => {
+              return (
+                <li key={index} onClick={callUserPage(el.id)}>
+                  <UserSearchImagebox>
+                    <UserSearchImage src={userImage} />
+                  </UserSearchImagebox>
+                  <div>{el.userNickName}</div>
+                </li>
+              );
+            })}
+          </UserSearchResultContainer>
+          : null}
       </UpperContainer>
     </>
   );

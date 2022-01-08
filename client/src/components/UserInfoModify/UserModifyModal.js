@@ -31,7 +31,7 @@ export function UserModifyModal ({ closeUserInfoModify }) {
   const { userInfo } = userState; // 저장된 유저 정보
   // input 값 유효성 검사 : 닉네임이 기존과 동일한가? 동일하면 에러메세지, password가 서로 일치한가? 불일치면 에러메세지
   const [modifyUserInputInfo, setModifyUserInputInfo] = useState({
-    id:'',
+    id: '',
     userId: '',
     userNickName: '',
     password: '',
@@ -87,11 +87,11 @@ export function UserModifyModal ({ closeUserInfoModify }) {
   // 유저가 이미지를 넣는 함수
   const handleInputImage = () => {
 
-  }
+  };
   // 회원정보 수정 함수
   const modifyUserInfoHandler = () => {
     axios
-      .patch(`http://localhost:4000/user/${userInfo.id}`, 
+      .patch(`http://localhost:4000/user/${userInfo.id}`,
         {
           userInfo: {
             userId,
@@ -104,24 +104,24 @@ export function UserModifyModal ({ closeUserInfoModify }) {
           headers: { 'Content-Type': 'application/json' }
         })
       .then((data) => {
-        console.log(data)
-        console.log('회원정보가 수정되었습니다')
+        console.log(data);
+        console.log('회원정보가 수정되었습니다');
       })
       .catch((err) => {
         console.log(err);
-      })
+      });
   };
   // 회원정보 탈퇴 함수
   const signOutHandler = () => {
     axios
       .delete(`http://localhost:4000/user/${userInfo.id}`)
       .then((data) => {
-        console.log('회원 탈퇴되었습니다')
+        console.log('회원 탈퇴되었습니다');
       })
       .catch((err) => {
-        console.log(err)
-      })
-  }
+        console.log(err);
+      });
+  };
 
   return (
     <>

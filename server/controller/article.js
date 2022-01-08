@@ -15,19 +15,11 @@ module.exports = {
       raw: true,
       include: [{
         model: UserModel,
-        attributes: { exclude: ['updatedAt', 'createdAt', 'password'] },
+        attributes: { exclude: ['id', 'updatedAt', 'createdAt', 'password'] },
         required: true,
-        include: { model: FollowModel, where: { user_Id: id }, attributes: { exclude: ['id', 'createdAt', 'updatedAt'] } }
+        include: { model: FollowModel, where: { user_Id: id }, attributes: { exclude: ['id', 'user_Id', 'follow_Id', 'createdAt', 'updatedAt'] } }
       }]
     })
-    // UserModel.findAll({
-    //   attributes: { exclude: ['updatedAt', 'createdAt', 'password'] },
-    //   include: [{ model: ArticleModel, attributes: { exclude: ['id', 'updatedAt'] },  order: [['createdAt', 'DESC']] },
-    //     { model: FollowModel, where: { user_Id: id }, attributes: { exclude: ['id', 'createdAt', 'updatedAt'] } }],
-    //   raw: true,
-    //   // order: [['id', 'DESC']]
-    //   // nest: true
-    // })
       .then((result) => {
         res.status(200).json({ articleData: result });
       })

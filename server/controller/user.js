@@ -116,12 +116,24 @@ module.exports = {
     const findFollowing = await FollowModel.findAndCountAll({ where: { user_Id: id } });
     const findFollower = await FollowModel.findAndCountAll({ where: { follow_Id: id } });
     const follow = { following: findFollowing.count, follower: findFollower.count };
-    const findArtilces = await UserModel.findAll({
-      where: { id: id },
-      attributes: { exclude: ['updatedAt', 'createdAt', 'password'] },
-      include: [{ model: ArticleModel, attributes: { exclude: ['id', 'updatedAt'] }, order: ['createdAt', 'ASC'] }],
-      raw: true
-    });
+
+    const findArtilces = await ArticleModel.findAll({
+      attributes: { exclude: ['updatedAt'] },
+      order: [['createdAt', 'DESC']],
+      raw: true,
+      include: [{
+        model: UserModel,
+        attributes: { exclude: [ 'id', 'updatedAt', 'createdAt', 'password'] },
+        where : { id: id }
+      }]
+    })
+
+    // const findArtilces = await UserModel.findAll({
+    //   where: { id: id },
+    //   attributes: { exclude: ['updatedAt', 'createdAt', 'password'] },
+    //   include: [{ model: ArticleModel, attributes: { exclude: ['id', 'updatedAt'] }, order: ['createdAt', 'ASC'] }],
+    //   raw: true
+    // });
     if (findArtilces[0]['Articles.user_Id'] === null) { // article이 없을 경우의 처리.
       return res.status(200).json({ message: 'success', userInfo: findUser, follow, articleData: null });
     }

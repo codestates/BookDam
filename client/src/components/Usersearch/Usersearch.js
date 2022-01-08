@@ -82,6 +82,7 @@ export const Searchuser = ({ setFollowFeedList }) => {
             {filterData.slice(0, 9).map((el, index) => {
               return (
                 <li key={index} onClick={callUserPage(el.id)}>
+
                   <UserSearchImagebox>
                     <UserSearchImage src={userImage} />
                   </UserSearchImagebox>

@@ -76,10 +76,12 @@ export const UserSearchResult = styled.li`
 
 `;
 
+
 export const UserSearchImagebox = styled.div`
 height: 20px;
 width: 20px;
 margin-right: 10px;
+
 `;
 export const UserSearchImage = styled.img`
 height: 100%;

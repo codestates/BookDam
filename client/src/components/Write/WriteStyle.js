@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
 export const WriteWholeContainer = styled.div`
-  border: 1px solid black;
+  padding-top: 50px;
+  /* border: 1px solid black; */
   overflow: hidden;
   position: relative;
-  height: 1000px;
+  height: 900px;
   width: 100vw;
 `;
 
@@ -12,7 +13,7 @@ export const SearchBookWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid red; */
+  border-top: 2px solid black;
   height: 30%;
 `;
 
@@ -23,7 +24,7 @@ export const SearchBookContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  border: 3px solid blue;
+  /* border: 1px solid blue; */
 `;
 
 export const SearchBookInfoContainer = styled.div`
@@ -32,13 +33,13 @@ export const SearchBookInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 2px solid red;
+  /* border: 1px solid red; */
 `;
 
 export const SearchBookInfoUpper = styled.div`
   width: 100%;
   height: 20%;
-  border: 2px solid black;
+  /* border: 2px solid black; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -77,23 +78,19 @@ export const SearchBookInfoLower = styled.div`
   align-items: center;
 `;
 
-export const SearchBookTitleAuthorContainer = styled.div`
-  width: 80%;
-  height: 80%;
-  border: 1px solid black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-`;
-
 export const SearchBookTitleContainer = styled.div`
   width: 80%;
   height: 40%;
   border: 1px solid black;
 `;
 
-export const SearchBookAuthorontainer = styled.div`
+export const SearchBookAuthorContainer = styled.div`
+  width: 80%;
+  height: 40%;
+  border: 1px solid black;
+`;
+
+export const SearchBookPublisherContainer = styled.div`
   width: 80%;
   height: 40%;
   border: 1px solid black;
@@ -102,33 +99,38 @@ export const SearchBookAuthorontainer = styled.div`
 export const SearchBookImageContainer = styled.div`
   width: 40%;
   height: 100%;
-  border: 2px solid black;
+  /* border: 1px solid black; */
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
 export const BookThumbnailContainer = styled.div`
-  width: 50%;
+  margin: 0;
+  width: 60%;
   height: 90%;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0;
+  box-sizing: border-box;
 `;
 
 export const BookThumbnail = styled.img`
-  width: 100%;
+  width: 70%;
   margin: 0;
-`
+  @media screen and (max-width: 500px) {
+    width: 120%
+  }
+`;
 
 export const WriteArticleWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   /* border: 1px solid red; */
-  height: 50%;
+  height: 40%;
 `;
 
 export const WriteArticleContainer = styled.div`
@@ -138,19 +140,31 @@ export const WriteArticleContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  border: 2px solid blue;
+  border: 1px solid black;
 `;
 
-export const WriteSentenceSection = styled.div`
-  width: 90%;
-  height: 55%;
-  border: 1px solid red;
-`;
-
-export const WriteCommentSection = styled.div`
-  width: 90%;
+export const WriteSentenceSection = styled.textarea.attrs({
+  placeholder: '감동적인 문장을 기록하세요.'
+})`
+  margin: 10px;
+  width: 80%;
   height: 35%;
-  border: 1px solid red;
+  border: 1px solid black;
+  padding: 20px;
+  border-radius: 7px;
+  font-size: 20px;
+`;
+
+export const WriteCommentSection = styled.textarea.attrs({
+  placeholder: '문장에 대한 감상평을 남기세요.'
+})`
+  margin: 10px;
+  width: 80%;
+  height: 25%;
+  border: 1px solid black;
+  padding: 20px;
+  border-radius: 7px;
+  font-size: 20px;
 `;
 
 export const ArticleButtonWrapper = styled.div`
@@ -158,22 +172,58 @@ export const ArticleButtonWrapper = styled.div`
   justify-content: center;
   align-items: center;
   /* border: 1px solid red; */
-  height: 20%;
+  height: 10%;
 `;
 
 export const ArticleButtonContainer = styled.div`
   width: 970px;
   height: 100%;
   display: flex;
-  
   justify-content: center;
   align-items: center;
   flex-direction: column;
   border: 1px solid blue;
 `;
 
-export const AticleButtonSection = styled.div`
+export const ArticleButtonSection = styled.div`
   border: 1px solid red;
   width: 90%;
   height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const ButtonContainer = styled.div`
+  margin: 5px;
+  /* border: 2px solid red; */
+  width: 350px;
+  height: 55px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+`;
+
+export const ButtonsInWrite = styled.button`
+  width: 60px;
+  height: 40px;
+  margin: 10px;
+  border-style: none;
+  border-radius: 10px;
+  font-size: 14px;
+  background: #2cc05a;
+  color: black;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  transition: all 0.1s ease-in-out;
+  cursor: pointer;
+  text-align: center;
+  outline: none;
+  white-space: nowrap;
+  overflow: hidden;
+  &:hover {
+    color: #ffffff;
+  }
+  &:active {
+    background: #2683C9;
+  }
 `;

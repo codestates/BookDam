@@ -7,10 +7,12 @@ export const userInfoAction = (userInfo) => {
     isGuest: false,
     isLogin: true,
     payload: {
-      id: userInfo[0].id,
-      userId: userInfo[0].userId,
-      userNickName: userInfo[0].userNickName,
-      userImage: userInfo[0].userImage
+      userInfo: {
+        id: userInfo[0].id,
+        userId: userInfo[0].userId,
+        userNickName: userInfo[0].userNickName,
+        userImage: userInfo[0].userImage
+      }
     }
   };
 };

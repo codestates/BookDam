@@ -13,7 +13,7 @@ import {
 } from './LoginModalStyle';
 import { Message, ErrorMessage } from '../GlobalMessage/GlobalMessage';
 import { LoginThemeBtn } from '../GlobalButton/GlobalButton';
-import { userInfoAction } from '../../actions/userInfoAction';
+import { userInfoAction } from '../../actions/UserInfoAction';
 
 export const LoginModal = ({ setIsOpenLoginModal, handleSignupModal, handleCloseSignupModal }) => {
   const [loginInfo, setLoginInfo] = useState({ userId: '', password: '' });

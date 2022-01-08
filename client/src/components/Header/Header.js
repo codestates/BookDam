@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import { HeaderContainer } from './HeaderStyle';
 import { CreatePage } from '../../pages/CreatePage/CreatePage';
@@ -11,15 +11,18 @@ export default function Header () {
     <>
       <HeaderContainer>
         <Navbar />
-          <Route exact path='/createPage'>
-            <CreatePage />
-          </Route>
-          <Route exact path='/feedpage'>
+        <Switch>
+          <Route path='/feedpage'>
             <FeedPage />
           </Route>
-          <Route exact path='/mypage'>
+
+          <Route path='/createPage'>
+            <CreatePage />
+          </Route>
+          <Route path='/mypage'>
             <MyPage />
           </Route>
+        </Switch>
       </HeaderContainer>
     </>
   );

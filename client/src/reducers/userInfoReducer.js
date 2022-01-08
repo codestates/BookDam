@@ -1,4 +1,4 @@
-import { LOGIN_ACTION } from '../actions/userInfoAction';
+import { LOGIN_ACTION } from '../actions/UserInfoAction';
 import { initialState } from './initialState';
 
 const userInfoReducer = (state = initialState, action) => {

@@ -16,7 +16,6 @@ export const FooterContainer = styled.div`
     }
 `;
 export const FooterInfo = styled.div`
-border: 2px solid white;
 display: flex;
 flex-direction: row;
 justify-content: space-around;

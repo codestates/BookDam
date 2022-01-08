@@ -9,14 +9,25 @@ module.exports = {
     if (!cookie) return res.status(401).json({ message: '로그인 유저가 아닙니다.' });
     const userInfo = jwt.verify(cookie, process.env.ACCESS_SECRET);
     if (id !== userInfo.id) return res.status(400).json({ message: 'failure' });
-
-    UserModel.findAll({
-      attributes: { exclude: ['updatedAt', 'createdAt', 'password'] },
-      include: [{ model: ArticleModel, attributes: { exclude: ['id', 'updatedAt'] } },
-        { model: FollowModel, where: { user_Id: id }, attributes: { exclude: ['id', 'createdAt', 'updatedAt'] } }],
-      raw: true
-      // nest: true
+    ArticleModel.findAll({
+      attributes: { exclude: ['id', 'updatedAt'] },
+      order: [['createdAt', 'DESC']],
+      raw: true,
+      include: [{
+        model: UserModel,
+        attributes: { exclude: ['updatedAt', 'createdAt', 'password'] },
+        required: true,
+        include: { model: FollowModel, where: { user_Id: id }, attributes: { exclude: ['id', 'createdAt', 'updatedAt'] } }
+      }]
     })
+    // UserModel.findAll({
+    //   attributes: { exclude: ['updatedAt', 'createdAt', 'password'] },
+    //   include: [{ model: ArticleModel, attributes: { exclude: ['id', 'updatedAt'] },  order: [['createdAt', 'DESC']] },
+    //     { model: FollowModel, where: { user_Id: id }, attributes: { exclude: ['id', 'createdAt', 'updatedAt'] } }],
+    //   raw: true,
+    //   // order: [['id', 'DESC']]
+    //   // nest: true
+    // })
       .then((result) => {
         res.status(200).json({ articleData: result });
       })

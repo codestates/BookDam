@@ -119,7 +119,7 @@ module.exports = {
     const findArtilces = await UserModel.findAll({
       where: { id: id },
       attributes: { exclude: ['updatedAt', 'createdAt', 'password'] },
-      include: [{ model: ArticleModel, attributes: { exclude: ['id', 'updatedAt'] } }],
+      include: [{ model: ArticleModel, attributes: { exclude: ['id', 'updatedAt'] }, order: ['createdAt', 'ASC'] }],
       raw: true
     });
     if (findArtilces[0]['Articles.user_Id'] === null) { // article이 없을 경우의 처리.
@@ -138,11 +138,11 @@ module.exports = {
     const userNickName = userInfo.userNickName;
     const password = userInfo.password;
     const userImage = userInfo.userImage;
-
+    const encryptedPassowrd = bcrypt.hashSync(password, 10);
     if (!password || !userNickName) return res.status(400).json({ message: 'failure' });
     UserModel.update({
       userNickName: userNickName,
-      password: password,
+      password: encryptedPassowrd,
       userImage: userImage
     }, { where: { id: id } })
       .then(() => {

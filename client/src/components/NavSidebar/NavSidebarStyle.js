@@ -1,20 +1,45 @@
 import styled from 'styled-components';
 
+export const UserInfoWholeContainer = styled.div`
+  width: 100vw;
+  height: 100vh;
+`;
+
+export const UserInfoModifyModalBackground = styled.div`
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5); // 투명 회색 효과
+  backdrop-filter: blur(5px); //blur 효과
+
+  @media screen and (max-width: 500px) {
+    display: block;
+  }
+`;
+
 export const SidebarContainer = styled.div`
   display: flex;
-  width: 200px;
-  height: 500px;
+  width: 50%;
+  height: 100vh;
   flex-direction: column;
   justify-items: center;
   align-items: center;
   background: snow;
   position: fixed;
   top: 0;
-  /* right: -200px; */
   right: 0;
   z-index: 1;
   transition: all .35s;
   /* border: 1px solid blue; */
+
+  @media (max-width: 500px) {
+    /* right: -200px; */
+  right: 0;
+  
+  }
 `;
 
 // 유저, 작성, 피드, 마이페이지 컨테이너
@@ -24,7 +49,7 @@ export const SidebarTop = styled.div`
   width: 100%;
   height: 100%;
   margin: 10px;
-  /* border: 1px solid black; */
+  /* border: 1px solid red; */
 `;
 
 export const UserSection = styled.div`
@@ -41,7 +66,7 @@ export const UserImageWrap = styled.div`
   width: 90px;
   height: 90px;
   margin: 5px;
-  /* border: 1px solid black; */
+  border: 1px solid black;
 `;
 
 export const UserImage = styled.img`
@@ -60,29 +85,31 @@ export const UserNickNamge = styled.div`
 export const MenuSection = styled.div`
   display: flex;
   width: 100%;
+  height: 60%;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  margin-top: 20px;
+  justify-content: space-around;
+  font-size: 1rem;
+  font-weight: 600;
   /* border: 1px solid blue; */
 `;
 
 export const Write = styled.div`
-  margin-top: 10px;
-  margin-bottom: 5px;
-  font-size: 1rem;
+  /* margin-top: 30px;
+  margin-bottom: 20px; */
+  font-size: 1.2rem;
 `;
 
 export const Feed = styled.div`
-  margin-top: 5px;
-  margin-bottom: 5px;
-  font-size: 1rem;
+  /* margin-top: 20px;
+  margin-bottom: 30px; */
+  font-size: 1.2rem;
 `;
 
 export const MyPage = styled.div`
-  margin-top: 5px;
-  margin-bottom: 10px;
-  font-size: 1rem;
+  /* margin-top: 30px;
+  margin-bottom: 30px; */
+  font-size: 1.2rem;
 `;
 
 // 의견/오류제보, 이메일 문의, 로그아웃 컨테이너
@@ -94,36 +121,43 @@ export const SidebarBottom = styled.div`
   width: 100%;
   height: 100%;
   margin: 10px;
-  /* border: 1px solid black; */
+  /* border: 1px solid red; */
 `;
 
 // 문의 섹션
 export const QuestionSection = styled.div`
   display: flex;
   width: 100%;
+  height: 40%;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   margin: 20px;
+  z-index: 100;
+  font-size: 1rem;
+  font-weight: 600;
   /* border: 1px solid blue; */
+
+  > a {
+      text-decoration: none;
+      color: black;
+  }
 `;
 
 export const Opinion = styled.div`
   margin-top: 10px;
   margin-bottom: 5px;
-  font-size: 1rem;
 `;
 
 export const Question = styled.div`
   margin-top: 5px;
   margin-bottom: 10px;
-  font-size: 1rem;
 `;
 
 // 로그아웃 섹션
 export const LogoutSection = styled.div`
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
@@ -133,12 +167,13 @@ export const LogoutSection = styled.div`
 
 export const Logout = styled.button`
   width: 130px;
-  height: 30px;
+  height: 40px;
   box-sizing: border-box;
   border: 1px solid grey;
   border-radius: 5px;
   background-color: rgba(0,0,0,0);
   color: rgba(0, 0, 0, 0.5);
+  font-weight: 700;
   margin: 10px;
   border-radius: 2px;
 `;

@@ -115,4 +115,8 @@ export const SideMenuSection = styled.div`
   margin-right: 30px;
   font-size: 30px;
   /* border: 1px solid orange; */
+
+  @media (max-width: 500px) {
+    
+  }
 `;

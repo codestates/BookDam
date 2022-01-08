@@ -68,7 +68,7 @@ export const LoginModal = ({ setIsOpenLoginModal, handleSignupModal, handleClose
       });
 
       if (resultData) {
-        dispatch(userInfoAction(resultData));
+        dispatch(UserInfoAction(resultData));
         setIsOpenLoginModal(false);
         document.body.style.overflow = 'unset'; // 스크롤 방지 해제
       }

@@ -8,7 +8,7 @@ export const MypageContainer = styled.div`
   align-items: center;
   flex-wrap: nowrap;
   margin-top: 15px;
-  /* border: 1px solid black; */
+  border: 1px solid black;
 
   @media (max-width: 500px) {
     width: 100%;

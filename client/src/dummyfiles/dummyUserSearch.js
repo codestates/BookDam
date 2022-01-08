@@ -1,0 +1,71 @@
+export const userSearchDummyData = [
+  {
+    id: 2,
+    userId: 'test2',
+    userNickName: 'test2',
+    userImage: 'blahblahblahblah',
+    'Articles.user_Id': 2,
+    'Articles.book_Title': '파친코',
+    'Articles.book_Author': '미상',
+    'Articles.book_Thumbnail': 'blahblahblahblah',
+    'Articles.book_Publisher': '미상',
+    'Articles.sentense': 'blahblahblahblah',
+    'Articles.comment': 'blahblahblahblah',
+    'Articles.createdAt': '2022-01-03',
+    'Follows.user_Id': 1,
+    'Follows.follow_Id': 2
+  },
+  {
+    id: 2,
+    userId: 'test2',
+    userNickName: 'test2',
+    userImage: 'blahblahblahblah',
+    'Articles.user_Id': 2,
+    'Articles.book_Title': '백설공주',
+    'Articles.book_Author': '미상',
+    'Articles.book_Thumbnail': 'blahblahblahblah',
+    'Articles.book_Publisher': '미상',
+    'Articles.sentense': 'blahblahblahblah',
+    'Articles.comment': 'blahblahblahblah',
+    'Articles.createdAt': '2021-12-28',
+    'Follows.user_Id': 1,
+    'Follows.follow_Id': 2
+  },
+  {
+    id: 3,
+    userId: 'test3',
+    userNickName: 'test3',
+    userImage: 'blahblahblahblah',
+    'Articles.user_Id': 3,
+    'Articles.book_Title': '신데렐라',
+    'Articles.book_Author': '미상',
+    'Articles.book_Thumbnail': 'blahblahblahblah',
+    'Articles.book_Publisher': '미상',
+    'Articles.sentense': 'blahblahblahblah',
+    'Articles.comment': 'blahblahblahblah',
+    'Articles.createdAt': '2022-01-01',
+    'Follows.user_Id': 1,
+    'Follows.follow_Id': 3
+  },
+  {
+    id: 1,
+    userId: 'test1',
+    userNickName: 'test1',
+    userImage: 'blahblahblahblah',
+    'Articles.id': 8,
+    'Articles.user_Id': 1,
+    'Articles.book_Title': '총균쇠',
+    'Articles.book_Author': '재레드 다이아몬드',
+    'Articles.book_Thumbnail': 'blahblahblahblah',
+    'Articles.book_Publisher': '공짜 마음',
+    'Articles.sentense': null,
+    'Articles.comment': '중독되서 계속 먹고 싶었던 거구만.',
+    'Articles.createdAt': '2022-1-7',
+    'Articles.updatedAt': '2022-01-07T05:00:06.000Z',
+    'Follows.id': 5,
+    'Follows.user_Id': 3, // 작성자가 팔로우 한 목록(이 값과 userInfo.id가 일치하는지 찾아야 함)
+    'Follows.follow_Id': 1, // 작성자(test1)
+    'Follows.createdAt': '2022-01-07T04:40:58.000Z',
+    'Follows.updatedAt': '2022-01-07T04:40:58.000Z'
+  }
+];

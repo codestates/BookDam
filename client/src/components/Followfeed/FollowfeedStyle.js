@@ -62,19 +62,24 @@ margin-left: 20px;
 font-size: 25px;
 font-weight: 600;
 `;
-export const UserFollowIcon = styled.button`
+export const UserFollowIcon = styled.button.attrs({
+
+})`
+font-family: Font Awesome 5 Free;
+font-weight: 900;
 height: 20px;
 width: 60px;
 margin-left: 15px;
 border: 0;
 border-radius: 2px;
-background-color: #5dc175;
-transition: all 0.2s ease-out;
+background-color: rgba(120,250, 100);
+transition: all 0.1s ease-out;
+z-index: 999;
 cursor: pointer;
 :hover {
-  background-color: #c4ffd6;
-
+  font-size:15px;
 }`;
+
 export const PostCreatedAt = styled.div`
 margin-right: 10px;
 font-size: 20px;

@@ -37,9 +37,13 @@ export const Searchuser = ({ setFollowFeedList }) => {
   //     })
   //   }
   // }, [filter])
+  const callUserPage = () => {
+    // 클릭시 userInfo.id === el.id => MyPage
+    // else UserPage
 
+  };
   const getSearchUserFeedList = (result) => {
-    setFollowFeedList(result);
+    // setFollowFeedList(result);
   };
   // userInfo.id 와 userSearchDummyData[0].Follows.user_Id 가 일치할 때 filter에 입력된 유저는 내 팔로잉 대상이고
   // userSearchDummyData[0].Follows.follow_Id 를 조회해서 팔로우 추가 삭제 기능을 구현하면 된다.
@@ -75,9 +79,10 @@ export const Searchuser = ({ setFollowFeedList }) => {
         </SearchUserContainer>
         {hasInputValue
           ? <UserSearchResultContainer>
-            {filterData.map((el) => {
+            {filterData.slice(0, 9).map((el, index) => {
               return (
-                <li>
+                <li key={index} onClick={callUserPage(el.id)}>
+
                   <UserSearchImagebox>
                     <UserSearchImage src={userImage} />
                   </UserSearchImagebox>

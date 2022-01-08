@@ -8,7 +8,7 @@ const userInfoReducer = (state = initialState, action) => {
         ...state,
         isGuest: action.isGuest,
         isLogin: action.isLogin,
-        userInfo: action.payload
+        userInfo: action.payload.userInfo
       };
 
     default:

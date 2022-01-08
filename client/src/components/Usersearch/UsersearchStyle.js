@@ -76,7 +76,6 @@ export const UserSearchResult = styled.li`
 
 `;
 
-
 export const UserSearchImagebox = styled.div`
 height: 20px;
 width: 20px;

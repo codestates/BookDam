@@ -13,7 +13,7 @@ export const SearchBookWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-top: 2px solid black;
+  border-top: 1px solid black;
   height: 30%;
 `;
 
@@ -33,12 +33,12 @@ export const SearchBookInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* border: 1px solid red; */
+  /* border: 1px solid black; */
 `;
 
 export const SearchBookInfoUpper = styled.div`
   width: 100%;
-  height: 20%;
+  height: 30%;
   /* border: 2px solid black; */
   display: flex;
   justify-content: center;
@@ -48,7 +48,7 @@ export const SearchBookInfoUpper = styled.div`
 export const SearchContainer = styled.div`
   width: 80%;
   border: 3px solid #e5e5e5;
-  height: 60%;
+  height: 53%;
   display: flex;
   justify-content: center;
 `;
@@ -57,43 +57,77 @@ export const SearchInputcontainer = styled.input`
   width: 100%;
   border: 1px solid #e5e5e5;
   outline: none;
+  font-size: 1rem;
+  font-weight: 600;
 `;
 
 export const SearchClick = styled.div`
   width: 50px;
   /* border: 1px solid black; */
   height: 100%;
-  text-align: center;
-  line-height: 220%;
-  background: #E6E6E6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #e5e5e5;
   pointer: cursor;
+  font-weight: 600;
 `;
 
 export const SearchBookInfoLower = styled.div`
   width: 100%;
-  height: 80%;
-  border: 1px solid black;
+  height: 70%;
+  /* border: 1px solid black; */
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 `;
 
 export const SearchBookTitleContainer = styled.div`
   width: 80%;
-  height: 40%;
-  border: 1px solid black;
+  height: 33%;
+  /* border: 1px solid black; */
+  font-size: 18px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const BookTitleLeftContainer = styled.div` //도서명, 저자, 출판사 태그
+  width: 60px;
+  height: 33%;
+  /* border: 1px solid black; */
+  font-size: 18px;
+  font-weight: 600;
+  text-align: left;
+  
+`;
+
+export const BookTitleRightContainer = styled.div`
+  width: 80%;
+  height: 33%;
+  margin-left: 10px;
+  /* border: 1px solid black; */
+  font-size: 18px;
+  font-weight: 600;
 `;
 
 export const SearchBookAuthorContainer = styled.div`
   width: 80%;
-  height: 40%;
-  border: 1px solid black;
+  height: 33%;
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `;
 
 export const SearchBookPublisherContainer = styled.div`
   width: 80%;
-  height: 40%;
-  border: 1px solid black;
+  height: 33%;
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `;
 
 export const SearchBookImageContainer = styled.div`
@@ -111,7 +145,7 @@ export const BookThumbnailContainer = styled.div`
   height: 90%;
   /* border: 1px solid black; */
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   padding: 0;
   box-sizing: border-box;
@@ -140,31 +174,33 @@ export const WriteArticleContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 `;
 
 export const WriteSentenceSection = styled.textarea.attrs({
   placeholder: '감동적인 문장을 기록하세요.'
 })`
-  margin: 10px;
-  width: 80%;
-  height: 35%;
-  border: 1px solid black;
+  margin-top: 10px;
+  width: 90%;
+  height: 50%;
+  border: thick double #5dc175;
   padding: 20px;
   border-radius: 7px;
   font-size: 20px;
+  box-sizing: border-box;
 `;
 
 export const WriteCommentSection = styled.textarea.attrs({
   placeholder: '문장에 대한 감상평을 남기세요.'
 })`
   margin: 10px;
-  width: 80%;
+  width: 90%;
   height: 25%;
-  border: 1px solid black;
+  border: thick double #5dc175;
   padding: 20px;
   border-radius: 7px;
   font-size: 20px;
+  box-sizing: border-box;
 `;
 
 export const ArticleButtonWrapper = styled.div`
@@ -181,12 +217,11 @@ export const ArticleButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
 `;
 
 export const ArticleButtonSection = styled.div`
-  border: 1px solid red;
+  /* border: 1px solid red; */
   width: 90%;
   height: 80%;
   display: flex;
@@ -205,12 +240,13 @@ export const ButtonContainer = styled.div`
 `;
 
 export const ButtonsInWrite = styled.button`
-  width: 60px;
+  width: 150px;
   height: 40px;
   margin: 10px;
   border-style: none;
   border-radius: 10px;
-  font-size: 14px;
+  font-size: 20px;
+  font-weight: 600;
   background: #2cc05a;
   color: black;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;

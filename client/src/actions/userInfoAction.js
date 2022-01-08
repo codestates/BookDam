@@ -1,7 +1,7 @@
 // action types
 export const LOGIN_ACTION = 'LOGIN_ACTION';
 
-export const UserInfoAction = ({ LoginUserInfo }) => {
+export const UserInfoAction = ( userInfo ) => {
   return {
     type: LOGIN_ACTION,
     payload: {

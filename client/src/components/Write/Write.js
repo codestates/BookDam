@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { data } from '../../dummyfiles/dummyBookSearch';
 import walden from '../../assets/images/walden_thumbnail.jpeg';
 import {
@@ -11,9 +12,9 @@ import {
   SearchInputcontainer,
   SearchClick,
   SearchBookInfoLower,
-  SearchBookTitleAuthorContainer,
   SearchBookTitleContainer,
-  SearchBookAuthorontainer,
+  SearchBookAuthorContainer,
+  SearchBookPublisherContainer ,
   SearchBookImageContainer,
   BookThumbnailContainer,
   BookThumbnail,
@@ -23,7 +24,9 @@ import {
   WriteCommentSection,
   ArticleButtonWrapper,
   ArticleButtonContainer,
-  AticleButtonSection
+  ArticleButtonSection,
+  ButtonContainer,
+  ButtonsInWrite 
 } from './WriteStyle';
 
 export const Write = () => {
@@ -50,10 +53,9 @@ export const Write = () => {
               </SearchContainer>
             </SearchBookInfoUpper>
             <SearchBookInfoLower>
-              <SearchBookTitleAuthorContainer>
                 <SearchBookTitleContainer />
-                <SearchBookAuthorontainer />
-              </SearchBookTitleAuthorContainer>
+                <SearchBookAuthorContainer />
+                <SearchBookPublisherContainer />
             </SearchBookInfoLower>
           </SearchBookInfoContainer>
           <SearchBookImageContainer>
@@ -66,14 +68,22 @@ export const Write = () => {
 
       <WriteArticleWrapper>
         <WriteArticleContainer>
-          <WriteSentenceSection />
-          <WriteCommentSection />
+          <WriteSentenceSection>
+
+          </WriteSentenceSection>
+          <WriteCommentSection>
+
+          </WriteCommentSection>
         </WriteArticleContainer>
       </WriteArticleWrapper>
 
       <ArticleButtonWrapper>
         <ArticleButtonContainer>
-          <AticleButtonSection />
+          <ArticleButtonSection>
+            <ButtonContainer>
+              <ButtonsInWrite>작성하기</ButtonsInWrite>
+            </ButtonContainer>
+          </ArticleButtonSection>
         </ArticleButtonContainer>
       </ArticleButtonWrapper>
     </WriteWholeContainer>

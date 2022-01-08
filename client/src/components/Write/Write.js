@@ -14,6 +14,7 @@ import {
   SearchBookInfoLower,
   SearchBookTitleContainer,
   SearchBookAuthorContainer,
+  SearchBookPublisherContainer ,
   SearchBookImageContainer,
   BookThumbnailContainer,
   BookThumbnail,
@@ -25,7 +26,7 @@ import {
   ArticleButtonContainer,
   ArticleButtonSection,
   ButtonContainer,
-  ButtonsInWrite
+  ButtonsInWrite 
 } from './WriteStyle';
 
 export const Write = () => {
@@ -52,8 +53,9 @@ export const Write = () => {
               </SearchContainer>
             </SearchBookInfoUpper>
             <SearchBookInfoLower>
-              <SearchBookTitleContainer />
-              <SearchBookAuthorContainer />
+                <SearchBookTitleContainer />
+                <SearchBookAuthorContainer />
+                <SearchBookPublisherContainer />
             </SearchBookInfoLower>
           </SearchBookInfoContainer>
           <SearchBookImageContainer>
@@ -66,8 +68,12 @@ export const Write = () => {
 
       <WriteArticleWrapper>
         <WriteArticleContainer>
-          <WriteSentenceSection />
-          <WriteCommentSection />
+          <WriteSentenceSection>
+
+          </WriteSentenceSection>
+          <WriteCommentSection>
+
+          </WriteCommentSection>
         </WriteArticleContainer>
       </WriteArticleWrapper>
 

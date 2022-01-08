@@ -16,13 +16,13 @@ import userImage from '../../assets/images/defaultUserImage.png';
 
 export const Searchuser = ({ setFollowFeedList }) => {
   const [filter, setFilter] = useState([]);
-  const [hasInputValue, setHasInputValue] = useState(false)
+  const [hasInputValue, setHasInputValue] = useState(false);
 
   // const [searchUser, setSearchUser] = useState([])
 
-  const handlerInputSearchUser = (e) => {  // 인풋창에 입력된 값을 필터 상태에 넣어서 관리
+  const handlerInputSearchUser = (e) => { // 인풋창에 입력된 값을 필터 상태에 넣어서 관리
     setFilter(e.target.value);
-    e.target.value ? setHasInputValue(true) : setHasInputValue(false)
+    e.target.value ? setHasInputValue(true) : setHasInputValue(false);
   };
 
   // const userInfoState = useSelector(state => state.userInfoReducer);
@@ -52,8 +52,7 @@ export const Searchuser = ({ setFollowFeedList }) => {
   const filterData = data.filter((el) => {
     return el.userNickName.indexOf(filter) > -1;
   });
-  console.log(filter)
-
+  console.log(filter);
 
   useEffect(() => {
     // setSearchUser()
@@ -65,8 +64,8 @@ export const Searchuser = ({ setFollowFeedList }) => {
       getSearchUserFeedList(); // 인자값이 없어서 엔터나 버튼클릭시 에러 발생
     }
   };
-  
-  console.log(hasInputValue)
+
+  console.log(hasInputValue);
   return (
     <>
       <UpperContainer>
@@ -74,19 +73,20 @@ export const Searchuser = ({ setFollowFeedList }) => {
           <UserSearchInput value={filter} onChange={handlerInputSearchUser} onKeyPress={handleKeyPress} />
           <UserSearchBtn onClick={getSearchUserFeedList}>검색</UserSearchBtn>
         </SearchUserContainer>
-        {hasInputValue ? 
-        <UserSearchResultContainer>
-          {filterData.map((el) => {
-          return <li>
-            <UserSearchImagebox>
-              <UserSearchImage src={userImage} />
-            </UserSearchImagebox>
-            <div>{el.userNickName}</div>
-          </li>
-          
-          })}
-        </UserSearchResultContainer> 
-        : null}
+        {hasInputValue
+          ? <UserSearchResultContainer>
+            {filterData.map((el) => {
+              return (
+                <li>
+                  <UserSearchImagebox>
+                    <UserSearchImage src={userImage} />
+                  </UserSearchImagebox>
+                  <div>{el.userNickName}</div>
+                </li>
+              );
+            })}
+          </UserSearchResultContainer>
+          : null}
       </UpperContainer>
     </>
   );

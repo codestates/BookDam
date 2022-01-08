@@ -30,7 +30,6 @@ export const Feed = () => {
   //     console.log(err)
   //   })
   // }
-  
 
   return (
     <>

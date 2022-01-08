@@ -58,7 +58,7 @@ export const Write = () => {
           </SearchBookInfoContainer>
           <SearchBookImageContainer>
             <BookThumbnailContainer>
-              <BookThumbnail src={walden}/>
+              <BookThumbnail src={walden} />
             </BookThumbnailContainer>
           </SearchBookImageContainer>
         </SearchBookContainer>
@@ -73,9 +73,7 @@ export const Write = () => {
 
       <ArticleButtonWrapper>
         <ArticleButtonContainer>
-          <AticleButtonSection>
-            
-          </AticleButtonSection>
+          <AticleButtonSection />
         </ArticleButtonContainer>
       </ArticleButtonWrapper>
     </WriteWholeContainer>

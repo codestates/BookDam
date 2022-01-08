@@ -121,7 +121,7 @@ export const BookThumbnailContainer = styled.div`
 export const BookThumbnail = styled.img`
   width: 100%;
   margin: 0;
-`
+`;
 
 export const WriteArticleWrapper = styled.div`
   display: flex;

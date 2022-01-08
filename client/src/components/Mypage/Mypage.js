@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { UserModifyModal } from '../UserInfoModify/UserModifyModal';
 import example from '../../assets/images/defaultUserImage.png';
+import { NavSidebar } from '../NavSidebar/NavSidebar';
 
 import {
   MypageContainer,
@@ -51,6 +52,8 @@ export default function MyPage () {
     // axios.get 회원정보 조회
     <>
       <MypageContainer>
+        {/* <NavSidebar /> */}
+
         {isOpneModifyModal
           ? <UserModifyModal
               closeUserInfoModify={closeUserInfoModify} userInfo={userInfo}

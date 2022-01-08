@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import background from "../../assets/images/backimg2.png"
+import background from '../../assets/images/backimg2.png';
 import { FaUserPlus, FaUserAltSlash, FaUserCheck } from 'react-icons/fa';
 
 export const FeedContentContainer = styled.ul`

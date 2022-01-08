@@ -60,12 +60,12 @@ export const UserSearchResultContainer = styled.ul`
 
 export const UserSearchResult = styled.li`
 
-`
+`;
 export const UserSearchImagebox = styled.div`
 height: 20px;
 width: 20px;
-`
+`;
 export const UserSearchImage = styled.img`
 height: 100%;
 width: 100%;
-`
+`;

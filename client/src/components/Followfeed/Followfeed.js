@@ -27,9 +27,9 @@ export const Followfeed = ({ followFeedList }) => {
 
   const followHandler = (e) => {
     // el의 key값에 접근해서 핸들러 함수를 실행하면 개별실행도 가능해짐.
-    // 실행할 때 조건문으로 article의 id가 
+    // 실행할 때 조건문으로 article의 id가
 
-    console.log(e.target.value)
+    console.log(e.target.value);
 
     // 팔로우가 삭제될 때
     // if (isFollow === false) {
@@ -76,18 +76,18 @@ export const Followfeed = ({ followFeedList }) => {
               {el.userNickName}
             </UserNickName>
             <UserFollowIcon value={el.user_id} onClick={followHandler}>
-              {el["Articles.user_Id"] === el["Follows.follow_Id"] ? '팔로우' : '팔로우 추가'}
+              {el['Articles.user_Id'] === el['Follows.follow_Id'] ? '팔로우' : '팔로우 추가'}
 
             </UserFollowIcon>
           </UserNameAndImage>
           <PostCreatedAt>
-            {el["Articles.createdAt"]}
+            {el['Articles.createdAt']}
           </PostCreatedAt>
         </UserInfo>
         <ContentsContainer>
-          <Sentence>{el["Articles.sentense"]}</Sentence>
-          <Comment>{el["Articles.comment"]}</Comment>
-          <BookInfo>{el["Articles.book_Title"]} | {el["Articles.book_Author"]} </BookInfo>
+          <Sentence>{el['Articles.sentense']}</Sentence>
+          <Comment>{el['Articles.comment']}</Comment>
+          <BookInfo>{el['Articles.book_Title']} | {el['Articles.book_Author']} </BookInfo>
         </ContentsContainer>
       </UserInfoContainer>
     );

@@ -2,20 +2,20 @@ import defaultUserImage from '../assets/images/defaultUserImage.png';
 
 const data = [
   {
-    "id": 2,
-    "userId": "test2",
-    "userNickName": "test2",
-    "userImage": "blahblahblahblah",
-    "Articles.user_Id": 2,
-    "Articles.book_Title": "파친코",
-    "Articles.book_Author": "미상",
-    "Articles.book_Thumbnail": "",
-    "Articles.book_Publisher": "미상",
-    "Articles.sentense": "blahblahblahblah",
-    "Articles.comment": "blahblahblahblah",
-    "Articles.createdAt": "2022-01-03",
-    "Follows.user_Id": 1,
-    "Follows.follow_Id": 2
+    id: 2,
+    userId: 'test2',
+    userNickName: 'test2',
+    userImage: 'blahblahblahblah',
+    'Articles.user_Id': 2,
+    'Articles.book_Title': '파친코',
+    'Articles.book_Author': '미상',
+    'Articles.book_Thumbnail': '',
+    'Articles.book_Publisher': '미상',
+    'Articles.sentense': 'blahblahblahblah',
+    'Articles.comment': 'blahblahblahblah',
+    'Articles.createdAt': '2022-01-03',
+    'Follows.user_Id': 1,
+    'Follows.follow_Id': 2
   },
   {
     id: 6,

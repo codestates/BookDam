@@ -8,7 +8,7 @@ export const initialState =
     {
       id: 1,
       userId: 'holystoryseo',
-      userNickName: 'Guest',
+      userNickName: '게스트',
       userImage: ''
     },
 

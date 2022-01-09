@@ -8,7 +8,7 @@ export const MypageContainer = styled.div`
   align-items: center;
   flex-wrap: nowrap;
   margin-top: 15px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 
   @media (max-width: 500px) {
     width: 100%;
@@ -21,7 +21,7 @@ export const UserInfoContainer = styled.div`
   height: 90px;
   margin: 10px;
   padding: 5px;
-  border: 1px solid skyblue;
+  /* border: 1px solid skyblue; */
 
   /* @media (max-width: 500px) {
     width: 480px;
@@ -34,7 +34,7 @@ export const UserImgSection = styled.div`
   height: 100%;
   margin-left: 15px;
   margin-right: 15px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 `;
 
 export const UserImage = styled.img`
@@ -49,7 +49,7 @@ export const UserInfoSection = styled.div`
   flex-direction: column;
   flex-wrap: nowrap;
   margin-left: 25px;
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
 `;
 
 export const NickNameFollowSection = styled.div`
@@ -59,7 +59,7 @@ export const NickNameFollowSection = styled.div`
   flex-direction: row;
   flex-wrap: nowrap;
   margin-bottom: 5px;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 `;
 
 export const NickName = styled.div`
@@ -70,7 +70,7 @@ export const NickName = styled.div`
   align-items: center;
   text-align: center;
   margin-left: 5px;
-  border: 1px solid green;
+  /* border: 1px solid green; */
 `;
 
 export const FollowContainer = styled.div`
@@ -78,7 +78,7 @@ export const FollowContainer = styled.div`
   width: 180px;
   flex-direction: row;
   margin-left: 5px;
-  border: 1px solid orange;
+  /* border: 1px solid orange; */
 `;
 
 export const Follow = styled.div`
@@ -178,4 +178,5 @@ export const ArticleWrap = styled.div`
 export const Article = styled.img`
   width: 100%;
   height: 100%;
+  cursor: pointer;
 `;

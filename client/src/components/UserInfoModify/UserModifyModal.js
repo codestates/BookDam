@@ -127,8 +127,10 @@ export function UserModifyModal ({ closeUserInfoModify }) {
     <>
       <UserInfoModifyModalContainer>
         <UserInfoModifyContainer>
-          <ModifyCloseSection onClick={closeModal}>
-            <IoClose />
+          <ModifyCloseSection >
+            <div onClick={closeModal}>
+              <IoClose />
+            </div>
           </ModifyCloseSection>
           <UserInfoSection>
             <UserImgSection>

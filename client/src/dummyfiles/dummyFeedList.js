@@ -2,7 +2,7 @@ import defaultUserImage from '../assets/images/defaultUserImage.png';
 
 const data = [
   {
-    id: 2,
+    id: 2, // 피드 작성자 아이디
     userId: 'test2',
     userNickName: 'test2',
     userImage: 'blahblahblahblah',
@@ -14,8 +14,8 @@ const data = [
     'Articles.sentense': 'blahblahblahblah',
     'Articles.comment': 'blahblahblahblah',
     'Articles.createdAt': '2022-01-03',
-    'Follows.user_Id': 1,
-    'Follows.follow_Id': 2
+    'Follows.user_Id': 1, // 피드 작성자가 팔로우 한 아이디
+    'Follows.follow_Id': 2 // 피드 작성자 아이디 = id
   },
   {
     id: 6,

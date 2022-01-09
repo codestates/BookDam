@@ -65,7 +65,6 @@ font-weight: 600;
 export const UserFollowIcon = styled.button.attrs({
 
 })`
-font-family: Font Awesome 5 Free;
 font-weight: 900;
 height: 20px;
 width: 60px;
@@ -74,10 +73,13 @@ border: 0;
 border-radius: 2px;
 background-color: rgba(120,250, 100);
 transition: all 0.1s ease-out;
-z-index: 999;
 cursor: pointer;
+> svg {
+  margin-top: 2px;
+}
 :hover {
   font-size:15px;
+  content: "팔로우 취소"
 }`;
 
 export const PostCreatedAt = styled.div`

@@ -36,7 +36,9 @@ export const ModifyCloseSection = styled.div`
   padding-right: 3px;
   font-size: 25px;
   color: rgba(0, 0, 0, 0.3);
-  cursor: pointer;
+  > div {
+    cursor: pointer;
+  }
 `;
 
 export const UserInfoSection = styled.div`

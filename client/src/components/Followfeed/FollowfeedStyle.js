@@ -16,6 +16,10 @@ width: 100vw;
 `;
 
 export const UserInfoContainer = styled.li`
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
 margin: 10px;
 border: 1px solid black;
 height: 930px;
@@ -27,6 +31,7 @@ background-image: linear-gradient(rgba(0,170, 0, 0.1), rgba(0, 255, 0, 0.5));
 }
 `;
 export const UserInfo = styled.div`
+width: 90%;
 margin: 15px;
 display: flex;
 justify-content: space-between;
@@ -34,6 +39,12 @@ justify-content: space-between;
 export const UserImageContainer = styled.div`
 height: 50px;
 width: 50px;
+display: flex;
+cursor: pointer;
+@media screen and (max-width: 500px) {
+  height: 40px;
+  width: 40px;
+}
 `;
 export const DefaultUserImage = styled.img`
 height: 100%;
@@ -63,11 +74,14 @@ left: 10px;
 margin-left: 20px;
 font-size: 25px;
 font-weight: 600;
+cursor: pointer;
+@media screen and (max-width: 500px) {
+font-size: 19px;
+}
 `;
 export const UserFollowIcon = styled.button.attrs({
 
 })`
-font-family: Font Awesome 5 Free;
 font-weight: 900;
 height: 20px;
 width: 60px;
@@ -77,9 +91,17 @@ border-radius: 2px;
 background-color: rgba(120,250, 100);
 transition: all 0.1s ease-out;
 cursor: pointer;
+> svg {
+  margin-top: 2px;
+}
 :hover {
   font-size:15px;
-}`;
+  content: "팔로우 취소"
+}
+@media screen and (max-width: 500px) {
+width: 40px;
+}
+`;
 
 export const PostCreatedAt = styled.div`
 margin-right: 10px;
@@ -88,6 +110,9 @@ color: grey;
 display: flex;
 justify-content: center;
 align-items: center;
+@media screen and (max-width: 500px) {
+font-size: 9px;
+}
 `;
 export const ContentsContainer = styled.div`
 display: flex;
@@ -96,7 +121,6 @@ align-items: center;
 justify-content: center;
 height: 90%;
 width: 95%;
-margin-left: 15px;
 `;
 
 export const Sentence = styled.div`
@@ -140,7 +164,12 @@ font-size: 20px;
 }
 `;
 export const BookInfo = styled.div`
+width: 100%;
 font-size: 20px;
 padding: 3px;
 margin-top: 10px;
+margin-left: 15px;
+@media screen and (max-width: 500px) {
+  font-size: 8px
+}
 `;

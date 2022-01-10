@@ -7,7 +7,9 @@ import {
   UserSearchResultContainer,
   UserSearchResult,
   UserSearchImagebox,
-  UserSearchImage
+  UserSearchImage,
+  RecommendListContainer,
+  RecommendList
 } from './UsersearchStyle';
 import Axios from 'axios';
 import data from '../../dummyfiles/dummyFeedList';
@@ -37,6 +39,7 @@ export const Searchuser = ({ setFollowFeedList }) => {
   //     })
   //   }
   // }, [filter])
+
   const callUserPage = () => {
     // 클릭시 userInfo.id === el.id => MyPage
     // else UserPage
@@ -73,25 +76,39 @@ export const Searchuser = ({ setFollowFeedList }) => {
   return (
     <>
       <UpperContainer>
-        <SearchUserContainer>
-          <UserSearchInput value={filter} onChange={handlerInputSearchUser} onKeyPress={handleKeyPress} />
-          <UserSearchBtn onClick={getSearchUserFeedList}>검색</UserSearchBtn>
-        </SearchUserContainer>
-        {hasInputValue
-          ? <UserSearchResultContainer>
-            {filterData.slice(0, 9).map((el, index) => {
-              return (
-                <li key={index} onClick={callUserPage(el.id)}>
-
-                  <UserSearchImagebox>
-                    <UserSearchImage src={userImage} />
-                  </UserSearchImagebox>
-                  <div>{el.userNickName}</div>
+        <div>
+          <SearchUserContainer>
+            <UserSearchInput value={filter} onChange={handlerInputSearchUser} onKeyPress={handleKeyPress} />
+            <UserSearchBtn onClick={getSearchUserFeedList}>검색</UserSearchBtn>
+          </SearchUserContainer>
+          {hasInputValue
+            ? <UserSearchResultContainer>
+              {filterData.slice(0, 9).map((el, index) => {
+                return (
+                  <li key={index} onClick={callUserPage(el.id)}>
+                    <UserSearchImagebox>
+                      <UserSearchImage src={userImage} />
+                    </UserSearchImagebox>
+                    <div>{el.userNickName}</div>
+                  </li>
+                );
+              })}
+            </UserSearchResultContainer>
+            : null}
+        </div>
+          <RecommendListContainer>
+            <RecommendList>
+              맞춤 추천 리스트
+              <UserSearchResultContainer className='Recommend'>
+                <li>
+                <UserSearchImagebox>
+                  <UserSearchImage src={userImage} />
+                </UserSearchImagebox>
+                  <div>BookDam</div>
                 </li>
-              );
-            })}
-          </UserSearchResultContainer>
-          : null}
+                </UserSearchResultContainer>
+            </RecommendList>
+          </RecommendListContainer>
       </UpperContainer>
     </>
   );

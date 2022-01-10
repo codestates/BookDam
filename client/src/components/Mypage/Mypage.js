@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { UserModifyModal } from '../UserInfoModify/UserModifyModal';
@@ -64,6 +65,7 @@ export default function MyPage () {
   });
   const [isOpneModifyModal, setIsOpenModifyModal] = useState(false);
   const [isOpenSentenceModal, setIsOpenSentenceModal] = useState(false);
+  const history = useHistory();
 
   // 회원정보수정 버튼 누르면 회원정보수정 모달이 나오는 함수
   const userInfoModifyBtnHandler = () => {
@@ -78,6 +80,7 @@ export default function MyPage () {
   const openSentenceModalHandler = () => {
     console.log('클릭');
     setIsOpenSentenceModal(!isOpenSentenceModal);
+    history.push('/editpage');
   }
 
   
@@ -127,13 +130,13 @@ export default function MyPage () {
           </UserImgSection>
           <UserInfoSection>
             <NickNameFollowSection>
-              <NickName>{userInfo.userNickName}</NickName>
+              <NickName>{data.userInfo.userNickName}</NickName>
               <FollowContainer>
                 <Follow>팔로우
-                  <FollowCount>123</FollowCount>
+                  <FollowCount>{data.follow.following}</FollowCount>
                 </Follow>
                 <Follower>팔로워
-                  <FollowerCount>225</FollowerCount>
+                  <FollowerCount>{data.follow.following}</FollowerCount>
                 </Follower>
               </FollowContainer>
             </NickNameFollowSection>
@@ -146,8 +149,7 @@ export default function MyPage () {
         </UserInfoContainer>
         <ArticleListTitle>수집 목록</ArticleListTitle>
         <ArticleListContainer>
-            {/* <Article src={userInfo.userImage} onClick={openSentenceModalHandler} /> */}
-            {articleList}
+          {articleList}
         </ArticleListContainer>
       </MypageContainer>
     </>

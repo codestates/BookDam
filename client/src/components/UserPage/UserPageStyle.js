@@ -9,6 +9,7 @@ export const UserPageContainer = styled.div`
   flex-wrap: nowrap;
   margin-top: 15px;
   border: 1px solid black;
+  position: relative;
 
   @media (max-width: 500px) {
     width: 100%;

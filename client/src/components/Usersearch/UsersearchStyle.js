@@ -41,9 +41,10 @@ height: 100%;
 width: 25%;
 border: 0px;
 float: right;
-font-size: 8px;
+font-size: 14px;
 color: #ffffff;
 background-color: #5dc175;
+cursor: pointer;
 `;
 
 export const UserSearchResultContainer = styled.ul`

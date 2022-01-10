@@ -39,7 +39,7 @@ export const Searchuser = ({ setFollowFeedList }) => {
   //     })
   //   }
   // }, [filter])
-  
+
   const callUserPage = () => {
     // 클릭시 userInfo.id === el.id => MyPage
     // else UserPage
@@ -86,7 +86,6 @@ export const Searchuser = ({ setFollowFeedList }) => {
               {filterData.slice(0, 9).map((el, index) => {
                 return (
                   <li key={index} onClick={callUserPage(el.id)}>
-
                     <UserSearchImagebox>
                       <UserSearchImage src={userImage} />
                     </UserSearchImagebox>

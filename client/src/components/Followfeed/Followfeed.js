@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import Axios from 'axios';
 import data from '../../dummyfiles/dummyFeedList';
 import { FaUserCheck } from 'react-icons/fa';
@@ -26,13 +27,13 @@ export const Followfeed = ({ followFeedList }) => {
   // 팔로우 취소 버튼 클릭시 알람 모달 오픈
   const [isOpen, setInOpen] = useState(false)
   const [followInfo, setFollowInfo] = useState({
-    id: 0,
+    id: '',
     userId: '',
     userNickName: '',
     userImage: '',
   })
 
-  // const [followFeedList, setFoolowFeedList] = useState({
+  // const [followFeedList, setFoolowFeedList] = useState([{
   //   'Articles.user_Id': 0,
   //   'Articles.book_Title': '',
   //   'Articles.book_Author': '',
@@ -43,22 +44,31 @@ export const Followfeed = ({ followFeedList }) => {
   //   'Articles.createdAt': '',
   //   'Follows.user_Id': 0, // 피드 작성자가 팔로우 한 아이디
   //   'Follows.follow_Id': 0 // 피드 작성자 아이디 = id
-  // })
+  // }])
 
-  // const followInfoProps = (el) => {
-  //   setFollowInfo({
-  //     id: el.id,
-  //     userId: el.userId,
-  //     userNickName: el.userNickName,
-  //     userImage: el.userImage
-  //   })
-  // }
+  const getFollowInfo = (el) => {
+    console.log(el.id, el.userNickName)
+    setFollowInfo({
+      id: el.id,
+      userId: el.userId,
+      userNickName: el.userNickName,
+      userImage: el.userImage
+    })
+    
+    console.log("팔로우 유저정보",followInfo)
+    history.push({
+      pathname: `/userPage/${followInfo.userNickName}`,
+      state: { followInfo: followInfo }})
+  }
+  
 
+  // 노티스 모달 상태변경 함수
   const NoticeModalOpenHandler = () => {
     setInOpen(!isOpen)
   }
-  // 팔로우 상태로 관리하게되면 클릭시 일괄적용되기 때문에
-  // 개별로 접근해서 팔로우상태를 변경하는 함수가 필요함
+  const history = useHistory();
+
+  // 팔로우 피드 리스트 서버요청 함수
   // const getFollowFeedList = () => {
   //   Axios.get(`http://localhost:4000/user/${userInfo.id}`, 
   //     {
@@ -82,6 +92,7 @@ export const Followfeed = ({ followFeedList }) => {
   //       console.log(err)
   //     })
 
+  // 팔로우 추가 함수
   const followHandler = (e) => {
     // el의 key값에 접근해서 핸들러 함수를 실행하면 개별실행도 가능해짐.
     // 실행할 때 조건문으로 article의 id가
@@ -100,22 +111,24 @@ export const Followfeed = ({ followFeedList }) => {
     //   })
     // }
   };
-  console.log("모달 오픈 상태", isOpen)
-  // 팔로우 정보까지 서버에서 받아와야 팔로우 아이콘 기능구현이 가능함.
-  // 팔로우 정보를 조회해서 팔로우 아이콘 클릭시마다 아이콘 변경해주는 함수와 함께 서버에 팔로우 삭제||등록 요청을 보내야 함.
+  // console.log("팔로우유저 정보", followInfo)
+
+  // const userPageMove = () => {
+  //   console.log('페이지 이동 함수 실행')
+    
+  // }
 
   const feedList = followFeedList.map((el, index) => {
     return (
-
-      <UserInfoContainer key={index}>
+      <UserInfoContainer key={index} >
         <UserInfo>
           <UserNameAndImage>
-            <UserImageContainer>
+            <UserImageContainer onClick={() => getFollowInfo(el)} >
               {el.userImage.length === 0
                 ? <UserImage src={el.userImage} />
                 : <DefaultUserImage src={userImage} />} {/* 경로문제는 추후 수정 필요함 */}
             </UserImageContainer>
-            <UserNickName>
+            <UserNickName onClick={() => getFollowInfo(el)} >
               {el.userNickName}
             </UserNickName>
             <UserFollowIcon value={el.id} onClick={followHandler} onChange={(el) => setFollowInfo(el)}>
@@ -140,7 +153,7 @@ export const Followfeed = ({ followFeedList }) => {
   return (
     <>
       <FeedContentContainer>
-        {isOpen ? <NoticeModal NoticeModalOpenHandler={NoticeModalOpenHandler}/> : null}
+        {isOpen ? <NoticeModal NoticeModalOpenHandler={NoticeModalOpenHandler} followInfo={followInfo}/> : null}
         {followFeedList.length === 0
           ? <div>검색한 결과가 없습니다.</div>
           : <>

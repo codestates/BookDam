@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
+import { useLocation } from "react-router-dom";
 import example from '../../assets/images/defaultUserImage.png';
-
 import {
   UserPageContainer,
   UserInfoContainer,
@@ -22,9 +22,10 @@ import {
 } from './UserPageStyle';
 
 export default function UserPage () {
+  const location = useLocation()
+  const followInfo = location.state.followInfo;
 
-
-
+  console.log(location.state)
   return (
     <>
       <UserPageContainer>
@@ -34,7 +35,7 @@ export default function UserPage () {
           </UserImgSection>
           <UserInfoSection>
             <NickNameFollowSection>
-              <NickName>닉네임</NickName>
+              <NickName>{followInfo.userNickName}</NickName>
               <FollowContainer>
                 <Follow>팔로우
                   <FollowCount>123</FollowCount>

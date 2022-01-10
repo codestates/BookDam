@@ -38,6 +38,7 @@ export const UserImageContainer = styled.div`
 height: 50px;
 width: 50px;
 display: flex;
+cursor: pointer;
 @media screen and (max-width: 500px) {
   height: 40px;
   width: 40px;
@@ -71,6 +72,7 @@ left: 10px;
 margin-left: 20px;
 font-size: 25px;
 font-weight: 600;
+cursor: pointer;
 @media screen and (max-width: 500px) {
 font-size: 19px;
 }

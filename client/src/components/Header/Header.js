@@ -4,6 +4,7 @@ import Navbar from '../Navbar/Navbar';
 import { HeaderContainer } from './HeaderStyle';
 import { CreatePage } from '../../pages/CreatePage/CreatePage';
 import { FeedPage } from '../../pages/FeedPage/FeedPage';
+import UserPage from '../../pages/UserPage/UserPage';
 import MyPage from '../../pages/MyPage/MyPage';
 
 export default function Header () {
@@ -20,6 +21,9 @@ export default function Header () {
           </Route>
           <Route path='/mypage'>
             <MyPage />
+          </Route>
+          <Route path='/userPage'>
+            <UserPage />
           </Route>
         </Switch>
       </HeaderContainer>

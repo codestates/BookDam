@@ -174,10 +174,10 @@ export const ArticleListContainer = styled.ul`
 `;
 
 export const ArticleWrap = styled.li`
-  /* width: 220px;
-  height: 330px; */
-  width: 140px;
-  height: 190px;
+  width: 200px;
+  height: 300px;
+  /* width: 100px;
+  height: 150px; */
   margin: 10px 10px 10px 10px;
   border: 1px solid black;
 

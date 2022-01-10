@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import {
@@ -24,6 +25,7 @@ export const LoginModal = ({
   const [loginInfo, setLoginInfo] = useState({ userId: '', password: '' });
   const [errorMessage, setErrorMessage] = useState('');
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleInputId = (e) => {
     setLoginInfo({
@@ -50,7 +52,7 @@ export const LoginModal = ({
         method: 'post',
         url: 'http://localhost:4000/user/login',
         headers: {
-          authorization: `Bearer: ${process.env.Client_Secret}`, // process.env 처리 필요
+          authorization: `Bearer: ${process.env.Client_Secret}`,
           'Content-Type': 'application/json'
         },
         data: {
@@ -61,12 +63,12 @@ export const LoginModal = ({
         }
       })
         .then((res) => {
-          console.log(res.headers.Cookies);
           const userInfoData = res.data.userInfo;
           if (userInfoData) {
             dispatch(LoginAction(userInfoData));
             setIsOpenLoginModal(false);
             document.body.style.overflow = 'unset'; // 스크롤 방지 해제
+            history.push('/feedpage')
           }
         })
         .catch((err) => {

@@ -44,8 +44,25 @@ export const IntroWrapper = () => {
     document.body.style.overflow = 'unset';
   };
 
-  const logoutHandler = () => { // 로그아웃 처리
-    dispatch(LogoutAction());
+  const logoutHandler = async () => { // 로그아웃 처리
+    await axios({
+      withCredentials: true,
+      method: 'post',
+      url: 'http://localhost:4000/user/logout',
+      headers: {
+        authorization: `Bearer: ${process.env.Client_Secret}`,
+        'Content-Type': 'application/json'
+      }
+    })
+    .then((res) => {
+      console.log(res)
+      if(res.data.message === '로그아웃 되었습니다.') {
+        dispatch(LogoutAction());
+      } else {
+        console.log('로그아웃 실패');
+      }
+    })
+    .catch(err => console.log('err'));
   };
 
   return (

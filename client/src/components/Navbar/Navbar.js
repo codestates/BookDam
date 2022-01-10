@@ -50,9 +50,9 @@ export default function Navbar () {
           <NavMenu>
             <Link to='/mypage' style={{ textDecoration: 'none' }}>마이페이지</Link>
           </NavMenu>
-          <NavMenu>
+          {/* <NavMenu>
             <Link to='/editpage' style={{ textDecoration: 'none' }}>수정하기</Link>
-          </NavMenu>
+          </NavMenu> */}
         </NavMenuSection>
         <UserSection>
           <UserImage />

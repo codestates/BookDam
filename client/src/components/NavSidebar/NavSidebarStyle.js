@@ -1,10 +1,5 @@
 import styled from 'styled-components';
 
-export const UserInfoWholeContainer = styled.div`
-  width: 100vw;
-  height: 100vh;
-`;
-
 export const UserInfoModifyModalBackground = styled.div`
   display: none;
   position: fixed;
@@ -14,6 +9,7 @@ export const UserInfoModifyModalBackground = styled.div`
   left: 0;
   background: rgba(0, 0, 0, 0.5); // 투명 회색 효과
   backdrop-filter: blur(5px); //blur 효과
+  z-index: 100;
 
   @media screen and (max-width: 500px) {
     display: block;
@@ -31,11 +27,11 @@ export const SidebarContainer = styled.div`
   position: fixed;
   top: 0;
   right: 0;
-  z-index: 1;
   transition: all .35s;
-  /* border: 1px solid blue; */
+  z-index: 101;
+  /* border: 10px solid blue; */
 
-  @media (max-width: 500px) {
+  @media screen and (max-width: 500px) {
     /* right: -200px; */
   right: 0;
   
@@ -133,7 +129,7 @@ export const QuestionSection = styled.div`
   align-items: center;
   justify-content: space-between;
   margin: 20px;
-  z-index: 100;
+  z-index: 6;
   font-size: 1rem;
   font-weight: 600;
   /* border: 1px solid blue; */

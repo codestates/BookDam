@@ -6,6 +6,7 @@ import { CreatePage } from '../../pages/CreatePage/CreatePage';
 import { FeedPage } from '../../pages/FeedPage/FeedPage';
 import UserPage from '../../pages/UserPage/UserPage';
 import MyPage from '../../pages/MyPage/MyPage';
+import { EditPage } from '../../pages/EditPage/EditPage';
 
 export default function Header () {
   return (
@@ -24,6 +25,9 @@ export default function Header () {
           </Route>
           <Route path='/userPage'>
             <UserPage />
+          </Route>
+          <Route path='/editpage'>
+            <EditPage />
           </Route>
         </Switch>
       </HeaderContainer>

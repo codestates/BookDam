@@ -9,8 +9,10 @@ justify-content: center;
 align-items: center;
 padding: 0%;
 list-style-type: none;
-position: relative;
+/* position: relative; */
 /* flex-wrap: wrap; */
+border: 10px solid black;
+width: 100vw;
 `;
 
 export const UserInfoContainer = styled.li`

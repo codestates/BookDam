@@ -1,40 +1,45 @@
 import styled from 'styled-components';
 
+export const MyPageWholeContainer = styled.div`
+  padding-top: 50px;
+  border: 1px solid black;
+  overflow: hidden;
+  position: relative;
+  width: 100vw;
+`;
+
 export const MypageContainer = styled.div`
   display: flex;
-  width: 100%;
-  min-height: 100vh;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  flex-wrap: nowrap;
-  margin-top: 15px;
+  padding-top: 30px;
   border: 1px solid black;
 
   @media (max-width: 500px) {
-    width: 100%;
+    width: 500px;
   }
 `;
 
 // UserInfo 영역
 export const UserInfoContainer = styled.div`
   display: flex;
+  width: 970px;
   height: 90px;
-  margin: 10px;
-  padding: 5px;
   border: 1px solid skyblue;
 
-  /* @media (max-width: 500px) {
-    width: 480px;
+  @media (max-width: 500px) {
+    width: 500px;
     padding: 0;
-  } */
+  }
 `;
 
 export const UserImgSection = styled.div`
   width: 90px;
   height: 100%;
-  margin-left: 15px;
+  margin-left: 24px;
   margin-right: 15px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 `;
 
 export const UserImage = styled.img`
@@ -49,7 +54,7 @@ export const UserInfoSection = styled.div`
   flex-direction: column;
   flex-wrap: nowrap;
   margin-left: 25px;
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
 `;
 
 export const NickNameFollowSection = styled.div`
@@ -59,7 +64,7 @@ export const NickNameFollowSection = styled.div`
   flex-direction: row;
   flex-wrap: nowrap;
   margin-bottom: 5px;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 `;
 
 export const NickName = styled.div`
@@ -70,7 +75,7 @@ export const NickName = styled.div`
   align-items: center;
   text-align: center;
   margin-left: 5px;
-  border: 1px solid green;
+  /* border: 1px solid green; */
 `;
 
 export const FollowContainer = styled.div`
@@ -78,7 +83,7 @@ export const FollowContainer = styled.div`
   width: 180px;
   flex-direction: row;
   margin-left: 5px;
-  border: 1px solid orange;
+  /* border: 1px solid orange; */
 `;
 
 export const Follow = styled.div`
@@ -136,46 +141,56 @@ export const UserModifyBtn = styled.button`
 
 // Article 영역 (목록 제목)
 export const ArticleListTitle = styled.div`
-  height: 20px;
-  width: 50%;
-  justify-content: flex-start;
+  height: 30px;
+  width: 970px;
+  justify-content: center;
   align-items: center;
   text-align: center;
   margin-top: 30px;
-  padding: 5px;
-  /* border: 1px solid black; */
+  padding-top: 10px;
+  border: 1px solid blue;
 
-    /* @media (max-width: 500px) {
-    width: 480px;
+    @media (max-width: 500px) {
+    width: 500px;
     padding: 0;
-  } */
+  }
 `;
 
 // Article 영역 (목록)
-export const ArticleListContainer = styled.div`
+export const ArticleListContainer = styled.ul`
   display: flex;
-  height: 450px;
+  width: 970px;
+  /* min-height: 100vh; */
   flex-direction: row;
-  justify-content: flex-start;
-  align-content: flex-start;
-  margin-top: 3px;
-  padding: 5px;
-  /* border: 1px solid black; */
+  flex-wrap: wrap;
+  padding: 0;
+  list-style-type: none;
+  border: 1px solid red;
 
-  /* @media (max-width: 500px) {
-    width: 480px;
+  @media (max-width: 500px) {
+    width: 500px;
     padding: 0;
-  } */
+  }
 `;
 
-export const ArticleWrap = styled.div`
-  width: 100px;
-  height: 120px;
-  margin: 10px;
+export const ArticleWrap = styled.li`
+  width: 200px;
+  height: 300px;
+  /* width: 100px;
+  height: 150px; */
+  margin: 10px 10px 10px 10px;
   border: 1px solid black;
+
+  @media (max-width: 500px) {
+    width: 110px;
+    height: 140px;
+    margin: 27px;
+  }
 `;
 
 export const Article = styled.img`
   width: 100%;
   height: 100%;
+  cursor: pointer;
 `;
+

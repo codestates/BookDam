@@ -86,7 +86,6 @@ export const UserSearchResult = styled.li`
 
 `;
 
-
 export const UserSearchImagebox = styled.div`
 display: flex;
 height: 20px;

@@ -26,7 +26,7 @@ import { IoClose } from 'react-icons/io5';
 
 axios.defaults.withCredentials = true;
 
-export function UserModifyModal ({ closeUserInfoModify }) {
+export function UserModifyModal ({ closeUserInfoModify, userInfoModifyBtnHandler }) {
   const userState = useSelector(state => state.userInfoReducer);
   const { userInfo } = userState; // 저장된 유저 정보
   // input 값 유효성 검사 : 닉네임이 기존과 동일한가? 동일하면 에러메세지, password가 서로 일치한가? 불일치면 에러메세지
@@ -45,7 +45,7 @@ export function UserModifyModal ({ closeUserInfoModify }) {
   // const isValidId
   const isValidPassword = /(?=.*\d)(?=.*[a-zA-ZS]).{8,}/; // 문자, 숫자 1개이상 포함, 8자리 이상
 
-  // 모달 창 닫는 함수
+  // 모달 창 닫는 버튼 함수
   const closeModal = () => {
     closeUserInfoModify();
   };
@@ -125,12 +125,10 @@ export function UserModifyModal ({ closeUserInfoModify }) {
 
   return (
     <>
-      <UserInfoModifyModalContainer>
-        <UserInfoModifyContainer>
-          <ModifyCloseSection >
-            <div onClick={closeModal}>
-              <IoClose />
-            </div>
+      <UserInfoModifyModalContainer onClick={userInfoModifyBtnHandler}>
+        <UserInfoModifyContainer onClick={(e) => e.stopPropagation()}>
+          <ModifyCloseSection onClick={closeModal}>
+            <IoClose />
           </ModifyCloseSection>
           <UserInfoSection>
             <UserImgSection>

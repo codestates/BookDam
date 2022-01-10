@@ -22,5 +22,9 @@ export const initialState =
       comment: '중독되서 계속 먹고 싶었던 거구만.',
       createdAt: '2021-12-29'
     }
+  ],
+
+  bookSearchInfo: [
+
   ]
 };

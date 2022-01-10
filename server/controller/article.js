@@ -15,19 +15,11 @@ module.exports = {
       raw: true,
       include: [{
         model: UserModel,
-        attributes: { exclude: ['updatedAt', 'createdAt', 'password'] },
+        attributes: { exclude: ['id', 'updatedAt', 'createdAt', 'password'] },
         required: true,
-        include: { model: FollowModel, where: { user_Id: id }, attributes: { exclude: ['id', 'createdAt', 'updatedAt'] } }
+        include: { model: FollowModel, where: { user_Id: id }, attributes: { exclude: ['id', 'user_Id', 'follow_Id', 'createdAt', 'updatedAt'] } }
       }]
     })
-    // UserModel.findAll({
-    //   attributes: { exclude: ['updatedAt', 'createdAt', 'password'] },
-    //   include: [{ model: ArticleModel, attributes: { exclude: ['id', 'updatedAt'] },  order: [['createdAt', 'DESC']] },
-    //     { model: FollowModel, where: { user_Id: id }, attributes: { exclude: ['id', 'createdAt', 'updatedAt'] } }],
-    //   raw: true,
-    //   // order: [['id', 'DESC']]
-    //   // nest: true
-    // })
       .then((result) => {
         res.status(200).json({ articleData: result });
       })
@@ -45,11 +37,11 @@ module.exports = {
     if (id !== userInfo.id) return res.status(400).json({ message: 'failure' });
 
     const articleInfo = req.body.articleInfo;
-    const now = new Date();
-    const utcNow = now.getTime() + (now.getTimezoneOffset() * 60 * 1000);
-    const koreaTimeDiff = 9 * 60 * 60 * 1000;
-    const koreaNow = new Date(utcNow + koreaTimeDiff);
-    const today = `${koreaNow.getFullYear()}-${koreaNow.getMonth() + 1}-${koreaNow.getDate()}`;
+    // const now = new Date();
+    // const utcNow = now.getTime() + (now.getTimezoneOffset() * 60 * 1000);
+    // const koreaTimeDiff = 9 * 60 * 60 * 1000;
+    // const koreaNow = new Date(utcNow + koreaTimeDiff);
+    // const today = `${koreaNow.getFullYear()}-${koreaNow.getMonth() + 1}-${koreaNow.getDate()}`;
     ArticleModel.create({
       user_Id: id,
       book_Title: articleInfo.book_Title,
@@ -57,8 +49,7 @@ module.exports = {
       book_Thumbnail: articleInfo.book_Thumbnail,
       book_Publisher: articleInfo.book_Publisher,
       sentence: articleInfo.sentence,
-      comment: articleInfo.comment,
-      createdAt: today
+      comment: articleInfo.comment
     })
       .then((result) => {
         delete result.dataValues.updatedAt;

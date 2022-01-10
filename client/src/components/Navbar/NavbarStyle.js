@@ -34,11 +34,13 @@ export const BackSection = styled.div`
 `;
 
 export const LogoSection = styled.div`
-  height: 100%;
+  width: 140px;
+  height: 60%;
   margin-left: 30px;
   /* border: 1px solid orange; */
 
   @media (max-width: 500px) {
+    width: 160px;
     margin-right: 30px;
   }
 `;

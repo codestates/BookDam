@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import Logo from '../../assets/images/logo-bigb.png';
+import Logo from '../../assets/images/BookDam-B-fin.png';
 import { FaArrowLeft } from 'react-icons/fa';
 import { IoMenu } from 'react-icons/io5';
 import { Link } from 'react-router-dom';

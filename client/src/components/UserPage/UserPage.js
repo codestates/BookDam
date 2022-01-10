@@ -28,7 +28,6 @@ export default function UserPage () {
   return (
     <>
       <UserPageContainer>
-        {/* <NavSidebar /> */}
         <UserInfoContainer>
           <UserImgSection>
             <UserImage src={example} />
@@ -45,7 +44,6 @@ export default function UserPage () {
                 </Follower>
               </FollowContainer>
             </NickNameFollowSection>
-            {/* <UserModifyBtn> 회원정보수정</UserModifyBtn> */}
             <>여기에 뭐가 들어가야함?</>
           </UserInfoSection>
         </UserInfoContainer>

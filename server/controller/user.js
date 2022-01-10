@@ -123,10 +123,10 @@ module.exports = {
       raw: true,
       include: [{
         model: UserModel,
-        attributes: { exclude: [ 'id', 'updatedAt', 'createdAt', 'password'] },
-        where : { id: id }
+        attributes: { exclude: ['id', 'updatedAt', 'createdAt', 'password'] },
+        where: { id: id }
       }]
-    })
+    });
 
     // const findArtilces = await UserModel.findAll({
     //   where: { id: id },

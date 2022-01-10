@@ -1,12 +1,17 @@
-import { LOGIN_ACTION, LOGOUT_ACTION } from '../actions/UserInfoAction';
+import { GUEST_LOGIN_ACTION, LOGIN_ACTION, LOGOUT_ACTION } from '../actions/UserInfoAction';
 import { initialState } from './initialState';
 
 const userInfoReducer = (state = initialState, action) => {
   switch (action.type) {
+    case GUEST_LOGIN_ACTION:
+      return {
+        ...state,
+        userInfo: action.payload.userInfo
+      }
+      
     case LOGIN_ACTION:
       return {
         ...state,
-        isGuest: action.isGuest,
         isLogin: action.isLogin,
         userInfo: action.payload.userInfo
       };
@@ -14,7 +19,6 @@ const userInfoReducer = (state = initialState, action) => {
     case LOGOUT_ACTION:
       return {
         ...state,
-        isGuest: action.isGuest,
         isLogin: action.isLogin,
         userInfo: action.payload.userInfo
       };

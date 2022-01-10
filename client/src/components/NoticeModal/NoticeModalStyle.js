@@ -9,6 +9,7 @@ export const NoticeModalBackground = styled.div`
   left: 0;
   background: rgba(0, 0, 0, 0.5); // 투명 회색 효과
   backdrop-filter: blur(5px); //blur 효과
+  z-index: 100;
 `;
 
 export const NoticeModalContainer = styled.div`
@@ -25,6 +26,7 @@ display: flex;
 align-items: center;
 justify-content: center;
 flex-direction: column;
+z-index: 101;
 `
 
 

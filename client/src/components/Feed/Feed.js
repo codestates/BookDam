@@ -4,14 +4,22 @@ import { Searchuser } from '../Usersearch/Usersearch';
 import { Followfeed } from '../Followfeed/Followfeed';
 import data from '../../dummyfiles/dummyFeedList';
 
+
+export const FeedPageContainer = styled.div`
+  overflow: hidden;
+  position: relative;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  `
+
+
 export const FeedContainer = styled.div`
 display: flex;
-flex-direction: column;
+flex-direction: row;
+width: 970px;
+align-items: flex-start;
 justify-content: center;
-align-items: center;
-width: 100%;
-
-position: relative;
 `;
 
 export const Feed = () => {
@@ -33,10 +41,12 @@ export const Feed = () => {
 
   return (
     <>
-      <FeedContainer>
-        <Searchuser setFollowFeedList={setFollowFeedList} />
-        <Followfeed followFeedList={followFeedList} />
-      </FeedContainer>
+      <FeedPageContainer>
+        <FeedContainer>
+          <Followfeed followFeedList={followFeedList} />
+          <Searchuser setFollowFeedList={setFollowFeedList} />
+        </FeedContainer>
+      </FeedPageContainer>
     </>
   );
 };

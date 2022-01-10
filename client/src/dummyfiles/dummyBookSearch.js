@@ -15,7 +15,7 @@ export const data = [
     title: 'Guns, Germs and Steel (A short history of everybody for the last 13,000 years,총, 균, 쇠)',
     image: 'http://book.naver.com/bookdb/book_detail.naver?bid=7052192',
     author: '재레드 다이아몬드(대학교수) 저',
-    puclisher: 'VintageBooks'
+    publisher: 'VintageBooks'
   },
   {
     title: '개발'

@@ -15,7 +15,6 @@ export default function Header () {
           <Route path='/feedpage'>
             <FeedPage />
           </Route>
-
           <Route path='/createPage'>
             <CreatePage />
           </Route>

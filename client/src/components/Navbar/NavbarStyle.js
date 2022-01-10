@@ -70,6 +70,7 @@ export const NavMenu = styled.li`
   font-size: 1.3rem;
   justify-content: center;
   align-items: center;
+  color: red;
   /* border: 1px solid yellow; */
 `;
 

@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 
-export const WriteWholeContainer = styled.div`
+export const EditWholeContainer = styled.div`
   padding-top: 50px;
   /* border: 1px solid black; */
   overflow: hidden;
-  /* position: relative; */
+  position: relative;
   height: 900px;
   width: 100vw;
 `;
 
-export const SearchBookWrapper = styled.div`
+export const EditPageWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,17 +17,17 @@ export const SearchBookWrapper = styled.div`
   height: 30%;
 `;
 
-export const SearchBookContainer = styled.div`
+export const BookContainer = styled.div`
   width: 970px;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  /* border: 1px solid blue; */
+  border: 1px solid blue;
 `;
 
-export const SearchBookInfoContainer = styled.div`
+export const BookInfoContainer = styled.div`
   width: 60%;
   height: 100%;
   display: flex;
@@ -69,7 +69,7 @@ export const SearchClick = styled.div`
   justify-content: center;
   align-items: center;
   background: #e5e5e5;
-  cursor: pointer;
+  pointer: cursor;
   font-weight: 600;
 `;
 
@@ -124,7 +124,7 @@ export const BookTitleRightContainer = styled.div`
   }
 `;
 
-export const SearchBookAuthorContainer = styled.div`
+export const BookAuthorContainer = styled.div`
   width: 80%;
   height: 33%;
   /* border: 1px solid black; */
@@ -133,7 +133,7 @@ export const SearchBookAuthorContainer = styled.div`
   align-items: center;
 `;
 
-export const SearchBookPublisherContainer = styled.div`
+export const BookPublisherContainer = styled.div`
   width: 80%;
   height: 33%;
   /* border: 1px solid black; */
@@ -142,7 +142,7 @@ export const SearchBookPublisherContainer = styled.div`
   align-items: center;
 `;
 
-export const SearchBookImageContainer = styled.div`
+export const BookImageContainer = styled.div`
   width: 40%;
   height: 100%;
   /* border: 1px solid black; */
@@ -251,7 +251,7 @@ export const ButtonContainer = styled.div`
   align-items: center;
 `;
 
-export const ButtonsInWrite = styled.button`
+export const ButtonsInEdit = styled.button`
   width: 150px;
   height: 40px;
   margin: 10px;

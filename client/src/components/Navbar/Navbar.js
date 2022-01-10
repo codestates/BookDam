@@ -42,14 +42,17 @@ export default function Navbar () {
         </LogoSection>
         <NavMenuSection>
           <NavMenu>
-            <Link to='/createPage' style={{ textDecoration: 'none' }}>Write</Link>
+            <Link to='/createPage' style={{ textDecoration: 'none' }}>작성하기</Link>
           </NavMenu>
           <NavMenu>
-            <Link to='/feedPage' style={{ textDecoration: 'none' }}>Feed</Link>
+            <Link to='/feedPage' style={{ textDecoration: 'none' }}>피드</Link>
           </NavMenu>
           <NavMenu>
-            <Link to='/mypage' style={{ textDecoration: 'none' }}>mypage</Link>
+            <Link to='/mypage' style={{ textDecoration: 'none' }}>마이페이지</Link>
           </NavMenu>
+          {/* <NavMenu>
+            <Link to='/editpage' style={{ textDecoration: 'none' }}>수정하기</Link>
+          </NavMenu> */}
         </NavMenuSection>
         <UserSection>
           <UserImage />

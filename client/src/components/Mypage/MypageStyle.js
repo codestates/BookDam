@@ -1,38 +1,43 @@
 import styled from 'styled-components';
 
+export const MyPageWholeContainer = styled.div`
+  padding-top: 50px;
+  border: 1px solid black;
+  overflow: hidden;
+  position: relative;
+  width: 100vw;
+`;
+
 export const MypageContainer = styled.div`
   display: flex;
-  width: 100%;
-  min-height: 100vh;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  flex-wrap: nowrap;
-  margin-top: 15px;
-  /* border: 1px solid black; */
+  padding-top: 30px;
+  border: 1px solid black;
 
   @media (max-width: 500px) {
-    width: 100%;
+    width: 500px;
   }
 `;
 
 // UserInfo 영역
 export const UserInfoContainer = styled.div`
   display: flex;
+  width: 970px;
   height: 90px;
-  margin: 10px;
-  padding: 5px;
-  /* border: 1px solid skyblue; */
+  border: 1px solid skyblue;
 
-  /* @media (max-width: 500px) {
-    width: 480px;
+  @media (max-width: 500px) {
+    width: 500px;
     padding: 0;
-  } */
+  }
 `;
 
 export const UserImgSection = styled.div`
   width: 90px;
   height: 100%;
-  margin-left: 15px;
+  margin-left: 24px;
   margin-right: 15px;
   /* border: 1px solid black; */
 `;
@@ -136,43 +141,51 @@ export const UserModifyBtn = styled.button`
 
 // Article 영역 (목록 제목)
 export const ArticleListTitle = styled.div`
-  height: 20px;
-  width: 50%;
-  justify-content: flex-start;
+  height: 30px;
+  width: 970px;
+  justify-content: center;
   align-items: center;
   text-align: center;
   margin-top: 30px;
-  padding: 5px;
-  /* border: 1px solid black; */
+  padding-top: 10px;
+  border: 1px solid blue;
 
-    /* @media (max-width: 500px) {
-    width: 480px;
+    @media (max-width: 500px) {
+    width: 500px;
     padding: 0;
-  } */
+  }
 `;
 
 // Article 영역 (목록)
-export const ArticleListContainer = styled.div`
+export const ArticleListContainer = styled.ul`
   display: flex;
-  height: 450px;
+  width: 970px;
+  /* min-height: 100vh; */
   flex-direction: row;
-  justify-content: flex-start;
-  align-content: flex-start;
-  margin-top: 3px;
-  padding: 5px;
-  /* border: 1px solid black; */
+  flex-wrap: wrap;
+  padding: 0;
+  list-style-type: none;
+  border: 1px solid red;
 
-  /* @media (max-width: 500px) {
-    width: 480px;
+  @media (max-width: 500px) {
+    width: 500px;
     padding: 0;
-  } */
+  }
 `;
 
-export const ArticleWrap = styled.div`
-  width: 100px;
-  height: 120px;
-  margin: 10px;
+export const ArticleWrap = styled.li`
+  /* width: 220px;
+  height: 330px; */
+  width: 140px;
+  height: 190px;
+  margin: 10px 10px 10px 10px;
   border: 1px solid black;
+
+  @media (max-width: 500px) {
+    width: 110px;
+    height: 140px;
+    margin: 27px;
+  }
 `;
 
 export const Article = styled.img`
@@ -180,3 +193,4 @@ export const Article = styled.img`
   height: 100%;
   cursor: pointer;
 `;
+

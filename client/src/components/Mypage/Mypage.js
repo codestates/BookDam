@@ -7,6 +7,7 @@ import example from '../../assets/images/defaultUserImage.png'; // 더미 유저
 import { data } from '../../dummyfiles/dummyMyFeedList';
 
 import {
+  MyPageWholeContainer,
   MypageContainer,
   UserInfoContainer,
   UserImgSection,
@@ -67,6 +68,8 @@ export default function MyPage () {
   const [isOpenSentenceModal, setIsOpenSentenceModal] = useState(false);
   const history = useHistory();
 
+  const thumbnail = 'http://book.naver.com/bookdb/book_detail.naver?bid=2084345';
+
   // 회원정보수정 버튼 누르면 회원정보수정 모달이 나오는 함수
   const userInfoModifyBtnHandler = () => {
     setIsOpenModifyModal(!isOpneModifyModal);
@@ -116,17 +119,19 @@ export default function MyPage () {
   return (
     // react suspence hook (데이터가 없을 경우, 로딩 화면) 삼항 연산자로 getUserInfoAll 함수 처리
     <>
+    <MyPageWholeContainer>
       <MypageContainer> 
         {isOpneModifyModal
           ? <UserModifyModal
             userInfoModifyBtnHandler={userInfoModifyBtnHandler}
             closeUserInfoModify={closeUserInfoModify}
             userInfo={userInfo}
+            articles={articles}
             />
           : null}
         <UserInfoContainer>
           <UserImgSection>
-            <UserImage src={userInfo.userImage} />
+            <UserImage src={data.userInfo.userImage} />
           </UserImgSection>
           <UserInfoSection>
             <NickNameFollowSection>
@@ -147,11 +152,12 @@ export default function MyPage () {
             </UserModifyBtn>
           </UserInfoSection>
         </UserInfoContainer>
-        <ArticleListTitle>수집 목록</ArticleListTitle>
+        <ArticleListTitle>목록</ArticleListTitle>
         <ArticleListContainer>
           {articleList}
         </ArticleListContainer>
       </MypageContainer>
+    </MyPageWholeContainer>
     </>
   );
 }

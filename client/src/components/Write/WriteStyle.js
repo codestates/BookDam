@@ -69,7 +69,7 @@ export const SearchClick = styled.div`
   justify-content: center;
   align-items: center;
   background: #e5e5e5;
-  pointer: cursor;
+  cursor: pointer;
   font-weight: 600;
 `;
 

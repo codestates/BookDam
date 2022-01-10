@@ -6,6 +6,7 @@ const parser = require('xml2js').parseString;
 module.exports = {
   get: (req, res) => {
     const api_url = `https://openapi.naver.com/v1/search/book_adv.xml?d_titl=${encodeURI(req.query.query)}&display=${20}`;
+    // const api_url = `https://openapi.naver.com/v1/search/book.json?query=${encodeURI(req.query.query)}`;
     const options = {
       url: api_url,
       headers: { 'X-Naver-Client-Id': client_id, 'X-Naver-Client-Secret': client_secret }
@@ -29,3 +30,7 @@ module.exports = {
     });
   }
 };
+
+// https://search.pstatic.net/sunny/?src=http://img4.tmon.kr/cdn4/deals/2021/09/14/8513323990/front_ec22f_nwo5t.jpg&type=b150
+
+// API 주소 : http://book.interpark.com/api/xmlrpc

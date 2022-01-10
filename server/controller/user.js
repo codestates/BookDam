@@ -25,13 +25,13 @@ module.exports = {
       return res.status(400).json({ message: 'failure' });
     }
     delete userData.dataValues.password;
-    const accessToken = jwt.sign(user, process.env.ACCESS_SECRET, {
-      expiresIn: '3h',
+    const accessToken = jwt.sign(user, process.env.ACCESS_SECRET, { expiresIn: '3h' });
+    res.cookie('jwt', accessToken, {
+      maxAge: 3 * 60 * 60 * 1000,
       sameSite: 'none',
       httpOnly: true,
       secure: true
-    });
-    res.cookie('jwt', accessToken).status(200).json({ message: 'success', userInfo: userData });
+    }).status(200).json({ message: 'success', userInfo: userData });
   },
   logout: async (req, res) => { // test done
     const cookie = req.cookies.jwt;

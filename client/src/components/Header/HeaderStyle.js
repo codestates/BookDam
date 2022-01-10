@@ -6,7 +6,7 @@ export const HeaderContainer = styled.div`
   position: relative;
   /* width: 100%; */
   width: 100vw;
-  z-index: 100;
+  z-index: 4;
   /* border: 1px solid black; */
 `;
 

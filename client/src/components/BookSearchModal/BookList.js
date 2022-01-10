@@ -11,7 +11,6 @@ import {
 } from './BookListStyle';
 
 export const BookList = ({ handleDelete, list, idx }) => {
-
   return (
     <>
       <BookSearchModalContainer onClick={() => handleDelete(idx)}>
@@ -19,7 +18,7 @@ export const BookList = ({ handleDelete, list, idx }) => {
           <BookThumbnailContainer src={list.image} />
         </BookImageContainer>
         <BookInfoContainer>
-          <BookTitleContainer>{list.isbn}</BookTitleContainer>
+          <BookTitleContainer>{list.title}</BookTitleContainer>
           <BookAuthorContainer>{list.author}</BookAuthorContainer>
           <BookPublisherContainer>{list.publisher}</BookPublisherContainer>
         </BookInfoContainer>

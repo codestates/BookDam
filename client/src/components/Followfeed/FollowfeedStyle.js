@@ -9,8 +9,10 @@ justify-content: center;
 align-items: center;
 padding: 0%;
 list-style-type: none;
-position: relative;
+/* position: relative; */
 /* flex-wrap: wrap; */
+border: 10px solid black;
+width: 100vw;
 `;
 
 export const UserInfoContainer = styled.li`
@@ -74,7 +76,6 @@ border: 0;
 border-radius: 2px;
 background-color: rgba(120,250, 100);
 transition: all 0.1s ease-out;
-z-index: 999;
 cursor: pointer;
 :hover {
   font-size:15px;

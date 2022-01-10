@@ -5,6 +5,7 @@ import { HeaderContainer } from './HeaderStyle';
 import { CreatePage } from '../../pages/CreatePage/CreatePage';
 import { FeedPage } from '../../pages/FeedPage/FeedPage';
 import MyPage from '../../pages/MyPage/MyPage';
+import { EditPage } from '../../pages/EditPage/EditPage';
 
 export default function Header () {
   return (
@@ -15,12 +16,14 @@ export default function Header () {
           <Route path='/feedpage'>
             <FeedPage />
           </Route>
-
           <Route path='/createPage'>
             <CreatePage />
           </Route>
           <Route path='/mypage'>
             <MyPage />
+          </Route>
+          <Route path='/editpage'>
+            <EditPage />
           </Route>
         </Switch>
       </HeaderContainer>

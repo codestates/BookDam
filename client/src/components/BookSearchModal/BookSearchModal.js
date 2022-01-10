@@ -7,8 +7,7 @@ import {
 } from './BookSearchModalStyle';
 import { BookList } from './BookList';
 
-export const BookSearchModal = ({ handleSelect,setIsOpenBookSearchModal, searchData }) => {
-
+export const BookSearchModal = ({ handleSelect, setIsOpenBookSearchModal, searchData }) => {
   const handleCloseBookSearchModal = () => {
     setIsOpenBookSearchModal(false);
     document.body.style.overflow = 'unset'; // 스크롤 방지 해제
@@ -20,7 +19,7 @@ export const BookSearchModal = ({ handleSelect,setIsOpenBookSearchModal, searchD
         <BookSearchModalWrapper>
           <BookSearchCloseButton onClick={handleCloseBookSearchModal}>&times;</BookSearchCloseButton>
           <BookListModalContainer>
-            {searchData.map((el, idx) => <BookList list={el} key={el.isbn} idx={idx} handleDelete={handleSelect}/>)}
+            {searchData.map((el, idx) => <BookList list={el} key={el.isbn} idx={idx} handleDelete={handleSelect} />)}
           </BookListModalContainer>
         </BookSearchModalWrapper>
       </BookSearchModalWholeBackground>

@@ -1,6 +1,7 @@
-import { userData } from '../../dummyfiles/dummyLoginInfo'; // 로그인 테스트 위한 dummyData
-import React, { useState } from 'react';
+import React, { useState, } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import axios from 'axios';
 import {
   LoginModalWholeBackground,
   LoginModalWrapper,
@@ -13,12 +14,18 @@ import {
 } from './LoginModalStyle';
 import { Message, ErrorMessage } from '../GlobalMessage/GlobalMessage';
 import { LoginThemeBtn } from '../GlobalButton/GlobalButton';
-import { UserInfoAction } from '../../actions/UserInfoAction';
+import { LoginAction } from '../../actions/UserInfoAction';
 
-export const LoginModal = ({ setIsOpenLoginModal, handleSignupModal, handleCloseSignupModal }) => {
+export const LoginModal = ({
+  setLoginBtnText,
+  setIsOpenLoginModal,
+  handleSignupModal,
+  handleCloseSignupModal
+}) => {
   const [loginInfo, setLoginInfo] = useState({ userId: '', password: '' });
   const [errorMessage, setErrorMessage] = useState('');
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleInputId = (e) => {
     setLoginInfo({
@@ -34,44 +41,39 @@ export const LoginModal = ({ setIsOpenLoginModal, handleSignupModal, handleClose
     });
   };
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     const { userId, password } = loginInfo;
 
     if (userId === '' || password === '') {
       setErrorMessage('아이디와 비밀번호를 입력하세요');
     } else {
-      // axois.get 요청 자리
-      /*       const handleLoginButton = () => {
-        axios({
-          method: 'post',
-          url: 'http://localhost:4000/users/login',
-          data: {
-            useremail: this.state.useremail,
-            password: this.state.password,
-          },
+      await axios({
+        withCredentials: true,
+        method: 'post',
+        url: 'http://localhost:4000/user/login',
+        headers: {
+          authorization: `Bearer: ${process.env.Client_Secret}`,
+          'Content-Type': 'application/json'
+        },
+        data: {
+          userInfo: {
+            userId: loginInfo.userId,
+            password: loginInfo.password
+          }
+        }
+      })
+        .then((res) => {
+          const userInfoData = res.data.userInfo;
+          if (userInfoData) {
+            dispatch(LoginAction(userInfoData));
+            setIsOpenLoginModal(false);
+            document.body.style.overflow = 'unset'; // 스크롤 방지 해제
+            history.push('/feedpage')
+          }
         })
-          .then((res) => {
-            //status 가 200이면,
-            this.setState({ isLoginMessage: true });
-          })
-          .catch((err) => {
-            //status가 401이면
-            if (err.message === 'Request failed with status code 401') {
-              this.setState({ isLoginMessage: false });
-            }
-            //그게 아니면 서버에러
-          });
-      }; */
-
-      const resultData = userData.filter((el) => {
-        return (loginInfo.userId === el.userId && loginInfo.password === el.password);
-      });
-
-      if (resultData) {
-        dispatch(UserInfoAction(resultData));
-        setIsOpenLoginModal(false);
-        document.body.style.overflow = 'unset'; // 스크롤 방지 해제
-      }
+        .catch((err) => {
+          setErrorMessage('아이디와 비밀번호를 확인해주세요.');
+        });
     }
   };
 

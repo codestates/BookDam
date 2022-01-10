@@ -1,0 +1,69 @@
+import styled from 'styled-components';
+
+// 모달: BookSearch 결과 리스트 컨테이너
+export const BookSearchModalContainer = styled.div`
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: row;
+  height: 33%;
+
+  &:hover {
+    background-color: rgb(229, 229, 229);
+  }
+`;
+
+export const BookImageContainer = styled.div`
+ /* border: 1px solid black; */
+ width: 30%;
+ display: flex;
+ justify-content: center;
+ padding-top: 10px;
+ padding-bottom: 10px;
+`;
+
+export const BookThumbnailContainer = styled.img`
+ border: 1px solid black; //필수
+ width: 80%;
+`;
+
+export const BookInfoContainer = styled.div`
+ /* border: 1px solid black; */
+ width: 70%;
+ display: flex;
+ flex-direction: column;
+ padding-top: 10px;
+ padding-left: 10px;
+ padding-bottom: 10px;
+ padding-right: 15px;
+`;
+
+export const BookTitleContainer = styled.div`
+  width: 100%;
+  height: 60%;
+  /* border: 1px solid black; */
+  font-size: 18px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 15px;
+
+`;
+
+export const BookAuthorContainer = styled.div`
+  width: 100%;
+  height: 25%;
+  /* border: 1px solid black; */
+  display: flex;
+  align-items: flex-start;
+  font-size: 15px;
+  
+`;
+
+export const BookPublisherContainer = styled.div`
+  width: 100%;
+  height: 20%;
+  /* border: 1px solid black; */
+  display: flex;
+  align-items: flex-start;
+  font-size: 15px;
+`;

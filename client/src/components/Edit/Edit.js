@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { data } from '../../dummyfiles/dummyBookSearch'; // 도서검색 테스트 위한 더미 데이터
 import walden from '../../assets/images/walden_thumbnail.jpeg';
+import { useSelector } from 'react-redux';
 import { BookSearchModal } from '../BookSearchModal/BookSearchModal';
 import {
-  WriteWholeContainer,
-  SearchBookWrapper,
-  SearchBookContainer,
-  SearchBookInfoContainer,
+  EditWholeContainer,
+  EditPageWrapper,
+  BookContainer,
+  BookInfoContainer,
   SearchBookInfoUpper,
   SearchContainer,
   SearchInputcontainer,
@@ -15,9 +16,9 @@ import {
   SearchBookTitleContainer,
   BookTitleLeftContainer,
   BookTitleRightContainer,
-  SearchBookAuthorContainer,
-  SearchBookPublisherContainer,
-  SearchBookImageContainer,
+  BookAuthorContainer,
+  BookPublisherContainer,
+  BookImageContainer,
   BookThumbnailContainer,
   BookThumbnail,
   WriteArticleWrapper,
@@ -28,10 +29,15 @@ import {
   ArticleButtonContainer,
   ArticleButtonSection,
   ButtonContainer,
-  ButtonsInWrite
-} from './WriteStyle';
+  ButtonsInEdit
+} from './EditStyle';
 
-export const Write = () => {
+export const Edit = ({ articleInfo }) => {
+  const state = useSelector(state => state.userInfoReducer);
+  const { userInfo } = state; // 전역저장소에서 userInfo를 불러온다.
+  const user_Id = userInfo.user_Id; // 현재 로그인한 사용자 정보
+  // const { article_Id, sentence, comment } = articleInfo;
+
   const [isOpenBookSearchModal, setIsOpenBookSearchModal] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -77,19 +83,9 @@ export const Write = () => {
     setInputComment(e.target.value);
   };
 
-  const handleSubmit = () => {
-    const submitData = {
-      title: selectedData.title,
-      author: selectedData.author,
-      sentence: inputSentence,
-      comment: inputComment
-    };
-    // axios.post
-  };
-
   return (
     <>
-      <WriteWholeContainer>
+      <EditWholeContainer>
         {isOpenBookSearchModal
           ? <BookSearchModal
               handleSelect={handleSelect}
@@ -97,9 +93,9 @@ export const Write = () => {
               setIsOpenBookSearchModal={setIsOpenBookSearchModal}
             />
           : null}
-        <SearchBookWrapper>
-          <SearchBookContainer>
-            <SearchBookInfoContainer>
+        <EditPageWrapper>
+          <BookContainer>
+            <BookInfoContainer>
               <SearchBookInfoUpper>
                 <SearchContainer>
                   <SearchInputcontainer value={inputValue} onChange={handleInputValue} />
@@ -111,23 +107,23 @@ export const Write = () => {
                   <BookTitleLeftContainer>도서명</BookTitleLeftContainer>
                   <BookTitleRightContainer>{selectedData.title}</BookTitleRightContainer>
                 </SearchBookTitleContainer>
-                <SearchBookAuthorContainer>
+                <BookAuthorContainer>
                   <BookTitleLeftContainer>저자명</BookTitleLeftContainer>
                   <BookTitleRightContainer>{selectedData.author}</BookTitleRightContainer>
-                </SearchBookAuthorContainer>
-                <SearchBookPublisherContainer>
+                </BookAuthorContainer>
+                <BookPublisherContainer>
                   <BookTitleLeftContainer>출판사</BookTitleLeftContainer>
                   <BookTitleRightContainer>{selectedData.publisher}</BookTitleRightContainer>
-                </SearchBookPublisherContainer>
+                </BookPublisherContainer>
               </SearchBookInfoLower>
-            </SearchBookInfoContainer>
-            <SearchBookImageContainer>
+            </BookInfoContainer>
+            <BookImageContainer>
               <BookThumbnailContainer>
                 <BookThumbnail src={walden} />
               </BookThumbnailContainer>
-            </SearchBookImageContainer>
-          </SearchBookContainer>
-        </SearchBookWrapper>
+            </BookImageContainer>
+          </BookContainer>
+        </EditPageWrapper>
 
         <WriteArticleWrapper>
           <WriteArticleContainer>
@@ -140,12 +136,12 @@ export const Write = () => {
           <ArticleButtonContainer>
             <ArticleButtonSection>
               <ButtonContainer>
-                <ButtonsInWrite>작성하기</ButtonsInWrite>
+                <ButtonsInEdit>작성하기</ButtonsInEdit>
               </ButtonContainer>
             </ArticleButtonSection>
           </ArticleButtonContainer>
         </ArticleButtonWrapper>
-      </WriteWholeContainer>
+      </EditWholeContainer>
     </>
   );
 };

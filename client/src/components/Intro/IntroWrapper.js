@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux'; // 로그인 상태변경 테스트용
+import { useDispatch, useSelector } from 'react-redux'; // 로그인 상태변경 테스트용
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import {
   IntroWholeContainer,
   SectionWrapperOne,
@@ -17,12 +18,14 @@ import {
 } from './IntroWrapperStyle';
 import { LoginModal } from '../Login/LoginModal';
 import { SignupModal } from '../Signup/SignupModal';
+import { LogoutAction } from '../../actions/UserInfoAction';
 
 export const IntroWrapper = () => {
   const [isOpenLoginModal, setIsOpenLoginModal] = useState(false);
   const [isOpenSignupModal, setIsOpenSignupModal] = useState(false);
-  const state = useSelector(state => state.userInfoReducer); // 로그인 상태변경 테스트용
-  const { isGuest, isLogin, articleInfo, userInfo } = state; // 로그인 상태변경 테스트용
+  const state = useSelector(state => state.userInfoReducer); // 로그인 상태변경용
+  const { isGuest, isLogin, articleInfo, userInfo } = state; // 로그인 상태변경용
+  const dispatch = useDispatch();
 
   const handleLoginModal = () => { // 버튼 클릭시 로그인 모달 열기
     setIsOpenSignupModal(false);
@@ -39,6 +42,27 @@ export const IntroWrapper = () => {
   const handleCloseSignupModal = () => { // 버튼 클릭시 회원가입 모달 닫기
     setIsOpenSignupModal(false);
     document.body.style.overflow = 'unset';
+  };
+
+  const logoutHandler = async () => { // 로그아웃 처리
+    await axios({
+      withCredentials: true,
+      method: 'post',
+      url: 'http://localhost:4000/user/logout',
+      headers: {
+        authorization: `Bearer: ${process.env.Client_Secret}`,
+        'Content-Type': 'application/json'
+      }
+    })
+    .then((res) => {
+      console.log(res)
+      if(res.data.message === '로그아웃 되었습니다.') {
+        dispatch(LogoutAction());
+      } else {
+        console.log('로그아웃 실패');
+      }
+    })
+    .catch(err => console.log('err'));
   };
 
   return (
@@ -73,7 +97,9 @@ export const IntroWrapper = () => {
                 <Link to='/feedpage'>
                   <ButtonsInIntro>시작하기</ButtonsInIntro>
                 </Link>
-                <ButtonsInIntro onClick={handleLoginModal}>로그인</ButtonsInIntro>
+                {isLogin
+                  ? <ButtonsInIntro onClick={logoutHandler}>로그아웃</ButtonsInIntro>
+                  : <ButtonsInIntro onClick={handleLoginModal}>로그인</ButtonsInIntro>}
               </ButtonContainer>
             </ButtonWrapper>
           </SectionContainer>
@@ -90,7 +116,7 @@ export const IntroWrapper = () => {
           <SectionContainer>
             <SectionInfoContainer>{/* SectionInfo3 */}
               <ImageContainer>Image3</ImageContainer>
-              <TextContainer>{articleInfo[0].book_Title}</TextContainer>
+              <TextContainer>Text3</TextContainer>
             </SectionInfoContainer>
             <ButtonWrapper>
               <ButtonContainer>

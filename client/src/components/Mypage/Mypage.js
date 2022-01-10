@@ -43,6 +43,13 @@ export default function MyPage () {
 
   // const userState = useSelector(state => state.userInfoReducer);
   // const { userInfo } = userState;
+
+  const [isGuest, setIsGuest] = useState({
+    id: 0,
+    userId: 'guest',
+    userNickName: 'guset',
+    userImage: ''
+  })
   const [userInfo, setUserInfo] = useState({
     id: 0,
     userId: '',
@@ -65,10 +72,8 @@ export default function MyPage () {
     createdAt: '',
   });
   const [isOpneModifyModal, setIsOpenModifyModal] = useState(false);
-  const [isOpenSentenceModal, setIsOpenSentenceModal] = useState(false);
+  // const [isOpenSentenceModal, setIsOpenSentenceModal] = useState(false);
   const history = useHistory();
-
-  const thumbnail = 'http://book.naver.com/bookdb/book_detail.naver?bid=2084345';
 
   // 회원정보수정 버튼 누르면 회원정보수정 모달이 나오는 함수
   const userInfoModifyBtnHandler = () => {
@@ -79,12 +84,29 @@ export default function MyPage () {
     setIsOpenModifyModal(!isOpneModifyModal);
   };
 
-  // 북 썸네일을 누르면 Sentence Modal이 열리는 함수
-  const openSentenceModalHandler = () => {
+  // 북 썸네일을 누르면 EditPage로 가는 함수
+  const sendToEditPage = (el) => {
     console.log('클릭');
-    setIsOpenSentenceModal(!isOpenSentenceModal);
-    history.push('/editpage');
+    history.push(
+      {
+        pathname: '/editpage',
+        state: {
+          articles: {
+            id: el.id,
+            user_Id: el.user_Id,
+            book_Title: el.book_Title,
+            book_Author: el.book_Author,
+            book_Thumbnail: el.book_Thumbnail,
+            book_Publisher: el.book_Publisher,
+            sentence: el.sentence,
+            comment: el.comment,
+            createdAt: el.createdAt,
+          }
+        }
+      }
+    );
   }
+
 
   
   // axios.get 회원정보 전체 조회 함수 (MyPage 접속했을 시)
@@ -110,7 +132,7 @@ export default function MyPage () {
         <ArticleWrap key={index}>
           <Article 
             src={el.book_Thumbnail}
-            onClick={openSentenceModalHandler}
+            onClick={() => sendToEditPage(el)}
           />
         </ArticleWrap>
     )
@@ -126,7 +148,6 @@ export default function MyPage () {
             userInfoModifyBtnHandler={userInfoModifyBtnHandler}
             closeUserInfoModify={closeUserInfoModify}
             userInfo={userInfo}
-            articles={articles}
             />
           : null}
         <UserInfoContainer>

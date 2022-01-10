@@ -6,6 +6,11 @@ export const MyPageWholeContainer = styled.div`
   overflow: hidden;
   position: relative;
   width: 100vw;
+
+  @media (max-width: 500px) {
+    width: 100%;
+    padding: 0;
+  }  
 `;
 
 export const MypageContainer = styled.div`
@@ -17,7 +22,7 @@ export const MypageContainer = styled.div`
   border: 1px solid black;
 
   @media (max-width: 500px) {
-    width: 500px;
+    width: 100%;
   }
 `;
 
@@ -29,7 +34,7 @@ export const UserInfoContainer = styled.div`
   border: 1px solid skyblue;
 
   @media (max-width: 500px) {
-    width: 500px;
+    width: 100%;
     padding: 0;
   }
 `;
@@ -150,9 +155,9 @@ export const ArticleListTitle = styled.div`
   padding-top: 10px;
   border: 1px solid blue;
 
-    @media (max-width: 500px) {
-    width: 500px;
-    padding: 0;
+  @media (max-width: 500px) {
+  width: 100%;
+  padding: 0;
   }
 `;
 
@@ -160,7 +165,6 @@ export const ArticleListTitle = styled.div`
 export const ArticleListContainer = styled.ul`
   display: flex;
   width: 970px;
-  /* min-height: 100vh; */
   flex-direction: row;
   flex-wrap: wrap;
   padding: 0;
@@ -168,7 +172,7 @@ export const ArticleListContainer = styled.ul`
   border: 1px solid red;
 
   @media (max-width: 500px) {
-    width: 500px;
+    width: 100%;
     padding: 0;
   }
 `;
@@ -178,7 +182,7 @@ export const ArticleWrap = styled.li`
   height: 300px;
   /* width: 100px;
   height: 150px; */
-  margin: 10px 10px 10px 10px;
+  margin: 10px 20px 10px 20px;
   border: 1px solid black;
 
   @media (max-width: 500px) {

@@ -5,28 +5,19 @@ module.exports = {
     return queryInterface.bulkInsert('Users', [
       {
         id: '1',
-        userId: 'test1',
-        userNickName: 'test1',
-        password: '$2b$10$RJq0gXxBHhLsRhMtI8U3p./kk.KPvdohoMx179N3HvbUaDpPbMi1.',
-        userImage: 'blahblahblahblah',
+        userId: 'guest',
+        userNickName: '게스트',
+        password: '$2b$10$RJq0gXxBHhLsRhMtI8U3p./kk.KPvdohoMx179N3HvbUaDpPbMi1.', //1234
+        userImage: '../../assets/images/defaultUserImage.png',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: '2',
-        userId: 'test2',
-        userNickName: 'test2',
-        password: '$2b$10$RJq0gXxBHhLsRhMtI8U3p./kk.KPvdohoMx179N3HvbUaDpPbMi1.',
-        userImage: 'blahblahblahblah',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: '3',
-        userId: 'test3',
-        userNickName: 'test3',
-        password: '$2b$10$RJq0gXxBHhLsRhMtI8U3p./kk.KPvdohoMx179N3HvbUaDpPbMi1.',
-        userImage: 'blahblahblahblah',
+        userId: 'BookDam',
+        userNickName: 'BookDam',
+        password: '$2b$10$RJq0gXxBHhLsRhMtI8U3p./kk.KPvdohoMx179N3HvbUaDpPbMi1.', //1234
+        userImage: '../../assets/images/defaultUserImage.png',
         createdAt: new Date(),
         updatedAt: new Date()
       }

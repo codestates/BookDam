@@ -1,6 +1,4 @@
-const request = require('request');
-const client_id = process.env.Client_ID;
-const client_secret = process.env.Client_Secret;
+const ttbkey = process.env.ttbkey;
 const parser = require('xml2js').parseString;
 const axios = require('axios')
 
@@ -8,7 +6,7 @@ module.exports = {
   get: (req, res) => {
     // const api_url = `https://openapi.naver.com/v1/search/book_adv.xml?d_titl=${encodeURI(req.query.query)}&display=${20}`;
     // const api_url = `https://openapi.naver.com/v1/search/book.json?query=${encodeURI(req.query.query)}`;
-    const api_url = `https://www.aladin.co.kr/ttb/api/ItemSearch.aspx?ttbkey=ttbsangkwon22122128001&Query=${encodeURI(req.query.query)}&QueryType=Title&SearchTarget=Book&Sort=Title&Cover=Big&Output=XML`
+    const api_url = `https://www.aladin.co.kr/ttb/api/ItemSearch.aspx?ttbkey=${ttbkey}&Query=${encodeURI(req.query.query)}&QueryType=Title&SearchTarget=Book&Sort=Title&Cover=Big&Output=XML`
     
     axios.get(api_url)
     .then((result) => { 

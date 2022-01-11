@@ -163,7 +163,7 @@ export default function MyPage () {
         
           {articleList}
 
-        </ArticleListContainer>
+        </ArticleListContainer> 
       </MypageContainer>
     </MyPageWholeContainer>
     </>

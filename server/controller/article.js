@@ -11,16 +11,16 @@ module.exports = {
     const userInfo = jwt.verify(cookie, process.env.ACCESS_SECRET);
     if (id !== userInfo.id) return res.status(400).json({ message: 'failure' });
     ArticleModel.findAll({
-      attributes: { exclude: ['id', 'updatedAt'] },
-      order: [['createdAt', 'DESC']],
+      attributes: { exclude: ['updatedAt'] },
+      order: [['id', 'DESC']],
       raw: true,
-      limit: 3,
-      offset: page,
+      limit: 5,
+      offset: page * 5,
       include: [{
         model: UserModel,
         attributes: { exclude: ['updatedAt', 'createdAt', 'password'] },
         required: true,
-        include: { model: FollowModel, where: { user_Id: id }, attributes: { exclude: ['id', 'user_Id', 'follow_Id', 'createdAt', 'updatedAt'] } }
+        include: { model: FollowModel, where: { user_Id: id }, attributes: { exclude: ['id', 'follow_Id', 'createdAt', 'updatedAt'] } }
       }]
     })
       .then((result) => {

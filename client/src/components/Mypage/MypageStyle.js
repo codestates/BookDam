@@ -222,4 +222,5 @@ export const Article = styled.img`
   height: 100%;
   border-radius: 5px;
   cursor: pointer;
+  
 `;

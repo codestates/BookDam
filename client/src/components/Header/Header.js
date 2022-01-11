@@ -9,6 +9,8 @@ import MyPage from '../../pages/MyPage/MyPage';
 import { EditPage } from '../../pages/EditPage/EditPage';
 
 export default function Header () {
+
+
   return (
     <>
       <HeaderContainer>

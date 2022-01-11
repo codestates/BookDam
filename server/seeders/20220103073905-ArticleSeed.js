@@ -62,6 +62,18 @@ module.exports = {
         comment: 'blahblahblahblah',
         createdAt: new Date(),
         updatedAt: new Date()
+      },
+      {
+        id: '6',
+        user_Id: '3',
+        book_Title: '파친코',
+        book_Author: '미상',
+        book_Thumbnail: 'https://bookthumb-phinf.pstatic.net/cover/134/282/13428213.jpg?type=m1&udate=20210914',
+        book_Publisher: '미상',
+        sentence: 'blahblahblahblah',
+        comment: 'blahblahblahblah',
+        createdAt: new Date(),
+        updatedAt: new Date()
       }
     ]);
   },

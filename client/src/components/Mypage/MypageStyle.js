@@ -224,4 +224,3 @@ export const Article = styled.img`
   cursor: pointer;
   
 `;
-

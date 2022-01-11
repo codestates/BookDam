@@ -102,19 +102,19 @@ export const Searchuser = ({ setFollowFeedList }) => {
             </UserSearchResultContainer>
             : null}
         </div>
-          <RecommendListContainer>
-            <RecommendList>
-              맞춤 추천 리스트
-              <UserSearchResultContainer className='Recommend'>
-                <li>
+        <RecommendListContainer>
+          <RecommendList>
+            맞춤 추천 리스트
+            <UserSearchResultContainer className='Recommend'>
+              <li>
                 <UserSearchImagebox>
                   <UserSearchImage src={userImage} />
                 </UserSearchImagebox>
-                  <div>BookDam</div>
-                </li>
-                </UserSearchResultContainer>
-            </RecommendList>
-          </RecommendListContainer>
+                <div>BookDam</div>
+              </li>
+            </UserSearchResultContainer>
+          </RecommendList>
+        </RecommendListContainer>
       </UpperContainer>
     </>
   );

@@ -1,14 +1,12 @@
 export const initialState =
 {
-  isGuest: true,
-
   isLogin: false,
 
   userInfo:
     {
       id: 1,
-      userId: 'holystoryseo',
-      userNickName: '게스트',
+      userId: '',
+      userNickName: '지나가는 과객',
       userImage: ''
     },
 

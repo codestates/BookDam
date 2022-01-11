@@ -3,6 +3,7 @@ import {
   BookSearchModalWholeBackground,
   BookSearchModalWrapper,
   BookListModalContainer,
+  NoBookListDisplay ,
   BookSearchCloseButton
 } from './BookSearchModalStyle';
 import { BookList } from './BookList';
@@ -21,7 +22,9 @@ export const BookSearchModal = ({ handleSelect, setIsOpenBookSearchModal, search
             <BookSearchCloseButton onClick={handleCloseBookSearchModal}>&times;</BookSearchCloseButton>
           </div>
           <BookListModalContainer>
-            {searchData.map((el, idx) => <BookList list={el} key={el.isbn} idx={idx} handleDelete={handleSelect} />)}
+            {searchData.length !== 0
+            ? searchData.map((el, idx) => <BookList list={el} key={el.isbn} idx={idx} handleDelete={handleSelect} />)
+            : <NoBookListDisplay>검색 결과가 없습니다.</NoBookListDisplay>}
           </BookListModalContainer>
         </BookSearchModalWrapper>
       </BookSearchModalWholeBackground>

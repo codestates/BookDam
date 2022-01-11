@@ -3,12 +3,11 @@ import React, { useState } from 'react';
 import {
   NoticeModalBackground,
   NoticeModalContainer,
-  Button 
-} from './NoticeModalStyle'
-
+  Button
+} from './NoticeModalStyle';
 
 export const NoticeModal = ({ NoticeModalOpenHandler, followInfo }) => {
-  const [isFollow, setIsFollow] = useState(true)
+  const [isFollow, setIsFollow] = useState(true);
 
   const deleteFollowReq = () => {
     // Axios.delete(`http://localhost:4000/follow/${'userInfo.id'}?${'follow.id'}`,
@@ -23,8 +22,8 @@ export const NoticeModal = ({ NoticeModalOpenHandler, followInfo }) => {
     //     console.log(err)
     //     NoticeModalOpenHandler()
     //   })
-    console.log()
-  }
+    console.log();
+  };
 
   return (
     <>
@@ -36,5 +35,5 @@ export const NoticeModal = ({ NoticeModalOpenHandler, followInfo }) => {
         </NoticeModalContainer>
       </NoticeModalBackground>
     </>
-  )
-}
+  );
+};

@@ -5,9 +5,11 @@ import Axios from 'axios';
 import data from '../../dummyfiles/dummyFeedList';
 import { FaUserCheck } from 'react-icons/fa';
 import userImage from '../../assets/images/defaultUserImage.png';
+
 import { NoticeModal } from '../NoticeModal/NoticeModal'
 import { useDispatch } from 'react-redux';
 import { FollowInfoAction } from "../../actions/FollowInfoAction"
+
 import {
   FeedContentContainer,
   UserInfoContainer,
@@ -26,10 +28,12 @@ import {
 } from './FollowfeedStyle';
 
 export const Followfeed = ({ followFeedList }) => {
+
   const dispatch = useDispatch();
   const history = useHistory();
+
   // 팔로우 취소 버튼 클릭시 알람 모달 오픈
-  const [isOpen, setInOpen] = useState(false)
+  const [isOpen, setInOpen] = useState(false);
   const [followInfo, setFollowInfo] = useState({
     id: '',
     userId: '',
@@ -49,6 +53,7 @@ export const Followfeed = ({ followFeedList }) => {
     userImage: 'blahblahblahblah',
   })
 
+
   // 스크롤 포인터로 확인하는 작업을 안거쳐도 됨
   // const scrollHeight = document.documentElement.scrollHeight;
   // const scrollTop = document.documentElement.scrollTop;
@@ -56,7 +61,6 @@ export const Followfeed = ({ followFeedList }) => {
   // console.log("scrollHeight", scrollHeight)
   // console.log("scrollTop", scrollTop)
   // console.log("clientHeight", clientHeight)
-
 
   // useEffect(() => {
   //   console.log("scrollHeight", scrollHeight)
@@ -95,6 +99,7 @@ export const Followfeed = ({ followFeedList }) => {
     getFolowFeedLists()
   }, [getFolowFeedLists])
 
+
   useEffect(() => {
     // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
     if (inView && !loading) {
@@ -121,7 +126,7 @@ export const Followfeed = ({ followFeedList }) => {
 
   // 팔로우 피드 리스트 서버요청 함수
   // const getFollowFeedList = () => {
-  //   Axios.get(`http://localhost:4000/user/${userInfo.id}`, 
+  //   Axios.get(`http://localhost:4000/user/${userInfo.id}`,
   //     {
   //       headers: { 'Contnet-Type': 'application/json' }
   //     })
@@ -163,9 +168,10 @@ export const Followfeed = ({ followFeedList }) => {
   console.log(followFeedLists)
   const feedList = followFeedLists.map((el, index) => {
     return (
-      <UserInfoContainer key={index} >
+      <UserInfoContainer key={index}>
         <UserInfo>
           <UserNameAndImage>
+
             <UserImageContainer onClick={() => getFollowInfo(el)} >
               {el["User.userImage"].length === 0
                 ? <UserImage src={el["User.userImage"]} />
@@ -176,6 +182,7 @@ export const Followfeed = ({ followFeedList }) => {
             </UserNickName>
             <UserFollowIcon value={el.id} onClick={() => followHandler(el)}>
               {el["User.Follows.user_Id"] === userInfo.id ? <FaUserCheck onClick={NoticeModalOpenHandler}/> : '팔로우'}
+
             </UserFollowIcon>
           </UserNameAndImage>
           <PostCreatedAt>
@@ -191,11 +198,12 @@ export const Followfeed = ({ followFeedList }) => {
       </UserInfoContainer>
     );
   });
+
   // 유저페이지가 만들어졌으면 검색한 결과가 없습니다는 검색 결과창에서 팝업되어야 함.
   return (
     <>
       <FeedContentContainer>
-        {isOpen ? <NoticeModal NoticeModalOpenHandler={NoticeModalOpenHandler} followInfo={followInfo}/> : null}
+        {isOpen ? <NoticeModal NoticeModalOpenHandler={NoticeModalOpenHandler} followInfo={followInfo} /> : null}
         {followFeedList.length === 0
           ? <div>검색한 결과가 없습니다.</div>
           : <>

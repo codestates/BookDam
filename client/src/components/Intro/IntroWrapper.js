@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux'; // 로그인 상태변경 테스트용
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux'; // 로그인 상태변경용
+import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import {
   IntroWholeContainer,
@@ -16,16 +16,17 @@ import {
   ButtonContainer,
   ButtonsInIntro
 } from './IntroWrapperStyle';
-import { LoginModal } from '../Login/LoginModal';
+import { LoginModal } from '../LoginModal/LoginModal';
 import { SignupModal } from '../Signup/SignupModal';
-import { LogoutAction } from '../../actions/UserInfoAction';
+import { GuestLoginAction, LogoutAction } from '../../actions/UserInfoAction';
 
 export const IntroWrapper = () => {
   const [isOpenLoginModal, setIsOpenLoginModal] = useState(false);
   const [isOpenSignupModal, setIsOpenSignupModal] = useState(false);
   const state = useSelector(state => state.userInfoReducer); // 로그인 상태변경용
-  const { isGuest, isLogin, articleInfo, userInfo } = state; // 로그인 상태변경용
+  const { isLogin, userInfo } = state; // 로그인 상태변경용
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleLoginModal = () => { // 버튼 클릭시 로그인 모달 열기
     setIsOpenSignupModal(false);
@@ -54,15 +55,43 @@ export const IntroWrapper = () => {
         'Content-Type': 'application/json'
       }
     })
-    .then((res) => {
-      console.log(res)
-      if(res.data.message === '로그아웃 되었습니다.') {
-        dispatch(LogoutAction());
-      } else {
-        console.log('로그아웃 실패');
+      .then((res) => {
+        console.log(res);
+        localStorage.removeItem('logged');
+        if (res.data.message === '로그아웃 되었습니다.') {
+          dispatch(LogoutAction());
+        } else {
+          console.log('로그아웃 실패');
+        }
+      })
+      .catch(err => console.log('err'));
+  };
+
+  const guestLoginHandelr = async () => { // 게스트로 둘러보기시에 처리
+    await axios({
+      withCredentials: true,
+      method: 'post',
+      url: 'http://localhost:4000/user/login',
+      headers: {
+        authorization: `Bearer: ${process.env.Client_Secret}`,
+        'Content-Type': 'application/json'
+      },
+      data: {
+        userInfo: {
+          userId: 'guest',
+          password: '1234'
+        }
       }
     })
-    .catch(err => console.log('err'));
+      .then((res) => {
+        const userInfoData = res.data.userInfo;
+        if (userInfoData) {
+          dispatch(GuestLoginAction(userInfoData));
+          setIsOpenLoginModal(false);
+          document.body.style.overflow = 'unset'; // 스크롤 방지 해제
+          history.push('/feedpage');
+        }
+      });
   };
 
   return (
@@ -95,7 +124,7 @@ export const IntroWrapper = () => {
             <ButtonWrapper>
               <ButtonContainer>
                 <Link to='/feedpage'>
-                  <ButtonsInIntro>시작하기</ButtonsInIntro>
+                  <ButtonsInIntro onClick={guestLoginHandelr}>둘러보기</ButtonsInIntro>
                 </Link>
                 {isLogin
                   ? <ButtonsInIntro onClick={logoutHandler}>로그아웃</ButtonsInIntro>
@@ -108,7 +137,7 @@ export const IntroWrapper = () => {
         <SectionWrapperTwo>
           <SectionInfoContainer>{/* SectionInfo2 */}
             <TextContainer>로그인 성공여부{isLogin ? 'true' : 'false'}</TextContainer>
-            <ImageContainer>게스트 처리여부{isGuest ? 'true' : 'false'}</ImageContainer>
+            <ImageContainer>Text2</ImageContainer>
           </SectionInfoContainer>
         </SectionWrapperTwo>
 
@@ -121,9 +150,11 @@ export const IntroWrapper = () => {
             <ButtonWrapper>
               <ButtonContainer>
                 <Link to='/feedpage'>
-                  <ButtonsInIntro>시작하기</ButtonsInIntro>
+                  <ButtonsInIntro onClick={guestLoginHandelr}>둘러보기</ButtonsInIntro>
                 </Link>
-                <ButtonsInIntro onClick={handleLoginModal}>로그인</ButtonsInIntro>
+                {isLogin
+                  ? <ButtonsInIntro onClick={logoutHandler}>로그아웃</ButtonsInIntro>
+                  : <ButtonsInIntro onClick={handleLoginModal}>로그인</ButtonsInIntro>}
               </ButtonContainer>
             </ButtonWrapper>
           </SectionContainer>

@@ -155,7 +155,7 @@ export default function MyPage () {
         <ArticleListTitle>목록</ArticleListTitle>
         <ArticleListContainer>
           {articleList}
-        </ArticleListContainer>
+        </ArticleListContainer>        
       </MypageContainer>
     </MyPageWholeContainer>
     </>

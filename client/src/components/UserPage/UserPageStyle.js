@@ -1,15 +1,26 @@
 import styled from 'styled-components';
 
+export const UserPageWholeContainer = styled.div`
+  /* padding-top: 50px; */
+  border: 1px solid #e9ecef;
+  overflow: hidden;
+  position: relative;
+  width: 100vw;
+  /* background-color: whitesmoke; */
+
+  @media (max-width: 500px) {
+    width: 100%;
+    /* padding-top: 5px; */
+  }  
+`;
+
 export const UserPageContainer = styled.div`
   display: flex;
-  width: 100%;
-  min-height: 100vh;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  flex-wrap: nowrap;
-  margin-top: 15px;
-  border: 1px solid black;
-  position: relative;
+  padding-top: 30px;
+  /* border: 1px solid black; */
 
   @media (max-width: 500px) {
     width: 100%;
@@ -19,23 +30,24 @@ export const UserPageContainer = styled.div`
 // UserInfo 영역
 export const UserInfoContainer = styled.div`
   display: flex;
+  width: 970px;
   height: 90px;
-  margin: 10px;
-  padding: 5px;
-  border: 1px solid skyblue;
+  padding: 20px 0 20px 0;
+  background-color: white;
+  /* border: 1px solid skyblue; */
 
-  /* @media (max-width: 500px) {
-    width: 480px;
+  @media (max-width: 500px) {
+    width: 100%;
     padding: 0;
-  } */
+  }
 `;
 
 export const UserImgSection = styled.div`
   width: 90px;
   height: 100%;
-  margin-left: 15px;
+  margin-left: 24px;
   margin-right: 15px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 `;
 
 export const UserImage = styled.img`
@@ -50,7 +62,7 @@ export const UserInfoSection = styled.div`
   flex-direction: column;
   flex-wrap: nowrap;
   margin-left: 25px;
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
 `;
 
 export const NickNameFollowSection = styled.div`
@@ -60,7 +72,7 @@ export const NickNameFollowSection = styled.div`
   flex-direction: row;
   flex-wrap: nowrap;
   margin-bottom: 5px;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 `;
 
 export const NickName = styled.div`
@@ -71,7 +83,7 @@ export const NickName = styled.div`
   align-items: center;
   text-align: center;
   margin-left: 5px;
-  border: 1px solid green;
+  /* border: 1px solid green; */
 `;
 
 export const FollowContainer = styled.div`
@@ -79,7 +91,7 @@ export const FollowContainer = styled.div`
   width: 180px;
   flex-direction: row;
   margin-left: 5px;
-  border: 1px solid orange;
+  /* border: 1px solid orange; */
 `;
 
 export const Follow = styled.div`
@@ -117,66 +129,81 @@ export const FollowerCount = styled.span`
   margin-left: 5px;
 `;
 
-export const UserModifyBtn = styled.button`
-  width: 100% ;
-  height: 40%;
-  border: 1px solid #12e272;
-  border-radius: 5px;
-  background-color: rgba(0,0,0,0);
-  color: #12e272;
-  padding: 0ch;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  cursor: pointer;
-  
-  @media (max-width: 500px) {
-    cursor: none;
-  }
-`;
+
 
 // Article 영역 (목록 제목)
 export const ArticleListTitle = styled.div`
-  height: 20px;
-  width: 50%;
-  justify-content: flex-start;
+  height: 30px;
+  width: 970px;
+  justify-content: center;
   align-items: center;
   text-align: center;
   margin-top: 30px;
-  padding: 5px;
-  /* border: 1px solid black; */
+  /* padding-top: 10px; */
+  /* border: 1px solid blue; */
 
-    /* @media (max-width: 500px) {
-    width: 480px;
-    padding: 0;
-  } */
+  @media (max-width: 500px) {
+  width: 100%;
+  padding: 0;
+  }
 `;
 
 // Article 영역 (목록)
-export const ArticleListContainer = styled.div`
+export const ArticleListContainer = styled.ul`
   display: flex;
-  height: 450px;
+  width: 970px;
   flex-direction: row;
-  justify-content: flex-start;
-  align-content: flex-start;
-  margin-top: 3px;
-  padding: 5px;
-  /* border: 1px solid black; */
+  flex-wrap: wrap;
+  padding: 0;
+  list-style-type: none;
+  background-color: white;
+  /* border: 1px solid red; */
 
-  /* @media (max-width: 500px) {
-    width: 480px;
+  @media (max-width: 500px) {
+    width: 100%;
     padding: 0;
-  } */
+  }
 `;
 
-export const ArticleWrap = styled.div`
-  width: 100px;
-  height: 120px;
-  margin: 10px;
-  border: 1px solid black;
+export const ArticleWrap = styled.li`
+  width: 200px;
+  height: 300px;
+  /* width: 100px;
+  height: 150px; */
+  margin: 50px 20px 10px 20px;
+  /* box-shadow:
+    rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
+    rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
+    rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset; */
+  border-radius: 5px;
+  box-shadow: 
+  rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, 
+  rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, 
+  rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, 
+  rgba(0, 0, 0, 0.06) 0px 2px 1px, 
+  rgba(0, 0, 0, 0.09) 0px 4px 2px, 
+  rgba(0, 0, 0, 0.09) 0px 8px 4px, 
+  rgba(0, 0, 0, 0.09) 0px 16px 8px;
+  
+  /* box-shadow: 
+  rgba(0, 0, 0, 0.4) 0px 2px 4px, 
+  rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, 
+  rgba(0, 0, 0, 0.2) 0px -3px 0px inset; */
+  /* box-shadow: -.5em 0 .1rem #adb5bd; */
+  /* box-shadow: 5px 5px 3px 1px rgba(0, 0, 0, .2); */
+  /* border: 1px solid black; */
+
+  @media (max-width: 500px) {
+    width: 110px;
+    height: 140px;
+    margin: 27px;
+    /* box-shadow: -.3em 0 .1rem #adb5bd; */
+  }
 `;
 
 export const Article = styled.img`
   width: 100%;
   height: 100%;
+  border-radius: 5px;
+  cursor: pointer;
 `;

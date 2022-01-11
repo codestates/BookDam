@@ -1,18 +1,14 @@
 import styled from 'styled-components';
 import background from '../../assets/images/backimg2.png';
-import { FaUserPlus, FaUserAltSlash, FaUserCheck } from 'react-icons/fa';
 
 export const FeedContentContainer = styled.ul`
 display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-padding: 0%;
+padding: 0px;
+margin: 16px 0px 0px 0px;
 list-style-type: none;
-/* position: relative; */
-/* flex-wrap: wrap; */
-border: 10px solid black;
-width: 100vw;
 `;
 
 export const UserInfoContainer = styled.li`

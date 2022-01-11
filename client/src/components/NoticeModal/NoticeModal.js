@@ -30,7 +30,7 @@ export const NoticeModal = ({ NoticeModalOpenHandler, followInfo }) => {
     <>
       <NoticeModalBackground onClick={NoticeModalOpenHandler}>
         <NoticeModalContainer onClick={(e) => e.stopPropagation()}>
-        <div>{followInfo.userNickName}님의 팔로우를 취소 하시겠습니까?</div>
+          <div>{followInfo.userNickName}님의 팔로우를 취소 하시겠습니까?</div>
           <Button onClick={deleteFollowReq}>확인</Button>
           <Button onClick={NoticeModalOpenHandler}>닫기</Button>
         </NoticeModalContainer>

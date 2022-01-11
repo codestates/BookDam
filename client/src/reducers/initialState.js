@@ -26,5 +26,12 @@ export const initialState =
 
   bookSearchInfo: [
 
-  ]
+  ],
+
+  followInfo: {
+    id: 0,
+    userId: '',
+    userNickName: '',
+    userImage: ''
+  }
 };

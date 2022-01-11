@@ -139,5 +139,19 @@ export const data = {
             "User.userNickName": "test3",
             "User.userImage": defaultUserImage
         },
+        {
+            "id": 1,
+            "user_Id": 3,
+            "book_Title": "west rules for now",
+            "book_Author": "sangkwon",
+            "book_Thumbnail": "https://bookthumb-phinf.pstatic.net/cover/189/260/18926010.jpg?type=m106&udate=20220111",
+            "book_Publisher": "ttang",
+            "sentence": "i dont know what you mean",
+            "comment": "me too",
+            "createdAt": "2022-1-8",
+            "User.userId": "test3",
+            "User.userNickName": "test3",
+            "User.userImage": defaultUserImage
+        },
     ]
 }

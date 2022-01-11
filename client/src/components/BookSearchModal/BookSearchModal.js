@@ -16,8 +16,10 @@ export const BookSearchModal = ({ handleSelect, setIsOpenBookSearchModal, search
   return (
     <div>
       <BookSearchModalWholeBackground onClick={handleCloseBookSearchModal}>
-        <BookSearchModalWrapper>
-          <BookSearchCloseButton onClick={handleCloseBookSearchModal}>&times;</BookSearchCloseButton>
+        <BookSearchModalWrapper onClick={(e) => e.stopPropagation()}>
+          <div>
+            <BookSearchCloseButton onClick={handleCloseBookSearchModal}>&times;</BookSearchCloseButton>
+          </div>
           <BookListModalContainer>
             {searchData.map((el, idx) => <BookList list={el} key={el.isbn} idx={idx} handleDelete={handleSelect} />)}
           </BookListModalContainer>

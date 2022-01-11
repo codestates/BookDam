@@ -32,7 +32,7 @@ export function NavSidebar ({ menuBtnHandler }) {
   return (
     <>
       <UserInfoModifyModalBackground onClick={menuBtnHandler}>
-        <SidebarContainer>
+        <SidebarContainer onClick={(e) => e.stopPropagation()}>
           <SidebarTop>
             <UserSection>
               <UserImageWrap>

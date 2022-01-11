@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import Logo from '../../assets/images/BookDam-B-fin.png';
 import { FaArrowLeft } from 'react-icons/fa';
 import { IoMenu } from 'react-icons/io5';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { NavSidebar } from '../NavSidebar/NavSidebar';
 
 import {
@@ -25,18 +25,24 @@ export default function Navbar () {
   const userState = useSelector(state => state.userInfoReducer);
   const { userInfo } = userState;
   const [isOpenNavSidebar, setIsOpenNavSidebar] = useState(false);
+  const history = useHistory();
 
   // 메뉴 버튼 함수
   const menuBtnHandler = () => {
     setIsOpenNavSidebar(!isOpenNavSidebar);
   };
 
+  // 뒤로가기 버튼 함수
+  const goBackHandler = () => {
+    history.goBack();
+  }
+
   return (
     <>
       <NavbarContainer>
         {isOpenNavSidebar ? <NavSidebar menuBtnHandler={menuBtnHandler} /> : null}
         <BackSection>
-          <FaArrowLeft />
+          <FaArrowLeft onClick={goBackHandler}/>
         </BackSection>
         <LogoSection>
           <Link to='/'><LogoImage src={Logo} /></Link>

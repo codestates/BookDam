@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { data } from '../../dummyfiles/dummyBookSearch'; // 도서검색 테스트 위한 더미 데이터
 import { useSelector } from 'react-redux';
 import { BookSearchModal } from '../BookSearchModal/BookSearchModal';
@@ -32,6 +33,9 @@ import {
 } from './EditStyle';
 
 export const Edit = ({ articleInfo }) => {
+  const location = useLocation()
+  const articles = location.state.articles; // MyPage 썸네일을 눌러서 넘어오는 articles 정보
+  console.log(articles)
   const state = useSelector(state => state.userInfoReducer);
   const { userInfo } = state; // 전역저장소에서 userInfo를 불러온다.
   const user_Id = userInfo.user_Id; // 현재 로그인한 사용자 정보
@@ -104,15 +108,15 @@ export const Edit = ({ articleInfo }) => {
               <SearchBookInfoLower>
                 <SearchBookTitleContainer>
                   <BookTitleLeftContainer>도서명</BookTitleLeftContainer>
-                  <BookTitleRightContainer>{selectedData.title}</BookTitleRightContainer>
+                  <BookTitleRightContainer>{articles.book_Title}</BookTitleRightContainer>
                 </SearchBookTitleContainer>
                 <BookAuthorContainer>
                   <BookTitleLeftContainer>저자명</BookTitleLeftContainer>
-                  <BookTitleRightContainer>{selectedData.author}</BookTitleRightContainer>
+                  <BookTitleRightContainer>{articles.book_Author}</BookTitleRightContainer>
                 </BookAuthorContainer>
                 <BookPublisherContainer>
                   <BookTitleLeftContainer>출판사</BookTitleLeftContainer>
-                  <BookTitleRightContainer>{selectedData.publisher}</BookTitleRightContainer>
+                  <BookTitleRightContainer>{articles.book_Publisher}</BookTitleRightContainer>
                 </BookPublisherContainer>
               </SearchBookInfoLower>
             </BookInfoContainer>

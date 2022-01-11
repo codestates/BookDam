@@ -23,7 +23,7 @@ export const UserInfoModifyContainer = styled.div`
   transform: translate(-50%, -50%);
   max-height: 80%;
   width: 20rem;
-  height: 80%;
+  height: 60%;
   padding: 16px;
   background: white;
   border-radius: 10px;
@@ -53,12 +53,45 @@ export const UserImgSection = styled.div`
   height: 100%;
   margin-left: 15px;
   margin-right: 15px;
-  border: 1px solid black;
+  position: relative;
+  /* border: 1px solid black; */
 `;
 
 export const UserImage = styled.img`
   width: 100%;
   height: 100%;
+`;
+
+// 사진 변경 버튼
+export const EditPictureWrap = styled.div`
+  width: 20px;
+  height: 20px;
+  margin: 0 20px 5px 0;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  /* border: 1px solid black; */
+`;
+
+export const EditPictureBtn = styled.button`
+  background-color: white;
+  box-sizing: border-box;
+  border: 2px solid #12e272;
+  border-radius: 5px;
+  color: green;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 6px;
+  font-weight: 500;
+  letter-spacing: normal;
+  line-height: 1.5;
+  overflow: hidden;
+  padding: 3px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: top;
+  white-space: nowrap;
 `;
 
 export const UserNickName = styled.div`
@@ -72,7 +105,7 @@ export const UserNickName = styled.div`
 `;
 
 export const UserInfoEditSection = styled.div`
-  margin: 0 auto;
+  margin: 0;
   width: 100%;
   position: relative;
   padding: 0 20px 32px;

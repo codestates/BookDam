@@ -8,6 +8,8 @@ import {
   UserInfoSection,
   UserImgSection,
   UserImage,
+  EditPictureWrap,
+  EditPictureBtn,
   UserNickName,
   UserInfoEditSection,
   NickNameInput,
@@ -19,6 +21,7 @@ import {
 } from './UserModifyModalStyle';
 import { ErrorMessage } from '../GlobalMessage/GlobalMessage';
 import { IoClose } from 'react-icons/io5';
+import { data } from '../../dummyfiles/dummyMyFeedList';
 
 // 회원정보수정 PATCH
 // http://localhost:4000/user/:user_Id
@@ -27,8 +30,8 @@ import { IoClose } from 'react-icons/io5';
 axios.defaults.withCredentials = true;
 
 export function UserModifyModal ({ closeUserInfoModify, userInfoModifyBtnHandler }) {
-  const userState = useSelector(state => state.userInfoReducer);
-  const { userInfo } = userState; // 저장된 유저 정보
+  // const userState = useSelector(state => state.userInfoReducer);
+  // const { userInfo } = userState; // 저장된 유저 정보
   // input 값 유효성 검사 : 닉네임이 기존과 동일한가? 동일하면 에러메세지, password가 서로 일치한가? 불일치면 에러메세지
   const [modifyUserInputInfo, setModifyUserInputInfo] = useState({
     id: '',
@@ -51,7 +54,7 @@ export function UserModifyModal ({ closeUserInfoModify, userInfoModifyBtnHandler
   };
   // input handler
   const handleInputNickName = (e) => {
-    if (userInfo.userNickName === e.target.value) {
+    if (data.userInfo.userNickName === e.target.value) {
       setNickNameErrorMessage('기존과 동일한 닉네임입니다');
     } else {
       setNickNameErrorMessage('');
@@ -91,7 +94,7 @@ export function UserModifyModal ({ closeUserInfoModify, userInfoModifyBtnHandler
   // 회원정보 수정 함수
   const modifyUserInfoHandler = () => {
     axios
-      .patch(`http://localhost:4000/user/${userInfo.id}`,
+      .patch(`http://localhost:4000/user/${data.userInfo.id}`,
         {
           userInfo: {
             userId,
@@ -114,7 +117,7 @@ export function UserModifyModal ({ closeUserInfoModify, userInfoModifyBtnHandler
   // 회원정보 탈퇴 함수
   const signOutHandler = () => {
     axios
-      .delete(`http://localhost:4000/user/${userInfo.id}`)
+      .delete(`http://localhost:4000/user/${data.userInfo.id}`)
       .then((data) => {
         console.log('회원 탈퇴되었습니다');
       })
@@ -127,14 +130,21 @@ export function UserModifyModal ({ closeUserInfoModify, userInfoModifyBtnHandler
     <>
       <UserInfoModifyModalContainer onClick={userInfoModifyBtnHandler}>
         <UserInfoModifyContainer onClick={(e) => e.stopPropagation()}>
-          <ModifyCloseSection onClick={closeModal}>
-            <IoClose />
+        <ModifyCloseSection>
+            <div onClick={closeModal}>
+              <IoClose />
+            </div>  
           </ModifyCloseSection>
           <UserInfoSection>
             <UserImgSection>
-              <UserImage />
+              <EditPictureWrap>
+                <EditPictureBtn>사진변경</EditPictureBtn>
+              </EditPictureWrap>
+              <UserImage src={data.userInfo.userImage}>
+              
+              </UserImage>
             </UserImgSection>
-            <UserNickName>{userInfo.userNickName}</UserNickName>
+            <UserNickName>{data.userInfo.userNickName}</UserNickName>
           </UserInfoSection>
           <UserInfoEditSection>
             <NickNameInput onChange={handleInputNickName} />

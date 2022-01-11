@@ -223,4 +223,3 @@ export const Article = styled.img`
   border-radius: 5px;
   cursor: pointer;
 `;
-

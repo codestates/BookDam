@@ -10,6 +10,7 @@ import {
   NavbarContainer,
   BackSection,
   LogoSection,
+  NavbarWrapper,
   LogoImage,
   NavMenuSection,
   NavMenu,

@@ -32,7 +32,7 @@ axios.defaults.withCredentials = true;
 export default function MyPage () {
   // 1. 상태관리 요소 : userImage, userNickName, article, follow, follower
   // 2. follow, follower : 서버에 count 요청
-  // 3. 함수 : 
+  // 3. 함수 :
   // 3-1. 회원정보수정 버튼을 누를 시 회원정보수정 모달로 연결, 무한스크롤 관련 버튼 실행 또는 액션,
   // 3-2. 아티클 map으로 출력하기 -> 무한스크롤로 아티클 노출
   // 3-3. 책 썸네일을 누르면 Sentence Modal이 팝업
@@ -54,8 +54,8 @@ export default function MyPage () {
     id: 0,
     userId: '',
     userNickName: '',
-    userImage: '',
-  })
+    userImage: ''
+  });
   const [follow, setFollow] = useState({
     following: 0,
     follower: 0
@@ -69,7 +69,7 @@ export default function MyPage () {
     book_Publisher: '',
     sentence: '',
     comment: '',
-    createdAt: '',
+    createdAt: ''
   });
   const [isOpneModifyModal, setIsOpenModifyModal] = useState(false);
   const [isOpenSentenceModal, setIsOpenSentenceModal] = useState(false);
@@ -87,33 +87,8 @@ export default function MyPage () {
   // 북 썸네일을 누르면 SentenceModal이 나오는 함수
   const openSentenceModalHandler = () => {
     setIsOpenSentenceModal(!isOpenSentenceModal);
-  }
-
-  // // 북 썸네일을 누르면 EditPage로 가는 함수
-  // const sendToEditPage = (el) => {
-  //   console.log('클릭');
-  //   history.push(
-  //     {
-  //       pathname: '/editpage',
-  //       state: {
-  //         articles: {
-  //           id: el.id,
-  //           user_Id: el.user_Id,
-  //           book_Title: el.book_Title,
-  //           book_Author: el.book_Author,
-  //           book_Thumbnail: el.book_Thumbnail,
-  //           book_Publisher: el.book_Publisher,
-  //           sentence: el.sentence,
-  //           comment: el.comment,
-  //           createdAt: el.createdAt,
-  //         }
-  //       }
-  //     }
-  //   );
-  // }
 
 
-  
   // axios.get 회원정보 전체 조회 함수 (MyPage 접속했을 시)
   // const getUserInfoAll = () => {
   //   axios
@@ -134,14 +109,14 @@ export default function MyPage () {
 
   const articleList = data.articleData.map((el, index) => {
     return (
-        <ArticleWrap key={index}>
-          <Article 
-            src={el.book_Thumbnail}
-            onClick={openSentenceModalHandler}
-          />
-        </ArticleWrap>
-    )
-  })
+      <ArticleWrap key={index}>
+        <Article
+          src={el.book_Thumbnail}
+          onClick={openSentenceModalHandler}
+        />
+      </ArticleWrap>
+    );
+  });
 
   return (
     // react suspence hook (데이터가 없을 경우, 로딩 화면) 삼항 연산자로 getUserInfoAll 함수 처리

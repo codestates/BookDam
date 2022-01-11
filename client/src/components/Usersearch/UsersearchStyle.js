@@ -107,8 +107,8 @@ margin: 0 0 2px 2px;
   background-color: #fff;
   border: 0;
   }
-`
+`;
 export const RecommendList = styled.div`
 text-align: left;
 margin-bottom: 2px;
-`
+`;

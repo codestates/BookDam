@@ -1,4 +1,4 @@
-import React, { useState, } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
@@ -7,17 +7,18 @@ import {
   LoginModalWrapper,
   LoginCloseButton,
   LoginModalContainer,
+  LoginModalHeader,
+  LoginModalLeft,
   LoginTitle,
   InputContainer,
   InputId,
   InputPW
-} from './LoginModalStyle';
+} from './GuestLoginModalStyle';
 import { Message, ErrorMessage } from '../GlobalMessage/GlobalMessage';
 import { LoginThemeBtn } from '../GlobalButton/GlobalButton';
 import { LoginAction } from '../../actions/UserInfoAction';
 
-export const LoginModal = ({
-  setLoginBtnText,
+export const GuestLoginModal = ({
   setIsOpenLoginModal,
   handleSignupModal,
   handleCloseSignupModal
@@ -68,7 +69,7 @@ export const LoginModal = ({
             dispatch(LoginAction(userInfoData));
             setIsOpenLoginModal(false);
             document.body.style.overflow = 'unset'; // 스크롤 방지 해제
-            history.push('/feedpage')
+            history.push('/createPage');
           }
         })
         .catch((err) => {
@@ -84,9 +85,12 @@ export const LoginModal = ({
 
   return (
     <div>
-      <LoginModalWholeBackground>
-        <LoginModalWrapper>
-          <LoginCloseButton onClick={handleCloseLoginModal}>&times;</LoginCloseButton>
+      <LoginModalWholeBackground onClick={handleCloseLoginModal}>
+        <LoginModalWrapper onClick={(e) => e.stopPropagation()}>
+          <LoginModalHeader>
+            <LoginModalLeft />
+            <LoginCloseButton onClick={handleCloseLoginModal}>&times;</LoginCloseButton>
+          </LoginModalHeader>
           <LoginModalContainer>
             <LoginTitle>BookDam</LoginTitle>
             <InputContainer>

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
 import { data } from '../../dummyfiles/dummyBookSearch'; // 도서검색 테스트 위한 더미 데이터
-import walden from '../../assets/images/walden_thumbnail.jpeg';
-import { BookSearchModal } from '../BookSearchModal/BookSearchModal';
 import {
   WriteWholeContainer,
   SearchBookWrapper,
@@ -30,9 +31,21 @@ import {
   ButtonContainer,
   ButtonsInWrite
 } from './WriteStyle';
+import { GuestLoginModal } from '../GuestLoginModal/GuestLoginModal';
+import { SignupModal } from '../Signup/SignupModal';
+import { BookSearchModal } from '../BookSearchModal/BookSearchModal';
+import { NoInputNoticeModal } from '../NoticeModal/WriteNoticeModal/NoInputNoticeModal';
+import { SubmitConfirmModal} from '../NoticeModal/WriteNoticeModal/SubmitConfirmModal';
+
 
 export const Write = () => {
+  const state = useSelector(state => state.userInfoReducer); // 로그인 상태변경용
+  const { isLogin, userInfo } = state; // 로그인 상태변경용
+  const [isOpenLoginModal, setIsOpenLoginModal] = useState(false);
+  const [isOpenSignupModal, setIsOpenSignupModal] = useState(false);
   const [isOpenBookSearchModal, setIsOpenBookSearchModal] = useState(false);
+  const [isOpenNoticeModal, setIsOpenNoticeModal] = useState(false);
+  const [isOpenSubmitModal, setIsOpenSubmitModal] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [searchData, setSearchData] = useState([]);
@@ -41,6 +54,7 @@ export const Write = () => {
   });
   const [inputSentence, setInputSentence] = useState('');
   const [inputComment, setInputComment] = useState('');
+  const history = useHistory();
 
   const handleInputValue = (e) => {
     setInputValue(e.target.value);
@@ -70,26 +84,111 @@ export const Write = () => {
   };
 
   const handleInputSentence = (e) => {
-    setInputSentence(e.target.value);
+    if (isLogin === false) {
+      setIsOpenLoginModal(true);
+    } else {
+      setInputSentence(e.target.value);
+    }
   };
 
   const handleInputComment = (e) => {
-    setInputComment(e.target.value);
+    if (isLogin === false) {
+      setIsOpenLoginModal(true);
+    } else {
+      setInputComment(e.target.value);
+    }
   };
 
-  const handleSubmit = () => {
+  const handleLoginModal = () => { // 버튼 클릭시 로그인 모달 열기
+    setIsOpenSignupModal(false);
+    setIsOpenLoginModal(true);
+    document.body.style.overflow = 'hidden'; // Login 모달창 열면서 스크롤 방지
+  };
+
+  const handleSignupModal = () => { // 버튼 클릭시 회원가입 모달 열기
+    setIsOpenLoginModal(false);
+    setIsOpenSignupModal(true);
+    document.body.style.overflow = 'hidden'; // Signup 모달창 열면서 스크롤 방지
+  };
+
+  const handleCloseSignupModal = () => { // 버튼 클릭시 회원가입 모달 닫기
+    setIsOpenSignupModal(false);
+    document.body.style.overflow = 'unset';
+  };
+
+  const handleCloseNoticeModal = () => {
+    setIsOpenNoticeModal(false);
+    setIsOpenSubmitModal(false);
+    document.body.style.overflow = 'unset';
+  };
+  
+  const submitHandler = () => {
+    if(selectedData.title === '' || inputSentence === '' || inputSentence === '') {
+      setErrorMessage('내용을 입력하세요.')
+      setIsOpenNoticeModal(true);
+    } else {
+      setErrorMessage('저장하시겠습니까?')
+      setIsOpenSubmitModal(true);
+      document.body.style.overflow = 'hidden'; 
+    }
+  };
+
+  const handleSubmit = async () => {
     const submitData = {
-      title: selectedData.title,
-      author: selectedData.author,
+      book_Title: selectedData.title,
+      book_Author: selectedData.author,
+      book_Thumbnail: selectedData.image,
+      book_Publisher: selectedData.publisher,
       sentence: inputSentence,
       comment: inputComment
     };
-    // axios.post
+
+    if (selectedData.title === '' || inputSentence === ' ' || inputComment === '') {
+      setErrorMessage('내용을 입력하세요.')
+      setIsOpenNoticeModal(true);
+      document.body.style.overflow = 'hidden';
+    } else {
+      await axios({
+        withCredentials: true,
+        method: 'post',
+        url: `http://localhost:4000/article/${userInfo.id}`,
+        headers: {
+          authorization: `Bearer: ${process.env.Client_Secret}`,
+          'Content-Type': 'application/json'
+        },
+        data: {
+          articleInfo: submitData
+        }
+      })
+        .then((res) => {
+          console.log(res.data.message);
+          if (res.data.message === 'success') {
+            console.log('저장이 완료되었습니다.');
+            history.push('/feedPage');
+          } else {
+            console.log('정상적인 접근이 아닙니다.');
+          }
+        });
+    }
   };
 
   return (
     <>
       <WriteWholeContainer>
+        {isOpenLoginModal
+          ? <GuestLoginModal
+              setIsOpenLoginModal={setIsOpenLoginModal}
+              handleSignupModal={handleSignupModal}
+            />
+          : null}
+
+        {isOpenSignupModal
+          ? <SignupModal
+              handleCloseSignupModal={handleCloseSignupModal}
+              handleLoginModal={handleLoginModal}
+            />
+          : null}
+
         {isOpenBookSearchModal
           ? <BookSearchModal
               handleSelect={handleSelect}
@@ -97,6 +196,14 @@ export const Write = () => {
               setIsOpenBookSearchModal={setIsOpenBookSearchModal}
             />
           : null}
+
+        {isOpenNoticeModal
+          ? <NoInputNoticeModal errorMessage={errorMessage} handleCloseNoticeModal={handleCloseNoticeModal} />
+          : null}
+
+        {isOpenSubmitModal
+          ? <SubmitConfirmModal errorMessage={errorMessage} handleSubmit={handleSubmit} handleCloseNoticeModal={handleCloseNoticeModal}/>
+          : null} 
         <SearchBookWrapper>
           <SearchBookContainer>
             <SearchBookInfoContainer>
@@ -123,7 +230,7 @@ export const Write = () => {
             </SearchBookInfoContainer>
             <SearchBookImageContainer>
               <BookThumbnailContainer>
-                <BookThumbnail src={walden} />
+                <BookThumbnail src={selectedData.image} />
               </BookThumbnailContainer>
             </SearchBookImageContainer>
           </SearchBookContainer>
@@ -140,7 +247,7 @@ export const Write = () => {
           <ArticleButtonContainer>
             <ArticleButtonSection>
               <ButtonContainer>
-                <ButtonsInWrite>작성하기</ButtonsInWrite>
+                <ButtonsInWrite onClick={submitHandler}>저장하기</ButtonsInWrite>
               </ButtonContainer>
             </ArticleButtonSection>
           </ArticleButtonContainer>

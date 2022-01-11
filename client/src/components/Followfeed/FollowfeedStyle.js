@@ -11,7 +11,7 @@ padding: 0%;
 list-style-type: none;
 /* position: relative; */
 /* flex-wrap: wrap; */
-border: 10px solid black;
+/* border: 10px solid black; */
 width: 100vw;
 `;
 

@@ -19,7 +19,7 @@ export const BackSection = styled.div`
   flex-direction: row;
   margin-left: 30px;
   font-size: 30px;
-  /* border: 1px solid orange; */
+  border: 1px solid orange;
 
   @media (max-width: 500px) {
     height: 40px;
@@ -46,8 +46,8 @@ export const LogoSection = styled.div`
 `;
 
 export const LogoImage = styled.img`
-  height: 100%;
-  width: 100%;
+  height: 80%;
+  width: 80%;
 `;
 
 export const NavMenuSection = styled.ul`
@@ -110,16 +110,16 @@ export const UserNickName = styled.div`
 `;
 
 export const SideMenuSection = styled.div`
-  height: 40px;
-  width: 5%;
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  margin-right: 30px;
-  font-size: 30px;
-  /* border: 1px solid orange; */
+  display: none;
 
-  @media (max-width: 500px) {
-    
+  @media screen and (max-width: 500px) {
+    height: 40px;
+    width: 5%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-right: 30px;
+    font-size: 30px;
+    /* border: 10px solid black; */
   }
 `;

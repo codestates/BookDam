@@ -34,7 +34,7 @@ import {
 import { GuestLoginModal } from '../GuestLoginModal/GuestLoginModal';
 import { SignupModal } from '../Signup/SignupModal';
 import { BookSearchModal } from '../BookSearchModal/BookSearchModal';
-import { NoInputNoticeModal } from '../NoticeModal/WriteNoticeModal/NoInputNotilceModal';
+import { NoInputNoticeModal } from '../NoticeModal/WriteNoticeModal/NoInputNoticeModal';
 import { SubmitConfirmModal} from '../NoticeModal/WriteNoticeModal/SubmitConfirmModal';
 
 

@@ -87,7 +87,7 @@ export default function MyPage () {
   // 북 썸네일을 누르면 SentenceModal이 나오는 함수
   const openSentenceModalHandler = () => {
     setIsOpenSentenceModal(!isOpenSentenceModal);
-
+  }
 
   // axios.get 회원정보 전체 조회 함수 (MyPage 접속했을 시)
   // const getUserInfoAll = () => {

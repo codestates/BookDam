@@ -21,7 +21,8 @@ module.exports = (sequelize, DataTypes) => {
     book_Thumbnail: DataTypes.STRING,
     book_Publisher: DataTypes.STRING,
     sentence: DataTypes.STRING,
-    comment: DataTypes.STRING
+    comment: DataTypes.STRING,
+    createdAt: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Article'

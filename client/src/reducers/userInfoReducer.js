@@ -7,8 +7,8 @@ const userInfoReducer = (state = initialState, action) => {
       return {
         ...state,
         userInfo: action.payload.userInfo
-      }
-      
+      };
+
     case LOGIN_ACTION:
       return {
         ...state,

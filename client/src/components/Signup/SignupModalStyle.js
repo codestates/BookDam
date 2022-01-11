@@ -52,6 +52,15 @@ export const SignupModalContainer = styled.div`
   }
 `;
 
+export const SignupModalHeader = styled.div`
+ display: flex;
+ flex-direction: row;
+`;
+
+export const SignupModalLeft = styled.div`
+  width: 96%;
+`;
+
 // signup: 닫기
 export const SignupCloseButton = styled.div`
   display: flex;

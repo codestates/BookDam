@@ -6,6 +6,8 @@ import {
   SignupModalWrapper,
   SignupCloseButton,
   SignupModalContainer,
+  SignupModalHeader,
+  SignupModalLeft,
   SignupTitle,
   InputContainer,
   InputId,
@@ -79,9 +81,12 @@ export const SignupModal = ({ handleCloseSignupModal, handleLoginModal }) => {
 
   return (
     <div>
-      <SignupModalWholeBackground>
-        <SignupModalWrapper>
-          <SignupCloseButton onClick={handleCloseSignupModal}>&times;</SignupCloseButton>
+      <SignupModalWholeBackground onClick={handleCloseSignupModal}>
+        <SignupModalWrapper onClick={(e) => e.stopPropagation()}>
+          <SignupModalHeader>
+            <SignupModalLeft />
+            <SignupCloseButton onClick={handleCloseSignupModal}>&times;</SignupCloseButton>
+          </SignupModalHeader>
           <SignupModalContainer>
             <SignupTitle>BookDam</SignupTitle>
             <InputContainer>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useLocation } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 import example from '../../assets/images/defaultUserImage.png';
 import {
   UserPageContainer,
@@ -22,10 +22,10 @@ import {
 } from './UserPageStyle';
 
 export default function UserPage () {
-  const location = useLocation()
+  const location = useLocation();
   const followInfo = location.state.followInfo;
 
-  console.log(location.state)
+  console.log(location.state);
   return (
     <>
       <UserPageContainer>

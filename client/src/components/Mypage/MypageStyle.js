@@ -193,4 +193,3 @@ export const Article = styled.img`
   height: 100%;
   cursor: pointer;
 `;
-

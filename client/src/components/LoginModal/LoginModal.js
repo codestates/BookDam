@@ -1,4 +1,4 @@
-import React, { useState, } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
@@ -7,6 +7,8 @@ import {
   LoginModalWrapper,
   LoginCloseButton,
   LoginModalContainer,
+  LoginModalHeader,
+  LoginModalLeft,
   LoginTitle,
   InputContainer,
   InputId,
@@ -62,13 +64,14 @@ export const LoginModal = ({
         }
       })
         .then((res) => {
+          localStorage.setItem('logged', JSON.stringify(res.data.userInfo));
+
           const userInfoData = res.data.userInfo;
           if (userInfoData) {
             dispatch(LoginAction(userInfoData));
             setIsOpenLoginModal(false);
             document.body.style.overflow = 'unset'; // 스크롤 방지 해제
-            console.log(history.action)
-            history.push('/feedpage')
+            history.push('/feedpage');
           }
         })
         .catch((err) => {
@@ -84,9 +87,12 @@ export const LoginModal = ({
 
   return (
     <div>
-      <LoginModalWholeBackground>
-        <LoginModalWrapper>
-          <LoginCloseButton onClick={handleCloseLoginModal}>&times;</LoginCloseButton>
+      <LoginModalWholeBackground onClick={handleCloseLoginModal}>
+        <LoginModalWrapper onClick={(e) => e.stopPropagation()}>
+          <LoginModalHeader>
+            <LoginModalLeft />
+            <LoginCloseButton onClick={handleCloseLoginModal}>&times;</LoginCloseButton>
+          </LoginModalHeader>
           <LoginModalContainer>
             <LoginTitle>BookDam</LoginTitle>
             <InputContainer>

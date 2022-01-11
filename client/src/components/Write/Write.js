@@ -34,6 +34,7 @@ import {
 } from './WriteStyle';
 import { GuestLoginModal } from '../GuestLoginModal/GuestLoginModal';
 import { SignupModal } from '../Signup/SignupModal';
+import { WriteNoticeModal } from './WriteNotilceModal';
 
 export const Write = () => {
   const state = useSelector(state => state.userInfoReducer); // 로그인 상태변경용
@@ -41,6 +42,7 @@ export const Write = () => {
   const [isOpenLoginModal, setIsOpenLoginModal] = useState(false);
   const [isOpenSignupModal, setIsOpenSignupModal] = useState(false);
   const [isOpenBookSearchModal, setIsOpenBookSearchModal] = useState(false);
+  const [isOpenNoticeModal, setIsOpenNoticeModal] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [searchData, setSearchData] = useState([]);
@@ -79,7 +81,7 @@ export const Write = () => {
   };
 
   const handleInputSentence = (e) => {
-    if(isLogin === false) {
+    if (isLogin === false) {
       setIsOpenLoginModal(true);
     } else {
       setInputSentence(e.target.value);
@@ -87,7 +89,7 @@ export const Write = () => {
   };
 
   const handleInputComment = (e) => {
-    if(isLogin === false) {
+    if (isLogin === false) {
       setIsOpenLoginModal(true);
     } else {
       setInputComment(e.target.value);
@@ -111,6 +113,11 @@ export const Write = () => {
     document.body.style.overflow = 'unset';
   };
 
+  const handleCloseNoticeModal = () => {
+    setIsOpenNoticeModal(false);
+    document.body.style.overflow = 'unset';
+  };
+
   const handleSubmit = async () => {
     const submitData = {
       book_Title: selectedData.title,
@@ -120,28 +127,34 @@ export const Write = () => {
       sentence: inputSentence,
       comment: inputComment
     };
-    
-    await axios({
-      withCredentials: true,
-      method: 'post',
-      url: `http://localhost:4000/article/${userInfo.id}`,
-      headers: {
-        authorization: `Bearer: ${process.env.Client_Secret}`,
-        'Content-Type': 'application/json'
-      },
-      data: {
-        articleInfo: submitData
-      }
-    })
-    .then((res) => {
-      console.log(res.data.message)
-      if(res.data.message ==='success') {
-        console.log('저장이 완료되었습니다.')
-        history.push('/feedPage')
-      } else {
-        console.log('정상적인 접근이 아닙니다.')
-      }
-    })
+
+    if (selectedData.title === '' || inputSentence === ' ' || inputComment === '') {
+      console.log('내용 확인');
+      setIsOpenNoticeModal(true);
+      document.body.style.overflow = 'hidden';
+    } else {
+      await axios({
+        withCredentials: true,
+        method: 'post',
+        url: `http://localhost:4000/article/${userInfo.id}`,
+        headers: {
+          authorization: `Bearer: ${process.env.Client_Secret}`,
+          'Content-Type': 'application/json'
+        },
+        data: {
+          articleInfo: submitData
+        }
+      })
+        .then((res) => {
+          console.log(res.data.message);
+          if (res.data.message === 'success') {
+            console.log('저장이 완료되었습니다.');
+            history.push('/feedPage');
+          } else {
+            console.log('정상적인 접근이 아닙니다.');
+          }
+        });
+    }
   };
 
   return (
@@ -150,7 +163,8 @@ export const Write = () => {
         {isOpenLoginModal
           ? <GuestLoginModal
               setIsOpenLoginModal={setIsOpenLoginModal}
-              handleSignupModal={handleSignupModal}/>
+              handleSignupModal={handleSignupModal}
+            />
           : null}
 
         {isOpenSignupModal
@@ -166,6 +180,10 @@ export const Write = () => {
               searchData={searchData}
               setIsOpenBookSearchModal={setIsOpenBookSearchModal}
             />
+          : null}
+
+        {isOpenNoticeModal
+          ? <WriteNoticeModal handleCloseNoticeModal={handleCloseNoticeModal} />
           : null}
         <SearchBookWrapper>
           <SearchBookContainer>

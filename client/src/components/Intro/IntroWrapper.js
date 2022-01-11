@@ -18,8 +18,7 @@ import {
 } from './IntroWrapperStyle';
 import { LoginModal } from '../LoginModal/LoginModal';
 import { SignupModal } from '../Signup/SignupModal';
-import { GuestLoginAction } from '../../actions/UserInfoAction';
-import { LogoutAction } from '../../actions/UserInfoAction';
+import { GuestLoginAction, LogoutAction } from '../../actions/UserInfoAction';
 
 export const IntroWrapper = () => {
   const [isOpenLoginModal, setIsOpenLoginModal] = useState(false);
@@ -56,18 +55,19 @@ export const IntroWrapper = () => {
         'Content-Type': 'application/json'
       }
     })
-    .then((res) => {
-      console.log(res)
-      if(res.data.message === '로그아웃 되었습니다.') {
-        dispatch(LogoutAction());
-      } else {
-        console.log('로그아웃 실패');
-      }
-    })
-    .catch(err => console.log('err'));
+      .then((res) => {
+        console.log(res);
+        localStorage.removeItem('logged');
+        if (res.data.message === '로그아웃 되었습니다.') {
+          dispatch(LogoutAction());
+        } else {
+          console.log('로그아웃 실패');
+        }
+      })
+      .catch(err => console.log('err'));
   };
 
-  const guestLoginHandelr = async () => { //게스트로 둘러보기시에 처리
+  const guestLoginHandelr = async () => { // 게스트로 둘러보기시에 처리
     await axios({
       withCredentials: true,
       method: 'post',
@@ -89,10 +89,10 @@ export const IntroWrapper = () => {
           dispatch(GuestLoginAction(userInfoData));
           setIsOpenLoginModal(false);
           document.body.style.overflow = 'unset'; // 스크롤 방지 해제
-          history.push('/feedpage')
+          history.push('/feedpage');
         }
       });
-  }
+  };
 
   return (
     <>

@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { data } from '../../dummyfiles/dummyBookSearch'; // 도서검색 테스트 위한 더미 데이터
-import { BookSearchModal } from '../BookSearchModal/BookSearchModal';
 import {
   WriteWholeContainer,
   SearchBookWrapper,
@@ -34,7 +33,10 @@ import {
 } from './WriteStyle';
 import { GuestLoginModal } from '../GuestLoginModal/GuestLoginModal';
 import { SignupModal } from '../Signup/SignupModal';
-import { WriteNoticeModal } from './WriteNotilceModal';
+import { BookSearchModal } from '../BookSearchModal/BookSearchModal';
+import { NoInputNoticeModal } from '../NoticeModal/WriteNoticeModal/NoInputNotilceModal';
+import { SubmitConfirmModal} from '../NoticeModal/WriteNoticeModal/SubmitConfirmModal';
+
 
 export const Write = () => {
   const state = useSelector(state => state.userInfoReducer); // 로그인 상태변경용
@@ -43,6 +45,7 @@ export const Write = () => {
   const [isOpenSignupModal, setIsOpenSignupModal] = useState(false);
   const [isOpenBookSearchModal, setIsOpenBookSearchModal] = useState(false);
   const [isOpenNoticeModal, setIsOpenNoticeModal] = useState(false);
+  const [isOpenSubmitModal, setIsOpenSubmitModal] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [searchData, setSearchData] = useState([]);
@@ -115,7 +118,19 @@ export const Write = () => {
 
   const handleCloseNoticeModal = () => {
     setIsOpenNoticeModal(false);
+    setIsOpenSubmitModal(false);
     document.body.style.overflow = 'unset';
+  };
+  
+  const submitHandler = () => {
+    if(selectedData.title === '' || inputSentence === '' || inputSentence === '') {
+      setErrorMessage('내용을 입력하세요.')
+      setIsOpenNoticeModal(true);
+    } else {
+      setErrorMessage('저장하시겠습니까?')
+      setIsOpenSubmitModal(true);
+      document.body.style.overflow = 'hidden'; 
+    }
   };
 
   const handleSubmit = async () => {
@@ -129,7 +144,7 @@ export const Write = () => {
     };
 
     if (selectedData.title === '' || inputSentence === ' ' || inputComment === '') {
-      console.log('내용 확인');
+      setErrorMessage('내용을 입력하세요.')
       setIsOpenNoticeModal(true);
       document.body.style.overflow = 'hidden';
     } else {
@@ -183,8 +198,12 @@ export const Write = () => {
           : null}
 
         {isOpenNoticeModal
-          ? <WriteNoticeModal handleCloseNoticeModal={handleCloseNoticeModal} />
+          ? <NoInputNoticeModal errorMessage={errorMessage} handleCloseNoticeModal={handleCloseNoticeModal} />
           : null}
+
+        {isOpenSubmitModal
+          ? <SubmitConfirmModal errorMessage={errorMessage} handleSubmit={handleSubmit} handleCloseNoticeModal={handleCloseNoticeModal}/>
+          : null} 
         <SearchBookWrapper>
           <SearchBookContainer>
             <SearchBookInfoContainer>
@@ -228,7 +247,7 @@ export const Write = () => {
           <ArticleButtonContainer>
             <ArticleButtonSection>
               <ButtonContainer>
-                <ButtonsInWrite onClick={handleSubmit}>저장하기</ButtonsInWrite>
+                <ButtonsInWrite onClick={submitHandler}>저장하기</ButtonsInWrite>
               </ButtonContainer>
             </ArticleButtonSection>
           </ArticleButtonContainer>

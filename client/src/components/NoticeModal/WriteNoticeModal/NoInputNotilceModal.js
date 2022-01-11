@@ -4,14 +4,14 @@ import {
   NoticeModalBackground,
   NoticeModalContainer,
   Button
-} from './WriteNoticeModalStyle';
+} from './NoInputNoticeModalStyle';
 
-export const WriteNoticeModal = ({ handleCloseNoticeModal }) => {
+export const NoInputNoticeModal = ({ errorMessage, handleCloseNoticeModal }) => {
   return (
     <>
       <NoticeModalBackground onClick={handleCloseNoticeModal}>
         <NoticeModalContainer onClick={(e) => e.stopPropagation()}>
-          <div>내용을 입력하세요.</div>
+          <div>{errorMessage}</div>
           <Button onClick={handleCloseNoticeModal}>닫기</Button>
         </NoticeModalContainer>
       </NoticeModalBackground>

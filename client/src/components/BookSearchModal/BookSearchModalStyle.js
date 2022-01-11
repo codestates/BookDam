@@ -45,6 +45,15 @@ export const BookListModalContainer = styled.div`
  padding-left: 15px;
 `;
 
+export const NoBookListDisplay = styled.div`
+  /* border: 1px solid black; */
+  width: 100%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 // BookSearch: 닫기
 export const BookSearchCloseButton = styled.div`
   display: flex;

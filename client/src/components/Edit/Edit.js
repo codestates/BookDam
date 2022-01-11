@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { data } from '../../dummyfiles/dummyBookSearch'; // 도서검색 테스트 위한 더미 데이터
-import walden from '../../assets/images/walden_thumbnail.jpeg';
 import { useSelector } from 'react-redux';
 import { BookSearchModal } from '../BookSearchModal/BookSearchModal';
 import {
@@ -119,7 +118,7 @@ export const Edit = ({ articleInfo }) => {
             </BookInfoContainer>
             <BookImageContainer>
               <BookThumbnailContainer>
-                <BookThumbnail src={walden} />
+                <BookThumbnail />
               </BookThumbnailContainer>
             </BookImageContainer>
           </BookContainer>

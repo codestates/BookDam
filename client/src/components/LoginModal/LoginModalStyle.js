@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 // 모달: 전체 배경
-export const SignupModalWholeBackground = styled.div`
+export const LoginModalWholeBackground = styled.div`
   position: fixed;
   top: 0;
   right: 0;
@@ -11,12 +11,12 @@ export const SignupModalWholeBackground = styled.div`
   backdrop-filter: blur(5px); //blur 효과
 
   @media screen and (max-width: 500px) {
+    /* background: white; */
     display: hidden;
   }
 `;
 
-// 모달: 모달 창 래퍼
-export const SignupModalWrapper = styled.div`
+export const LoginModalWrapper = styled.div`
   width: 480px;
   height: 621px;
   background-color: white;
@@ -37,8 +37,8 @@ export const SignupModalWrapper = styled.div`
   }
 `;
 
-// 모달: Signup 모달창 컨테이너
-export const SignupModalContainer = styled.div`
+// 모달: Login 모달창 컨테이너
+export const LoginModalContainer = styled.div`
   /* border: 2px solid red; */
 
   @media screen and (max-width: 500px) {
@@ -52,17 +52,18 @@ export const SignupModalContainer = styled.div`
   }
 `;
 
-export const SignupModalHeader = styled.div`
+export const LoginModalHeader = styled.div`
  display: flex;
  flex-direction: row;
 `;
 
-export const SignupModalLeft = styled.div`
+export const LoginModalLeft = styled.div`
   width: 96%;
-`;
 
-// signup: 닫기
-export const SignupCloseButton = styled.div`
+`;
+// Login: 닫기
+export const LoginCloseButton = styled.div`
+  width: 4%;
   display: flex;
   justify-content: flex-end;
   padding-right: 20px;
@@ -70,13 +71,14 @@ export const SignupCloseButton = styled.div`
   font-size: 40px;
   color: rgba(0, 0, 0, 0.5);
   cursor: pointer;
+  /* border: 2px solid black; */
 
   &:hover {
     color: black;
   }
 `;
 
-// Signup: input Container
+// Login: input Container
 export const InputContainer = styled.div`
   margin: 0 auto;
   width: 100%;
@@ -89,8 +91,8 @@ export const InputContainer = styled.div`
   /* border: 1px solid #4D94E6; */
 `;
 
-// Signup: title
-export const SignupTitle = styled.div`
+// Login: title
+export const LoginTitle = styled.div`
   color: #2cc05a;
   /* font-family: monospace; */
   font-size: 3rem;
@@ -99,7 +101,7 @@ export const SignupTitle = styled.div`
   margin: 1rem;
 `;
 
-// Sign input: ID
+// Login input: ID
 export const InputId = styled.input.attrs({
   placeholder: '아이디',
   type: 'text'
@@ -114,22 +116,7 @@ export const InputId = styled.input.attrs({
   box-sizing: border-box;
 `;
 
-// Sign input: UserNickName
-export const InputUserNickName = styled.input.attrs({
-  placeholder: '닉네임',
-  type: 'text'
-})`
-  margin-top: 10px;
-  border-radius: 2px;
-  width: 60%;
-  height: 40px;
-  border: 1px solid #e5e5e5;
-  padding: 9px 12px;
-  outline: none;
-  box-sizing: border-box;
-`;
-
-// Signup input: Password
+// Login input: Password
 export const InputPW = styled.input.attrs({
   placeholder: '비밀번호',
   type: 'password'
@@ -143,32 +130,4 @@ export const InputPW = styled.input.attrs({
   padding: 9px 12px;
   outline: none;
   box-sizing: border-box;
-`;
-
-// Signup input: Checkout Password
-export const InputPWCheckout = styled.input.attrs({
-  placeholder: '비밀번호 확인',
-  type: 'password'
-})`
-
-  margin-top: 10px;
-  border-radius: 2px;
-  width: 60%;
-  height: 40px;
-  border: 1px solid #e5e5e5;
-  padding: 9px 12px;
-  outline: none;
-  box-sizing: border-box;
-`;
-
-// Signup Move To LoginModal
-export const MoveToLoginModal = styled.span`
-  /* border: 1px solid black; */
-  margin-left: 5px;
-  font-weight: bold;
-  color: black;
-  &:hover {
-    color: #2cc05a;
-    cursor: pointer;
-  }
 `;

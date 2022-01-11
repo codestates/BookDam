@@ -164,6 +164,7 @@ export const BookThumbnailContainer = styled.div`
 `;
 
 export const BookThumbnail = styled.img`
+  border: 1px solid black;
   width: 70%;
   margin: 0;
   @media screen and (max-width: 500px) {

@@ -52,8 +52,18 @@ export const LoginModalContainer = styled.div`
   }
 `;
 
+export const LoginModalHeader = styled.div`
+ display: flex;
+ flex-direction: row;
+`;
+
+export const LoginModalLeft = styled.div`
+  width: 96%;
+`;
+
 // Login: 닫기
 export const LoginCloseButton = styled.div`
+  width: 4%;
   display: flex;
   justify-content: flex-end;
   padding-right: 20px;
@@ -61,6 +71,7 @@ export const LoginCloseButton = styled.div`
   font-size: 40px;
   color: rgba(0, 0, 0, 0.5);
   cursor: pointer;
+  /* border: 2px solid black; */
 
   &:hover {
     color: black;

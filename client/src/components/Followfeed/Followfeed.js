@@ -4,7 +4,7 @@ import Axios from 'axios';
 import data from '../../dummyfiles/dummyFeedList';
 import { FaUserCheck } from 'react-icons/fa';
 import userImage from '../../assets/images/defaultUserImage.png';
-import { NoticeModal } from '../NoticeModal/NoticeModal'
+import { NoticeModal } from '../NoticeModal/NoticeModal';
 import {
   FeedContentContainer,
   UserInfoContainer,
@@ -23,15 +23,14 @@ import {
 } from './FollowfeedStyle';
 
 export const Followfeed = ({ followFeedList }) => {
-  
   // 팔로우 취소 버튼 클릭시 알람 모달 오픈
-  const [isOpen, setInOpen] = useState(false)
+  const [isOpen, setInOpen] = useState(false);
   const [followInfo, setFollowInfo] = useState({
     id: '',
     userId: '',
     userNickName: '',
-    userImage: '',
-  })
+    userImage: ''
+  });
 
   // const [followFeedList, setFoolowFeedList] = useState([{
   //   'Articles.user_Id': 0,
@@ -47,30 +46,30 @@ export const Followfeed = ({ followFeedList }) => {
   // }])
 
   const getFollowInfo = (el) => {
-    console.log(el.id, el.userNickName)
+    console.log(el.id, el.userNickName);
     setFollowInfo({
       id: el.id,
       userId: el.userId,
       userNickName: el.userNickName,
       userImage: el.userImage
-    })
-    
-    console.log("팔로우 유저정보",followInfo)
+    });
+
+    console.log('팔로우 유저정보', followInfo);
     history.push({
       pathname: `/userPage/${followInfo.userNickName}`,
-      state: { followInfo: followInfo }})
-  }
-  
+      state: { followInfo: followInfo }
+    });
+  };
 
   // 노티스 모달 상태변경 함수
   const NoticeModalOpenHandler = () => {
-    setInOpen(!isOpen)
-  }
+    setInOpen(!isOpen);
+  };
   const history = useHistory();
 
   // 팔로우 피드 리스트 서버요청 함수
   // const getFollowFeedList = () => {
-  //   Axios.get(`http://localhost:4000/user/${userInfo.id}`, 
+  //   Axios.get(`http://localhost:4000/user/${userInfo.id}`,
   //     {
   //       headers: { 'Contnet-Type': 'application/json' }
   //     })
@@ -115,24 +114,24 @@ export const Followfeed = ({ followFeedList }) => {
 
   // const userPageMove = () => {
   //   console.log('페이지 이동 함수 실행')
-    
+
   // }
 
   const feedList = followFeedList.map((el, index) => {
     return (
-      <UserInfoContainer key={index} >
+      <UserInfoContainer key={index}>
         <UserInfo>
           <UserNameAndImage>
-            <UserImageContainer onClick={() => getFollowInfo(el)} >
+            <UserImageContainer onClick={() => getFollowInfo(el)}>
               {el.userImage.length === 0
                 ? <UserImage src={el.userImage} />
                 : <DefaultUserImage src={userImage} />} {/* 경로문제는 추후 수정 필요함 */}
             </UserImageContainer>
-            <UserNickName onClick={() => getFollowInfo(el)} >
+            <UserNickName onClick={() => getFollowInfo(el)}>
               {el.userNickName}
             </UserNickName>
             <UserFollowIcon value={el.id} onClick={followHandler} onChange={(el) => setFollowInfo(el)}>
-              {el['Articles.user_Id'] === el['Follows.follow_Id'] ? <FaUserCheck onClick={NoticeModalOpenHandler}/> : '팔로우'}
+              {el['Articles.user_Id'] === el['Follows.follow_Id'] ? <FaUserCheck onClick={NoticeModalOpenHandler} /> : '팔로우'}
             </UserFollowIcon>
           </UserNameAndImage>
           <PostCreatedAt>
@@ -148,12 +147,11 @@ export const Followfeed = ({ followFeedList }) => {
     );
   });
 
-
   // 유저페이지가 만들어졌으면 검색한 결과가 없습니다는 검색 결과창에서 팝업되어야 함.
   return (
     <>
       <FeedContentContainer>
-        {isOpen ? <NoticeModal NoticeModalOpenHandler={NoticeModalOpenHandler} followInfo={followInfo}/> : null}
+        {isOpen ? <NoticeModal NoticeModalOpenHandler={NoticeModalOpenHandler} followInfo={followInfo} /> : null}
         {followFeedList.length === 0
           ? <div>검색한 결과가 없습니다.</div>
           : <>

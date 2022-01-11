@@ -131,14 +131,14 @@ export function UserModifyModal ({ closeUserInfoModify, userInfoModifyBtnHandler
       <UserInfoModifyModalContainer onClick={userInfoModifyBtnHandler}>
         <UserInfoModifyContainer onClick={(e) => e.stopPropagation()}>
         <ModifyCloseSection>
-            <div onClick={closeModal}>
-              <IoClose />
-            </div>  
+          <div onClick={closeModal}>
+            <IoClose />
+          </div>  
           </ModifyCloseSection>
           <UserInfoSection>
             <UserImgSection>
               <EditPictureWrap>
-                <EditPictureBtn>사진변경</EditPictureBtn>
+                <EditPictureBtn>사진선택</EditPictureBtn>
               </EditPictureWrap>
               <UserImage src={data.userInfo.userImage}>
               

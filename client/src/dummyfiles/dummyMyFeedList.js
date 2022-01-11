@@ -74,7 +74,7 @@ export const data = {
             "user_Id": 3,
             "book_Title": "west rules for now",
             "book_Author": "sangkwon",
-            "book_Thumbnail": "https://bookthumb-phinf.pstatic.net/cover/150/437/15043771.jpg?type=m1&udate=20211023",
+            "book_Thumbnail": 'https://image.aladin.co.kr/product/2686/90/cover/8967350546_3.jpg',
             "book_Publisher": "ttang",
             "sentence": "i dont know what you mean",
             "comment": "me too",

@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { UserModifyModal } from '../UserInfoModify/UserModifyModal';
-import example from '../../assets/images/defaultUserImage.png'; // 더미 유저 이미지
+import { SetenceModal } from '../SentenceModal/SentenceModal';
 import { data } from '../../dummyfiles/dummyMyFeedList';
 
 import {
@@ -72,7 +72,7 @@ export default function MyPage () {
     createdAt: '',
   });
   const [isOpneModifyModal, setIsOpenModifyModal] = useState(false);
-  // const [isOpenSentenceModal, setIsOpenSentenceModal] = useState(false);
+  const [isOpenSentenceModal, setIsOpenSentenceModal] = useState(false);
   const history = useHistory();
 
   // 회원정보수정 버튼 누르면 회원정보수정 모달이 나오는 함수
@@ -84,28 +84,33 @@ export default function MyPage () {
     setIsOpenModifyModal(!isOpneModifyModal);
   };
 
-  // 북 썸네일을 누르면 EditPage로 가는 함수
-  const sendToEditPage = (el) => {
-    console.log('클릭');
-    history.push(
-      {
-        pathname: '/editpage',
-        state: {
-          articles: {
-            id: el.id,
-            user_Id: el.user_Id,
-            book_Title: el.book_Title,
-            book_Author: el.book_Author,
-            book_Thumbnail: el.book_Thumbnail,
-            book_Publisher: el.book_Publisher,
-            sentence: el.sentence,
-            comment: el.comment,
-            createdAt: el.createdAt,
-          }
-        }
-      }
-    );
+  // 북 썸네일을 누르면 SentenceModal이 나오는 함수
+  const openSentenceModalHandler = () => {
+    setIsOpenSentenceModal(!isOpenSentenceModal);
   }
+
+  // // 북 썸네일을 누르면 EditPage로 가는 함수
+  // const sendToEditPage = (el) => {
+  //   console.log('클릭');
+  //   history.push(
+  //     {
+  //       pathname: '/editpage',
+  //       state: {
+  //         articles: {
+  //           id: el.id,
+  //           user_Id: el.user_Id,
+  //           book_Title: el.book_Title,
+  //           book_Author: el.book_Author,
+  //           book_Thumbnail: el.book_Thumbnail,
+  //           book_Publisher: el.book_Publisher,
+  //           sentence: el.sentence,
+  //           comment: el.comment,
+  //           createdAt: el.createdAt,
+  //         }
+  //       }
+  //     }
+  //   );
+  // }
 
 
   
@@ -132,7 +137,7 @@ export default function MyPage () {
         <ArticleWrap key={index}>
           <Article 
             src={el.book_Thumbnail}
-            onClick={() => sendToEditPage(el)}
+            onClick={openSentenceModalHandler}
           />
         </ArticleWrap>
     )
@@ -150,6 +155,11 @@ export default function MyPage () {
             userInfo={userInfo}
             />
           : null}
+        {isOpenSentenceModal
+          ? <SetenceModal
+            openSentenceModalHandler={openSentenceModalHandler}
+            />
+          : null}  
         <UserInfoContainer>
           <UserImgSection>
             <UserImage src={data.userInfo.userImage} />
@@ -173,9 +183,11 @@ export default function MyPage () {
             </UserModifyBtn>
           </UserInfoSection>
         </UserInfoContainer>
-        <ArticleListTitle>목록</ArticleListTitle>
+        {/* <ArticleListTitle>목록</ArticleListTitle> */}
         <ArticleListContainer>
+        
           {articleList}
+
         </ArticleListContainer>
       </MypageContainer>
     </MyPageWholeContainer>

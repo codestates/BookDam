@@ -39,6 +39,12 @@ export const ModifyCloseSection = styled.div`
   > div {
     cursor: pointer;
   }
+
+  @media screen and (max-width: 500px) {
+    > div {
+    cursor: none;
+  }
+  }
 `;
 
 export const UserInfoSection = styled.div`
@@ -184,7 +190,7 @@ export const ModificationBtn = styled.button`
   border-radius: 5px;
   background-color: rgba(0,0,0,0);
   color: #12e272;
-  font-weight: 500;
+  font-weight: 900;
   margin: 10px;
   padding: 9px 12px;
   border-radius: 2px;

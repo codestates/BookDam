@@ -18,44 +18,42 @@ import {
   CloseBtnWrap,
   CloseBtn
 } from './SentenceModalStyle';
-import { BiDotsVerticalRounded } from "react-icons/bi";
+import { BiDotsVerticalRounded } from 'react-icons/bi';
 
 export const SetenceModal = ({ openSentenceModalHandler }) => {
-
   return (
     <>
       <SentenceModalBackContainer>
         {/* <SentenceContainer> */}
-          <UserInfoContainer>
+        <UserInfoContainer>
           <EditWrap>
             <div>
-            <BiDotsVerticalRounded />
+              <BiDotsVerticalRounded />
             </div>
-          </EditWrap>  
-            <UserInfo>
-              <UserNameAndImage>
-                <UserImageContainer>
-                  <UserImage />
-                  <DefaultUserImage />
-                </UserImageContainer>
-                <UserNickName />
-              </UserNameAndImage>
-              <PostCreatedAt>
-              </PostCreatedAt>
-            </UserInfo>
-            <ContentsContainer>
-                <Sentence />
-                <Comment />
-                <BookInfo />
-            </ContentsContainer>
-            <CloseBtnWrap>
-              <CloseBtn onClick={openSentenceModalHandler}>
-                닫기
-              </CloseBtn>
-            </CloseBtnWrap>
-          </UserInfoContainer>
+          </EditWrap>
+          <UserInfo>
+            <UserNameAndImage>
+              <UserImageContainer>
+                <UserImage />
+                <DefaultUserImage />
+              </UserImageContainer>
+              <UserNickName />
+            </UserNameAndImage>
+            <PostCreatedAt />
+          </UserInfo>
+          <ContentsContainer>
+            <Sentence />
+            <Comment />
+            <BookInfo />
+          </ContentsContainer>
+          <CloseBtnWrap>
+            <CloseBtn onClick={openSentenceModalHandler}>
+              닫기
+            </CloseBtn>
+          </CloseBtnWrap>
+        </UserInfoContainer>
         {/* </SentenceContainer> */}
       </SentenceModalBackContainer>
     </>
-  )
+  );
 };

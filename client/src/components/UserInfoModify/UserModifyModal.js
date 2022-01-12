@@ -133,16 +133,14 @@ export function UserModifyModal ({ closeUserInfoModify, userInfoModifyBtnHandler
           <ModifyCloseSection>
             <div onClick={closeModal}>
               <IoClose />
-            </div>  
+            </div>
           </ModifyCloseSection>
           <UserInfoSection>
             <UserImgSection>
               <EditPictureWrap>
                 <EditPictureBtn>사진선택</EditPictureBtn>
               </EditPictureWrap>
-              <UserImage src={data.userInfo.userImage}>
-              
-              </UserImage>
+              <UserImage src={data.userInfo.userImage} />
             </UserImgSection>
             <UserNickName>{data.userInfo.userNickName}</UserNickName>
           </UserInfoSection>

@@ -33,9 +33,9 @@ import {
 } from './EditStyle';
 
 export const Edit = ({ articleInfo }) => {
-  const location = useLocation()
+  const location = useLocation();
   const articles = location.state.articles; // MyPage 썸네일을 눌러서 넘어오는 articles 정보
-  console.log(articles)
+  console.log(articles);
   const state = useSelector(state => state.userInfoReducer);
   const { userInfo } = state; // 전역저장소에서 userInfo를 불러온다.
   const user_Id = userInfo.user_Id; // 현재 로그인한 사용자 정보

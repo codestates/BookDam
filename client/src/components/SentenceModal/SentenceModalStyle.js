@@ -64,8 +64,6 @@ export const EditWrap = styled.div`
   }
 `;
 
-
-
 export const UserInfo = styled.div`
   width: 90%;
   margin: 15px;

@@ -49,7 +49,7 @@ export default function MyPage () {
     userId: 'guest',
     userNickName: 'guset',
     userImage: ''
-  })
+  });
   const [userInfo, setUserInfo] = useState({
     id: 0,
     userId: '',
@@ -87,7 +87,7 @@ export default function MyPage () {
   // 북 썸네일을 누르면 SentenceModal이 나오는 함수
   const openSentenceModalHandler = () => {
     setIsOpenSentenceModal(!isOpenSentenceModal);
-  }
+  };
 
   // axios.get 회원정보 전체 조회 함수 (MyPage 접속했을 시)
   // const getUserInfoAll = () => {
@@ -121,51 +121,51 @@ export default function MyPage () {
   return (
     // react suspence hook (데이터가 없을 경우, 로딩 화면) 삼항 연산자로 getUserInfoAll 함수 처리
     <>
-    <MyPageWholeContainer>
-      <MypageContainer> 
-        {isOpneModifyModal
-          ? <UserModifyModal
-            userInfoModifyBtnHandler={userInfoModifyBtnHandler}
-            closeUserInfoModify={closeUserInfoModify}
-            userInfo={userInfo}
-            />
-          : null}
-        {isOpenSentenceModal
-          ? <SetenceModal
-            openSentenceModalHandler={openSentenceModalHandler}
-            />
-          : null}  
-        <UserInfoContainer>
-          <UserImgSection>
-            <UserImage src={data.userInfo.userImage} />
-          </UserImgSection>
-          <UserInfoSection>
-            <NickNameFollowSection>
-              <NickName>{data.userInfo.userNickName}</NickName>
-              <FollowContainer>
-                <Follow>팔로우
-                  <FollowCount>{data.follow.following}</FollowCount>
-                </Follow>
-                <Follower>팔로워
-                  <FollowerCount>{data.follow.following}</FollowerCount>
-                </Follower>
-              </FollowContainer>
-            </NickNameFollowSection>
-            <UserModifyBtn
-              onClick={userInfoModifyBtnHandler}
-            >
-              회원정보수정
-            </UserModifyBtn>
-          </UserInfoSection>
-        </UserInfoContainer>
-        {/* <ArticleListTitle>목록</ArticleListTitle> */}
-        <ArticleListContainer>
-        
-          {articleList}
+      <MyPageWholeContainer>
+        <MypageContainer>
+          {isOpneModifyModal
+            ? <UserModifyModal
+                userInfoModifyBtnHandler={userInfoModifyBtnHandler}
+                closeUserInfoModify={closeUserInfoModify}
+                userInfo={userInfo}
+              />
+            : null}
+          {isOpenSentenceModal
+            ? <SetenceModal
+                openSentenceModalHandler={openSentenceModalHandler}
+              />
+            : null}
+          <UserInfoContainer>
+            <UserImgSection>
+              <UserImage src={data.userInfo.userImage} />
+            </UserImgSection>
+            <UserInfoSection>
+              <NickNameFollowSection>
+                <NickName>{data.userInfo.userNickName}</NickName>
+                <FollowContainer>
+                  <Follow>팔로우
+                    <FollowCount>{data.follow.following}</FollowCount>
+                  </Follow>
+                  <Follower>팔로워
+                    <FollowerCount>{data.follow.following}</FollowerCount>
+                  </Follower>
+                </FollowContainer>
+              </NickNameFollowSection>
+              <UserModifyBtn
+                onClick={userInfoModifyBtnHandler}
+              >
+                회원정보수정
+              </UserModifyBtn>
+            </UserInfoSection>
+          </UserInfoContainer>
+          {/* <ArticleListTitle>목록</ArticleListTitle> */}
+          <ArticleListContainer>
 
-        </ArticleListContainer> 
-      </MypageContainer>
-    </MyPageWholeContainer>
+            {articleList}
+
+          </ArticleListContainer>
+        </MypageContainer>
+      </MyPageWholeContainer>
     </>
   );
 }

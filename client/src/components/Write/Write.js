@@ -35,8 +35,7 @@ import { GuestLoginModal } from '../GuestLoginModal/GuestLoginModal';
 import { SignupModal } from '../Signup/SignupModal';
 import { BookSearchModal } from '../BookSearchModal/BookSearchModal';
 import { NoInputNoticeModal } from '../NoticeModal/WriteNoticeModal/NoInputNoticeModal';
-import { SubmitConfirmModal} from '../NoticeModal/WriteNoticeModal/SubmitConfirmModal';
-
+import { SubmitConfirmModal } from '../NoticeModal/WriteNoticeModal/SubmitConfirmModal';
 
 export const Write = () => {
   const state = useSelector(state => state.userInfoReducer); // 로그인 상태변경용
@@ -121,15 +120,15 @@ export const Write = () => {
     setIsOpenSubmitModal(false);
     document.body.style.overflow = 'unset';
   };
-  
+
   const submitHandler = () => {
-    if(selectedData.title === '' || inputSentence === '' || inputSentence === '') {
-      setErrorMessage('내용을 입력하세요.')
+    if (selectedData.title === '' || inputSentence === '' || inputSentence === '') {
+      setErrorMessage('내용을 입력하세요.');
       setIsOpenNoticeModal(true);
     } else {
-      setErrorMessage('저장하시겠습니까?')
+      setErrorMessage('저장하시겠습니까?');
       setIsOpenSubmitModal(true);
-      document.body.style.overflow = 'hidden'; 
+      document.body.style.overflow = 'hidden';
     }
   };
 
@@ -144,7 +143,7 @@ export const Write = () => {
     };
 
     if (selectedData.title === '' || inputSentence === ' ' || inputComment === '') {
-      setErrorMessage('내용을 입력하세요.')
+      setErrorMessage('내용을 입력하세요.');
       setIsOpenNoticeModal(true);
       document.body.style.overflow = 'hidden';
     } else {
@@ -202,8 +201,8 @@ export const Write = () => {
           : null}
 
         {isOpenSubmitModal
-          ? <SubmitConfirmModal errorMessage={errorMessage} handleSubmit={handleSubmit} handleCloseNoticeModal={handleCloseNoticeModal}/>
-          : null} 
+          ? <SubmitConfirmModal errorMessage={errorMessage} handleSubmit={handleSubmit} handleCloseNoticeModal={handleCloseNoticeModal} />
+          : null}
         <SearchBookWrapper>
           <SearchBookContainer>
             <SearchBookInfoContainer>

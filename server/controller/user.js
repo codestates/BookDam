@@ -110,11 +110,11 @@ module.exports = {
   },
   get: async (req, res) => { // test done
     const id = parseInt(req.params.user_Id, 10);
-    const page = parseInt(req.query.page, 10)
+    const page = parseInt(req.query.page, 10);
     if (Number.isNaN(id)) return res.status(400).json({ message: 'failure' });
     if (Number.isNaN(page)) return res.status(400).json({ message: 'failure' });
-    const cookie = req.cookies.jwt;
-    if (!cookie) return res.status(401).json({ message: '로그인 유저가 아닙니다.' });
+    // const cookie = req.cookies.jwt;
+    // if (!cookie) return res.status(401).json({ message: '로그인 유저가 아닙니다.' });
     const findUser = await UserModel.findOne({
       where: { id: id },
       attributes: { exclude: ['updatedAt', 'createdAt', 'password'] }

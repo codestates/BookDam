@@ -7,7 +7,7 @@ module.exports = {
         id: '1',
         userId: 'guest',
         userNickName: '게스트',
-        password: '$2b$10$RJq0gXxBHhLsRhMtI8U3p./kk.KPvdohoMx179N3HvbUaDpPbMi1.', //1234
+        password: '$2b$10$RJq0gXxBHhLsRhMtI8U3p./kk.KPvdohoMx179N3HvbUaDpPbMi1.', // 1234
         userImage: '../../assets/images/defaultUserImage.png',
         createdAt: new Date(),
         updatedAt: new Date()
@@ -16,7 +16,7 @@ module.exports = {
         id: '2',
         userId: 'BookDam',
         userNickName: 'BookDam',
-        password: '$2b$10$RJq0gXxBHhLsRhMtI8U3p./kk.KPvdohoMx179N3HvbUaDpPbMi1.', //1234
+        password: '$2b$10$RJq0gXxBHhLsRhMtI8U3p./kk.KPvdohoMx179N3HvbUaDpPbMi1.', // 1234
         userImage: '../../assets/images/defaultUserImage.png',
         createdAt: new Date(),
         updatedAt: new Date()

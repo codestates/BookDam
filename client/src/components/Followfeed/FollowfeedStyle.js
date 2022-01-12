@@ -47,7 +47,7 @@ height: 100%;
 width: 100%;
 `;
 export const UserNameAndImage = styled.div`
-width: 50%;
+width: 70%;
 display:flex;
 flex-direction: row;
 justify-content: left;

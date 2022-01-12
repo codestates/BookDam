@@ -105,6 +105,12 @@ export const Followfeed = ({ followFeedList }) => {
 
   // 팔로우 추가 함수
   const followHandler = (el) => {
+    setFollowInfo({
+      id: el["User.id"],
+      userId: el["User.userId"],
+      userNickName: el["User.userNickName"],
+      userImage: el["User.userImage"],
+    })
     // el의 key값에 접근해서 핸들러 함수를 실행하면 개별실행도 가능해짐.
     // 실행할 때 조건문으로 article의 id가
     if (el["User.Follows.user_Id"] !== userInfo.id) {

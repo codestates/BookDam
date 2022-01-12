@@ -44,7 +44,7 @@ export const SetenceModal = ({ openSentenceModalHandler }) => {
           <UserInfoContainer>
           <EditWrapper onClick={openMeunHandler}>
             <div>
-            <BiDotsVerticalRounded />
+              <BiDotsVerticalRounded />
             </div>
           </EditWrapper>  
           {isOpenMenu ? 
@@ -92,5 +92,5 @@ export const SetenceModal = ({ openSentenceModalHandler }) => {
         </SentenceContainer>
       </SentenceModalBackContainer>
     </>
-  )
+  );
 };

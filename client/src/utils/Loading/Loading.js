@@ -1,14 +1,15 @@
 import React from 'react';
-import { 
+import {
   LoadingContainer,
-  LoadingCom } from "./LoadingStyle"
+  LoadingCom
+} from './LoadingStyle';
 
-export function Loading() {
+export function Loading () {
   return (
     <>
       <LoadingContainer>
         <LoadingCom />
       </LoadingContainer>
     </>
-  )
+  );
 }

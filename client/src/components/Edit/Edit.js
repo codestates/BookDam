@@ -44,7 +44,6 @@ export const Edit = () => {
   const [isOpenNoticeModal, setIsOpenNoticeModal] = useState(false);
   const [isOpenSubmitModal, setIsOpenSubmitModal] = useState(false);
 
- 
   // const { article_Id, sentence, comment } = articleInfo;
   const [errorMessage, setErrorMessage] = useState('');
   const [inputSentence, setInputSentence] = useState(articleInfo.sentence);

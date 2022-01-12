@@ -11,7 +11,7 @@ import {
   RecommendListContainer,
   RecommendList
 } from './UsersearchStyle';
-import { useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
 import Axios from 'axios';
 import data from '../../dummyfiles/dummyFeedList';
 import { userSearchDummyData } from '../../dummyfiles/dummyUserSearch';
@@ -20,8 +20,8 @@ import userImage from '../../assets/images/defaultUserImage.png';
 export const Searchuser = ({ setFollowFeedList }) => {
   const [filter, setFilter] = useState([]);
   const [hasInputValue, setHasInputValue] = useState(false);
-  const [searchUser, setSearchUser] = useState([])
-  const history = useHistory()
+  const [searchUser, setSearchUser] = useState([]);
+  const history = useHistory();
 
   const handlerInputSearchUser = (e) => { // 인풋창에 입력된 값을 필터 상태에 넣어서 관리
     setFilter(e.target.value);
@@ -42,15 +42,17 @@ export const Searchuser = ({ setFollowFeedList }) => {
   // }, [filter])
 
   const callUserPage = (el) => {
-    history.push({              
+    history.push({
       pathname: `/userPage/${el.userNickName}`,
-      state: { followInfo: {
-        id: el.id,
-        userId: el.userId,
-        userNickName: el.userNickName,
-        userImage: el.userImage 
-      }}})
-
+      state: {
+        followInfo: {
+          id: el.id,
+          userId: el.userId,
+          userNickName: el.userNickName,
+          userImage: el.userImage
+        }
+      }
+    });
   };
   const getSearchUserFeedList = (result) => {
     // setFollowFeedList(result);
@@ -63,11 +65,11 @@ export const Searchuser = ({ setFollowFeedList }) => {
 
   // input에 입력된 값으로 유저닉네임을 조회해서 해당 값을 포함하는지 여부를 판단해서 filterData라는 변수에 할당함.
   // filterData에 담긴 값을 FeedList에 담아서 재랜더링 해준다.
-  
+
   const filterData = data.filter((el) => {
     return el.userNickName.indexOf(filter) > -1;
   });
-  
+
   useEffect(() => {
     // setSearchUser()
     getSearchUserFeedList(filterData);

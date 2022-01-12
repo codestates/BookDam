@@ -98,7 +98,6 @@ export default function MyPage () {
     })
   }
 
-
   // 내 정보 전체를 조회하는 함수 (무한 스크롤 적용)
   const getMyInfoAll = useCallback(() => {
     setLoading(true)
@@ -139,11 +138,6 @@ export default function MyPage () {
   }, [inView, loading])
 
 
-//---------------------------------------------------//
-  // if (myUserInfo.id === 0) {
-  //   getUserInfoAll()
-  // }
-
   console.log('아티클 목록',myArticleList);
   const myArticles = myArticleList.map((el, index) => {
     return (
@@ -159,7 +153,6 @@ export default function MyPage () {
   return (
     // react suspence hook (데이터가 없을 경우, 로딩 화면) 삼항 연산자로 getUserInfoAll 함수 처리
     <>
-
     <MyPageWholeContainer>
       <MypageContainer> 
         {isOpneModifyModal

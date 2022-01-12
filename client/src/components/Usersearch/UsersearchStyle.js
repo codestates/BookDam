@@ -59,8 +59,8 @@ export const UserSearchResultContainer = styled.ul`
   padding-inline-start: 0px;
   z-index: 3;
   overflow: auto;
-  cursor: pointer;
   > li {
+    cursor: pointer;
     margin-top: 1px;
     height: 30px;
     display: flex;
@@ -103,6 +103,9 @@ width: 100%;
 height: 450px;
 margin: 0 0 2px 2px;
 /* border: 1px solid; */
+@media screen and (max-width: 500px) {
+  display: none;
+}
 .Recommend {
   background-color: #fff;
   border: 0;

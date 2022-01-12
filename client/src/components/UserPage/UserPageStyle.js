@@ -129,8 +129,6 @@ export const FollowerCount = styled.span`
   margin-left: 5px;
 `;
 
-
-
 // Article 영역 (목록 제목)
 export const ArticleListTitle = styled.div`
   height: 30px;

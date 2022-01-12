@@ -35,14 +35,14 @@ export default function Navbar () {
   // 뒤로가기 버튼 함수
   const goBackHandler = () => {
     history.goBack();
-  }
+  };
 
   return (
     <>
       <NavbarContainer>
         {isOpenNavSidebar ? <NavSidebar menuBtnHandler={menuBtnHandler} /> : null}
         <BackSection>
-          <FaArrowLeft onClick={goBackHandler}/>
+          <FaArrowLeft onClick={goBackHandler} />
         </BackSection>
 
         <NavbarWrapper>

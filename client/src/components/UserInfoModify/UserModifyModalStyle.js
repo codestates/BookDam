@@ -23,7 +23,7 @@ export const UserInfoModifyContainer = styled.div`
   transform: translate(-50%, -50%);
   max-height: 80%;
   width: 20rem;
-  height: 60%;
+  height: 450px;
   padding: 16px;
   background: white;
   border-radius: 10px;
@@ -91,12 +91,9 @@ export const EditPictureBtn = styled.button`
   font-weight: 500;
   letter-spacing: normal;
   line-height: 1.5;
-  overflow: hidden;
   padding: 3px;
   position: relative;
   text-align: center;
-  text-decoration: none;
-  vertical-align: top;
   white-space: nowrap;
 `;
 

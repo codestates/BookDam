@@ -55,6 +55,7 @@ export const Followfeed = ({ followFeedList }) => {
 
   // 서버에서 아이템을 가지고 오는 함수
   const getFolowFeedLists = useCallback(() => {
+    console.log('요청보냄')
     setLoading(true)
     setTimeout(() => { 
       Axios.get(`http://localhost:4000/article/${userInfo.id}?page=${page}` ,
@@ -66,6 +67,7 @@ export const Followfeed = ({ followFeedList }) => {
       }
     })
     .then((res) => {
+      console.log(page)
       setFolowFeedLists(followFeedLists => [...followFeedLists, ...res.data.articleData])
     })
     .catch((err)=> {
@@ -167,8 +169,8 @@ export const Followfeed = ({ followFeedList }) => {
           ? <div><Loading/></div>
           : <>
             {feedList}
+            {loading ? <Loading /> : null}
           </>}
-          {loading ? <Loading /> : null}
       </FeedContentContainer>
     </>
   );

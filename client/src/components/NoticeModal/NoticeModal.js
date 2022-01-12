@@ -11,18 +11,23 @@ export const NoticeModal = ({ NoticeModalOpenHandler, followInfo, userInfo }) =>
   console.log('유저정보', userInfo)
   console.log('팔로우정보', followInfo)
   const deleteFollowReq = () => {
-    Axios.delete(`http://localhost:4000/follow/${userInfo.id}?${followInfo.id}`,
-      {
-        headers: { 'Contnet-Type': 'application/json' }
-      })
-      .then((data) => {
-        
-        NoticeModalOpenHandler()
-      })
-      .catch((err) => {
-        console.log(err)
-        NoticeModalOpenHandler()
-      })
+    if (userInfo.id === 1) {
+      NoticeModalOpenHandler()
+    }
+    else {
+      Axios.delete(`http://localhost:4000/follow/${userInfo.id}?follow_Id=${followInfo.id}`,
+        {
+          headers: { 'Contnet-Type': 'application/json' }
+        })
+        .then((data) => {
+          
+          NoticeModalOpenHandler()
+        })
+        .catch((err) => {
+          console.log(err)
+          NoticeModalOpenHandler()
+        })
+    }
   };
 
   return (

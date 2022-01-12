@@ -1,9 +1,15 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { LogoutAction } from '../../actions/UserInfoAction';
 import {
   UserInfoModifyModalBackground,
   SidebarContainer,
   SidebarTop,
+  SidebarHeader,
+  SidebarLeft,
+  SidebarCloseButton,
   UserSection,
   UserImageWrap,
   UserImage,
@@ -16,17 +22,37 @@ import {
   QuestionSection,
   Opinion,
   Question,
-  LogoutSection,
-  Logout
+  LoginoutSection,
+  Loginout
 } from './NavSidebarStyle';
 
 export function NavSidebar ({ menuBtnHandler }) {
   const userState = useSelector(state => state.userInfoReducer);
-  const { userInfo } = userState; // 저장된 유저 정보
+  const { isLogin, userInfo } = userState; // 저장된 유저 정보
+  const dispatch = useDispatch();
 
   // 로그아웃 핸들러
-  const logoutHandler = () => {
-
+  const logoutHandler = async () => {
+    await axios({
+      withCredentials: true,
+      method: 'post',
+      url: 'http://localhost:4000/user/logout',
+      headers: {
+        authorization: `Bearer: ${process.env.Client_Secret}`,
+        'Content-Type': 'application/json'
+      }
+    })
+      .then((res) => {
+        console.log(res);
+        localStorage.removeItem('logged');
+        if (res.data.message === '로그아웃 되었습니다.') {
+          dispatch(LogoutAction());
+          menuBtnHandler();
+        } else {
+          console.log('로그아웃 실패');
+        }
+      })
+      .catch(err => console.log('err'));
   };
 
   return (
@@ -34,6 +60,10 @@ export function NavSidebar ({ menuBtnHandler }) {
       <UserInfoModifyModalBackground onClick={menuBtnHandler}>
         <SidebarContainer onClick={(e) => e.stopPropagation()}>
           <SidebarTop>
+            <SidebarHeader>
+              <SidebarLeft />
+              <SidebarCloseButton onClick={menuBtnHandler}>&times;</SidebarCloseButton>
+            </SidebarHeader>
             <UserSection>
               <UserImageWrap>
                 <UserImage />
@@ -41,9 +71,15 @@ export function NavSidebar ({ menuBtnHandler }) {
               <UserNickNamge>{userInfo.userNickName}</UserNickNamge>
             </UserSection>
             <MenuSection>
-              <Write>작성하기</Write>
-              <Feed>피드</Feed>
-              <MyPage>마이페이지</MyPage>
+              <Write onClick={menuBtnHandler}>
+                <Link to='/createPage' style={{ textDecoration: 'none' }}>작성하기</Link>
+              </Write>
+              <Feed onClick={menuBtnHandler}>
+                <Link to='/feedPage' style={{ textDecoration: 'none' }}>피드</Link>
+              </Feed>
+              <MyPage onClick={menuBtnHandler}>
+                <Link to='/mypage' style={{ textDecoration: 'none' }}>마이페이지</Link>
+              </MyPage>
             </MenuSection>
           </SidebarTop>
           <SidebarBottom>
@@ -55,11 +91,13 @@ export function NavSidebar ({ menuBtnHandler }) {
                 <Question>이메일 문의</Question>
               </a>
             </QuestionSection>
-            <LogoutSection>
-              <Logout onClick={logoutHandler}>
-                로그아웃
-              </Logout>
-            </LogoutSection>
+            <LoginoutSection>
+              {isLogin
+                ? <Loginout onClick={logoutHandler}>로그아웃</Loginout>
+                : <Loginout >
+                    <Link to='/' style={{ textDecoration: 'none' }}>시작하기</Link>
+                  </Loginout>}
+            </LoginoutSection>
           </SidebarBottom>
         </SidebarContainer>
       </UserInfoModifyModalBackground>

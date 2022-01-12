@@ -3,14 +3,17 @@ import {
   BookSearchModalWholeBackground,
   BookSearchModalWrapper,
   BookListModalContainer,
-  NoBookListDisplay ,
+  BookSearchModalHeader,
+  BookSearchModalLeft,
+  NoBookListDisplay,
   BookSearchCloseButton
 } from './BookSearchModalStyle';
 import { BookList } from './BookList';
 
-export const BookSearchModal = ({ handleSelect, setIsOpenBookSearchModal, searchData }) => {
+export const BookSearchModal = ({ isLoading, handleSelect, setIsOpenBookSearchModal, searchData, setSearchData }) => {
   const handleCloseBookSearchModal = () => {
     setIsOpenBookSearchModal(false);
+    setSearchData([]);
     document.body.style.overflow = 'unset'; // 스크롤 방지 해제
   };
 
@@ -18,13 +21,16 @@ export const BookSearchModal = ({ handleSelect, setIsOpenBookSearchModal, search
     <div>
       <BookSearchModalWholeBackground onClick={handleCloseBookSearchModal}>
         <BookSearchModalWrapper onClick={(e) => e.stopPropagation()}>
-          <div>
+          <BookSearchModalHeader>
+            <BookSearchModalLeft />
             <BookSearchCloseButton onClick={handleCloseBookSearchModal}>&times;</BookSearchCloseButton>
-          </div>
+          </BookSearchModalHeader>
           <BookListModalContainer>
             {searchData.length !== 0
             ? searchData.map((el, idx) => <BookList list={el} key={el.isbn} idx={idx} handleDelete={handleSelect} />)
-            : <NoBookListDisplay>검색 결과가 없습니다.</NoBookListDisplay>}
+            : isLoading 
+              ? <NoBookListDisplay>데이터를 불러오고 있습니다.</NoBookListDisplay>
+              : <NoBookListDisplay>검색결과가 없습니다.</NoBookListDisplay>}
           </BookListModalContainer>
         </BookSearchModalWrapper>
       </BookSearchModalWholeBackground>

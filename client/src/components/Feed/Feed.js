@@ -18,6 +18,11 @@ flex-direction: row;
 width: 970px;
 align-items: flex-start;
 justify-content: center;
+@media screen and (max-width: 500px) {
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+}
 `;
 
 export const Feed = () => {

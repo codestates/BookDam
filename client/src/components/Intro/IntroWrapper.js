@@ -23,6 +23,7 @@ import { GuestLoginAction, LogoutAction } from '../../actions/UserInfoAction';
 export const IntroWrapper = () => {
   const [isOpenLoginModal, setIsOpenLoginModal] = useState(false);
   const [isOpenSignupModal, setIsOpenSignupModal] = useState(false);
+  const [guestInfo, setGuestInfo] = useState({ userId: 'guest',password: '1234'}) 
   const state = useSelector(state => state.userInfoReducer); // 로그인 상태변경용
   const { isLogin, userInfo } = state; // 로그인 상태변경용
   const dispatch = useDispatch();
@@ -68,30 +69,34 @@ export const IntroWrapper = () => {
   };
 
   const guestLoginHandelr = async () => { // 게스트로 둘러보기시에 처리
-    await axios({
-      withCredentials: true,
-      method: 'post',
-      url: 'http://localhost:4000/user/login',
-      headers: {
-        authorization: `Bearer: ${process.env.Client_Secret}`,
-        'Content-Type': 'application/json'
-      },
-      data: {
-        userInfo: {
-          userId: 'guest',
-          password: '1234'
+    if(userInfo.userNickName !== 'passenger') {
+      history.push('/feedpage');
+    } else {
+      await axios({
+        withCredentials: true,
+        method: 'post',
+        url: 'http://localhost:4000/user/login',
+        headers: {
+          authorization: `Bearer: ${process.env.Client_Secret}`,
+          'Content-Type': 'application/json'
+        },
+        data: {
+          userInfo: {
+            userId: 'guest',
+            password: '1234'
+          }
         }
-      }
-    })
-      .then((res) => {
-        const userInfoData = res.data.userInfo;
-        if (userInfoData) {
-          dispatch(GuestLoginAction(userInfoData));
-          setIsOpenLoginModal(false);
-          document.body.style.overflow = 'unset'; // 스크롤 방지 해제
-          history.push('/feedpage');
-        }
-      });
+      })
+        .then((res) => {
+          const userInfoData = res.data.userInfo;
+          if (userInfoData) {
+            dispatch(GuestLoginAction(userInfoData));
+            setIsOpenLoginModal(false);
+            document.body.style.overflow = 'unset'; // 스크롤 방지 해제
+            history.push('/feedpage');
+          }
+        });
+    }
   };
 
   return (

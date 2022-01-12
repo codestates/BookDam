@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-import { data } from '../../dummyfiles/dummyBookSearch'; // 도서검색 테스트 위한 더미 데이터
 import {
   WriteWholeContainer,
   SearchBookWrapper,
@@ -37,7 +36,6 @@ import { BookSearchModal } from '../BookSearchModal/BookSearchModal';
 import { NoInputNoticeModal } from '../NoticeModal/WriteNoticeModal/NoInputNoticeModal';
 import { SubmitConfirmModal} from '../NoticeModal/WriteNoticeModal/SubmitConfirmModal';
 
-
 export const Write = () => {
   const state = useSelector(state => state.userInfoReducer); // 로그인 상태변경용
   const { isLogin, userInfo } = state; // 로그인 상태변경용
@@ -54,20 +52,48 @@ export const Write = () => {
   });
   const [inputSentence, setInputSentence] = useState('');
   const [inputComment, setInputComment] = useState('');
+  const [isLoading, setIsLoading] = useState(false)
   const history = useHistory();
 
   const handleInputValue = (e) => {
     setInputValue(e.target.value);
   };
 
-  const bookSearch = () => { // 도서 검색 버튼
+  const bookSearch = async () => { // 도서 검색 버튼
     if (inputValue) {
       setIsOpenBookSearchModal(true);
       document.body.style.overflow = 'hidden'; // 스크롤 방지 설정
-      const resultData = data.filter((el) => {
-        return el.title.includes(inputValue);
-      });
-      setSearchData(resultData);
+      setIsLoading(true);
+
+      axios({
+        withCredentials: true,
+        method: 'get',
+        url: `http://localhost:4000/search/book?query=${inputValue}`,
+        headers: {
+          authorization: `Bearer: ${process.env.Client_Secret}`,
+          'Content-Type': 'application/json'
+        }
+      })
+      .then((res) => {
+        let resultData = []
+        // eslint-disable-next-line array-callback-return
+        res.data.map((list) => {
+          console.log(list)
+          resultData.push({
+            itemId: list.$.itemId,
+            title: list.title[0],
+            image: list.cover[0],
+            author: list.author[0],
+            publisher: list.publisher[0],
+          })
+        })
+        setIsLoading(false);
+        setSearchData(resultData);
+      })
+      .catch(err => {
+        console.log(err.response)
+      })
+      
     } else {
       setErrorMessage('검색어를 입력하세요.');
     }
@@ -81,6 +107,7 @@ export const Write = () => {
         setSelectedData(el);
       }
     });
+    setIsOpenBookSearchModal(false);
   };
 
   const handleInputSentence = (e) => {
@@ -129,7 +156,7 @@ export const Write = () => {
     } else {
       setErrorMessage('저장하시겠습니까?')
       setIsOpenSubmitModal(true);
-      document.body.style.overflow = 'hidden'; 
+      document.body.style.overflow = 'unset'; //저정하고 스크롤 방지 해제 
     }
   };
 
@@ -164,11 +191,14 @@ export const Write = () => {
           console.log(res.data.message);
           if (res.data.message === 'success') {
             console.log('저장이 완료되었습니다.');
-            history.push('/feedPage');
+            history.push('/myPage');
           } else {
             console.log('정상적인 접근이 아닙니다.');
           }
-        });
+        })
+        .catch(err => {
+          console.log(err.response)
+        })
     }
   };
 
@@ -193,6 +223,8 @@ export const Write = () => {
           ? <BookSearchModal
               handleSelect={handleSelect}
               searchData={searchData}
+              setSearchData={setSearchData}
+              isLoading={isLoading}
               setIsOpenBookSearchModal={setIsOpenBookSearchModal}
             />
           : null}

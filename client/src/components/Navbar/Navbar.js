@@ -44,27 +44,31 @@ export default function Navbar () {
         <BackSection>
           <FaArrowLeft onClick={goBackHandler}/>
         </BackSection>
-        <LogoSection>
-          <Link to='/'><LogoImage src={Logo} /></Link>
-        </LogoSection>
-        <NavMenuSection>
-          <NavMenu>
-            <Link to='/createPage' style={{ textDecoration: 'none' }}>작성하기</Link>
-          </NavMenu>
-          <NavMenu>
-            <Link to='/feedPage' style={{ textDecoration: 'none' }}>피드</Link>
-          </NavMenu>
-          <NavMenu>
-            <Link to='/mypage' style={{ textDecoration: 'none' }}>마이페이지</Link>
-          </NavMenu>
-          {/* <NavMenu>
-            <Link to='/editpage' style={{ textDecoration: 'none' }}>수정하기</Link>
-          </NavMenu> */}
-        </NavMenuSection>
-        <UserSection>
-          <UserImage />
-          <UserNickName>{userInfo.userNickName}</UserNickName>
-        </UserSection>
+
+        <NavbarWrapper>
+          <LogoSection>
+            <Link to='/'><LogoImage src={Logo} /></Link>
+          </LogoSection>
+          <NavMenuSection>
+            <NavMenu>
+              <Link to='/createPage' style={{ textDecoration: 'none' }}>작성하기</Link>
+            </NavMenu>
+            <NavMenu>
+              <Link to='/feedPage' style={{ textDecoration: 'none' }}>피드</Link>
+            </NavMenu>
+            <NavMenu>
+              <Link to='/mypage' style={{ textDecoration: 'none' }}>마이페이지</Link>
+            </NavMenu>
+            {/* <NavMenu>
+              <Link to='/editpage' style={{ textDecoration: 'none' }}>수정하기</Link>
+            </NavMenu> */}
+          </NavMenuSection>
+          <UserSection>
+            <UserImage />
+            <UserNickName>{userInfo.userNickName}</UserNickName>
+          </UserSection>
+        </NavbarWrapper>
+
         <SideMenuSection onClick={menuBtnHandler}>
           <IoMenu />
         </SideMenuSection>

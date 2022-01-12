@@ -14,7 +14,7 @@ export const BookSearchModalContainer = styled.div`
 
 export const BookImageContainer = styled.div`
  /* border: 1px solid black; */
- width: 30%;
+ width: 45%;
  display: flex;
  justify-content: center;
  padding-top: 10px;
@@ -23,12 +23,12 @@ export const BookImageContainer = styled.div`
 
 export const BookThumbnailContainer = styled.img`
  border: 1px solid black; //필수
- width: 80%;
+ width: 100%%;
 `;
 
 export const BookInfoContainer = styled.div`
  /* border: 1px solid black; */
- width: 70%;
+ width: 55%;
  display: flex;
  flex-direction: column;
  padding-top: 10px;
@@ -39,7 +39,7 @@ export const BookInfoContainer = styled.div`
 
 export const BookTitleContainer = styled.div`
   width: 100%;
-  height: 60%;
+  height: 50%;
   /* border: 1px solid black; */
   font-size: 18px;
   display: flex;
@@ -61,7 +61,7 @@ export const BookAuthorContainer = styled.div`
 
 export const BookPublisherContainer = styled.div`
   width: 100%;
-  height: 20%;
+  height: 25%;
   /* border: 1px solid black; */
   display: flex;
   align-items: flex-start;

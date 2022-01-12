@@ -50,6 +50,11 @@ export const Edit = () => {
   const [inputComment, setInputComment] = useState(articleInfo.comment);
   const history = useHistory();
 
+  //* --- SentenceModal에서 넘겨주는 myArticleImfo 받아오는 변수 ---//
+  const location = useLocation()
+  const myArticleInfo = location.state.myArticleInfo;
+  console.log('SentenceModal로부터: ', myArticleInfo)
+
   const handleInputSentence = (e) => {
     setInputSentence(e.target.value);
   };

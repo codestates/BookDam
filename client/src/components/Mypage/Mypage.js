@@ -1,7 +1,7 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useInView } from 'react-intersection-observer';
 import { UserModifyModal } from '../UserInfoModify/UserModifyModal';
 import { SetenceModal } from '../SentenceModal/SentenceModal';
@@ -91,6 +91,7 @@ export default function MyPage () {
         userImage: el['User.userImage'],
         book_Title: el.book_Title,
         book_Author: el.book_Author,
+        book_Publisher: el.book_Publisher,
         sentence: el.sentence,
         comment: el.comment,
         createdAt: el.createdAt,
@@ -165,6 +166,7 @@ export default function MyPage () {
         {isOpenSentenceModal
           ? <SetenceModal
             openSentenceModalHandler={openSentenceModalHandler}
+            
             />
           : null}  
         <UserInfoContainer>

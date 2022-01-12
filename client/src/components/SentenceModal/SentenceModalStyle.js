@@ -54,11 +54,13 @@ export const UserInfoContainer = styled.div`
 
 // 삭제, 편집 버튼
 export const EditWrap = styled.div`
+  display: flex;
+  width: 100%;
   justify-content: flex-end;
   padding: 0;
   font-size: 25px;
   color: rgba(0, 0, 0, 0.3);
-  border: 1px solid black;
+  /* border: 1px solid black; */
   > div {
     cursor: pointer;
   }
@@ -180,7 +182,18 @@ font-size: 20px;
 }
 `;
 
-export const BookInfo = styled.div`
+export const BookTitle = styled.div`
+width: 100%;
+font-size: 20px;
+padding: 3px;
+margin-top: 10px;
+margin-left: 15px;
+@media screen and (max-width: 500px) {
+  font-size: 8px
+}
+`;
+
+export const BookAuthor = styled.div`
 width: 100%;
 font-size: 20px;
 padding: 3px;

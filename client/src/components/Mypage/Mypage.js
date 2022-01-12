@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
+import { useInView } from 'react-intersection-observer';
 import { UserModifyModal } from '../UserInfoModify/UserModifyModal';
 import { SetenceModal } from '../SentenceModal/SentenceModal';
 import { data } from '../../dummyfiles/dummyMyFeedList';
@@ -41,8 +42,8 @@ export default function MyPage () {
   // axios로 회원 정보 조회(유저 정보 및 아티클)
   // http://localhost:4000/user/:userId
 
-  // const userState = useSelector(state => state.userInfoReducer);
-  // const { userInfo } = userState;
+  const userState = useSelector(state => state.userInfoReducer);
+  const { userInfo } = userState;
 
   const [isGuest, setIsGuest] = useState({
     id: 0,
@@ -50,7 +51,7 @@ export default function MyPage () {
     userNickName: 'guset',
     userImage: ''
   })
-  const [userInfo, setUserInfo] = useState({
+  const [myUserInfo, setMyUserInfo] = useState({
     id: 0,
     userId: '',
     userNickName: '',
@@ -60,20 +61,25 @@ export default function MyPage () {
     following: 0,
     follower: 0
   });
-  const [articles, setArticles] = useState({
+  const [myArticleList, setMyArticleList] = useState([]);
+  const [articleInfo, setArticleInfo] = useState({
     id: 0,
-    user_Id: 0,
+    user_Id: '',
     book_Title: '',
     book_Author: '',
     book_Thumbnail: '',
     book_Publisher: '',
     sentence: '',
     comment: '',
-    createdAt: ''
-  });
+    createdAt: '',
+  })
   const [isOpneModifyModal, setIsOpenModifyModal] = useState(false);
   const [isOpenSentenceModal, setIsOpenSentenceModal] = useState(false);
   const history = useHistory();
+
+  const [page, setPage] = useState(0); // 무한 스크롤시 페이지 필요
+  const [loading, setLoading] = useState(false);
+  const [ref, inView] = useInView(); // react-intersection-observer -> div가 viewport에 보여질 때 inView 값이 true
 
   // 회원정보수정 버튼 누르면 회원정보수정 모달이 나오는 함수
   const userInfoModifyBtnHandler = () => {
@@ -85,34 +91,90 @@ export default function MyPage () {
   };
 
   // 북 썸네일을 누르면 SentenceModal이 나오는 함수
-  const openSentenceModalHandler = () => {
+  const openSentenceModalHandler = (el) => {
     setIsOpenSentenceModal(!isOpenSentenceModal);
+    history.push({
+      state: {
+        articleInfo : {
+        id: el.id,
+        // user_Id: '',
+        userNickName:'',
+        book_Title: el.book_Title,
+        book_Author: el.book_Author,
+        sentence: el.sentence,
+        comment: el.comment,
+        createdAt: el.createdAt,
+      }}
+    })
   }
 
   // axios.get 회원정보 전체 조회 함수 (MyPage 접속했을 시)
-  // const getUserInfoAll = () => {
-  //   axios
-  //     .get(`http://localhost:4000/user/${userInfo.id}`,
-  //       {
-  //         headers: { 'Content-Type': 'application/json' }
-  //       })
-  //     .then((data) => {
-  //       console.log(data)
-  //       setUserInfo(data.userInfo.id)
-  //       setFollow()
-  //       setArticles()
-  //     })
-  //     .catch((err) => {
-  //       console.log(err)
-  //     })
-  // }
+  const getUserInfoAll = () => {
+    axios
+      .get(`http://localhost:4000/user/${userInfo.id}`,
+        {
+          headers: { 'Content-Type': 'application/json' }
+        })
+      .then((res) => {
+        // console.log(res.data.userInfo)
+        // console.log(res.data.follow)
+        setMyUserInfo({
+          id: res.data.userInfo.id,
+          userId: res.data.userInfo.userId,
+          userNickName: res.data.userInfo.userNickName,
+          userImage: res.data.userInfo.userImage
+        })
+        setFollow({
+          following: res.data.follow.following,
+          follower: res.data.follow.follower
+        })
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  };
 
-  const articleList = data.articleData.map((el, index) => {
+  //articles list 조회하는 함수 (무한 스크롤 적용)
+  const getMyArticleList = useCallback(async () => {
+    setLoading(true)
+    await axios
+    .get(`http://localhost:4000/article/${userInfo.id}?page=${page}`,
+      {
+        headers: { 'Content-Type': 'application/json' }
+      })
+    .then((res) => {
+      console.log(res.data)
+      setMyArticleList(myArticleList => [...myArticleList, ...res.data.articleData])
+    })
+    setLoading(false)
+  }, [page])
+
+  // `getArticleList` 가 바뀔 때 마다 함수 실행
+  useEffect(() => {
+    getMyArticleList()
+  }, [getMyArticleList])
+
+  useEffect(() => {
+    // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
+    if (inView && !loading) {
+      setPage(prevState => prevState + 1)
+    }
+  }, [inView, loading])
+
+
+//---------------------------------------------------//
+  // 유저 정보 호출!! 무한 렌더링 방지
+  if (myUserInfo.id === 0) {
+    getUserInfoAll(); 
+  }
+  
+  console.log('아티클 목록',myArticleList);
+  const myArticles = myArticleList.map((el, index) => {
     return (
       <ArticleWrap key={index}>
         <Article
           src={el.book_Thumbnail}
-          onClick={openSentenceModalHandler}
+          onClick={() => openSentenceModalHandler(el)}
         />
       </ArticleWrap>
     );
@@ -127,7 +189,7 @@ export default function MyPage () {
           ? <UserModifyModal
             userInfoModifyBtnHandler={userInfoModifyBtnHandler}
             closeUserInfoModify={closeUserInfoModify}
-            userInfo={userInfo}
+            myUserInfo={myUserInfo}
             />
           : null}
         {isOpenSentenceModal
@@ -137,17 +199,17 @@ export default function MyPage () {
           : null}  
         <UserInfoContainer>
           <UserImgSection>
-            <UserImage src={data.userInfo.userImage} />
+            <UserImage src={myUserInfo.userImage} />
           </UserImgSection>
           <UserInfoSection>
             <NickNameFollowSection>
-              <NickName>{data.userInfo.userNickName}</NickName>
+              <NickName>{myUserInfo.userNickName}</NickName>
               <FollowContainer>
                 <Follow>팔로우
-                  <FollowCount>{data.follow.following}</FollowCount>
+                  <FollowCount>{follow.following}</FollowCount>
                 </Follow>
                 <Follower>팔로워
-                  <FollowerCount>{data.follow.following}</FollowerCount>
+                  <FollowerCount>{follow.follower}</FollowerCount>
                 </Follower>
               </FollowContainer>
             </NickNameFollowSection>
@@ -160,10 +222,9 @@ export default function MyPage () {
         </UserInfoContainer>
         {/* <ArticleListTitle>목록</ArticleListTitle> */}
         <ArticleListContainer>
-        
-          {articleList}
-
+          {myArticles}
         </ArticleListContainer> 
+        <div ref={ref}></div>
       </MypageContainer>
     </MyPageWholeContainer>
     </>

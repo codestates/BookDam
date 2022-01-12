@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import {
   SentenceModalBackContainer,
   SentenceContainer,
@@ -14,13 +15,19 @@ import {
   ContentsContainer,
   Sentence,
   Comment,
-  BookInfo,
+  BookTitle,
+  BookAuthor,
   CloseBtnWrap,
   CloseBtn
 } from './SentenceModalStyle';
 import { BiDotsVerticalRounded } from "react-icons/bi";
+import example from '../../assets/images/defaultUserImage.png';
 
 export const SetenceModal = ({ openSentenceModalHandler }) => {
+  const location = useLocation();
+  const articleInfo = location.state.articleInfo;
+
+  console.log(location.state)
 
   return (
     <>
@@ -35,18 +42,30 @@ export const SetenceModal = ({ openSentenceModalHandler }) => {
             <UserInfo>
               <UserNameAndImage>
                 <UserImageContainer>
-                  <UserImage />
+                  <UserImage src={example} />
                   <DefaultUserImage />
                 </UserImageContainer>
-                <UserNickName />
+                <UserNickName>
+                  민트초코깡
+                </UserNickName>
               </UserNameAndImage>
               <PostCreatedAt>
+                {articleInfo.createdAt}
               </PostCreatedAt>
             </UserInfo>
             <ContentsContainer>
-                <Sentence />
-                <Comment />
-                <BookInfo />
+                <Sentence>
+                  {articleInfo.sentence}
+                </Sentence>
+                <Comment>
+                  {articleInfo.comment}
+                </Comment>
+                <BookTitle>
+                  {articleInfo.book_Title}
+                </BookTitle>
+                <BookAuthor>
+                  {articleInfo.book_Author}
+                </BookAuthor>
             </ContentsContainer>
             <CloseBtnWrap>
               <CloseBtn onClick={openSentenceModalHandler}>

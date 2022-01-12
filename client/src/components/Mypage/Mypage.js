@@ -6,6 +6,7 @@ import { useInView } from 'react-intersection-observer';
 import { UserModifyModal } from '../UserInfoModify/UserModifyModal';
 import { SetenceModal } from '../SentenceModal/SentenceModal';
 import { data } from '../../dummyfiles/dummyMyFeedList';
+import example from '../../assets/images/defaultUserImage.png'
 
 import {
   MyPageWholeContainer,
@@ -62,17 +63,6 @@ export default function MyPage () {
     follower: 0
   });
   const [myArticleList, setMyArticleList] = useState([]);
-  const [articleInfo, setArticleInfo] = useState({
-    id: 0,
-    user_Id: '',
-    book_Title: '',
-    book_Author: '',
-    book_Thumbnail: '',
-    book_Publisher: '',
-    sentence: '',
-    comment: '',
-    createdAt: '',
-  })
   const [isOpneModifyModal, setIsOpenModifyModal] = useState(false);
   const [isOpenSentenceModal, setIsOpenSentenceModal] = useState(false);
   const history = useHistory();
@@ -97,8 +87,8 @@ export default function MyPage () {
       state: {
         articleInfo : {
         id: el.id,
-        // user_Id: '',
-        userNickName:'',
+        userNickName: el['User.userNickName'],
+        userImage: el['User.userImage'],
         book_Title: el.book_Title,
         book_Author: el.book_Author,
         sentence: el.sentence,
@@ -108,16 +98,19 @@ export default function MyPage () {
     })
   }
 
-  // axios.get 회원정보 전체 조회 함수 (MyPage 접속했을 시)
-  const getUserInfoAll = () => {
-    axios
-      .get(`http://localhost:4000/user/${userInfo.id}`,
+
+  // 내 정보 전체를 조회하는 함수 (무한 스크롤 적용)
+  const getMyInfoAll = useCallback(() => {
+    setLoading(true)
+    setTimeout(() => {
+      axios
+      .get(`http://localhost:4000/user/${userInfo.id}?page=${page}`,
         {
           headers: { 'Content-Type': 'application/json' }
         })
       .then((res) => {
-        // console.log(res.data.userInfo)
-        // console.log(res.data.follow)
+        console.log(res.data)
+        setMyArticleList(myArticleList => [...myArticleList, ...res.data.articleData.rows])
         setMyUserInfo({
           id: res.data.userInfo.id,
           userId: res.data.userInfo.userId,
@@ -129,30 +122,14 @@ export default function MyPage () {
           follower: res.data.follow.follower
         })
       })
-      .catch((err) => {
-        console.log(err)
-      })
-  };
-
-  //articles list 조회하는 함수 (무한 스크롤 적용)
-  const getMyArticleList = useCallback(async () => {
-    setLoading(true)
-    await axios
-    .get(`http://localhost:4000/article/${userInfo.id}?page=${page}`,
-      {
-        headers: { 'Content-Type': 'application/json' }
-      })
-    .then((res) => {
-      console.log(res.data)
-      setMyArticleList(myArticleList => [...myArticleList, ...res.data.articleData])
-    })
+    }, 1000)
     setLoading(false)
   }, [page])
 
   // `getArticleList` 가 바뀔 때 마다 함수 실행
   useEffect(() => {
-    getMyArticleList()
-  }, [getMyArticleList])
+    getMyInfoAll()
+  }, [getMyInfoAll])
 
   useEffect(() => {
     // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
@@ -163,11 +140,10 @@ export default function MyPage () {
 
 
 //---------------------------------------------------//
-  // 유저 정보 호출!! 무한 렌더링 방지
-  if (myUserInfo.id === 0) {
-    getUserInfoAll(); 
-  }
-  
+  // if (myUserInfo.id === 0) {
+  //   getUserInfoAll()
+  // }
+
   console.log('아티클 목록',myArticleList);
   const myArticles = myArticleList.map((el, index) => {
     return (
@@ -183,6 +159,7 @@ export default function MyPage () {
   return (
     // react suspence hook (데이터가 없을 경우, 로딩 화면) 삼항 연산자로 getUserInfoAll 함수 처리
     <>
+
     <MyPageWholeContainer>
       <MypageContainer> 
         {isOpneModifyModal
@@ -199,7 +176,7 @@ export default function MyPage () {
           : null}  
         <UserInfoContainer>
           <UserImgSection>
-            <UserImage src={myUserInfo.userImage} />
+            <UserImage src={'../../assets/images/defaultUserImage.png'} />
           </UserImgSection>
           <UserInfoSection>
             <NickNameFollowSection>

@@ -23,7 +23,7 @@ export const UserInfoModifyContainer = styled.div`
   transform: translate(-50%, -50%);
   max-height: 80%;
   width: 20rem;
-  height: 60%;
+  height: 450px;
   padding: 16px;
   background: white;
   border-radius: 10px;

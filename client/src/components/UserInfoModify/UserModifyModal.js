@@ -29,7 +29,7 @@ import { data } from '../../dummyfiles/dummyMyFeedList';
 
 axios.defaults.withCredentials = true;
 
-export function UserModifyModal ({ closeUserInfoModify, userInfoModifyBtnHandler }) {
+export function UserModifyModal ({ closeUserInfoModify, userInfoModifyBtnHandler, myUserInfo }) {
   // const userState = useSelector(state => state.userInfoReducer);
   // const { userInfo } = userState; // 저장된 유저 정보
   // input 값 유효성 검사 : 닉네임이 기존과 동일한가? 동일하면 에러메세지, password가 서로 일치한가? 불일치면 에러메세지
@@ -54,7 +54,7 @@ export function UserModifyModal ({ closeUserInfoModify, userInfoModifyBtnHandler
   };
   // input handler
   const handleInputNickName = (e) => {
-    if (data.userInfo.userNickName === e.target.value) {
+    if (myUserInfo.userNickName === e.target.value) {
       setNickNameErrorMessage('기존과 동일한 닉네임입니다');
     } else {
       setNickNameErrorMessage('');
@@ -94,7 +94,7 @@ export function UserModifyModal ({ closeUserInfoModify, userInfoModifyBtnHandler
   // 회원정보 수정 함수
   const modifyUserInfoHandler = () => {
     axios
-      .patch(`http://localhost:4000/user/${data.userInfo.id}`,
+      .patch(`http://localhost:4000/user/${myUserInfo.id}`,
         {
           userInfo: {
             userId,
@@ -140,11 +140,11 @@ export function UserModifyModal ({ closeUserInfoModify, userInfoModifyBtnHandler
               <EditPictureWrap>
                 <EditPictureBtn>사진선택</EditPictureBtn>
               </EditPictureWrap>
-              <UserImage src={data.userInfo.userImage}>
+              <UserImage src={myUserInfo.userImage}>
               
               </UserImage>
             </UserImgSection>
-            <UserNickName>{data.userInfo.userNickName}</UserNickName>
+            <UserNickName>{myUserInfo.userNickName}</UserNickName>
           </UserInfoSection>
           <UserInfoEditSection>
             <NickNameInput onChange={handleInputNickName} />

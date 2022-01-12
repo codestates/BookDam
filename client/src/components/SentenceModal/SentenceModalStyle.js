@@ -39,7 +39,7 @@ export const UserInfoContainer = styled.div`
   transform: translate(-50%, -50%);
   max-height: 80%;
   width: 640px;
-  height: 70%;
+  height: 640px;
   padding: 16px;
   background: white;
   border-radius: 10px;
@@ -53,7 +53,7 @@ export const UserInfoContainer = styled.div`
   `;
 
 // 삭제, 편집 버튼
-export const EditWrap = styled.div`
+export const EditWrapper = styled.div`
   display: flex;
   width: 100%;
   justify-content: flex-end;
@@ -63,17 +63,58 @@ export const EditWrap = styled.div`
   /* border: 1px solid black; */
   > div {
     cursor: pointer;
+    margin: 5px 5px 0 0;
   }
 `;
 
+// Edit buttion 클릭 시 나오는 메뉴
+export const EditMenuWrapper = styled.div`
+  position: absolute;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0;
+  margin: 0 50px 0 0;
+  top: 8%; 
+  height: 50px;
+  text-align: center;
+  font-size: 13px;
+  /* border: 1px solid grey; */
+  z-index: 101;
+`;
 
+export const Edit = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+  height: 50%;
+  background-color: honeydew;
+  margin: 0;
+  padding: 0;
+`;
+
+export const Delete = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+  height: 50%;
+  background-color: honeydew;
+  margin: 0;
+  padding: 0;
+  color: red;
+`;
 
 export const UserInfo = styled.div`
   width: 90%;
-  margin: 15px;
+  margin: 0;
+  padding: 0;
   display: flex;
   justify-content: space-between;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   `;
 
 export const UserNameAndImage = styled.div`
@@ -182,26 +223,41 @@ font-size: 20px;
 }
 `;
 
+// 책 이름, 저자 wrap
+export const BookInfoWrap = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: flex-start;
+  margin: 0;
+  padding-left: 10px;
+  text-align: start;
+  font-weight: 500;
+  color: grey;
+  /* border: 1px solid black; */
+`;
+
 export const BookTitle = styled.div`
-width: 100%;
-font-size: 20px;
-padding: 3px;
-margin-top: 10px;
-margin-left: 15px;
-@media screen and (max-width: 500px) {
-  font-size: 8px
-}
+  font-size: 20px;
+  padding: 0;
+  margin: 0;
+  margin-left: 20px;
+  /* border: 1px solid black; */
+
+  @media screen and (max-width: 500px) {
+    font-size: 10px;
+  }
 `;
 
 export const BookAuthor = styled.div`
-width: 100%;
-font-size: 20px;
-padding: 3px;
-margin-top: 10px;
-margin-left: 15px;
-@media screen and (max-width: 500px) {
-  font-size: 8px
-}
+  font-size: 20px;
+  padding: 0;
+  margin: 0;
+  margin-left: 20px;
+
+  @media screen and (max-width: 500px) {
+    font-size: 10px
+  }
 `;
 
 // 닫기 버튼

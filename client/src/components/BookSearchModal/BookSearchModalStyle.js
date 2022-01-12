@@ -43,6 +43,18 @@ export const BookListModalContainer = styled.div`
  overflow-y: scroll;
  height: 85%;
  padding-left: 15px;
+ cursor: pointer;
+`;
+
+export const BookSearchModalHeader = styled.div`
+ display: flex;
+ flex-direction: row;
+ /* border: 1px solid black; */
+`;
+
+export const BookSearchModalLeft = styled.div`
+  width: 96%;
+  /* border: 1px solid black; */
 `;
 
 export const NoBookListDisplay = styled.div`

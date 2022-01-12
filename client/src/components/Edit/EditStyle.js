@@ -24,7 +24,7 @@ export const BookContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
 `;
 
 export const BookInfoContainer = styled.div`
@@ -69,7 +69,7 @@ export const SearchClick = styled.div`
   justify-content: center;
   align-items: center;
   background: #e5e5e5;
-  pointer: cursor;
+  cursor: pointer;
   font-weight: 600;
 `;
 

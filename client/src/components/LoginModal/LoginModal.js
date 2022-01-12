@@ -53,7 +53,7 @@ export const LoginModal = ({
         method: 'post',
         url: 'http://localhost:4000/user/login',
         headers: {
-          authorization: `Bearer: ${process.env.Client_Secret}`,
+          authorization: `Bearer: ${process.env.ACCESS_SECRET}`,
           'Content-Type': 'application/json'
         },
         data: {

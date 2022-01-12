@@ -55,7 +55,7 @@ export const SearchContainer = styled.div`
 
 export const SearchInputcontainer = styled.input`
   width: 100%;
-  border: 1px solid #e5e5e5;
+  border: 2px solid #e5e5e5;
   outline: none;
   font-size: 1rem;
   font-weight: 600;
@@ -164,7 +164,7 @@ export const BookThumbnailContainer = styled.div`
 `;
 
 export const BookThumbnail = styled.img`
-  border: 1px solid black;
+  /* border: 1px solid black; */
   width: 70%;
   margin: 0;
   @media screen and (max-width: 500px) {

@@ -48,6 +48,32 @@ export const SidebarTop = styled.div`
   /* border: 1px solid red; */
 `;
 
+export const SidebarHeader = styled.div`
+ display: flex;
+ flex-direction: row;
+ /* border: 1px solid red; */
+`;
+
+export const SidebarLeft = styled.div`
+  width: 96%;
+  /* border: 1px solid red; */
+`;
+
+// signup: 닫기
+export const SidebarCloseButton = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 30px;
+  font-size: 40px;
+  color: rgba(0, 0, 0, 0.5);
+  /* border: 1px solid red; */
+  cursor: pointer;
+
+  &:hover {
+    color: black;
+  }
+`;
+
 export const UserSection = styled.div`
   display: flex;
   flex-direction: column;
@@ -151,7 +177,7 @@ export const Question = styled.div`
 `;
 
 // 로그아웃 섹션
-export const LogoutSection = styled.div`
+export const LoginoutSection = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -161,7 +187,7 @@ export const LogoutSection = styled.div`
   /* border: 1px solid blue; */
 `;
 
-export const Logout = styled.button`
+export const Loginout = styled.button`
   width: 130px;
   height: 40px;
   box-sizing: border-box;

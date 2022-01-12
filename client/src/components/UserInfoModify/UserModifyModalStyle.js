@@ -91,12 +91,9 @@ export const EditPictureBtn = styled.button`
   font-weight: 500;
   letter-spacing: normal;
   line-height: 1.5;
-  overflow: hidden;
   padding: 3px;
   position: relative;
   text-align: center;
-  text-decoration: none;
-  vertical-align: top;
   white-space: nowrap;
 `;
 

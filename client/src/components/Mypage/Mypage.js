@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
+import { useInView } from 'react-intersection-observer';
 import { UserModifyModal } from '../UserInfoModify/UserModifyModal';
 import { SetenceModal } from '../SentenceModal/SentenceModal';
 import { data } from '../../dummyfiles/dummyMyFeedList';
+import example from '../../assets/images/defaultUserImage.png'
 
 import {
   MyPageWholeContainer,
@@ -41,16 +43,16 @@ export default function MyPage () {
   // axios로 회원 정보 조회(유저 정보 및 아티클)
   // http://localhost:4000/user/:userId
 
-  // const userState = useSelector(state => state.userInfoReducer);
-  // const { userInfo } = userState;
+  const userState = useSelector(state => state.userInfoReducer);
+  const { userInfo } = userState;
 
   const [isGuest, setIsGuest] = useState({
     id: 0,
     userId: 'guest',
     userNickName: 'guset',
     userImage: ''
-  });
-  const [userInfo, setUserInfo] = useState({
+  })
+  const [myUserInfo, setMyUserInfo] = useState({
     id: 0,
     userId: '',
     userNickName: '',
@@ -60,20 +62,14 @@ export default function MyPage () {
     following: 0,
     follower: 0
   });
-  const [articles, setArticles] = useState({
-    id: 0,
-    user_Id: 0,
-    book_Title: '',
-    book_Author: '',
-    book_Thumbnail: '',
-    book_Publisher: '',
-    sentence: '',
-    comment: '',
-    createdAt: ''
-  });
+  const [myArticleList, setMyArticleList] = useState([]);
   const [isOpneModifyModal, setIsOpenModifyModal] = useState(false);
   const [isOpenSentenceModal, setIsOpenSentenceModal] = useState(false);
   const history = useHistory();
+
+  const [page, setPage] = useState(0); // 무한 스크롤시 페이지 필요
+  const [loading, setLoading] = useState(false);
+  const [ref, inView] = useInView(); // react-intersection-observer -> div가 viewport에 보여질 때 inView 값이 true
 
   // 회원정보수정 버튼 누르면 회원정보수정 모달이 나오는 함수
   const userInfoModifyBtnHandler = () => {
@@ -85,34 +81,70 @@ export default function MyPage () {
   };
 
   // 북 썸네일을 누르면 SentenceModal이 나오는 함수
-  const openSentenceModalHandler = () => {
+  const openSentenceModalHandler = (el) => {
     setIsOpenSentenceModal(!isOpenSentenceModal);
-  };
+    history.push({
+      state: {
+        articleInfo : {
+        id: el.id,
+        userNickName: el['User.userNickName'],
+        userImage: el['User.userImage'],
+        book_Title: el.book_Title,
+        book_Author: el.book_Author,
+        sentence: el.sentence,
+        comment: el.comment,
+        createdAt: el.createdAt,
+      }}
+    })
+  }
 
-  // axios.get 회원정보 전체 조회 함수 (MyPage 접속했을 시)
-  // const getUserInfoAll = () => {
-  //   axios
-  //     .get(`http://localhost:4000/user/${userInfo.id}`,
-  //       {
-  //         headers: { 'Content-Type': 'application/json' }
-  //       })
-  //     .then((data) => {
-  //       console.log(data)
-  //       setUserInfo(data.userInfo.id)
-  //       setFollow()
-  //       setArticles()
-  //     })
-  //     .catch((err) => {
-  //       console.log(err)
-  //     })
-  // }
+  // 내 정보 전체를 조회하는 함수 (무한 스크롤 적용)
+  const getMyInfoAll = useCallback(() => {
+    setLoading(true)
+    setTimeout(() => {
+      axios
+      .get(`http://localhost:4000/user/${userInfo.id}?page=${page}`,
+        {
+          headers: { 'Content-Type': 'application/json' }
+        })
+      .then((res) => {
+        console.log(res.data)
+        setMyArticleList(myArticleList => [...myArticleList, ...res.data.articleData.rows])
+        setMyUserInfo({
+          id: res.data.userInfo.id,
+          userId: res.data.userInfo.userId,
+          userNickName: res.data.userInfo.userNickName,
+          userImage: res.data.userInfo.userImage
+        })
+        setFollow({
+          following: res.data.follow.following,
+          follower: res.data.follow.follower
+        })
+      })
+    }, 1000)
+    setLoading(false)
+  }, [page])
 
-  const articleList = data.articleData.map((el, index) => {
+  // `getArticleList` 가 바뀔 때 마다 함수 실행
+  useEffect(() => {
+    getMyInfoAll()
+  }, [getMyInfoAll])
+
+  useEffect(() => {
+    // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
+    if (inView && !loading) {
+      setPage(prevState => prevState + 1)
+    }
+  }, [inView, loading])
+
+
+  console.log('아티클 목록',myArticleList);
+  const myArticles = myArticleList.map((el, index) => {
     return (
       <ArticleWrap key={index}>
         <Article
           src={el.book_Thumbnail}
-          onClick={openSentenceModalHandler}
+          onClick={() => openSentenceModalHandler(el)}
         />
       </ArticleWrap>
     );
@@ -121,51 +153,50 @@ export default function MyPage () {
   return (
     // react suspence hook (데이터가 없을 경우, 로딩 화면) 삼항 연산자로 getUserInfoAll 함수 처리
     <>
-      <MyPageWholeContainer>
-        <MypageContainer>
-          {isOpneModifyModal
-            ? <UserModifyModal
-                userInfoModifyBtnHandler={userInfoModifyBtnHandler}
-                closeUserInfoModify={closeUserInfoModify}
-                userInfo={userInfo}
-              />
-            : null}
-          {isOpenSentenceModal
-            ? <SetenceModal
-                openSentenceModalHandler={openSentenceModalHandler}
-              />
-            : null}
-          <UserInfoContainer>
-            <UserImgSection>
-              <UserImage src={data.userInfo.userImage} />
-            </UserImgSection>
-            <UserInfoSection>
-              <NickNameFollowSection>
-                <NickName>{data.userInfo.userNickName}</NickName>
-                <FollowContainer>
-                  <Follow>팔로우
-                    <FollowCount>{data.follow.following}</FollowCount>
-                  </Follow>
-                  <Follower>팔로워
-                    <FollowerCount>{data.follow.following}</FollowerCount>
-                  </Follower>
-                </FollowContainer>
-              </NickNameFollowSection>
-              <UserModifyBtn
-                onClick={userInfoModifyBtnHandler}
-              >
-                회원정보수정
-              </UserModifyBtn>
-            </UserInfoSection>
-          </UserInfoContainer>
-          {/* <ArticleListTitle>목록</ArticleListTitle> */}
-          <ArticleListContainer>
-
-            {articleList}
-
-          </ArticleListContainer>
-        </MypageContainer>
-      </MyPageWholeContainer>
+    <MyPageWholeContainer>
+      <MypageContainer> 
+        {isOpneModifyModal
+          ? <UserModifyModal
+            userInfoModifyBtnHandler={userInfoModifyBtnHandler}
+            closeUserInfoModify={closeUserInfoModify}
+            myUserInfo={myUserInfo}
+            />
+          : null}
+        {isOpenSentenceModal
+          ? <SetenceModal
+            openSentenceModalHandler={openSentenceModalHandler}
+            />
+          : null}  
+        <UserInfoContainer>
+          <UserImgSection>
+            <UserImage src={'../../assets/images/defaultUserImage.png'} />
+          </UserImgSection>
+          <UserInfoSection>
+            <NickNameFollowSection>
+              <NickName>{myUserInfo.userNickName}</NickName>
+              <FollowContainer>
+                <Follow>팔로우
+                  <FollowCount>{follow.following}</FollowCount>
+                </Follow>
+                <Follower>팔로워
+                  <FollowerCount>{follow.follower}</FollowerCount>
+                </Follower>
+              </FollowContainer>
+            </NickNameFollowSection>
+            <UserModifyBtn
+              onClick={userInfoModifyBtnHandler}
+            >
+              회원정보수정
+            </UserModifyBtn>
+          </UserInfoSection>
+        </UserInfoContainer>
+        {/* <ArticleListTitle>목록</ArticleListTitle> */}
+        <ArticleListContainer>
+          {myArticles}
+        </ArticleListContainer> 
+        <div ref={ref}></div>
+      </MypageContainer>
+    </MyPageWholeContainer>
     </>
   );
 }

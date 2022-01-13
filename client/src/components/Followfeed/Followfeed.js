@@ -54,15 +54,6 @@ export const Followfeed = ({ followFeedList }) => {
 
   // 서버에서 아이템을 가지고 오는 함수
   const getFolowFeedLists = useCallback(() => {
-<<<<<<< HEAD
-    console.log('요청보냄');
-    setLoading(true);
-    setTimeout(() => {
-      Axios.get(`http://localhost:4000/article/${userInfo.id}?page=${page}`,
-        {
-          headers:
-      {
-=======
     console.log('요청보냄')
     setLoading(true)
     setTimeout(() => { 
@@ -70,23 +61,9 @@ export const Followfeed = ({ followFeedList }) => {
     {
       headers: 
       { 
->>>>>>> d1ac2956db6ba974d1d03a9ffa841998f6978a8f
         'Contnet-Type': 'application/json',
         withCredentials: true
       }
-<<<<<<< HEAD
-        })
-        .then((res) => {
-          console.log(page);
-          setFolowFeedLists(followFeedLists => [...followFeedLists, ...res.data.articleData]);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }, 1000);
-    setLoading(false);
-  }, [page]);
-=======
     })
     .then((res) => {
       console.log(page)
@@ -98,7 +75,6 @@ export const Followfeed = ({ followFeedList }) => {
     }, 1000)
     setLoading(false)
   }, [page])
->>>>>>> d1ac2956db6ba974d1d03a9ffa841998f6978a8f
 
   // `getFolowFeedLists` 가 바뀔 때 마다 함수 실행
   useEffect(() => {
@@ -181,7 +157,7 @@ export const Followfeed = ({ followFeedList }) => {
           <Comment>{el.comment}</Comment>
           <BookInfo>{el.book_Title} | {el.book_Author} </BookInfo>
         </ContentsContainer>
-        <div ref={ref} />
+
       </UserInfoContainer>
     );
   });
@@ -191,11 +167,12 @@ export const Followfeed = ({ followFeedList }) => {
       <FeedContentContainer>
         {isOpen ? <NoticeModal NoticeModalOpenHandler={NoticeModalOpenHandler} userInfo={userInfo} followInfo={followInfo} /> : null}
         {followFeedLists.length === 0
-          ? <div><Loading /></div>
+          ? <div></div>
           : <>
             {feedList}
             {loading ? <Loading /> : null}
           </>}
+          <div ref={ref}><Loading /></div>
       </FeedContentContainer>
     </>
   );

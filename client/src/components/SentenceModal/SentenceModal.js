@@ -43,11 +43,10 @@ export const SetenceModal = ({ openSentenceModalHandler, setIsOpenSentenceModal 
   const [isDeleteSuccess, setIsDeleteSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
-
   const openMeunHandler = () => {
     setIsOpenMenu(!isOpenMenu);
   };
-  
+
   const sendToEditPage = () => {
     history.push({
       pathname:`/editpage`,

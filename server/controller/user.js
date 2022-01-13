@@ -3,6 +3,10 @@ const { Op } = require('sequelize');
 const bcrypt = require('bcrypt');
 const { User: UserModel, Article: ArticleModel, Follow: FollowModel } = require('../models');
 
+// 비인증은 401
+// 나쁜 요청은 400
+
+
 module.exports = {
   login: async (req, res) => { // test done
     const userId = req.body.userInfo.userId;
@@ -14,7 +18,7 @@ module.exports = {
       },
       attributes: { exclude: ['updatedAt', 'createdAt'] }
     });
-    if (!userData) return res.status(400).json({ message: 'failure' });
+    if (!userData) return res.status(400).json({ message: '회원가입이 필요합니다.' });
     const userPassword = userData.password;
     const user = {
       id: userData.id,
@@ -22,12 +26,12 @@ module.exports = {
     };
     const same = bcrypt.compareSync(password, userPassword);
     if (!same) {
-      return res.status(400).json({ message: 'failure' });
+      return res.status(400).json({ message: '비밀번호가 틀렸습니다.' });
     }
     delete userData.dataValues.password;
-    const accessToken = jwt.sign(user, process.env.ACCESS_SECRET, { expiresIn: '3h' });
+    const accessToken = jwt.sign(user, process.env.ACCESS_SECRET, { expiresIn: '1d' });
     res.cookie('jwt', accessToken, {
-      maxAge: 3 * 60 * 60 * 1000,
+      maxAge: 24 * 60 * 60 * 1000,
       sameSite: 'none',
       httpOnly: true,
       secure: true
@@ -43,7 +47,7 @@ module.exports = {
         userId: userInfo.userId
       }
     });
-    if (!findUser) return res.status(401).json({ message: 'failure' });
+    if (!findUser) return res.status(401).json({ message: '로그아웃에 실패했습니다.' });
     else {
       res.clearCookie('jwt').status(200).json({ message: '로그아웃 되었습니다.' });
     }
@@ -53,7 +57,7 @@ module.exports = {
     const userId = userInfo.userId;
     const userNickName = userInfo.userNickName;
     const password = userInfo.password;
-    if (!userId || !password || !userNickName) return res.status(400).json({ message: 'failure' });
+    if (!userId || !password || !userNickName) return res.status(400).json({ message: '회원가입 정보가 정확하게 입력되지 않았습니다.' });
     const encryptedPassowrd = bcrypt.hashSync(password, 10);
     const duplication = await UserModel.findOrCreate({
       where: {
@@ -63,7 +67,7 @@ module.exports = {
         userId: userId,
         userNickName: userNickName,
         password: encryptedPassowrd,
-        userImage: '기본 이미지 경로'
+        userImage: '../../assets/images/defaultUserImage.png'
       }
     });
     if (!duplication[1]) {
@@ -78,12 +82,11 @@ module.exports = {
         follow_Id: 2
       })
       .then(() => {
-        res.status(200).json({ message: 'success', userInfo: userDate });
+        res.status(201).json({ message: 'success', userInfo: userDate });
       })
       .catch((error) => {
-        res.status(401).json({ message: 'failure' });
+        res.status(400).json({ message: 'failure' });
       })
-      // res.status(200).json({ message: 'success', userInfo: userDate });
     }
   },
   delete: async (req, res) => { // test done
@@ -98,14 +101,13 @@ module.exports = {
         id: id
       }
     });
-    if (!findUser) return res.status(401).json({ message: 'failure' });
+    if (!findUser) return res.status(400).json({ message: 'failure' });
     const deleteArticle = await ArticleModel.destroy({ where: { user_id: id } });
     const deleteFollow = await FollowModel.destroy({ where: { [Op.or]: [{ user_Id: id }, { follow_Id: id }] } });
     const deleteUser = await UserModel.destroy({ where: { id: id } });
-    // 삭제할 데이터가 없다면 0이 뜨는 데, 0이 아닌 다른 값, 즉 에러가 떴을 경우 처리.
-    if (Number.isNaN(deleteArticle)) return res.status(401).json({ message: deleteArticle });
-    if (Number.isNaN(deleteFollow)) return res.status(401).json({ message: deleteFollow });
-    if (Number.isNaN(deleteUser)) return res.status(401).json({ message: deleteUser });
+    if (Number.isNaN(deleteArticle)) return res.status(400).json({ message: 'failure', error : deleteArticle });
+    if (Number.isNaN(deleteFollow)) return res.status(400).json({ message: 'failure', error : deleteFollow });
+    if (Number.isNaN(deleteUser)) return res.status(400).json({ message: 'failure', error : deleteUser });
     res.clearCookie('jwt').status(200).json({ message: '유저가 탈퇴되었습니다.' });
   },
   get: async (req, res) => { // test done
@@ -122,30 +124,21 @@ module.exports = {
     if (!findUser) return res.status(401).json({ message: 'failure' });
     const findFollowing = await FollowModel.findAndCountAll({ where: { user_Id: id } });
     const findFollower = await FollowModel.findAndCountAll({ where: { follow_Id: id } });
+    if (Number.isNaN(findFollowing) || Number.isNaN(findFollower)) return res.status(400).json({ message: 'failure'});
     const follow = { following: findFollowing.count, follower: findFollower.count };
-
     const findArtilces = await ArticleModel.findAndCountAll({
       attributes: { exclude: ['updatedAt'] },
       order: [['id', 'DESC']],
       raw: true,
-      limit: 5,
-      offset: page * 5,
+      limit: 8,
+      offset: page * 8,
       include: [{
         model: UserModel,
         attributes: { exclude: ['id', 'updatedAt', 'createdAt', 'password'] },
         where: { id: id }
       }]
     });
-
-    // const findArtilces = await UserModel.findAll({
-    //   where: { id: id },
-    //   attributes: { exclude: ['updatedAt', 'createdAt', 'password'] },
-    //   include: [{ model: ArticleModel, attributes: { exclude: ['id', 'updatedAt'] }, order: ['createdAt', 'ASC'] }],
-    //   raw: true
-    // });
-    // if (findArtilces[0]['Articles.user_Id'] === null) { // article이 없을 경우의 처리.
-    //   return res.status(200).json({ message: 'success', userInfo: findUser, follow, articleData: null });
-    // }
+    if (Number.isNaN(findArtilces.count)) return res.status(400).json({ message: 'failure' });
     res.status(200).json({ message: 'success', userInfo: findUser, follow, articleData: findArtilces });
   },
   patch: (req, res) => { // test done
@@ -175,11 +168,11 @@ module.exports = {
             res.status(200).json({ message: 'success', userInfo: result });
           })
           .catch((error) => {
-            res.status(401).json({ message: 'failure', error: error });
+            res.status(400).json({ message: 'failure', error: error });
           });
       })
       .catch((error) => {
-        res.status(401).json({ message: 'failure', error: error });
+        res.status(400).json({ message: 'failure', error: error });
       });
   },
   search: async (req, res) => { // test done

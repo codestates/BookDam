@@ -1,11 +1,10 @@
-import React, { useEffect, useState, useSelector } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   SearchUserContainer,
   UserSearchInput,
   UserSearchBtn,
   UpperContainer,
   UserSearchResultContainer,
-  UserSearchResult,
   UserSearchImagebox,
   UserSearchImage,
   RecommendListContainer,
@@ -13,8 +12,6 @@ import {
 } from './UsersearchStyle';
 import { useHistory } from 'react-router-dom';
 import Axios from 'axios';
-import data from '../../dummyfiles/dummyFeedList';
-import { userSearchDummyData } from '../../dummyfiles/dummyUserSearch';
 import userImage from '../../assets/images/defaultUserImage.png';
 
 export const Searchuser = ({ setFollowFeedList }) => {

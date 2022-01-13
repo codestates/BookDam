@@ -34,7 +34,7 @@ import { GuestLoginModal } from '../GuestLoginModal/GuestLoginModal';
 import { SignupModal } from '../Signup/SignupModal';
 import { BookSearchModal } from '../BookSearchModal/BookSearchModal';
 import { NoInputNoticeModal } from '../NoticeModal/WriteNoticeModal/NoInputNoticeModal';
-import { SubmitConfirmModal} from '../NoticeModal/WriteNoticeModal/SubmitConfirmModal';
+import { SubmitConfirmModal } from '../NoticeModal/WriteNoticeModal/SubmitConfirmModal';
 
 export const Write = () => {
   const state = useSelector(state => state.userInfoReducer); // 로그인 상태변경용
@@ -52,7 +52,7 @@ export const Write = () => {
   });
   const [inputSentence, setInputSentence] = useState('');
   const [inputComment, setInputComment] = useState('');
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
 
   const handleInputValue = (e) => {
@@ -74,26 +74,25 @@ export const Write = () => {
           'Content-Type': 'application/json'
         }
       })
-      .then((res) => {
-        let resultData = []
-        // eslint-disable-next-line array-callback-return
-        res.data.map((list) => {
-          console.log(list)
-          resultData.push({
-            itemId: list.$.itemId,
-            title: list.title[0],
-            image: list.cover[0],
-            author: list.author[0],
-            publisher: list.publisher[0],
-          })
+        .then((res) => {
+          const resultData = [];
+          // eslint-disable-next-line array-callback-return
+          res.data.map((list) => {
+            console.log(list);
+            resultData.push({
+              itemId: list.$.itemId,
+              title: list.title[0],
+              image: list.cover[0],
+              author: list.author[0],
+              publisher: list.publisher[0]
+            });
+          });
+          setIsLoading(false);
+          setSearchData(resultData);
         })
-        setIsLoading(false);
-        setSearchData(resultData);
-      })
-      .catch(err => {
-        console.log(err.response)
-      })
-      
+        .catch(err => {
+          console.log(err.response);
+        });
     } else {
       setErrorMessage('검색어를 입력하세요.');
     }
@@ -156,7 +155,7 @@ export const Write = () => {
     } else {
       setErrorMessage('저장하시겠습니까?');
       setIsOpenSubmitModal(true);
-      document.body.style.overflow = 'unset'; //저정하고 스크롤 방지 해제 
+      document.body.style.overflow = 'unset'; // 저정하고 스크롤 방지 해제
     }
   };
 
@@ -197,8 +196,8 @@ export const Write = () => {
           }
         })
         .catch(err => {
-          console.log(err.response)
-        })
+          console.log(err.response);
+        });
     }
   };
 

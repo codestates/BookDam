@@ -6,7 +6,7 @@ import { useInView } from 'react-intersection-observer';
 import { UserModifyModal } from '../UserInfoModify/UserModifyModal';
 import { SetenceModal } from '../SentenceModal/SentenceModal';
 import { data } from '../../dummyfiles/dummyMyFeedList';
-import example from '../../assets/images/defaultUserImage.png'
+import example from '../../assets/images/defaultUserImage.png';
 
 import {
   MyPageWholeContainer,
@@ -51,7 +51,7 @@ export default function MyPage () {
     userId: 'guest',
     userNickName: 'guset',
     userImage: ''
-  })
+  });
   const [myUserInfo, setMyUserInfo] = useState({
     id: 0,
     userId: '',
@@ -85,60 +85,60 @@ export default function MyPage () {
     setIsOpenSentenceModal(!isOpenSentenceModal);
     history.push({
       state: {
-        articleInfo : {
-        id: el.id,
-        userNickName: el['User.userNickName'],
-        userImage: el['User.userImage'],
-        book_Title: el.book_Title,
-        book_Author: el.book_Author,
-        sentence: el.sentence,
-        comment: el.comment,
-        createdAt: el.createdAt,
-      }}
-    })
-  }
+        articleInfo: {
+          id: el.id,
+          userNickName: el['User.userNickName'],
+          userImage: el['User.userImage'],
+          book_Title: el.book_Title,
+          book_Author: el.book_Author,
+          sentence: el.sentence,
+          comment: el.comment,
+          createdAt: el.createdAt
+        }
+      }
+    });
+  };
 
   // 내 정보 전체를 조회하는 함수 (무한 스크롤 적용)
   const getMyInfoAll = useCallback(() => {
-    setLoading(true)
+    setLoading(true);
     setTimeout(() => {
       axios
-      .get(`http://localhost:4000/user/${userInfo.id}?page=${page}`,
-        {
-          headers: { 'Content-Type': 'application/json' }
-        })
-      .then((res) => {
-        console.log(res.data)
-        setMyArticleList(myArticleList => [...myArticleList, ...res.data.articleData.rows])
-        setMyUserInfo({
-          id: res.data.userInfo.id,
-          userId: res.data.userInfo.userId,
-          userNickName: res.data.userInfo.userNickName,
-          userImage: res.data.userInfo.userImage
-        })
-        setFollow({
-          following: res.data.follow.following,
-          follower: res.data.follow.follower
-        })
-      })
-    }, 1000)
-    setLoading(false)
-  }, [page])
+        .get(`http://localhost:4000/user/${userInfo.id}?page=${page}`,
+          {
+            headers: { 'Content-Type': 'application/json' }
+          })
+        .then((res) => {
+          console.log(res.data);
+          setMyArticleList(myArticleList => [...myArticleList, ...res.data.articleData.rows]);
+          setMyUserInfo({
+            id: res.data.userInfo.id,
+            userId: res.data.userInfo.userId,
+            userNickName: res.data.userInfo.userNickName,
+            userImage: res.data.userInfo.userImage
+          });
+          setFollow({
+            following: res.data.follow.following,
+            follower: res.data.follow.follower
+          });
+        });
+    }, 1000);
+    setLoading(false);
+  }, [page]);
 
   // `getArticleList` 가 바뀔 때 마다 함수 실행
   useEffect(() => {
-    getMyInfoAll()
-  }, [getMyInfoAll])
+    getMyInfoAll();
+  }, [getMyInfoAll]);
 
   useEffect(() => {
     // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
     if (inView && !loading) {
-      setPage(prevState => prevState + 1)
+      setPage(prevState => prevState + 1);
     }
-  }, [inView, loading])
+  }, [inView, loading]);
 
-
-  console.log('아티클 목록',myArticleList);
+  console.log('아티클 목록', myArticleList);
   const myArticles = myArticleList.map((el, index) => {
     return (
       <ArticleWrap key={index}>
@@ -153,50 +153,50 @@ export default function MyPage () {
   return (
     // react suspence hook (데이터가 없을 경우, 로딩 화면) 삼항 연산자로 getUserInfoAll 함수 처리
     <>
-    <MyPageWholeContainer>
-      <MypageContainer> 
-        {isOpneModifyModal
-          ? <UserModifyModal
-            userInfoModifyBtnHandler={userInfoModifyBtnHandler}
-            closeUserInfoModify={closeUserInfoModify}
-            myUserInfo={myUserInfo}
-            />
-          : null}
-        {isOpenSentenceModal
-          ? <SetenceModal
-            openSentenceModalHandler={openSentenceModalHandler}
-            />
-          : null}  
-        <UserInfoContainer>
-          <UserImgSection>
-            <UserImage src={'../../assets/images/defaultUserImage.png'} />
-          </UserImgSection>
-          <UserInfoSection>
-            <NickNameFollowSection>
-              <NickName>{myUserInfo.userNickName}</NickName>
-              <FollowContainer>
-                <Follow>팔로우
-                  <FollowCount>{follow.following}</FollowCount>
-                </Follow>
-                <Follower>팔로워
-                  <FollowerCount>{follow.follower}</FollowerCount>
-                </Follower>
-              </FollowContainer>
-            </NickNameFollowSection>
-            <UserModifyBtn
-              onClick={userInfoModifyBtnHandler}
-            >
-              회원정보수정
-            </UserModifyBtn>
-          </UserInfoSection>
-        </UserInfoContainer>
-        {/* <ArticleListTitle>목록</ArticleListTitle> */}
-        <ArticleListContainer>
-          {myArticles}
-        </ArticleListContainer> 
-        <div ref={ref}></div>
-      </MypageContainer>
-    </MyPageWholeContainer>
+      <MyPageWholeContainer>
+        <MypageContainer>
+          {isOpneModifyModal
+            ? <UserModifyModal
+                userInfoModifyBtnHandler={userInfoModifyBtnHandler}
+                closeUserInfoModify={closeUserInfoModify}
+                myUserInfo={myUserInfo}
+              />
+            : null}
+          {isOpenSentenceModal
+            ? <SetenceModal
+                openSentenceModalHandler={openSentenceModalHandler}
+              />
+            : null}
+          <UserInfoContainer>
+            <UserImgSection>
+              <UserImage src='../../assets/images/defaultUserImage.png' />
+            </UserImgSection>
+            <UserInfoSection>
+              <NickNameFollowSection>
+                <NickName>{myUserInfo.userNickName}</NickName>
+                <FollowContainer>
+                  <Follow>팔로우
+                    <FollowCount>{follow.following}</FollowCount>
+                  </Follow>
+                  <Follower>팔로워
+                    <FollowerCount>{follow.follower}</FollowerCount>
+                  </Follower>
+                </FollowContainer>
+              </NickNameFollowSection>
+              <UserModifyBtn
+                onClick={userInfoModifyBtnHandler}
+              >
+                회원정보수정
+              </UserModifyBtn>
+            </UserInfoSection>
+          </UserInfoContainer>
+          {/* <ArticleListTitle>목록</ArticleListTitle> */}
+          <ArticleListContainer>
+            {myArticles}
+          </ArticleListContainer>
+          <div ref={ref} />
+        </MypageContainer>
+      </MyPageWholeContainer>
     </>
   );
 }

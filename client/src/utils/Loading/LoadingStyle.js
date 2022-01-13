@@ -9,19 +9,27 @@ export const Load = keyframes`
     }
 `;
 export const LoadingContainer = styled.div`
-width: 640px;
+width: 647px;
+height: 100px;
 margin-top: 10px;
 /* border: 2px solid; */
+border-radius: 10px;
 display: flex;
 justify-content: center;
 align-items: center;
+font-weight: 600;
+font-size: 20px;
+
+/* @media screen and (max-width: 500px) {
+  height: 300px;
+} */
 `;
 export const LoadingCom = styled.div`
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
-  margin: 0 auto;
-  border: 6px solid #000000;
+  margin: 5px;
+  border: 6px solid #000;
   border-top: 6px solid #56D26F;
   animation: ${Load} 2s ease-in infinite;
 `;

@@ -17,11 +17,11 @@ justify-content: center;
 align-items: center;
 `;
 export const LoadingCom = styled.div`
-  width: 20px;
-  height: 20px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   margin: 0 auto;
-  border: 3px solid #000000;
-  border-top: 3px solid #56D26F;
+  border: 6px solid #000000;
+  border-top: 6px solid #56D26F;
   animation: ${Load} 2s ease-in infinite;
 `;

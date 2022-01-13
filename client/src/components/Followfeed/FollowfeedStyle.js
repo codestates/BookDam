@@ -9,6 +9,29 @@ align-items: center;
 padding: 0px;
 margin: 16px 0px 0px 0px;
 list-style-type: none;
+> .nodata {
+  border: 1px solid;
+
+  margin-top: 18px;
+  font-weight: 900;
+  font-size: 20px;
+}
+> .scrollTop {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.4);
+  width: 40px;
+  height: 40px;
+  position: fixed;
+  top: 90%;
+  left: 90%;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, 
+  rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, 
+  rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  cursor: pointer;
+}
 `;
 
 export const UserInfoContainer = styled.li`

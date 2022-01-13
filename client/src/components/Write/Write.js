@@ -80,26 +80,25 @@ export const Write = () => {
           'Content-Type': 'application/json'
         }
       })
-      .then((res) => {
-        let resultData = []
-        // eslint-disable-next-line array-callback-return
-        res.data.map((list) => {
-          resultData = [...resultData, {
-            itemId: list.$.itemId,
-            title: list.title[0],
-            image: list.cover[0],
-            author: list.author[0],
-            publisher: list.publisher[0],
-            isbn: list.isbn[0]
-          }]
+        .then((res) => {
+          const resultData = [];
+          // eslint-disable-next-line array-callback-return
+          res.data.map((list) => {
+            console.log(list);
+            resultData.push({
+              itemId: list.$.itemId,
+              title: list.title[0],
+              image: list.cover[0],
+              author: list.author[0],
+              publisher: list.publisher[0]
+            });
+          });
+          setIsLoading(false);
+          setSearchData(resultData);
         })
-        setIsLoading(false);
-        setSearchData(resultData);
-      })
-      .catch(err => {
-        console.log(err.response)
-      })
-      
+        .catch(err => {
+          console.log(err.response);
+        });
     } else {
       setErrorMessage('검색어를 입력하세요.');
     }
@@ -194,7 +193,9 @@ export const Write = () => {
         document.body.style.overflow = 'unset'; //저정하고 스크롤 방지 해제 
       }
     } else {
-      setIsOpenLoginModal(true);
+      setErrorMessage('저장하시겠습니까?');
+      setIsOpenSubmitModal(true);
+      document.body.style.overflow = 'unset'; // 저정하고 스크롤 방지 해제
     }
   };
 
@@ -235,8 +236,8 @@ export const Write = () => {
           }
         })
         .catch(err => {
-          console.log(err.response)
-        })
+          console.log(err.response);
+        });
     }
   };
 

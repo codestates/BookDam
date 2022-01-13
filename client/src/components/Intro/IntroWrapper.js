@@ -23,7 +23,7 @@ import { GuestLoginAction, LogoutAction } from '../../actions/UserInfoAction';
 export const IntroWrapper = () => {
   const [isOpenLoginModal, setIsOpenLoginModal] = useState(false);
   const [isOpenSignupModal, setIsOpenSignupModal] = useState(false);
-  const [guestInfo, setGuestInfo] = useState({ userId: 'guest',password: '1234'}) 
+  const [guestInfo, setGuestInfo] = useState({ userId: 'guest', password: '1234' });
   const state = useSelector(state => state.userInfoReducer); // 로그인 상태변경용
   const { isLogin, userInfo } = state; // 로그인 상태변경용
   const dispatch = useDispatch();
@@ -69,7 +69,7 @@ export const IntroWrapper = () => {
   };
 
   const guestLoginHandelr = async () => { // 게스트로 둘러보기시에 처리
-    if(userInfo.userNickName !== 'passenger') {
+    if (userInfo.userNickName !== 'passenger') {
       history.push('/feedpage');
     } else {
       await axios({

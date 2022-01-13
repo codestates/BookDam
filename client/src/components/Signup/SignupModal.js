@@ -25,7 +25,7 @@ export const SignupModal = ({ handleCloseSignupModal, handleLoginModal }) => {
   const isValidPassword = /(?=.*\d)(?=.*[a-zA-ZS]).{8,}/; // 문자, 숫자 1개이상 포함, 8자리 이상
   const [userInfo, setUserInfo] = useState({ userId: '', userNickName: '', password: '' });
   const [errorMessage, setErrorMessage] = useState('');
-  const [message, setMessage] = useState('아이디가 있으신가요?')
+  const [message, setMessage] = useState('아이디가 있으신가요?');
   const [pwChecked, setpwChecked] = useState(false);
 
   const handleInputIdValidCheck = (e) => { // 아이디 반영
@@ -82,21 +82,21 @@ export const SignupModal = ({ handleCloseSignupModal, handleLoginModal }) => {
           'Content-Type': 'application/json'
         },
         data: {
-          userInfo : userInfo
-        } 
-      })
-      .then((res) => {
-        if(res.data.message === 'success') {
-          setMessage('회원가입이 완료되었습니다.');
-          setTimeout(handleLoginModal, 1500);
-        };
-      })
-      .catch((err) => {
-        console.log(err.response.data.message)
-        if(err.response.data.message === '중복된 아이디입니다.') {
-          setErrorMessage('중복된 아이디입니다.');
+          userInfo: userInfo
         }
       })
+        .then((res) => {
+          if (res.data.message === 'success') {
+            setMessage('회원가입이 완료되었습니다.');
+            setTimeout(handleLoginModal, 1500);
+          }
+        })
+        .catch((err) => {
+          console.log(err.response.data.message);
+          if (err.response.data.message === '중복된 아이디입니다.') {
+            setErrorMessage('중복된 아이디입니다.');
+          }
+        });
     } else {
       setErrorMessage('내용을 올바르게 입력해 주세요');
     }

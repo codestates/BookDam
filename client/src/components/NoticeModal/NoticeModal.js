@@ -1,4 +1,4 @@
-import axios from 'axios';
+import Axios from 'axios';
 import React, { useState } from 'react';
 import {
   NoticeModalBackground,
@@ -11,21 +11,19 @@ export const NoticeModal = ({ NoticeModalOpenHandler, followInfo, userInfo }) =>
   console.log('팔로우정보', followInfo);
   const deleteFollowReq = () => {
     if (userInfo.id === 1) {
-      NoticeModalOpenHandler()
-    }
-    else {
-      axios.delete(`http://localhost:4000/follow/${userInfo.id}?follow_Id=${followInfo.id}`,
+      NoticeModalOpenHandler();
+    } else {
+      Axios.delete(`http://localhost:4000/follow/${userInfo.id}?follow_Id=${followInfo.id}`,
         {
           headers: { 'Contnet-Type': 'application/json' }
         })
         .then((data) => {
-          
-          NoticeModalOpenHandler()
+          NoticeModalOpenHandler();
         })
         .catch((err) => {
-          console.log(err)
-          NoticeModalOpenHandler()
-        })
+          console.log(err);
+          NoticeModalOpenHandler();
+        });
     }
   };
 

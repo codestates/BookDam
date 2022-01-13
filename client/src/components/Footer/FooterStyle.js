@@ -4,6 +4,7 @@ import logo from '../../assets/images/logo-bigw.png';
 export const FooterContainer = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   height: 180px;
   width: 100%;
   padding-top: 20px;
@@ -16,6 +17,7 @@ export const FooterContainer = styled.div`
     }
 `;
 export const FooterInfo = styled.div`
+width: 970px;
 display: flex;
 flex-direction: row;
 justify-content: space-around;

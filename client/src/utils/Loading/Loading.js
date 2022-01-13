@@ -8,7 +8,7 @@ export function Loading () {
   return (
     <>
       <LoadingContainer>
-        <LoadingCom />
+        <LoadingCom />Loading...
       </LoadingContainer>
     </>
   );

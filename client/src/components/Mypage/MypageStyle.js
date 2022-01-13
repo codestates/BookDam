@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const MyPageWholeContainer = styled.div`
   /* padding-top: 50px; */
-  border: 1px solid #e9ecef;
+  border-top: 1px solid #e9ecef;
   overflow: hidden;
   position: relative;
   width: 100vw;
@@ -69,7 +69,7 @@ export const NickNameFollowSection = styled.div`
   display: flex;
   width: 100% ;
   height: 55%;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: nowrap;
   margin-bottom: 5px;
   /* border: 1px solid red; */
@@ -77,20 +77,24 @@ export const NickNameFollowSection = styled.div`
 
 export const NickName = styled.div`
   display: flex;
-  width: 100px;
+  width: 98%;
   font-size: 1.1rem;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  text-align: center;
-  margin-left: 5px;
+  text-align: start;
+  font-size: x-large;
+  padding-left: 5px;
+  font-weight: 500;
   /* border: 1px solid green; */
 `;
 
 export const FollowContainer = styled.div`
   display: flex;
-  width: 180px;
+  width: 98%;
   flex-direction: row;
-  margin-left: 5px;
+  padding-left: 5px;
+  font-size: medium;
+  font-weight: 500;
   /* border: 1px solid orange; */
 `;
 
@@ -110,6 +114,7 @@ export const FollowCount = styled.span`
   align-items: center;
   text-align: start;
   margin-left: 5px;
+  font-weight: 600;
 `;
 
 export const Follower = styled.div`
@@ -127,6 +132,7 @@ export const FollowerCount = styled.span`
   align-items: center;
   text-align: center;
   margin-left: 5px;
+  font-weight: 600;
 `;
 
 export const UserModifyBtn = styled.button`

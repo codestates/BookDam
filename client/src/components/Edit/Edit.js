@@ -41,18 +41,22 @@ export const Edit = () => {
   // const location = useLocation()
   // const articles = location.state.articles; // MyPage 썸네일을 눌러서 넘어오는 articles 정보
   // console.log(articles)
+    //* --- SentenceModal에서 넘겨주는 
+  Imfo 받아오는 변수 ---//
+  const location = useLocation()
+  const myArticleInfo = location.state.myArticleInfo;
+  console.log('SentenceModal로부터: ', myArticleInfo)
+  
   const userState = useSelector(state => state.userInfoReducer); //테스트용
-  const articleState = useSelector(state => state.articleReducer); //테스트용
   const { isLogin, userInfo } = userState
-  const { articleInfo } = articleState; // 전역저장소에서 articleInfo를 불러온다.
   const [isOpenNoticeModal, setIsOpenNoticeModal] = useState(false);
   const [isOpenSubmitModal, setIsOpenSubmitModal] = useState(false);
   const [isOpenTextLimitNoticeModal, setIsOpenTextLimitNoticeModal] = useState(false);
 
   // const { article_Id, sentence, comment } = articleInfo;
   const [errorMessage, setErrorMessage] = useState('');
-  const [inputSentence, setInputSentence] = useState(articleInfo.sentence);
-  const [inputComment, setInputComment] = useState(articleInfo.comment);
+  const [inputSentence, setInputSentence] = useState(myArticleInfo.sentence);
+  const [inputComment, setInputComment] = useState(myArticleInfo.comment);
   const [sentenceLength, setSentenceLength] = useState(0);
   const [commentLength, setCommentLength] = useState(0);
   const history = useHistory();
@@ -95,15 +99,15 @@ export const Edit = () => {
     setIsOpenTextLimitNoticeModal(false);
     document.body.style.overflow = 'unset';
   };
-  
+
   const submitHandler = () => {
     if(inputSentence === '' && inputSentence === '') {
       setErrorMessage('내용을 입력하세요.')
       setIsOpenNoticeModal(true);
     } else {
-      setErrorMessage('저장하시겠습니까?')
+      setErrorMessage('저장하시겠습니까?');
       setIsOpenSubmitModal(true);
-      document.body.style.overflow = 'unset'; 
+      document.body.style.overflow = 'unset';
     }
   };
 
@@ -121,7 +125,7 @@ export const Edit = () => {
       await axios({
         withCredentials: true,
         method: 'patch',
-        url: `http://localhost:4000/article/${userInfo.id}?article_Id=${articleInfo.id}`,
+        url: `http://localhost:4000/article/${userInfo.id}?article_Id=${myArticleInfo.id}`,
         headers: {
           authorization: `Bearer: ${process.env.Client_Secret}`,
           'Content-Type': 'application/json'
@@ -150,7 +154,7 @@ export const Edit = () => {
           : null}
 
         {isOpenSubmitModal
-          ? <SubmitConfirmModal errorMessage={errorMessage} handleSubmit={handleSubmit} handleCloseNoticeModal={handleCloseNoticeModal}/>
+          ? <SubmitConfirmModal errorMessage={errorMessage} handleSubmit={handleSubmit} handleCloseNoticeModal={handleCloseNoticeModal} />
           : null}
         
         {isOpenTextLimitNoticeModal
@@ -169,21 +173,21 @@ export const Edit = () => {
               <SearchBookInfoLower>
                 <SearchBookTitleContainer>
                   <BookTitleLeftContainer>도서명</BookTitleLeftContainer>
-                  <BookTitleRightContainer>{articleInfo.book_Title}</BookTitleRightContainer>
+                  <BookTitleRightContainer>{myArticleInfo.book_Title}</BookTitleRightContainer>
                 </SearchBookTitleContainer>
                 <BookAuthorContainer>
                   <BookTitleLeftContainer>저자명</BookTitleLeftContainer>
-                  <BookTitleRightContainer>{articleInfo.book_Author}</BookTitleRightContainer>
+                  <BookTitleRightContainer>{myArticleInfo.book_Author}</BookTitleRightContainer>
                 </BookAuthorContainer>
                 <BookPublisherContainer>
                   <BookTitleLeftContainer>출판사</BookTitleLeftContainer>
-                  <BookTitleRightContainer>{articleInfo.book_Publisher}</BookTitleRightContainer>
+                  <BookTitleRightContainer>{myArticleInfo.book_Publisher}</BookTitleRightContainer>
                 </BookPublisherContainer>
               </SearchBookInfoLower>
             </BookInfoContainer>
             <BookImageContainer>
               <BookThumbnailContainer>
-                <BookThumbnail src={standardOfjava}/>
+                <BookThumbnail src={myArticleInfo.book_Thumbnail}/>
               </BookThumbnailContainer>
             </BookImageContainer>
           </BookContainer>

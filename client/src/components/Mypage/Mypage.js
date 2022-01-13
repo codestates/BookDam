@@ -1,12 +1,13 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useInView } from 'react-intersection-observer';
 import { UserModifyModal } from '../UserInfoModify/UserModifyModal';
 import { SetenceModal } from '../SentenceModal/SentenceModal';
 import { data } from '../../dummyfiles/dummyMyFeedList';
-import example from '../../assets/images/defaultUserImage.png';
+import example from '../../assets/images/defaultUserImage.png'
+import { IsGuestNoticeModal } from '../../components/NoticeModal/UserModifyNoticeModal/IsGuestNoticeModal';
 
 import {
   MyPageWholeContainer,
@@ -29,6 +30,7 @@ import {
   Article
 } from './MypageStyle';
 
+
 axios.defaults.withCredentials = true;
 
 export default function MyPage () {
@@ -47,11 +49,12 @@ export default function MyPage () {
   const { userInfo } = userState;
 
   const [isGuest, setIsGuest] = useState({
-    id: 0,
+    id: 1,
     userId: 'guest',
-    userNickName: 'guset',
-    userImage: ''
-  });
+    userNickName: '게스트',
+    userImage: '../../assets/images/defaultUserImage.png'
+  })
+
   const [myUserInfo, setMyUserInfo] = useState({
     id: 0,
     userId: '',
@@ -63,14 +66,20 @@ export default function MyPage () {
     follower: 0
   });
   const [myArticleList, setMyArticleList] = useState([]);
+  const [isOpenNoticeModal, setIsOpenNoticeModal] = useState(false);
   const [isOpneModifyModal, setIsOpenModifyModal] = useState(false);
   const [isOpenSentenceModal, setIsOpenSentenceModal] = useState(false);
-  const history = useHistory();
-
+  const [errorMessage, setErrorMessage] = useState('');
   const [page, setPage] = useState(0); // 무한 스크롤시 페이지 필요
   const [loading, setLoading] = useState(false);
   const [ref, inView] = useInView(); // react-intersection-observer -> div가 viewport에 보여질 때 inView 값이 true
+  const history = useHistory();
 
+  // 게스트 로그인일 경우 노티스 모달 핸들러
+  const isGuestNoticeModalHandler = () => {
+    setIsOpenNoticeModal(!isOpenNoticeModal)
+    setErrorMessage('회원가입 후 이용해주세요')
+  };
   // 회원정보수정 버튼 누르면 회원정보수정 모달이 나오는 함수
   const userInfoModifyBtnHandler = () => {
     setIsOpenModifyModal(!isOpneModifyModal);
@@ -85,19 +94,20 @@ export default function MyPage () {
     setIsOpenSentenceModal(!isOpenSentenceModal);
     history.push({
       state: {
-        articleInfo: {
-          id: el.id,
-          userNickName: el['User.userNickName'],
-          userImage: el['User.userImage'],
-          book_Title: el.book_Title,
-          book_Author: el.book_Author,
-          sentence: el.sentence,
-          comment: el.comment,
-          createdAt: el.createdAt
-        }
-      }
-    });
-  };
+        articleInfo : {
+        id: el.id,
+        userNickName: el['User.userNickName'],
+        userImage: el['User.userImage'],
+        book_Title: el.book_Title,
+        book_Author: el.book_Author,
+        book_Publisher: el.book_Publisher,
+        sentence: el.sentence,
+        comment: el.comment,
+        createdAt: el.createdAt,
+      }}
+    })
+  }
+
 
   // 내 정보 전체를 조회하는 함수 (무한 스크롤 적용)
   const getMyInfoAll = useCallback(() => {
@@ -153,50 +163,62 @@ export default function MyPage () {
   return (
     // react suspence hook (데이터가 없을 경우, 로딩 화면) 삼항 연산자로 getUserInfoAll 함수 처리
     <>
-      <MyPageWholeContainer>
-        <MypageContainer>
-          {isOpneModifyModal
-            ? <UserModifyModal
-                userInfoModifyBtnHandler={userInfoModifyBtnHandler}
-                closeUserInfoModify={closeUserInfoModify}
-                myUserInfo={myUserInfo}
-              />
-            : null}
-          {isOpenSentenceModal
-            ? <SetenceModal
-                openSentenceModalHandler={openSentenceModalHandler}
-              />
-            : null}
-          <UserInfoContainer>
-            <UserImgSection>
-              <UserImage src='../../assets/images/defaultUserImage.png' />
-            </UserImgSection>
-            <UserInfoSection>
-              <NickNameFollowSection>
-                <NickName>{myUserInfo.userNickName}</NickName>
-                <FollowContainer>
-                  <Follow>팔로우
-                    <FollowCount>{follow.following}</FollowCount>
-                  </Follow>
-                  <Follower>팔로워
-                    <FollowerCount>{follow.follower}</FollowerCount>
-                  </Follower>
-                </FollowContainer>
-              </NickNameFollowSection>
-              <UserModifyBtn
-                onClick={userInfoModifyBtnHandler}
-              >
-                회원정보수정
-              </UserModifyBtn>
-            </UserInfoSection>
-          </UserInfoContainer>
-          {/* <ArticleListTitle>목록</ArticleListTitle> */}
-          <ArticleListContainer>
-            {myArticles}
-          </ArticleListContainer>
-          <div ref={ref} />
-        </MypageContainer>
-      </MyPageWholeContainer>
+    <MyPageWholeContainer>
+      <MypageContainer> 
+        {isOpneModifyModal
+          ? <UserModifyModal
+            userInfoModifyBtnHandler={userInfoModifyBtnHandler}
+            closeUserInfoModify={closeUserInfoModify}
+            myUserInfo={myUserInfo}
+            setIsOpenModifyModal={setIsOpenModifyModal}
+            />
+          : null}
+        {isOpenSentenceModal
+          ? <SetenceModal
+            openSentenceModalHandler={openSentenceModalHandler}
+            setIsOpenSentenceModal={setIsOpenSentenceModal}
+            />
+          : null}  
+        <UserInfoContainer>
+          <UserImgSection>
+            <UserImage src={'../../assets/images/defaultUserImage.png'} />
+          </UserImgSection>
+          <UserInfoSection>
+            <NickNameFollowSection>
+              <NickName>{myUserInfo.userNickName}</NickName>
+              <FollowContainer>
+                <Follow>팔로우
+                  <FollowCount>{follow.following}</FollowCount>
+                </Follow>
+                <Follower>팔로워
+                  <FollowerCount>{follow.follower}</FollowerCount>
+                </Follower>
+              </FollowContainer>
+            </NickNameFollowSection>
+
+            {/* {isGuest ? 
+              <IsGuestNoticeModal 
+                errorMessage={errorMessage}
+                isGuestNoticeModalHandler={isGuestNoticeModalHandler} />
+            :
+            
+            } */}
+            <UserModifyBtn
+              onClick={userInfoModifyBtnHandler}
+              setIsOpenModifyModal={setIsOpenModifyModal}
+            >
+              회원정보수정
+            </UserModifyBtn>
+
+          </UserInfoSection>
+        </UserInfoContainer>
+        {/* <ArticleListTitle>목록</ArticleListTitle> */}
+        <ArticleListContainer>
+          {myArticles}
+        </ArticleListContainer> 
+        <div ref={ref}></div>
+      </MypageContainer>
+    </MyPageWholeContainer>
     </>
   );
 }

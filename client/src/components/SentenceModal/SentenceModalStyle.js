@@ -93,7 +93,18 @@ export const Edit = styled.div`
   height: 50%;
   background-color: honeydew;
   margin: 0;
-  padding: 0;
+  padding: 0 .3em;
+  transition: all .3s;
+  cursor: pointer;
+
+  &:hover {
+    color: #fff;
+    background-color: #2ecc71;
+  }
+
+  @media (max-width: 500px){
+    cursor: none;
+  }
 `;
 
 export const Delete = styled.div`
@@ -104,8 +115,19 @@ export const Delete = styled.div`
   height: 50%;
   background-color: honeydew;
   margin: 0;
-  padding: 0;
+  padding: 0 .3em;
+  transition: all .3s;
   color: red;
+  cursor: pointer;
+  
+  &:hover {
+    color: red;
+    background-color: #ffc9c9;
+  }
+
+  @media (max-width: 500px){
+    cursor: none;
+  }
 `;
 
 export const UserInfo = styled.div`

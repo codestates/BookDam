@@ -41,7 +41,7 @@ export const LogoutAction = (userInfo) => {
       userInfo: {
         id: '',
         userId: '',
-        userNickName: '지나가는 과객',
+        userNickName: 'passenger',
         userImage: ''
       }
     }

@@ -23,6 +23,8 @@ import {
   WriteArticleWrapper,
   WriteArticleContainer,
   WriteSentenceSection,
+  WriteTextLimitContainer,
+  WriteTextLimitResult,
   WriteCommentSection,
   ArticleButtonWrapper,
   ArticleButtonContainer,
@@ -35,6 +37,7 @@ import { SignupModal } from '../Signup/SignupModal';
 import { BookSearchModal } from '../BookSearchModal/BookSearchModal';
 import { NoInputNoticeModal } from '../NoticeModal/WriteNoticeModal/NoInputNoticeModal';
 import { SubmitConfirmModal} from '../NoticeModal/WriteNoticeModal/SubmitConfirmModal';
+import { TextLimitNoticeModal } from '../NoticeModal/WriteNoticeModal/TextLimitNoticeModal';
 
 export const Write = () => {
   const state = useSelector(state => state.userInfoReducer); // 로그인 상태변경용
@@ -44,6 +47,7 @@ export const Write = () => {
   const [isOpenBookSearchModal, setIsOpenBookSearchModal] = useState(false);
   const [isOpenNoticeModal, setIsOpenNoticeModal] = useState(false);
   const [isOpenSubmitModal, setIsOpenSubmitModal] = useState(false);
+  const [isOpenTextLimitNoticeModal, setIsOpenTextLimitNoticeModal] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [searchData, setSearchData] = useState([]);
@@ -52,6 +56,8 @@ export const Write = () => {
   });
   const [inputSentence, setInputSentence] = useState('');
   const [inputComment, setInputComment] = useState('');
+  const [sentenceLength, setSentenceLength] = useState(0);
+  const [commentLength, setCommentLength] = useState(0);
   const [isLoading, setIsLoading] = useState(false)
   const history = useHistory();
 
@@ -78,13 +84,13 @@ export const Write = () => {
         let resultData = []
         // eslint-disable-next-line array-callback-return
         res.data.map((list) => {
-          console.log(list)
           resultData.push({
             itemId: list.$.itemId,
             title: list.title[0],
             image: list.cover[0],
             author: list.author[0],
             publisher: list.publisher[0],
+            isbn: list.isbn[0]
           })
         })
         setIsLoading(false);
@@ -115,6 +121,15 @@ export const Write = () => {
       setIsOpenLoginModal(true);
     } else {
       setInputSentence(e.target.value);
+      let textLength = (e.target.value).length;
+      if(textLength === 121) {
+        setIsOpenTextLimitNoticeModal(true);
+        setErrorMessage('글자수 120자까지 가능합니다.')
+        //입력 자체를 제한
+      } else if(textLength <= 120){
+        setIsOpenTextLimitNoticeModal(false);
+        setSentenceLength(textLength);
+      }
     }
   };
 
@@ -123,6 +138,15 @@ export const Write = () => {
       setIsOpenLoginModal(true);
     } else {
       setInputComment(e.target.value);
+      let textLength = (e.target.value).length;
+      if(textLength === 61) {
+        setIsOpenTextLimitNoticeModal(true);
+        setErrorMessage('글자수 120자까지 가능합니다.')
+        //입력 자체를 제한
+      } else if(textLength <= 60){
+        setIsOpenTextLimitNoticeModal(false);
+        setCommentLength(textLength);
+      }
     }
   };
 
@@ -146,11 +170,12 @@ export const Write = () => {
   const handleCloseNoticeModal = () => {
     setIsOpenNoticeModal(false);
     setIsOpenSubmitModal(false);
+    setIsOpenTextLimitNoticeModal(false);
     document.body.style.overflow = 'unset';
   };
 
   const submitHandler = () => {
-    if (selectedData.title === '' || inputSentence === '' || inputSentence === '') {
+    if (selectedData.title === '' || (inputSentence === '' && inputSentence === '')) {
       setErrorMessage('내용을 입력하세요.');
       setIsOpenNoticeModal(true);
     } else {
@@ -170,7 +195,7 @@ export const Write = () => {
       comment: inputComment
     };
 
-    if (selectedData.title === '' || inputSentence === ' ' || inputComment === '') {
+    if (selectedData.title === '' || (inputSentence === '' && inputSentence === '')) {
       setErrorMessage('내용을 입력하세요.');
       setIsOpenNoticeModal(true);
       document.body.style.overflow = 'hidden';
@@ -236,6 +261,10 @@ export const Write = () => {
         {isOpenSubmitModal
           ? <SubmitConfirmModal errorMessage={errorMessage} handleSubmit={handleSubmit} handleCloseNoticeModal={handleCloseNoticeModal} />
           : null}
+        
+        {isOpenTextLimitNoticeModal
+          ? <TextLimitNoticeModal errorMessage={errorMessage} handleCloseNoticeModal={handleCloseNoticeModal} />
+          : null}
         <SearchBookWrapper>
           <SearchBookContainer>
             <SearchBookInfoContainer>
@@ -262,7 +291,10 @@ export const Write = () => {
             </SearchBookInfoContainer>
             <SearchBookImageContainer>
               <BookThumbnailContainer>
-                <BookThumbnail src={selectedData.image} />
+                {selectedData.image 
+                  ? <BookThumbnail src={selectedData.image} />
+                  : null
+                }
               </BookThumbnailContainer>
             </SearchBookImageContainer>
           </SearchBookContainer>
@@ -270,7 +302,13 @@ export const Write = () => {
 
         <WriteArticleWrapper>
           <WriteArticleContainer>
+            <WriteTextLimitContainer>
+              <WriteTextLimitResult>글자수({sentenceLength}/120자)</WriteTextLimitResult>
+            </WriteTextLimitContainer>
             <WriteSentenceSection onChange={handleInputSentence} />
+            <WriteTextLimitContainer>
+              <WriteTextLimitResult>글자수({commentLength}/60자)</WriteTextLimitResult>
+            </WriteTextLimitContainer>
             <WriteCommentSection onChange={handleInputComment} />
           </WriteArticleContainer>
         </WriteArticleWrapper>

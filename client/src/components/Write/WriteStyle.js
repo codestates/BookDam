@@ -164,7 +164,7 @@ export const BookThumbnailContainer = styled.div`
 `;
 
 export const BookThumbnail = styled.img`
-  /* border: 1px solid black; */
+  border: 1px solid black;
   width: 70%;
   margin: 0;
   @media screen and (max-width: 500px) {
@@ -190,10 +190,36 @@ export const WriteArticleContainer = styled.div`
   /* border: 1px solid black; */
 `;
 
+export const WriteTextLimitContainer = styled.div`
+  /* border: 1px solid black; */
+  width: 90%;
+  height: 5%;
+  display: flex;
+  justify-content: flex-end;
+`;
+
+export const WriteTextLimitResult = styled.div`
+  /* border: 1px solid black; */
+  width: 40%;
+  margin-right: 2px;
+  font-size: 16px;
+  font-weight: 600;
+  color: gray;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+
+  @media screen and (max-width: 500px) {
+    font-size: 12px;
+  }
+`;
+
 export const WriteSentenceSection = styled.textarea.attrs({
-  placeholder: '감동적인 문장을 기록하세요.'
+  placeholder: '감동적인 문장을 기록하세요.',
+  maxLength: 120
 })`
-  margin-top: 10px;
+  margin-bottom: 20px;
   width: 90%;
   height: 50%;
   border: thick double #5dc175;
@@ -204,9 +230,10 @@ export const WriteSentenceSection = styled.textarea.attrs({
 `;
 
 export const WriteCommentSection = styled.textarea.attrs({
-  placeholder: '문장에 대한 감상평을 남기세요.'
+  placeholder: '문장에 대한 감상평을 남기세요.',
+  maxLength: 60
 })`
-  margin: 10px;
+  /* margin: 10px; */
   width: 90%;
   height: 25%;
   border: thick double #5dc175;

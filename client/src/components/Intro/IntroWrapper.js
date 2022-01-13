@@ -129,10 +129,12 @@ export const IntroWrapper = () => {
             <ButtonWrapper>
               <ButtonContainer>
                 <Link to='/feedpage'>
-                  <ButtonsInIntro onClick={guestLoginHandelr}>둘러보기</ButtonsInIntro>
+                  {isLogin
+                    ? <ButtonsInIntro onClick={guestLoginHandelr}>입장하기</ButtonsInIntro>
+                    : <ButtonsInIntro onClick={guestLoginHandelr}>둘러보기</ButtonsInIntro>}
                 </Link>
                 {isLogin
-                  ? <ButtonsInIntro onClick={logoutHandler}>로그아웃</ButtonsInIntro>
+                  ? null
                   : <ButtonsInIntro onClick={handleLoginModal}>로그인</ButtonsInIntro>}
               </ButtonContainer>
             </ButtonWrapper>

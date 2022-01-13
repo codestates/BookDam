@@ -30,19 +30,19 @@ export const Searchuser = ({ setFollowFeedList }) => {
   useEffect(() => {
     const getSearchUserFeedList = () => {
       Axios.get(`http://localhost:4000/user?name=${filter}`,
-      {
-        headers: { 'Contnet-Type': 'application/json' }
-      })
-      .then((data) => {
-        console.log(data)
-        setSearchUser(data.data.searchInfo) // 이부분 삭제하고 새로운 함수에 유저정보 담아주는 태그 만들어야함
-      })
-    }
+        {
+          headers: { 'Contnet-Type': 'application/json' }
+        })
+        .then((data) => {
+          console.log(data);
+          setSearchUser(data.data.searchInfo); // 이부분 삭제하고 새로운 함수에 유저정보 담아주는 태그 만들어야함
+        });
+    };
     if (filter.length !== 0) {
-      getSearchUserFeedList()
+      getSearchUserFeedList();
     }
-  }, [filter])
-  console.log(filter)
+  }, [filter]);
+  console.log(filter);
   const callUserPage = (el) => {
     history.push({
       pathname: `/userPage/${el.userNickName}`,
@@ -93,8 +93,8 @@ export const Searchuser = ({ setFollowFeedList }) => {
           </SearchUserContainer>
           {hasInputValue
             ? <UserSearchResultContainer>
-              {searchUser.length !==0 ? 
-                searchUser.slice(0, 9).map((el, index) => {
+              {searchUser.length !== 0
+                ? searchUser.slice(0, 9).map((el, index) => {
                   return (
                     <li key={index} onClick={() => callUserPage(el)}>
                       <UserSearchImagebox>
@@ -103,7 +103,8 @@ export const Searchuser = ({ setFollowFeedList }) => {
                       <div>{el.userNickName}</div>
                     </li>
                   );
-              }) : <div>검색 결과가 없습니다.</div>}
+                })
+                : <div>검색 결과가 없습니다.</div>}
             </UserSearchResultContainer>
             : null}
         </div>

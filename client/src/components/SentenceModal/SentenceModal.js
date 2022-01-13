@@ -24,7 +24,7 @@ import {
   CloseBtnWrap,
   CloseBtn
 } from './SentenceModalStyle';
-import { BiDotsVerticalRounded } from "react-icons/bi";
+import { BiDotsVerticalRounded } from 'react-icons/bi';
 import example from '../../assets/images/defaultUserImage.png';
 
 export const SetenceModal = ({ openSentenceModalHandler }) => {
@@ -34,25 +34,24 @@ export const SetenceModal = ({ openSentenceModalHandler }) => {
 
   const openMeunHandler = () => {
     setIsOpenMenu(!isOpenMenu);
-  }
-
+  };
 
   return (
     <>
       <SentenceModalBackContainer>
         <SentenceContainer>
           <UserInfoContainer>
-          <EditWrapper onClick={openMeunHandler}>
-            <div>
-              <BiDotsVerticalRounded />
-            </div>
-          </EditWrapper>  
-          {isOpenMenu ? 
-            <EditMenuWrapper>
-            <Edit>편집</Edit>
-            <Delete>삭제</Delete>
-          </EditMenuWrapper>
-          : null}
+            <EditWrapper onClick={openMeunHandler}>
+              <div>
+                <BiDotsVerticalRounded />
+              </div>
+            </EditWrapper>
+            {isOpenMenu
+              ? <EditMenuWrapper>
+                <Edit>편집</Edit>
+                <Delete>삭제</Delete>
+              </EditMenuWrapper>
+              : null}
             <UserInfo>
               <UserNameAndImage>
                 <UserImageContainer>

@@ -140,8 +140,7 @@ export function UserModifyModal ({ closeUserInfoModify, userInfoModifyBtnHandler
               <EditPictureWrap>
                 <EditPictureBtn>사진선택</EditPictureBtn>
               </EditPictureWrap>
-              <UserImage src={myUserInfo.userImage}>     
-              </UserImage>
+              <UserImage src={myUserInfo.userImage} />
             </UserImgSection>
             <UserNickName>{myUserInfo.userNickName}</UserNickName>
           </UserInfoSection>

@@ -3,9 +3,9 @@ import {
   NoticeModalBackground,
   NoticeModalContainer,
   Button
-} from './NoInputNoticeModalStyle';
+} from './TextLimitNoticeModalStyle';
 
-export const NoInputNoticeModal = ({ errorMessage, handleCloseNoticeModal }) => {
+export const TextLimitNoticeModal = ({ errorMessage, handleCloseNoticeModal }) => {
   return (
     <>
       <NoticeModalBackground onClick={handleCloseNoticeModal}>

@@ -101,8 +101,9 @@ export const SignupTitle = styled.div`
 
 // Sign input: ID
 export const InputId = styled.input.attrs({
-  placeholder: '아이디',
-  type: 'text'
+  placeholder: '아이디(글자수 제한 12자)',
+  type: 'text',
+  maxLength: 12
 })`
   margin-top: 10px;
   border-radius: 2px;
@@ -116,8 +117,9 @@ export const InputId = styled.input.attrs({
 
 // Sign input: UserNickName
 export const InputUserNickName = styled.input.attrs({
-  placeholder: '닉네임',
-  type: 'text'
+  placeholder: '닉네임(글자수 제한 12자)',
+  type: 'text',
+  maxLength: 12
 })`
   margin-top: 10px;
   border-radius: 2px;

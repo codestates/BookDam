@@ -39,7 +39,7 @@ export const NavbarWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 970px;
+  width: 870px;
 
   @media screen and (max-width: 500px) {
     justify-content: center;
@@ -49,7 +49,7 @@ export const NavbarWrapper = styled.div`
 export const LogoSection = styled.div`
   width: 140px;
   height: 60%;
-  margin-left: 30px;
+  /* margin-left: 30px; */
   /* border: 1px solid orange; */
 
   @media (max-width: 500px) {
@@ -75,24 +75,56 @@ export const NavMenuSection = styled.ul`
   }
 `;
 
-export const NavMenu = styled.li`
-  height: 50%;
+export const NavMenu1 = styled.li`
+  height: 70%;
   display: flex;
   margin: 0.5rem;
   font-size: 1.3rem;
   justify-content: center;
   align-items: center;
-  color: red;
+  /* color: red; */
   /* border: 1px solid black; */
+`;
+
+export const NavMenu2 = styled.li`
+  height: 70%;
+  display: flex;
+  margin: 0.5rem;
+  font-size: 1.3rem;
+  justify-content: center;
+  align-items: center;
+  /* color: red; */
+  /* border: 1px solid black; */
+`;
+
+export const NavMenu3 = styled.li`
+  height: 70%;
+  display: flex;
+  margin: 0.5rem;
+  font-size: 1.3rem;
+  justify-content: center;
+  align-items: center;
+  /* color: red; */
+  /* border: 1px solid black; */
+`;
+
+export const NavMenuSub = styled.li`
+  height: 70%;
+  display: flex;
+  margin: 0.5rem;
+  font-size: 1.3rem;
+  justify-content: center;
+  font-weight: 600;
+
 `;
 
 export const UserSection = styled.div`
   height: 40px;
-  width: 150px;
+  width: 80px;
   display: flex;
   align-items: center;
-  flex-direction: row;
-  justify-content: center;
+  /* flex-direction: row; */
+  justify-content: flex-end;
   /* border: 1px solid black; */
 
   @media (max-width: 500px) {
@@ -106,7 +138,7 @@ export const UserImage = styled.img`
   display: flex;
   margin: 0.5rem;
   align-items: center;
-  /* border: 1px solid black; */
+  border: 1px solid black;
   `;
 
 export const UserNickName = styled.div`
@@ -118,8 +150,35 @@ export const UserNickName = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-  /* border: 1px solid black; */
+  border: 1px solid black;
 `;
+
+// 로그아웃 섹션
+export const LoginoutSection = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  /* width: 100%; */
+  height: 100%;
+  /* margin-bottom: 20px; */
+  /* border: 1px solid blue; */
+`;
+
+export const Loginout = styled.button`
+  width: 60px;
+  height: 30px;
+  box-sizing: border-box;
+  border: 1px solid grey;
+  border-radius: 5px;
+  background-color: rgba(0,0,0,0);
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 700;
+  font-size: 13px;
+  /* margin: 10px; */
+  border-radius: 2px;
+  cursor: pointer;
+`;
+
 
 export const SideMenuSection = styled.div`
   display: none;

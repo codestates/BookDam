@@ -26,7 +26,7 @@ import {
   CloseBtnWrap,
   CloseBtn
 } from './SentenceModalStyle';
-import { BiDotsVerticalRounded } from "react-icons/bi";
+import { BiDotsVerticalRounded } from 'react-icons/bi';
 import example from '../../assets/images/defaultUserImage.png';
 import { ArticleNoticeModal } from '../../components/NoticeModal/ArticleNoticeModal/ArticlesNoticeModal';
 

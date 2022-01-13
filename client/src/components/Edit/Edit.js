@@ -31,15 +31,15 @@ import {
   ButtonsInEdit
 } from './EditStyle';
 import { NoInputNoticeModal } from '../NoticeModal/EditNoticeModal/NoInputNoticeModal';
-import { SubmitConfirmModal} from '../NoticeModal/EditNoticeModal/SubmitConfirmModal';
+import { SubmitConfirmModal } from '../NoticeModal/EditNoticeModal/SubmitConfirmModal';
 
 export const Edit = () => {
   // const location = useLocation()
   // const articles = location.state.articles; // MyPage 썸네일을 눌러서 넘어오는 articles 정보
   // console.log(articles)
-  const userState = useSelector(state => state.userInfoReducer); //테스트용
-  const articleState = useSelector(state => state.articleReducer); //테스트용
-  const { userInfo } = userState
+  const userState = useSelector(state => state.userInfoReducer); // 테스트용
+  const articleState = useSelector(state => state.articleReducer); // 테스트용
+  const { userInfo } = userState;
   const { articleInfo } = articleState; // 전역저장소에서 articleInfo를 불러온다.
   const [isOpenNoticeModal, setIsOpenNoticeModal] = useState(false);
   const [isOpenSubmitModal, setIsOpenSubmitModal] = useState(false);
@@ -68,15 +68,15 @@ export const Edit = () => {
     setIsOpenSubmitModal(false);
     document.body.style.overflow = 'unset';
   };
-  
+
   const submitHandler = () => {
-    if(inputSentence === '' || inputSentence === '') {
-      setErrorMessage('내용을 입력하세요.')
+    if (inputSentence === '' || inputSentence === '') {
+      setErrorMessage('내용을 입력하세요.');
       setIsOpenNoticeModal(true);
     } else {
-      setErrorMessage('저장하시겠습니까?')
+      setErrorMessage('저장하시겠습니까?');
       setIsOpenSubmitModal(true);
-      document.body.style.overflow = 'unset'; 
+      document.body.style.overflow = 'unset';
     }
   };
 
@@ -87,7 +87,7 @@ export const Edit = () => {
     };
 
     if (inputSentence === '' || inputComment === '') {
-      setErrorMessage('내용을 입력하세요.')
+      setErrorMessage('내용을 입력하세요.');
       setIsOpenNoticeModal(true);
       document.body.style.overflow = 'hidden';
     } else {
@@ -123,9 +123,9 @@ export const Edit = () => {
           : null}
 
         {isOpenSubmitModal
-          ? <SubmitConfirmModal errorMessage={errorMessage} handleSubmit={handleSubmit} handleCloseNoticeModal={handleCloseNoticeModal}/>
+          ? <SubmitConfirmModal errorMessage={errorMessage} handleSubmit={handleSubmit} handleCloseNoticeModal={handleCloseNoticeModal} />
           : null}
-         
+
         <EditPageWrapper>
           <BookContainer>
             <BookInfoContainer>

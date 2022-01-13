@@ -67,7 +67,6 @@ export const EditWrapper = styled.div`
   }
 `;
 
-
 // Edit buttion 클릭 시 나오는 메뉴
 export const EditMenuWrapper = styled.div`
   position: absolute;
@@ -130,7 +129,6 @@ export const Delete = styled.div`
     cursor: none;
   }
 `;
-
 
 export const UserInfo = styled.div`
   width: 90%;

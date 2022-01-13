@@ -84,14 +84,14 @@ export const Write = () => {
         let resultData = []
         // eslint-disable-next-line array-callback-return
         res.data.map((list) => {
-          resultData.push({
+          resultData = [...resultData, {
             itemId: list.$.itemId,
             title: list.title[0],
             image: list.cover[0],
             author: list.author[0],
             publisher: list.publisher[0],
             isbn: list.isbn[0]
-          })
+          }]
         })
         setIsLoading(false);
         setSearchData(resultData);
@@ -114,6 +114,7 @@ export const Write = () => {
       }
     });
     setIsOpenBookSearchModal(false);
+    document.body.style.overflow = 'unset'; // 스크롤 방지 설정
   };
 
   const handleInputSentence = (e) => {

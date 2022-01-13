@@ -65,7 +65,7 @@ export const Edit = () => {
       let setenceValue = e.target.value;
       let newSentence = setenceValue.slice(0, -1);
       setInputSentence(newSentence);
-      setErrorMessage('글자수 120자까지 가능합니다.')
+      setErrorMessage('(공백포함)글자수 120자까지 가능합니다.')
       //입력 자체를 제한
     } else if(textLength <= 120){
       setIsOpenTextLimitNoticeModal(false);
@@ -81,7 +81,7 @@ export const Edit = () => {
       let commentValue = e.target.value;
       let newComment = commentValue.slice(0, -1);
       setInputComment(newComment);
-      setErrorMessage('글자수 120자까지 가능합니다.')
+      setErrorMessage('(공백포함)글자수 120자까지 가능합니다.')
       //입력 자체를 제한
     } else if(textLength <= 60){
       setIsOpenTextLimitNoticeModal(false);
@@ -192,11 +192,11 @@ export const Edit = () => {
         <WriteArticleWrapper>
           <WriteArticleContainer>
             <WriteTextLimitContainer>
-              <WriteTextLimitResult>글자수({sentenceLength}/120자)</WriteTextLimitResult>
+              <WriteTextLimitResult>(공백포함)글자수({sentenceLength}/120자)</WriteTextLimitResult>
             </WriteTextLimitContainer>
             <WriteSentenceSection value={inputSentence} onChange={handleInputSentence} />
             <WriteTextLimitContainer>
-              <WriteTextLimitResult>글자수({commentLength}/60자)</WriteTextLimitResult>
+              <WriteTextLimitResult>(공백포함)글자수({commentLength}/60자)</WriteTextLimitResult>
             </WriteTextLimitContainer>
             <WriteCommentSection value={inputComment} onChange={handleInputComment} />
           </WriteArticleContainer>

@@ -75,15 +75,47 @@ export const NavMenuSection = styled.ul`
   }
 `;
 
-export const NavMenu = styled.li`
-  height: 50%;
+export const NavMenu1 = styled.li`
+  height: 70%;
   display: flex;
   margin: 0.5rem;
   font-size: 1.3rem;
   justify-content: center;
   align-items: center;
-  color: red;
+  /* color: red; */
   /* border: 1px solid black; */
+`;
+
+export const NavMenu2 = styled.li`
+  height: 70%;
+  display: flex;
+  margin: 0.5rem;
+  font-size: 1.3rem;
+  justify-content: center;
+  align-items: center;
+  /* color: red; */
+  /* border: 1px solid black; */
+`;
+
+export const NavMenu3 = styled.li`
+  height: 70%;
+  display: flex;
+  margin: 0.5rem;
+  font-size: 1.3rem;
+  justify-content: center;
+  align-items: center;
+  /* color: red; */
+  /* border: 1px solid black; */
+`;
+
+export const NavMenuSub = styled.li`
+  height: 70%;
+  display: flex;
+  margin: 0.5rem;
+  font-size: 1.3rem;
+  justify-content: center;
+  font-weight: 600;
+
 `;
 
 export const UserSection = styled.div`

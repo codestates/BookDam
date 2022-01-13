@@ -15,7 +15,10 @@ import {
   NavbarWrapper,
   LogoImage,
   NavMenuSection,
-  NavMenu,
+  NavMenu1,
+  NavMenu2,
+  NavMenu3,
+  NavMenuSub,
   UserSection,
   UserImage,
   UserNickName,
@@ -29,6 +32,9 @@ export default function Navbar () {
   const userState = useSelector(state => state.userInfoReducer);
   const { isLogin, userInfo } = userState;
   const [isOpenNavSidebar, setIsOpenNavSidebar] = useState(false);
+  const [navMenu1, setSubNavMenu1] = useState(false);
+  const [navMenu2, setSubNavMenu2] = useState(false);
+  const [navMenu3, setSubNavMenu3] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -41,6 +47,25 @@ export default function Navbar () {
   const goBackHandler = () => {
     history.goBack();
   };
+
+  const handleNav1 = () => {
+    setSubNavMenu1(true);
+    setSubNavMenu2(false);
+    setSubNavMenu3(false);
+  };
+
+  const handleNav2 = () => {
+    setSubNavMenu1(false);
+    setSubNavMenu2(true);
+    setSubNavMenu3(false);
+  };
+
+  const handleNav3 = () => {
+    setSubNavMenu1(false);
+    setSubNavMenu2(false);
+    setSubNavMenu3(true);
+  };
+
 
   // 로그아웃 핸들러
   const logoutHandler = async () => {
@@ -79,15 +104,18 @@ export default function Navbar () {
             <Link to='/'><LogoImage src={Logo} /></Link>
           </LogoSection>
           <NavMenuSection>
-            <NavMenu>
-              <Link to='/createPage' style={{ textDecoration: 'none' }}>작성하기</Link>
-            </NavMenu>
-            <NavMenu>
-              <Link to='/feedPage' style={{ textDecoration: 'none' }}>피드</Link>
-            </NavMenu>
-            <NavMenu>
-              <Link to='/mypage' style={{ textDecoration: 'none' }}>마이페이지</Link>
-            </NavMenu>
+            {navMenu1
+              ? <NavMenuSub><Link to='/createPage' style={{ textDecoration: 'none' }}>작성하기</Link></NavMenuSub>
+              : <NavMenu1 onClick={handleNav1}><Link to='/createPage' style={{ textDecoration: 'none' }}>작성하기</Link></NavMenu1>}
+            
+            {navMenu2
+              ? <NavMenuSub><Link to='/feedPage' style={{ textDecoration: 'none' }}>피드</Link></NavMenuSub>
+              : <NavMenu2 onClick={handleNav2}><Link to='/feedPage' style={{ textDecoration: 'none' }}>피드</Link></NavMenu2>}
+            
+            {navMenu3
+              ? <NavMenuSub><Link to='/mypage' style={{ textDecoration: 'none' }}>마이페이지</Link></NavMenuSub>
+              : <NavMenu3 onClick={handleNav3}><Link to='/mypage' style={{ textDecoration: 'none' }}>마이페이지</Link></NavMenu3>}
+            
             {/* <NavMenu>
               <Link to='/editpage' style={{ textDecoration: 'none' }}>수정하기</Link>
             </NavMenu> */}

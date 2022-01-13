@@ -42,7 +42,7 @@ export default function Navbar () {
     history.goBack();
   };
 
-  //  // 로그아웃 핸들러
+  // 로그아웃 핸들러
   const logoutHandler = async () => {
     await axios({
       withCredentials: true,
@@ -88,9 +88,9 @@ export default function Navbar () {
             <NavMenu>
               <Link to='/mypage' style={{ textDecoration: 'none' }}>마이페이지</Link>
             </NavMenu>
-            <NavMenu>
+            {/* <NavMenu>
               <Link to='/editpage' style={{ textDecoration: 'none' }}>수정하기</Link>
-            </NavMenu>
+            </NavMenu> */}
           </NavMenuSection>
           <UserSection>
             {/* <UserImage />

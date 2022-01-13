@@ -118,6 +118,7 @@ export const Write = () => {
 
   const handleInputSentence = (e) => {
     if (isLogin === false) {
+      setInputSentence('');
       setIsOpenLoginModal(true);
     } else {
       setInputSentence(e.target.value);
@@ -125,6 +126,9 @@ export const Write = () => {
       if(textLength === 121) {
         setIsOpenTextLimitNoticeModal(true);
         setErrorMessage('글자수 120자까지 가능합니다.')
+        let setenceValue = e.target.value;
+        let newSentence = setenceValue.slice(0, -1);
+        setInputSentence(newSentence);
         //입력 자체를 제한
       } else if(textLength <= 120){
         setIsOpenTextLimitNoticeModal(false);
@@ -135,13 +139,17 @@ export const Write = () => {
 
   const handleInputComment = (e) => {
     if (isLogin === false) {
+      setInputComment('');
       setIsOpenLoginModal(true);
     } else {
       setInputComment(e.target.value);
       let textLength = (e.target.value).length;
       if(textLength === 61) {
         setIsOpenTextLimitNoticeModal(true);
-        setErrorMessage('글자수 120자까지 가능합니다.')
+        setErrorMessage('글자수 60자까지 가능합니다.')
+        let commentValue = e.target.value;
+        let newComment = commentValue.slice(0, -1);
+        setInputComment(newComment);
         //입력 자체를 제한
       } else if(textLength <= 60){
         setIsOpenTextLimitNoticeModal(false);
@@ -175,13 +183,17 @@ export const Write = () => {
   };
 
   const submitHandler = () => {
-    if (selectedData.title === '' || (inputSentence === '' && inputSentence === '')) {
-      setErrorMessage('내용을 입력하세요.');
-      setIsOpenNoticeModal(true);
+    if(isLogin) {
+      if (selectedData.title === '' || (inputSentence === '' && inputSentence === '')) {
+        setErrorMessage('내용을 입력하세요.');
+        setIsOpenNoticeModal(true);
+      } else {
+        setErrorMessage('저장하시겠습니까?');
+        setIsOpenSubmitModal(true);
+        document.body.style.overflow = 'unset'; //저정하고 스크롤 방지 해제 
+      }
     } else {
-      setErrorMessage('저장하시겠습니까?');
-      setIsOpenSubmitModal(true);
-      document.body.style.overflow = 'unset'; //저정하고 스크롤 방지 해제 
+      setIsOpenLoginModal(true);
     }
   };
 
@@ -305,11 +317,11 @@ export const Write = () => {
             <WriteTextLimitContainer>
               <WriteTextLimitResult>글자수({sentenceLength}/120자)</WriteTextLimitResult>
             </WriteTextLimitContainer>
-            <WriteSentenceSection onChange={handleInputSentence} />
+            <WriteSentenceSection value={inputSentence} onChange={handleInputSentence} />
             <WriteTextLimitContainer>
               <WriteTextLimitResult>글자수({commentLength}/60자)</WriteTextLimitResult>
             </WriteTextLimitContainer>
-            <WriteCommentSection onChange={handleInputComment} />
+            <WriteCommentSection value={inputComment} onChange={handleInputComment} />
           </WriteArticleContainer>
         </WriteArticleWrapper>
 

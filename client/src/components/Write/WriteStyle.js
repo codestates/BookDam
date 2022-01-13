@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const WriteWholeContainer = styled.div`
   padding-top: 50px;
-  /* border: 1px solid black; */
+  border: 1px solid #e9ecef;
   overflow: hidden;
   /* position: relative; */
   height: 900px;
@@ -13,7 +13,7 @@ export const SearchBookWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-top: 1px solid black;
+  /* border-top: 1px solid black; */
   height: 30%;
 `;
 
@@ -217,7 +217,7 @@ export const WriteTextLimitResult = styled.div`
 
 export const WriteSentenceSection = styled.textarea.attrs({
   placeholder: '감동적인 문장을 기록하세요.',
-  maxLength: 120
+  maxLength: 121
 })`
   margin-bottom: 20px;
   width: 90%;
@@ -231,7 +231,7 @@ export const WriteSentenceSection = styled.textarea.attrs({
 
 export const WriteCommentSection = styled.textarea.attrs({
   placeholder: '문장에 대한 감상평을 남기세요.',
-  maxLength: 60
+  maxLength: 61
 })`
   /* margin: 10px; */
   width: 90%;

@@ -28,22 +28,26 @@ import {
 } from './SentenceModalStyle';
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import example from '../../assets/images/defaultUserImage.png';
+import { ArticleNoticeModal } from '../../components/NoticeModal/ArticleNoticeModal/ArticlesNoticeModal';
 
 axios.defaults.withCredentials = true;
 
-export const SetenceModal = ({ openSentenceModalHandler }) => {
-  const location = useLocation();
-  const history = useHistory();
-  const articleInfo = location.state.articleInfo;
-  const [isOpenMenu, setIsOpenMenu] = useState(false);
-  const [myArticleInfo, setMyArticleInfo] = useState(articleInfo);
+export const SetenceModal = ({ openSentenceModalHandler, setIsOpenSentenceModal }) => {
   const userState = useSelector(state => state.userInfoReducer);
   const { userInfo } = userState;
+  const history = useHistory();
+  const location = useLocation();
+  const articleInfo = location.state.articleInfo;
+  const [isOpenMenu, setIsOpenMenu] = useState(false); // 삭제, 편집 메뉴 모달 오픈
+  const [myArticleInfo, setMyArticleInfo] = useState(articleInfo); // write page로 넘기는 상태
+  const [isDeleteSuccess, setIsDeleteSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+
 
   const openMeunHandler = () => {
     setIsOpenMenu(!isOpenMenu);
   };
-
+  
   const sendToEditPage = () => {
     history.push({
       pathname:`/editpage`,
@@ -54,17 +58,24 @@ export const SetenceModal = ({ openSentenceModalHandler }) => {
       }
     })
   };
-
   // DELETE http://localhost:4000/article/:user_Id?article_Id=6
   const deleteArticle = () => {
     axios
-      .delete(`http://localhost:4000/article/${userInfo.id}?${myArticleInfo.id}`)
+      .delete(`http://localhost:4000/article/${userInfo.id}?article_Id=${myArticleInfo.id}`)
       .then((data) => {
+        setIsDeleteSuccess(true);
+        setErrorMessage('수집하신 문장이 삭제되었습니다');
         console.log('아티클이 삭제되었습니다');
       })
       .catch((err) => {
         console.log(err);
       })
+  };
+  // 삭제 완료 노티스 모달
+  const deleteNoticModalHandler = () => {
+    setIsDeleteSuccess(false);
+    setIsOpenMenu(false);
+    setIsOpenSentenceModal(false);
   }
 
   return (
@@ -83,6 +94,11 @@ export const SetenceModal = ({ openSentenceModalHandler }) => {
               onClick={sendToEditPage}>
               편집
             </Edit>
+            {isDeleteSuccess ? 
+              <ArticleNoticeModal 
+              errorMessage={errorMessage}
+              deleteNoticModalHandler={deleteNoticModalHandler} />
+            : null}
             <Delete onClick={deleteArticle}>
               삭제
             </Delete>

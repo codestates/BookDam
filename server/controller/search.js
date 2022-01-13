@@ -1,7 +1,9 @@
 const ttbkey = process.env.ttbkey;
 const parser = require('xml2js').parseString;
 const axios = require('axios');
-
+// 비인증은 401
+// 나쁜 요청은 400
+// 로그인한 사람이 권한 없는 짓을 할 떄 403
 module.exports = {
   get: (req, res) => {
     // const api_url = `https://openapi.naver.com/v1/search/book_adv.xml?d_titl=${encodeURI(req.query.query)}&display=${20}`;
@@ -10,13 +12,22 @@ module.exports = {
 
     axios.get(api_url)
       .then((result) => {
-        parser(result.data, function (err, data) {
-          res.send(data.object.item);
-        });
-      // res.send(result.data)
+        // if(result.status === 200) {
+          parser(result.data, function (err, data) { 
+            if(data.object.totalResults[0] === '0') {
+              return res.status(400).send({message : '찾는 결과가 없습니다.'})
+            }
+            else if(err) {
+              return res.status(400).send({message : 'failure'}) 
+            }
+            else {
+              return res.status(200).send(data.object.item); 
+            }
+          });
+        // }
       })
       .catch((error) => {
-        res.status(400).json({ message: 'failure', error: error });
+        res.status(400).json({ message: `${req.query.query}책 검색에 실패했습니다.`});
       });
     // const options = {
     //   url: api_url,

@@ -3,10 +3,6 @@ const { Op } = require('sequelize');
 const bcrypt = require('bcrypt');
 const { User: UserModel, Article: ArticleModel, Follow: FollowModel } = require('../models');
 
-// 비인증은 401
-// 나쁜 요청은 400
-
-
 module.exports = {
   login: async (req, res) => { // test done
     const userId = req.body.userInfo.userId;
@@ -47,7 +43,7 @@ module.exports = {
         userId: userInfo.userId
       }
     });
-    if (!findUser) return res.status(401).json({ message: '로그아웃에 실패했습니다.' });
+    if (!findUser) return res.status(400).json({ message: '로그아웃에 실패했습니다.' });
     else {
       res.clearCookie('jwt').status(200).json({ message: '로그아웃 되었습니다.' });
     }
@@ -165,7 +161,7 @@ module.exports = {
           where: { id: id }
         })
           .then((result) => {
-            res.status(200).json({ message: 'success', userInfo: result });
+            res.status(201).json({ message: 'success', userInfo: result });
           })
           .catch((error) => {
             res.status(400).json({ message: 'failure', error: error });
@@ -189,7 +185,7 @@ module.exports = {
         ]
       }
     });
-    if (!searchInfo) return res.status(400).json({ message: 'failure' });
+    if (!searchInfo) return res.status(404).json({ message: '정확한 유저의 정보를 입력해주세요.' });
     res.status(200).json({ message: 'success', searchInfo: searchInfo });
   }
 };

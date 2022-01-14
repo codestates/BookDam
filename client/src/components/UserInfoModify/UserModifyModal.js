@@ -22,20 +22,21 @@ import {
 import { ErrorMessage } from '../GlobalMessage/GlobalMessage';
 import { IoClose } from 'react-icons/io5';
 import { data } from '../../dummyfiles/dummyMyFeedList';
-import { UserModifyNoticeModal} from '../../components/NoticeModal/UserModifyNoticeModal/UserModifyNoticeModal';
+import { UserModifyNoticeModal } from '../../components/NoticeModal/UserModifyNoticeModal/UserModifyNoticeModal';
 import { SignoutNoticeModal } from '../../components/NoticeModal/UserModifyNoticeModal/SignoutNoticeModal';
-
+import { Verification } from '../VerificationModal/VerificationModal';
 // 회원정보수정 PATCH
 // http://localhost:4000/user/:user_Id
 // { userInfo: {userId:sangkwon2406, } }
 
 axios.defaults.withCredentials = true;
 
-export function UserModifyModal ({ 
-  closeUserInfoModify, 
-  userInfoModifyBtnHandler, 
-  myUserInfo, 
-  setIsOpenModifyModal, }) {
+export function UserModifyModal ({
+  closeUserInfoModify,
+  userInfoModifyBtnHandler,
+  myUserInfo,
+  setIsOpenModifyModal
+}) {
   // const userState = useSelector(state => state.userInfoReducer);
   // const { userInfo } = userState; // 저장된 유저 정보
   // input 값 유효성 검사 : 닉네임이 기존과 동일한가? 동일하면 에러메세지, password가 서로 일치한가? 불일치면 에러메세지
@@ -55,7 +56,7 @@ export function UserModifyModal ({
   const [isModificationSuccess, setIsModificationSuccess] = useState(false);
   const [isSignoutSuccess, setisSignoutSuccess] = useState(false);
   const isValidPassword = /(?=.*\d)(?=.*[a-zA-ZS]).{8,}/; // 문자, 숫자 1개이상 포함, 8자리 이상
-
+  const [isChecked, setIsChecked] = useState(false);
   // 모달 창 닫는 버튼 함수
   const closeModal = () => {
     closeUserInfoModify();
@@ -64,7 +65,7 @@ export function UserModifyModal ({
   const handleInputNickName = (e) => {
     if (myUserInfo.userNickName === e.target.value) {
       setNickNameErrorMessage('기존과 동일한 닉네임입니다');
-    } 
+    }
     // if (userNickName === '') {
     //   setNickNameErrorMessage('빈 칸을 채워주세요');
     // }
@@ -105,6 +106,7 @@ export function UserModifyModal ({
   };
   // 회원정보 수정 함수
   const modifyUserInfoHandler = () => {
+    // !  api 확인후 변경하기
     axios
       .patch(`http://localhost:4000/user/${myUserInfo.id}`,
         {
@@ -121,8 +123,8 @@ export function UserModifyModal ({
       .then((data) => {
         console.log(data);
         if (data.status === 200) {
-          setIsModificationSuccess(true)
-          setErrorMessage('회원 정보가 수정되었습니다')
+          setIsModificationSuccess(true);
+          setErrorMessage('회원 정보가 수정되었습니다');
           console.log('회원정보 수정 성공');
         }
       })
@@ -132,8 +134,8 @@ export function UserModifyModal ({
   };
   // 회원정보수정 노티스 모달 핸들러
   const userModifyNoticeModalHandler = () => {
-    setIsModificationSuccess(false)
-    setIsOpenModifyModal(false)
+    setIsModificationSuccess(false);
+    setIsOpenModifyModal(false);
   };
   // 회원정보 탈퇴 함수
   const signOutHandler = () => {
@@ -152,56 +154,70 @@ export function UserModifyModal ({
   };
   // 회원탈퇴 노티스 모달 핸들러
   const signoutNoticeModalHandler = () => {
-    setisSignoutSuccess(false)
-    setIsOpenModifyModal(false)
-  }
+    setisSignoutSuccess(false);
+    setIsOpenModifyModal(false);
+  };
+  console.log(isChecked);
 
   return (
     <>
-      <UserInfoModifyModalContainer onClick={userInfoModifyBtnHandler}>
-        <UserInfoModifyContainer onClick={(e) => e.stopPropagation()}>
-          <ModifyCloseSection>
-            <div onClick={closeModal}>
-              <IoClose />
-            </div>
-          </ModifyCloseSection>
-          <UserInfoSection>
-            <UserImgSection>
-              <EditPictureWrap>
-                <EditPictureBtn>사진선택</EditPictureBtn>
-              </EditPictureWrap>
-              <UserImage src={myUserInfo.userImage} />
-            </UserImgSection>
-            <UserNickName>{myUserInfo.userNickName}</UserNickName>
-          </UserInfoSection>
-          <UserInfoEditSection>
-            <NickNameInput onChange={handleInputNickName} />
-            <ErrorMessage>{nickNameErrorMessage}</ErrorMessage>
-            <PasswordInput onChange={handleInputPW} />
-            <ErrorMessage>{passwordErrorMessage}</ErrorMessage>
-            <PasswordChkInput onChange={handlePWCheck} />
-            <ErrorMessage>{pwChkErrorMessage}</ErrorMessage>
-            <UserInfoModifyBtnSection>
-              {isModificationSuccess ?
-                <UserModifyNoticeModal 
-                  errorMessage={errorMessage}
-                  userModifyNoticeModalHandler={userModifyNoticeModalHandler} />
-              : null}
-              <ModificationBtn onClick={modifyUserInfoHandler}>
-                회원정보 수정
-              </ModificationBtn>
-              {isSignoutSuccess ? 
-                <SignoutNoticeModal
-                errorMessage={errorMessage}
-                signoutNoticeModalHandler={signoutNoticeModalHandler} />
-              : null}
-              <SignOutBtn onClick={signOutHandler}>
-                회원탈퇴
-              </SignOutBtn>
-            </UserInfoModifyBtnSection>
-          </UserInfoEditSection>
-        </UserInfoModifyContainer>
-      </UserInfoModifyModalContainer>
+      {!isChecked
+        ? <Verification setIsChecked={setIsChecked} closeModal={closeModal}/>
+        : <UserInfoModifyModalContainer onClick={userInfoModifyBtnHandler}>
+          <UserInfoModifyContainer onClick={(e) => e.stopPropagation()}>
+            <ModifyCloseSection>
+              <div onClick={closeModal}>
+                <IoClose />
+              </div>
+            </ModifyCloseSection>
+            <UserInfoSection>
+              <UserImgSection>
+                <EditPictureWrap>
+                  <EditPictureBtn>사진선택</EditPictureBtn>
+                </EditPictureWrap>
+                <UserImage src={myUserInfo.userImage} />
+              </UserImgSection>
+              <UserNickName>{myUserInfo.userNickName}</UserNickName>
+            </UserInfoSection>
+            <UserInfoEditSection>
+              <span>
+                닉네임: <NickNameInput onChange={handleInputNickName} />
+                <ModificationBtn className='NickNameChangeBtn' onClick={modifyUserInfoHandler}>
+                  닉네임 변경
+                </ModificationBtn>
+              </span>
+              <ErrorMessage>{nickNameErrorMessage}</ErrorMessage>
+              <span>
+                새 비밀번호: <PasswordInput onChange={handleInputPW} />
+              </span>
+              <ErrorMessage>{passwordErrorMessage}</ErrorMessage>
+              <span>
+                비밀번호 확인: <PasswordChkInput onChange={handlePWCheck} />
+              </span>
+              <ErrorMessage>{pwChkErrorMessage}</ErrorMessage>
+              <UserInfoModifyBtnSection>
+                {isModificationSuccess
+                  ? <UserModifyNoticeModal
+                      errorMessage={errorMessage}
+                      userModifyNoticeModalHandler={userModifyNoticeModalHandler}
+                    />
+                  : null}
+                <ModificationBtn className='PasswordChangeBtn' onClick={modifyUserInfoHandler}>
+                  비밀번호 변경
+                </ModificationBtn>
+                {isSignoutSuccess
+                  ? <SignoutNoticeModal
+                      errorMessage={errorMessage}
+                      signoutNoticeModalHandler={signoutNoticeModalHandler}
+                    />
+                  : null}
+                <SignOutBtn onClick={signOutHandler}>
+                  회원탈퇴
+                </SignOutBtn>
+              </UserInfoModifyBtnSection>
+            </UserInfoEditSection>
+          </UserInfoModifyContainer>
+        </UserInfoModifyModalContainer>}
     </>
   );
 }

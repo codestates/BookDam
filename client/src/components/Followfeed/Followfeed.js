@@ -30,6 +30,7 @@ export const Followfeed = ({ followFeedList }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const state = useSelector(state => state.userInfoReducer);
+
   // 팔로우 취소 버튼 클릭시 알람 모달 오픈
   const [isOpen, setInOpen] = useState(false);
   const [followInfo, setFollowInfo] = useState({
@@ -46,10 +47,10 @@ export const Followfeed = ({ followFeedList }) => {
   const [ref, inView] = useInView();
 
   const [userInfo, setUserInfo] = useState({
-    id: 4,
-    userId: 'test1',
-    userNickName: 'test1',
-    userImage: 'blahblahblahblah'
+    id: 0,
+    userId: '',
+    userNickName: '',
+    userImage: ''
   });
 
   // 서버에서 아이템을 가지고 오는 함수
@@ -57,7 +58,7 @@ export const Followfeed = ({ followFeedList }) => {
     setLoading(true);
     console.log('요청보냄', loading);
     setTimeout(() => {
-      Axios.get(`http://localhost:4000/article/${userInfo.id}?page=${page}`,
+      Axios.get(`http://localhost:4000/article/${state.userInfo.id}?page=${page}`,
         {
           headers:
       {
@@ -141,66 +142,31 @@ export const Followfeed = ({ followFeedList }) => {
   // console.log(followFeedLists)
   const feedList = followFeedLists.map((el, index) => {
     return (
-      <div key={index}>
-        {followFeedLists.length - 1 === index
-          ? (
-            <>
-              <UserInfoContainer ref={ref}>
-                <UserInfo>
-                  <UserNameAndImage>
-                    <UserImageContainer onClick={() => getFollowInfo(el)}>
-                      {el['User.userImage'].length === 0
-                        ? <UserImage src={el['User.userImage']} />
-                        : <DefaultUserImage src={userImage} />}
-                    </UserImageContainer>
-                    <UserNickName onClick={() => getFollowInfo(el)}>
-                      {el['User.userNickName']}
-                    </UserNickName>
-                    <UserFollowIcon value onClick={() => followHandler(el)}>
-                      {el['User.Follows.user_Id'] === userInfo.id ? <FaUserCheck onClick={NoticeModalOpenHandler} /> : '팔로우'}
-                    </UserFollowIcon>
-                  </UserNameAndImage>
-                  <PostCreatedAt>
-                    {el.createdAt}
-                  </PostCreatedAt>
-                </UserInfo>
-                <ContentsContainer>
-                  <Sentence>{el.sentence}</Sentence>
-                  <Comment>{el.comment}</Comment>
-                  <BookInfo>{el.book_Title} | {el.book_Author} </BookInfo>
-                </ContentsContainer>
-              </UserInfoContainer>
-              <Loading />
-            </>
-            )
-          : (
-            <UserInfoContainer>
-              <UserInfo>
-                <UserNameAndImage>
-                  <UserImageContainer onClick={() => getFollowInfo(el)}>
-                    {el['User.userImage'].length === 0
-                      ? <UserImage src={el['User.userImage']} />
-                      : <DefaultUserImage src={userImage} />}
-                  </UserImageContainer>
-                  <UserNickName onClick={() => getFollowInfo(el)}>
-                    {el['User.userNickName']}
-                  </UserNickName>
-                  <UserFollowIcon value onClick={() => followHandler(el)}>
-                    {el['User.Follows.user_Id'] === userInfo.id ? <FaUserCheck onClick={NoticeModalOpenHandler} /> : '팔로우'}
-                  </UserFollowIcon>
-                </UserNameAndImage>
-                <PostCreatedAt>
-                  {el.createdAt}
-                </PostCreatedAt>
-              </UserInfo>
-              <ContentsContainer>
-                <Sentence>{el.sentence}</Sentence>
-                <Comment>{el.comment}</Comment>
-                <BookInfo>{el.book_Title} | {el.book_Author} </BookInfo>
-              </ContentsContainer>
-            </UserInfoContainer>
-            )}
-      </div>
+      <UserInfoContainer ref={ref}>
+        <UserInfo>
+          <UserNameAndImage>
+            <UserImageContainer onClick={() => getFollowInfo(el)}>
+              {el['User.userImage'].length === 0
+                ? <UserImage src={el['User.userImage']} />
+                : <DefaultUserImage src={userImage} />}
+            </UserImageContainer>
+            <UserNickName onClick={() => getFollowInfo(el)}>
+              {el['User.userNickName']}
+            </UserNickName>
+            <UserFollowIcon value onClick={() => followHandler(el)}>
+              {el['User.Follows.user_Id'] === userInfo.id ? <FaUserCheck onClick={NoticeModalOpenHandler} /> : '팔로우'}
+            </UserFollowIcon>
+          </UserNameAndImage>
+          <PostCreatedAt>
+            {el.createdAt}
+          </PostCreatedAt>
+        </UserInfo>
+        <ContentsContainer>
+          <Sentence>{el.sentence}</Sentence>
+          <Comment>{el.comment}</Comment>
+          <BookInfo>{el.book_Title} | {el.book_Author} </BookInfo>
+        </ContentsContainer>
+      </UserInfoContainer>
     );
   });
 
@@ -212,7 +178,7 @@ export const Followfeed = ({ followFeedList }) => {
         </div>
         {isOpen ? <NoticeModal NoticeModalOpenHandler={NoticeModalOpenHandler} userInfo={userInfo} followInfo={followInfo} /> : null}
         {feedList}
-        <div ref={ref}> </div>
+        <div ref={ref}><Loading /></div>
       </FeedContentContainer>
     </>
   );

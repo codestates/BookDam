@@ -1,6 +1,10 @@
 const { User: UserModel, Article: ArticleModel, Follow: FollowModel } = require('../models');
 const jwt = require('jsonwebtoken');
 
+// 비인증은 401
+// 나쁜 요청은 400
+// 로그인한 사람이 권한 없는 짓을 할 떄 403
+
 module.exports = {
   get: (req, res) => { // test done
     const id = parseInt(req.params.user_Id, 10);
@@ -9,8 +13,14 @@ module.exports = {
     if (Number.isNaN(page)) return res.status(400).json({ message: 'failure' });
     const cookie = req.cookies.jwt;
     if (!cookie) return res.status(401).json({ message: '로그인 유저가 아닙니다.' });
-    const userInfo = jwt.verify(cookie, process.env.ACCESS_SECRET);
-    if (id !== userInfo.id) return res.status(400).json({ message: 'failure' });
+    let decodedData;
+    jwt.verify(cookie, process.env.ACCESS_SECRET, function (error, decoded) {
+      if (error) return res.status(401).json({ message: '토큰 만료로 로그인이 필요합니다.' });
+      else {
+        decodedData = decoded;
+      }
+    });
+    if (id !== decodedData.id) return res.status(401).json({ message: 'failure' });
     ArticleModel.findAll({
       attributes: { exclude: ['updatedAt'] },
       order: [['id', 'DESC']],
@@ -32,14 +42,18 @@ module.exports = {
       });
   },
   post: (req, res) => { // test done
-    // 데이터가 들어오면 책 썸네일은 path로 받는다.
     const id = parseInt(req.params.user_Id, 10);
     if (Number.isNaN(id)) return res.status(400).json({ message: 'failure' });
     const cookie = req.cookies.jwt;
     if (!cookie) return res.status(401).json({ message: '로그인 유저가 아닙니다.' });
-    const userInfo = jwt.verify(cookie, process.env.ACCESS_SECRET);
-    if (id !== userInfo.id) return res.status(400).json({ message: 'failure' });
-
+    let decodedData;
+    jwt.verify(cookie, process.env.ACCESS_SECRET, function (error, decoded) {
+      if (error) return res.status(401).json({ message: '토큰 만료로 로그인이 필요합니다.' });
+      else {
+        decodedData = decoded;
+      }
+    });
+    if (id !== decodedData.id) return res.status(401).json({ message: 'failure' });
     const articleInfo = req.body.articleInfo;
     const now = new Date();
     const utcNow = now.getTime() + (now.getTimezoneOffset() * 60 * 1000);
@@ -69,22 +83,25 @@ module.exports = {
     if (Number.isNaN(id)) return res.status(400).json({ message: 'failure' });
     const cookie = req.cookies.jwt;
     if (!cookie) return res.status(401).json({ message: '로그인 유저가 아닙니다.' });
-    const userInfo = jwt.verify(cookie, process.env.ACCESS_SECRET);
-    if (id !== userInfo.id) return res.status(400).json({ message: 'failure' });
+    let decodedData;
+    jwt.verify(cookie, process.env.ACCESS_SECRET, function (error, decoded) {
+      if (error) return res.status(401).json({ message: '토큰 만료로 로그인이 필요합니다.' });
+      else {
+        decodedData = decoded;
+      }
+    });
+    if (id !== decodedData.id) return res.status(401).json({ message: 'failure' });
 
     const article_Id = parseInt(req.query.article_Id, 10);
     if (Number.isNaN(article_Id)) return res.status(400).json({ message: 'failure' });
 
     const articleInfo = req.body.articleInfo;
-    ArticleModel.update({
-      sentence: articleInfo.sentence,
-      comment: articleInfo.comment
-    },
-    {
-      where: {
-        id: article_Id
-      }
-    })
+    ArticleModel.update(articleInfo,
+      {
+        where: {
+          id: article_Id
+        }
+      })
       .then(() => {
         ArticleModel.findOne({
           attributes: { exclude: ['updatedAt'] },
@@ -96,7 +113,7 @@ module.exports = {
             res.status(200).json({ message: 'success', userInfo: result });
           })
           .catch((error) => {
-            res.status(401).json({ message: 'failure', error: error });
+            res.status(400).json({ message: 'failure', error: error });
           });
       })
       .catch(() => {
@@ -108,9 +125,14 @@ module.exports = {
     if (Number.isNaN(id)) return res.status(400).json({ message: 'failure' });
     const cookie = req.cookies.jwt;
     if (!cookie) return res.status(401).json({ message: '로그인 유저가 아닙니다.' });
-    const userInfo = jwt.verify(cookie, process.env.ACCESS_SECRET);
-    if (id !== userInfo.id) return res.status(400).json({ message: 'failure' });
-
+    let decodedData;
+    jwt.verify(cookie, process.env.ACCESS_SECRET, function (error, decoded) {
+      if (error) return res.status(401).json({ message: '토큰 만료로 로그인이 필요합니다.' });
+      else {
+        decodedData = decoded;
+      }
+    });
+    if (id !== decodedData.id) return res.status(401).json({ message: 'failure' });
     const article_Id = parseInt(req.query.article_Id, 10);
     if (Number.isNaN(article_Id)) return res.status(400).json({ message: 'failure' });
     ArticleModel.destroy({
@@ -121,7 +143,7 @@ module.exports = {
     })
       .then((result) => {
         if (result === 1) res.status(200).json({ message: 'success' });
-        else res.status(401).json({ message: '나의 게시물이 아닙니다.' });
+        else res.status(401).json({ message: '해당 게시물이 존재하지 않습니다.' });
       })
       .catch((error) => {
         res.status(401).json({ message: 'failure', error: error });

@@ -11,8 +11,14 @@ module.exports = {
 
     const cookie = req.cookies.jwt;
     if (!cookie) return res.status(401).json({ message: '로그인 유저가 아닙니다.' });
-    const userInfo = jwt.verify(cookie, process.env.ACCESS_SECRET);
-    if (id !== userInfo.id) return res.status(400).json({ message: 'failure' });
+    let decodedData;
+    jwt.verify(cookie, process.env.ACCESS_SECRET, function (error, decoded) {
+      if (error) return res.status(401).json({ message: '토큰 만료로 로그인이 필요합니다.' });
+      else {
+        decodedData = decoded;
+      }
+    });
+    if (id !== decodedData.id) return res.status(401).json({ message: 'failure' });
 
     FollowModel.findOrCreate({
       where: {
@@ -32,7 +38,7 @@ module.exports = {
         }
       })
       .catch((error) => {
-        res.status(401).json({ message: 'failure', error: error });
+        res.status(400).json({ message: 'failure', error: error });
       });
   },
   delete: (req, res) => { // test done
@@ -41,11 +47,16 @@ module.exports = {
     if (Number.isNaN(id)) return res.status(400).json({ message: 'failure' });
     if (Number.isNaN(follow_Id)) return res.status(400).json({ message: 'failure' });
     if (id === follow_Id) return res.status(400).json({ message: '본인 팔로우를 취소할 수 없습니다.' });
-
     const cookie = req.cookies.jwt;
     if (!cookie) return res.status(401).json({ message: '로그인 유저가 아닙니다.' });
-    const userInfo = jwt.verify(cookie, process.env.ACCESS_SECRET);
-    if (id !== userInfo.id) return res.status(400).json({ message: 'failure' });
+    let decodedData;
+    jwt.verify(cookie, process.env.ACCESS_SECRET, function (error, decoded) {
+      if (error) return res.status(401).json({ message: '토큰 만료로 로그인이 필요합니다.' });
+      else {
+        decodedData = decoded;
+      }
+    });
+    if (id !== decodedData.id) return res.status(401).json({ message: 'failure' });
 
     FollowModel.destroy({
       where: {
@@ -58,7 +69,7 @@ module.exports = {
         else res.status(401).json({ message: '팔로우되어 있는 유저가 아닙니다.' });
       })
       .catch((error) => {
-        res.status(401).json({ message: 'failure', error: error });
+        res.status(400).json({ message: 'failure', error: error });
       });
   }
 };

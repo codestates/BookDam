@@ -8,6 +8,7 @@ import { SetenceModal } from '../SentenceModal/SentenceModal';
 import { data } from '../../dummyfiles/dummyMyFeedList';
 import example from '../../assets/images/defaultUserImage.png';
 import { IsGuestNoticeModal } from '../../components/NoticeModal/UserModifyNoticeModal/IsGuestNoticeModal';
+import { Loading } from '../../utils/Loading/Loading'; 
 
 import {
   MyPageWholeContainer,
@@ -75,13 +76,14 @@ export default function MyPage () {
   const history = useHistory();
 
   // 게스트 로그인일 경우 노티스 모달 핸들러
-  const isGuestNoticeModalHandler = () => {
-    setIsOpenNoticeModal(!isOpenNoticeModal);
-    setErrorMessage('회원가입 후 이용해주세요');
-  };
   // 회원정보수정 버튼 누르면 회원정보수정 모달이 나오는 함수
   const userInfoModifyBtnHandler = () => {
-    setIsOpenModifyModal(!isOpneModifyModal);
+    if (userInfo.userId === 'guset') {
+      setErrorMessage('로그인 후 이용하세요');
+      setIsOpenNoticeModal(!isOpenNoticeModal);
+    } else {
+      setIsOpenModifyModal(!isOpneModifyModal);
+    }
   };
   // 회원정보수정 모달 창을 닫는 버튼(x) 함수
   const closeUserInfoModify = () => {
@@ -100,7 +102,6 @@ export default function MyPage () {
           book_Title: el.book_Title,
           book_Author: el.book_Author,
           book_Publisher: el.book_Publisher,
-          book_Thumbnail: el.book_Thumbnail,
           sentence: el.sentence,
           comment: el.comment,
           createdAt: el.createdAt
@@ -131,7 +132,8 @@ export default function MyPage () {
             following: res.data.follow.following,
             follower: res.data.follow.follower
           });
-        });
+        })
+        .catch((err) => console.log(err))
     }, 1000);
     setLoading(false);
   }, [page]);
@@ -147,6 +149,8 @@ export default function MyPage () {
       setPage(prevState => prevState + 1);
     }
   }, [inView, loading]);
+
+  //
 
   console.log('아티클 목록', myArticleList);
   const myArticles = myArticleList.map((el, index) => {
@@ -196,13 +200,12 @@ export default function MyPage () {
                 </FollowContainer>
               </NickNameFollowSection>
 
-              {/* {isGuest ?
+              {isOpenNoticeModal ?
               <IsGuestNoticeModal
                 errorMessage={errorMessage}
-                isGuestNoticeModalHandler={isGuestNoticeModalHandler} />
-            :
-
-            } */}
+                setIsOpenModifyModal={setIsOpenModifyModal} />
+              :
+                null}
               <UserModifyBtn
                 onClick={userInfoModifyBtnHandler}
                 setIsOpenModifyModal={setIsOpenModifyModal}
@@ -216,7 +219,7 @@ export default function MyPage () {
           <ArticleListContainer>
             {myArticles}
           </ArticleListContainer>
-          <div ref={ref} />
+          <div ref={ref}><Loading /></div>
         </MypageContainer>
       </MyPageWholeContainer>
     </>

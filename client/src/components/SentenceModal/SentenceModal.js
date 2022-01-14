@@ -109,7 +109,6 @@ export const SetenceModal = ({ openSentenceModalHandler, setIsOpenSentenceModal 
               <UserNameAndImage>
                 <UserImageContainer>
                   <UserImage src={example} />
-                  <DefaultUserImage />
                 </UserImageContainer>
                 <UserNickName>
                   {articleInfo.userNickName}

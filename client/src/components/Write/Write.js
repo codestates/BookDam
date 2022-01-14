@@ -321,6 +321,7 @@ export const Write = () => {
             <WriteSentenceSection value={inputSentence} onChange={handleInputSentence} />
             <WriteTextLimitContainer>
               <WriteTextLimitResult>{commentLength}/60자</WriteTextLimitResult>
+
             </WriteTextLimitContainer>
             <WriteCommentSection value={inputComment} onChange={handleInputComment} />
           </WriteArticleContainer>

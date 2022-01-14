@@ -108,6 +108,17 @@ export const NavMenu3 = styled.li`
   /* border: 1px solid black; */
 `;
 
+export const NavMenu3 = styled.li`
+  height: 70%;
+  display: flex;
+  margin: 0.5rem;
+  font-size: 1.3rem;
+  justify-content: center;
+  align-items: center;
+  /* color: red; */
+  /* border: 1px solid black; */
+`;
+
 export const NavMenuSub = styled.li`
   height: 70%;
   display: flex;
@@ -178,6 +189,22 @@ export const Loginout = styled.button`
   border-radius: 2px;
   cursor: pointer;
 `;
+
+export const Loginout = styled.button`
+  width: 60px;
+  height: 30px;
+  box-sizing: border-box;
+  border: 1px solid grey;
+  border-radius: 5px;
+  background-color: rgba(0,0,0,0);
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 700;
+  font-size: 13px;
+  /* margin: 10px; */
+  border-radius: 2px;
+  cursor: pointer;
+`;
+
 
 export const SideMenuSection = styled.div`
   display: none;

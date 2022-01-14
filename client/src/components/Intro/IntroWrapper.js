@@ -69,9 +69,6 @@ export const IntroWrapper = () => {
   };
 
   const guestLoginHandelr = async () => { // 게스트로 둘러보기시에 처리
-    if (userInfo.userNickName !== 'passenger') {
-      history.push('/feedpage');
-    } else {
       await axios({
         withCredentials: true,
         method: 'post',
@@ -90,13 +87,15 @@ export const IntroWrapper = () => {
         .then((res) => {
           const userInfoData = res.data.userInfo;
           if (userInfoData) {
+            console.log(userInfoData)
             dispatch(GuestLoginAction(userInfoData));
             setIsOpenLoginModal(false);
             document.body.style.overflow = 'unset'; // 스크롤 방지 해제
-            history.push('/feedpage');
           }
+          history.push('/feedpage');
+          
         });
-    }
+    
   };
 
   return (

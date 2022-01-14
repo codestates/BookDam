@@ -10,9 +10,9 @@ padding: 0px;
 margin: 16px 0px 0px 0px;
 list-style-type: none;
 > .nodata {
-  border: 1px solid;
-
-  margin-top: 18px;
+  width: 647px;
+  text-align: center;
+  margin-top: 50px;
   font-weight: 900;
   font-size: 20px;
 }

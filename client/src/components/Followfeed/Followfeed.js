@@ -1,13 +1,11 @@
-import React, { useState, useRef, useEffect, useCallback, Suspense } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { useState, useEffect, useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useInView } from 'react-intersection-observer';
 import Axios from 'axios';
-import data from '../../dummyfiles/dummyFeedList';
 import { FaUserCheck, FaCaretUp } from 'react-icons/fa';
 import userImage from '../../assets/images/defaultUserImage.png';
 import { NoticeModal } from '../NoticeModal/NoticeModal';
 import { useSelector, useDispatch } from 'react-redux';
-import { FollowInfoAction } from '../../actions/FollowInfoAction';
 import { Loading } from '../../utils/Loading/Loading';
 import {
   FeedContentContainer,
@@ -26,7 +24,7 @@ import {
   BookInfo
 } from './FollowfeedStyle';
 
-export const Followfeed = ({ followFeedList }) => {
+export const Followfeed = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const state = useSelector(state => state.userInfoReducer);
@@ -39,6 +37,7 @@ export const Followfeed = ({ followFeedList }) => {
     userNickName: '',
     userImage: ''
   });
+  const [more, setMore] = useState(true);
   const [followFeedLists, setFolowFeedLists] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(0);
@@ -54,45 +53,82 @@ export const Followfeed = ({ followFeedList }) => {
   });
 
   // 서버에서 아이템을 가지고 오는 함수
-  const getFolowFeedLists = useCallback(() => {
-    setLoading(true);
-    console.log('요청보냄', loading);
-    setTimeout(() => {
-      Axios.get(`http://localhost:4000/article/${state.userInfo.id}?page=${page}`,
-        {
-          headers:
-      {
-        'Contnet-Type': 'application/json',
-        withCredentials: true
-      }
-        })
-        .then((res) => {
-          console.log(res.data.articleData.length);
-          if (res.data.articleData.length !== 0) {
-            setFolowFeedLists(followFeedLists => [...followFeedLists, ...res.data.articleData]);
-          } else {
-            setLoading(false);
+  useEffect(() => {
+    function getFollowFeedLists () {
+      if(more) {
+        setLoading(true);
+        setTimeout(() => {
+        Axios({
+          method: 'get',
+          url: `http://localhost:4000/article/${state.userInfo.id}?page=${page}`,
+          withCredentials: true,
+          headers: {
+            'Contnet-Type': 'application/json',
           }
         })
-        .catch((err) => {
-          console.log(err);
-        });
-    }, 1000);
-    setLoading(false);
-    console.log('요청 끝', loading);
-  }, [page]);
+        .then((res) => {
+          if(res.data.articleData.length === 0) {
+            console.log('마지막줄')
+            setMore(false);
+          }
+          setFolowFeedLists(followFeedLists => [...followFeedLists, ...res.data.articleData]);
+          setLoading(false);
+        })
+      }, 1000)}
+    }
+    getFollowFeedLists();
+  }, [state.userInfo.id, page, more])
 
-  // `getFolowFeedLists` 가 바뀔 때 마다 함수 실행
-  useEffect(() => {
-    getFolowFeedLists();
-  }, [getFolowFeedLists]);
 
   useEffect(() => {
     // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
     if (inView && !loading) {
+      console.log('loading false')
       setPage(prevState => prevState + 1);
+    } else {
+      console.log('loading true')
     }
   }, [inView, loading]);
+
+  // const getFolowFeedLists = useCallback(() => {
+  //   setLoading(true,);
+  //   console.log('요청보냄');
+  //   setTimeout(() => {
+  //     Axios.get(`http://localhost:4000/article/${state.userInfo.id}?page=${page}`,
+  //       {
+  //         headers:
+  //     {
+  //       'Contnet-Type': 'application/json',
+  //       withCredentials: true
+  //     }
+  //       })
+  //       .then((res) => {
+  //         console.log(res.data.articleData.length);
+  //         if (res.data.articleData.length !== 0) {
+  //           setFolowFeedLists(followFeedLists => [...followFeedLists, ...res.data.articleData]);
+  //         } else {
+  //           setLoading(false);
+  //         }
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   }, 1000);
+  //   setLoading(false);
+  //   console.log('요청 끝', loading);
+  // }, [page]);
+
+  // `getFolowFeedLists` 가 바뀔 때 마다 함수 실행
+  // useEffect(() => {
+  //   getFolowFeedLists();
+  // }, [getFolowFeedLists]);
+
+  // useEffect(() => {
+  //   // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
+  //   if (inView && !loading) {
+  //     setPage(prevState => prevState + 1);
+  //   }
+  // }, [inView, loading]);
 
   const getFollowInfo = (el) => {
     console.log(el);
@@ -177,8 +213,8 @@ export const Followfeed = ({ followFeedList }) => {
           <FaCaretUp />Top
         </div>
         {isOpen ? <NoticeModal NoticeModalOpenHandler={NoticeModalOpenHandler} userInfo={userInfo} followInfo={followInfo} /> : null}
-        {feedList}
-        <div ref={ref}><Loading /></div>
+        {followFeedLists.length === 0 && !loading ? <div className='nodata'>팔로우가 작성한 피드가 없습니다.</div> : feedList}
+        <div ref={ref}>{loading ? <Loading /> : null}</div>
       </FeedContentContainer>
     </>
   );

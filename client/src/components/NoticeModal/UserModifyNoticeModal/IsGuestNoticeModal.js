@@ -5,13 +5,13 @@ import {
   Button
 } from './IsGuestNoticeModalStyle';
 
-export const IsGuestNoticeModal = ({ errorMessage, isGuestNoticeModalHandler }) => {
+export const IsGuestNoticeModal = ({ errorMessage, setIsOpenNoticeModal }) => {
   return (
     <>
-      <NoticeModalBackground onClick={isGuestNoticeModalHandler}>
+      <NoticeModalBackground onClick={setIsOpenNoticeModal}>
         <NoticeModalContainer onClick={(e) => e.stopPropagation()}>
           <div>{errorMessage}</div>
-          <Button onClick={isGuestNoticeModalHandler}>닫기</Button>
+          <Button onClick={setIsOpenNoticeModal}>닫기</Button>
         </NoticeModalContainer>
       </NoticeModalBackground>
     </>

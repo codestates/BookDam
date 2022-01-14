@@ -72,9 +72,9 @@ export const SetenceModal = ({ openSentenceModalHandler, setIsOpenSentenceModal 
   };
   // 삭제 완료 노티스 모달
   const deleteNoticModalHandler = () => {
+    setIsOpenSentenceModal(false)
     setIsDeleteSuccess(false);
     setIsOpenMenu(false);
-    setIsOpenSentenceModal(false);
   };
 
   return (
@@ -109,7 +109,6 @@ export const SetenceModal = ({ openSentenceModalHandler, setIsOpenSentenceModal 
               <UserNameAndImage>
                 <UserImageContainer>
                   <UserImage src={example} />
-                  <DefaultUserImage />
                 </UserImageContainer>
                 <UserNickName>
                   {articleInfo.userNickName}

@@ -6,6 +6,8 @@ export const NoticeModalBackground = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
+  border-radius: 15px;
+  border: 0.1px solid rgba(0, 0, 0, 0);
   background: rgba(0, 0, 0, 0.5); // 투명 회색 효과
   backdrop-filter: blur(5px); //blur 효과
   z-index: 101;

@@ -39,12 +39,6 @@ export const ModifyCloseSection = styled.div`
   > div {
     cursor: pointer;
   }
-
-  @media screen and (max-width: 500px) {
-    > div {
-    cursor: none;
-  }
-  }
 `;
 
 export const UserInfoSection = styled.div`

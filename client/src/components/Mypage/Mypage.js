@@ -6,7 +6,7 @@ import { useInView } from 'react-intersection-observer';
 import { UserModifyModal } from '../UserInfoModify/UserModifyModal';
 import { SetenceModal } from '../SentenceModal/SentenceModal';
 import { data } from '../../dummyfiles/dummyMyFeedList';
-import example from '../../assets/images/defaultUserImage.png'
+import example from '../../assets/images/defaultUserImage.png';
 import { IsGuestNoticeModal } from '../../components/NoticeModal/UserModifyNoticeModal/IsGuestNoticeModal';
 
 import {
@@ -30,7 +30,6 @@ import {
   Article
 } from './MypageStyle';
 
-
 axios.defaults.withCredentials = true;
 
 export default function MyPage () {
@@ -53,7 +52,7 @@ export default function MyPage () {
     userId: 'guest',
     userNickName: '게스트',
     userImage: '../../assets/images/defaultUserImage.png'
-  })
+  });
 
   const [myUserInfo, setMyUserInfo] = useState({
     id: 0,
@@ -77,8 +76,8 @@ export default function MyPage () {
 
   // 게스트 로그인일 경우 노티스 모달 핸들러
   const isGuestNoticeModalHandler = () => {
-    setIsOpenNoticeModal(!isOpenNoticeModal)
-    setErrorMessage('회원가입 후 이용해주세요')
+    setIsOpenNoticeModal(!isOpenNoticeModal);
+    setErrorMessage('회원가입 후 이용해주세요');
   };
   // 회원정보수정 버튼 누르면 회원정보수정 모달이 나오는 함수
   const userInfoModifyBtnHandler = () => {
@@ -94,20 +93,21 @@ export default function MyPage () {
     setIsOpenSentenceModal(!isOpenSentenceModal);
     history.push({
       state: {
-        articleInfo : {
-        id: el.id,
-        userNickName: el['User.userNickName'],
-        userImage: el['User.userImage'],
-        book_Title: el.book_Title,
-        book_Author: el.book_Author,
-        book_Publisher: el.book_Publisher,
-        sentence: el.sentence,
-        comment: el.comment,
-        createdAt: el.createdAt,
-      }}
-    })
-  }
-
+        articleInfo: {
+          id: el.id,
+          userNickName: el['User.userNickName'],
+          userImage: el['User.userImage'],
+          book_Title: el.book_Title,
+          book_Author: el.book_Author,
+          book_Publisher: el.book_Publisher,
+          book_Thumbnail: el.book_Thumbnail,
+          sentence: el.sentence,
+          comment: el.comment,
+          createdAt: el.createdAt
+        }
+      }
+    });
+  };
 
   // 내 정보 전체를 조회하는 함수 (무한 스크롤 적용)
   const getMyInfoAll = useCallback(() => {
@@ -163,62 +163,62 @@ export default function MyPage () {
   return (
     // react suspence hook (데이터가 없을 경우, 로딩 화면) 삼항 연산자로 getUserInfoAll 함수 처리
     <>
-    <MyPageWholeContainer>
-      <MypageContainer> 
-        {isOpneModifyModal
-          ? <UserModifyModal
-            userInfoModifyBtnHandler={userInfoModifyBtnHandler}
-            closeUserInfoModify={closeUserInfoModify}
-            myUserInfo={myUserInfo}
-            setIsOpenModifyModal={setIsOpenModifyModal}
-            />
-          : null}
-        {isOpenSentenceModal
-          ? <SetenceModal
-            openSentenceModalHandler={openSentenceModalHandler}
-            setIsOpenSentenceModal={setIsOpenSentenceModal}
-            />
-          : null}  
-        <UserInfoContainer>
-          <UserImgSection>
-            <UserImage src={'../../assets/images/defaultUserImage.png'} />
-          </UserImgSection>
-          <UserInfoSection>
-            <NickNameFollowSection>
-              <NickName>{myUserInfo.userNickName}</NickName>
-              <FollowContainer>
-                <Follow>팔로우
-                  <FollowCount>{follow.following}</FollowCount>
-                </Follow>
-                <Follower>팔로워
-                  <FollowerCount>{follow.follower}</FollowerCount>
-                </Follower>
-              </FollowContainer>
-            </NickNameFollowSection>
+      <MyPageWholeContainer>
+        <MypageContainer>
+          {isOpneModifyModal
+            ? <UserModifyModal
+                userInfoModifyBtnHandler={userInfoModifyBtnHandler}
+                closeUserInfoModify={closeUserInfoModify}
+                myUserInfo={myUserInfo}
+                setIsOpenModifyModal={setIsOpenModifyModal}
+              />
+            : null}
+          {isOpenSentenceModal
+            ? <SetenceModal
+                openSentenceModalHandler={openSentenceModalHandler}
+                setIsOpenSentenceModal={setIsOpenSentenceModal}
+              />
+            : null}
+          <UserInfoContainer>
+            <UserImgSection>
+              <UserImage src='../../assets/images/defaultUserImage.png' />
+            </UserImgSection>
+            <UserInfoSection>
+              <NickNameFollowSection>
+                <NickName>{myUserInfo.userNickName}</NickName>
+                <FollowContainer>
+                  <Follow>팔로우
+                    <FollowCount>{follow.following}</FollowCount>
+                  </Follow>
+                  <Follower>팔로워
+                    <FollowerCount>{follow.follower}</FollowerCount>
+                  </Follower>
+                </FollowContainer>
+              </NickNameFollowSection>
 
-            {/* {isGuest ? 
-              <IsGuestNoticeModal 
+              {/* {isGuest ?
+              <IsGuestNoticeModal
                 errorMessage={errorMessage}
                 isGuestNoticeModalHandler={isGuestNoticeModalHandler} />
             :
-            
-            } */}
-            <UserModifyBtn
-              onClick={userInfoModifyBtnHandler}
-              setIsOpenModifyModal={setIsOpenModifyModal}
-            >
-              회원정보수정
-            </UserModifyBtn>
 
-          </UserInfoSection>
-        </UserInfoContainer>
-        {/* <ArticleListTitle>목록</ArticleListTitle> */}
-        <ArticleListContainer>
-          {myArticles}
-        </ArticleListContainer> 
-        <div ref={ref}></div>
-      </MypageContainer>
-    </MyPageWholeContainer>
+            } */}
+              <UserModifyBtn
+                onClick={userInfoModifyBtnHandler}
+                setIsOpenModifyModal={setIsOpenModifyModal}
+              >
+                회원정보수정
+              </UserModifyBtn>
+
+            </UserInfoSection>
+          </UserInfoContainer>
+          {/* <ArticleListTitle>목록</ArticleListTitle> */}
+          <ArticleListContainer>
+            {myArticles}
+          </ArticleListContainer>
+          <div ref={ref} />
+        </MypageContainer>
+      </MyPageWholeContainer>
     </>
   );
 }

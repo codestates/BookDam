@@ -6,7 +6,6 @@ import {
 } from './UserModifyNoticeModalStyle';
 
 export const UserModifyNoticeModal = ({ errorMessage, userModifyNoticeModalHandler }) => {
-
   return (
     <>
       <NoticeModalBackground onClick={userModifyNoticeModalHandler}>

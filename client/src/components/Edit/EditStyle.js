@@ -13,7 +13,7 @@ export const EditPageWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-top: 1px solid black;
+  /* border-top: 1px solid black; */
   height: 30%;
 `;
 
@@ -38,7 +38,7 @@ export const BookInfoContainer = styled.div`
 
 export const SearchBookInfoUpper = styled.div`
   width: 100%;
-  height: 30%;
+  height: 15%;
   /* border: 2px solid black; */
   display: flex;
   justify-content: center;
@@ -108,7 +108,6 @@ export const BookTitleLeftContainer = styled.div` //도서명, 저자, 출판사
   @media screen and (max-width: 500px) {
     font-size: 15px;
   }
-  
 `;
 
 export const BookTitleRightContainer = styled.div`
@@ -189,10 +188,36 @@ export const WriteArticleContainer = styled.div`
   /* border: 1px solid black; */
 `;
 
+export const WriteTextLimitContainer = styled.div`
+  /* border: 1px solid black; */
+  width: 90%;
+  height: 5%;
+  display: flex;
+  justify-content: flex-end;
+`;
+
+export const WriteTextLimitResult = styled.div`
+  /* border: 1px solid black; */
+  width: 40%;
+  margin-right: 2px;
+  font-size: 16px;
+  font-weight: 600;
+  color: gray;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+
+  @media screen and (max-width: 500px) {
+    font-size: 12px;
+  }
+`;
+
 export const WriteSentenceSection = styled.textarea.attrs({
-  placeholder: '감동적인 문장을 기록하세요.'
+  placeholder: '감동적인 문장을 기록하세요.',
+  maxLength: 121
 })`
-  margin-top: 10px;
+  margin-bottom: 20px;
   width: 90%;
   height: 50%;
   border: thick double #5dc175;
@@ -203,9 +228,10 @@ export const WriteSentenceSection = styled.textarea.attrs({
 `;
 
 export const WriteCommentSection = styled.textarea.attrs({
-  placeholder: '문장에 대한 감상평을 남기세요.'
+  placeholder: '문장에 대한 감상평을 남기세요.',
+  maxLength: 61
 })`
-  margin: 10px;
+  /* margin: 10px; */
   width: 90%;
   height: 25%;
   border: thick double #5dc175;

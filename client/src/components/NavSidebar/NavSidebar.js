@@ -44,7 +44,7 @@ export function NavSidebar ({ menuBtnHandler }) {
     })
       .then((res) => {
         console.log(res);
-        localStorage.removeItem('logged');
+        sessionStorage.removeItem('logged');
         if (res.data.message === '로그아웃 되었습니다.') {
           dispatch(LogoutAction());
           menuBtnHandler();
@@ -93,10 +93,8 @@ export function NavSidebar ({ menuBtnHandler }) {
             </QuestionSection>
             <LoginoutSection>
               {isLogin
-                ? <Loginout onClick={logoutHandler}>로그아웃</Loginout>
-                : <Loginout>
-                  <Link to='/' style={{ textDecoration: 'none' }}>시작하기</Link>
-                  </Loginout>}
+                 ? <Link to='/'><Loginout onClick={logoutHandler}>로그아웃</Loginout></Link>
+                 : <Link to='/' style={{ textDecoration: 'none' }}><Loginout>시작하기</Loginout></Link>}
             </LoginoutSection>
           </SidebarBottom>
         </SidebarContainer>

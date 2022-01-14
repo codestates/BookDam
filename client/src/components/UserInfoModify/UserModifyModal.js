@@ -22,7 +22,7 @@ import {
 import { ErrorMessage } from '../GlobalMessage/GlobalMessage';
 import { IoClose } from 'react-icons/io5';
 import { data } from '../../dummyfiles/dummyMyFeedList';
-import { UserModifyNoticeModal} from '../../components/NoticeModal/UserModifyNoticeModal/UserModifyNoticeModal';
+import { UserModifyNoticeModal } from '../../components/NoticeModal/UserModifyNoticeModal/UserModifyNoticeModal';
 import { SignoutNoticeModal } from '../../components/NoticeModal/UserModifyNoticeModal/SignoutNoticeModal';
 
 // 회원정보수정 PATCH
@@ -31,11 +31,12 @@ import { SignoutNoticeModal } from '../../components/NoticeModal/UserModifyNotic
 
 axios.defaults.withCredentials = true;
 
-export function UserModifyModal ({ 
-  closeUserInfoModify, 
-  userInfoModifyBtnHandler, 
-  myUserInfo, 
-  setIsOpenModifyModal, }) {
+export function UserModifyModal ({
+  closeUserInfoModify,
+  userInfoModifyBtnHandler,
+  myUserInfo,
+  setIsOpenModifyModal
+}) {
   // const userState = useSelector(state => state.userInfoReducer);
   // const { userInfo } = userState; // 저장된 유저 정보
   // input 값 유효성 검사 : 닉네임이 기존과 동일한가? 동일하면 에러메세지, password가 서로 일치한가? 불일치면 에러메세지
@@ -64,7 +65,7 @@ export function UserModifyModal ({
   const handleInputNickName = (e) => {
     if (myUserInfo.userNickName === e.target.value) {
       setNickNameErrorMessage('기존과 동일한 닉네임입니다');
-    } 
+    }
     // if (userNickName === '') {
     //   setNickNameErrorMessage('빈 칸을 채워주세요');
     // }
@@ -121,8 +122,8 @@ export function UserModifyModal ({
       .then((data) => {
         console.log(data);
         if (data.status === 200) {
-          setIsModificationSuccess(true)
-          setErrorMessage('회원 정보가 수정되었습니다')
+          setIsModificationSuccess(true);
+          setErrorMessage('회원 정보가 수정되었습니다');
           console.log('회원정보 수정 성공');
         }
       })
@@ -132,8 +133,8 @@ export function UserModifyModal ({
   };
   // 회원정보수정 노티스 모달 핸들러
   const userModifyNoticeModalHandler = () => {
-    setIsModificationSuccess(false)
-    setIsOpenModifyModal(false)
+    setIsModificationSuccess(false);
+    setIsOpenModifyModal(false);
   };
   // 회원정보 탈퇴 함수
   const signOutHandler = () => {
@@ -152,9 +153,9 @@ export function UserModifyModal ({
   };
   // 회원탈퇴 노티스 모달 핸들러
   const signoutNoticeModalHandler = () => {
-    setisSignoutSuccess(false)
-    setIsOpenModifyModal(false)
-  }
+    setisSignoutSuccess(false);
+    setIsOpenModifyModal(false);
+  };
 
   return (
     <>
@@ -182,19 +183,21 @@ export function UserModifyModal ({
             <PasswordChkInput onChange={handlePWCheck} />
             <ErrorMessage>{pwChkErrorMessage}</ErrorMessage>
             <UserInfoModifyBtnSection>
-              {isModificationSuccess ?
-                <UserModifyNoticeModal 
-                  errorMessage={errorMessage}
-                  userModifyNoticeModalHandler={userModifyNoticeModalHandler} />
-              : null}
+              {isModificationSuccess
+                ? <UserModifyNoticeModal
+                    errorMessage={errorMessage}
+                    userModifyNoticeModalHandler={userModifyNoticeModalHandler}
+                  />
+                : null}
               <ModificationBtn onClick={modifyUserInfoHandler}>
                 회원정보 수정
               </ModificationBtn>
-              {isSignoutSuccess ? 
-                <SignoutNoticeModal
-                errorMessage={errorMessage}
-                signoutNoticeModalHandler={signoutNoticeModalHandler} />
-              : null}
+              {isSignoutSuccess
+                ? <SignoutNoticeModal
+                    errorMessage={errorMessage}
+                    signoutNoticeModalHandler={signoutNoticeModalHandler}
+                  />
+                : null}
               <SignOutBtn onClick={signOutHandler}>
                 회원탈퇴
               </SignOutBtn>

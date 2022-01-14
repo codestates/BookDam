@@ -58,7 +58,7 @@ export const IntroWrapper = () => {
     })
       .then((res) => {
         console.log(res);
-        localStorage.removeItem('logged');
+        sessionStorage.removeItem('logged');
         if (res.data.message === '로그아웃 되었습니다.') {
           dispatch(LogoutAction());
         } else {
@@ -69,9 +69,6 @@ export const IntroWrapper = () => {
   };
 
   const guestLoginHandelr = async () => { // 게스트로 둘러보기시에 처리
-    if (userInfo.userNickName !== 'passenger') {
-      history.push('/feedpage');
-    } else {
       await axios({
         withCredentials: true,
         method: 'post',
@@ -88,6 +85,7 @@ export const IntroWrapper = () => {
         }
       })
         .then((res) => {
+          console.log(res)
           const userInfoData = res.data.userInfo;
           if (userInfoData) {
             dispatch(GuestLoginAction(userInfoData));
@@ -96,7 +94,6 @@ export const IntroWrapper = () => {
             history.push('/feedpage');
           }
         });
-    }
   };
 
   return (
@@ -129,10 +126,12 @@ export const IntroWrapper = () => {
             <ButtonWrapper>
               <ButtonContainer>
                 <Link to='/feedpage'>
-                  <ButtonsInIntro onClick={guestLoginHandelr}>둘러보기</ButtonsInIntro>
+                  {isLogin
+                    ? <ButtonsInIntro>입장하기</ButtonsInIntro>
+                    : <ButtonsInIntro onClick={guestLoginHandelr}>둘러보기</ButtonsInIntro>}
                 </Link>
                 {isLogin
-                  ? <ButtonsInIntro onClick={logoutHandler}>로그아웃</ButtonsInIntro>
+                  ? null
                   : <ButtonsInIntro onClick={handleLoginModal}>로그인</ButtonsInIntro>}
               </ButtonContainer>
             </ButtonWrapper>

@@ -64,7 +64,7 @@ export const LoginModal = ({
         }
       })
         .then((res) => {
-          localStorage.setItem('logged', JSON.stringify(res.data.userInfo));
+          sessionStorage.setItem('logged', JSON.stringify(res.data.userInfo));
 
           const userInfoData = res.data.userInfo;
           if (userInfoData) {

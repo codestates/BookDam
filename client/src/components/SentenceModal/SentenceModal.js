@@ -49,13 +49,13 @@ export const SetenceModal = ({ openSentenceModalHandler, setIsOpenSentenceModal 
 
   const sendToEditPage = () => {
     history.push({
-      pathname:`/editpage`,
+      pathname: '/editpage',
       state: {
-        myArticleInfo : {
+        myArticleInfo: {
           myArticleInfo
         }
       }
-    })
+    });
   };
   // DELETE http://localhost:4000/article/:user_Id?article_Id=6
   const deleteArticle = () => {
@@ -68,41 +68,43 @@ export const SetenceModal = ({ openSentenceModalHandler, setIsOpenSentenceModal 
       })
       .catch((err) => {
         console.log(err);
-      })
+      });
   };
   // 삭제 완료 노티스 모달
   const deleteNoticModalHandler = () => {
     setIsDeleteSuccess(false);
     setIsOpenMenu(false);
     setIsOpenSentenceModal(false);
-  }
+  };
 
   return (
     <>
       <SentenceModalBackContainer>
         <SentenceContainer>
           <UserInfoContainer>
-          <EditWrapper onClick={openMeunHandler}>
-            <div>
-              <BiDotsVerticalRounded />
-            </div>
-          </EditWrapper>  
-          {isOpenMenu ? 
-            <EditMenuWrapper>
-            <Edit 
-              onClick={sendToEditPage}>
-              편집
-            </Edit>
-            {isDeleteSuccess ? 
-              <ArticleNoticeModal 
-              errorMessage={errorMessage}
-              deleteNoticModalHandler={deleteNoticModalHandler} />
-            : null}
-            <Delete onClick={deleteArticle}>
-              삭제
-            </Delete>
-          </EditMenuWrapper>
-          : null}
+            <EditWrapper onClick={openMeunHandler}>
+              <div>
+                <BiDotsVerticalRounded />
+              </div>
+            </EditWrapper>
+            {isOpenMenu
+              ? <EditMenuWrapper>
+                <Edit
+                  onClick={sendToEditPage}
+                >
+                  편집
+                </Edit>
+                {isDeleteSuccess
+                  ? <ArticleNoticeModal
+                      errorMessage={errorMessage}
+                      deleteNoticModalHandler={deleteNoticModalHandler}
+                    />
+                  : null}
+                <Delete onClick={deleteArticle}>
+                  삭제
+                </Delete>
+              </EditMenuWrapper>
+              : null}
             <UserInfo>
               <UserNameAndImage>
                 <UserImageContainer>

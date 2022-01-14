@@ -1,3 +1,4 @@
+import standardOfjava from '../../assets/images/standardOfjava-thumbnail.jpeg';
 import React, { useState } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -23,6 +24,8 @@ import {
   WriteArticleWrapper,
   WriteArticleContainer,
   WriteSentenceSection,
+  WriteTextLimitContainer,
+  WriteTextLimitResult,
   WriteCommentSection,
   ArticleButtonWrapper,
   ArticleButtonContainer,
@@ -32,45 +35,72 @@ import {
 } from './EditStyle';
 import { NoInputNoticeModal } from '../NoticeModal/EditNoticeModal/NoInputNoticeModal';
 import { SubmitConfirmModal } from '../NoticeModal/EditNoticeModal/SubmitConfirmModal';
+import { TextLimitNoticeModal } from '../NoticeModal/WriteNoticeModal/TextLimitNoticeModal';
 
 export const Edit = () => {
   // const location = useLocation()
   // const articles = location.state.articles; // MyPage 썸네일을 눌러서 넘어오는 articles 정보
   // console.log(articles)
+  //* --- SentenceModal에서 넘겨주는 Imfo 받아오는 변수 ---//
+  const location = useLocation();
+  const myArticleInfo = location.state.myArticleInfo.myArticleInfo;
+  console.log('SentenceModal로부터: ', myArticleInfo);
+
   const userState = useSelector(state => state.userInfoReducer); // 테스트용
-  const articleState = useSelector(state => state.articleReducer); // 테스트용
-  const { userInfo } = userState;
-  const { articleInfo } = articleState; // 전역저장소에서 articleInfo를 불러온다.
+  const { isLogin, userInfo } = userState;
   const [isOpenNoticeModal, setIsOpenNoticeModal] = useState(false);
   const [isOpenSubmitModal, setIsOpenSubmitModal] = useState(false);
+  const [isOpenTextLimitNoticeModal, setIsOpenTextLimitNoticeModal] = useState(false);
 
   // const { article_Id, sentence, comment } = articleInfo;
   const [errorMessage, setErrorMessage] = useState('');
-  const [inputSentence, setInputSentence] = useState(articleInfo.sentence);
-  const [inputComment, setInputComment] = useState(articleInfo.comment);
+  const [inputSentence, setInputSentence] = useState(myArticleInfo.sentence);
+  const [inputComment, setInputComment] = useState(myArticleInfo.comment);
+  const [sentenceLength, setSentenceLength] = useState(myArticleInfo.sentence.length);
+  const [commentLength, setCommentLength] = useState(myArticleInfo.comment.length);
   const history = useHistory();
-
-  //* --- SentenceModal에서 넘겨주는 myArticleImfo 받아오는 변수 ---//
-  const location = useLocation()
-  const myArticleInfo = location.state.myArticleInfo;
-  console.log('SentenceModal로부터: ', myArticleInfo)
 
   const handleInputSentence = (e) => {
     setInputSentence(e.target.value);
+    const textLength = (e.target.value).length;
+    if (textLength === 121) {
+      setIsOpenTextLimitNoticeModal(true);
+      const setenceValue = e.target.value;
+      const newSentence = setenceValue.slice(0, -1);
+      setInputSentence(newSentence);
+      setErrorMessage('(공백포함)글자수 120자까지 가능합니다.');
+      // 입력 자체를 제한
+    } else if (textLength <= 120) {
+      setIsOpenTextLimitNoticeModal(false);
+      setSentenceLength(textLength);
+    }
   };
 
   const handleInputComment = (e) => {
     setInputComment(e.target.value);
+    const textLength = (e.target.value).length;
+    if (textLength === 61) {
+      setIsOpenTextLimitNoticeModal(true);
+      const commentValue = e.target.value;
+      const newComment = commentValue.slice(0, -1);
+      setInputComment(newComment);
+      setErrorMessage('(공백포함)글자수 60자까지 가능합니다.');
+      // 입력 자체를 제한
+    } else if (textLength <= 60) {
+      setIsOpenTextLimitNoticeModal(false);
+      setCommentLength(textLength);
+    }
   };
 
   const handleCloseNoticeModal = () => {
     setIsOpenNoticeModal(false);
     setIsOpenSubmitModal(false);
+    setIsOpenTextLimitNoticeModal(false);
     document.body.style.overflow = 'unset';
   };
 
   const submitHandler = () => {
-    if (inputSentence === '' || inputSentence === '') {
+    if (inputSentence === '' && inputSentence === '') {
       setErrorMessage('내용을 입력하세요.');
       setIsOpenNoticeModal(true);
     } else {
@@ -86,7 +116,7 @@ export const Edit = () => {
       comment: inputComment
     };
 
-    if (inputSentence === '' || inputComment === '') {
+    if (inputSentence === '' && inputComment === '') {
       setErrorMessage('내용을 입력하세요.');
       setIsOpenNoticeModal(true);
       document.body.style.overflow = 'hidden';
@@ -94,7 +124,7 @@ export const Edit = () => {
       await axios({
         withCredentials: true,
         method: 'patch',
-        url: `http://localhost:4000/article/${userInfo.id}?article_Id=${articleInfo.id}`,
+        url: `http://localhost:4000/article/${userInfo.id}?article_Id=${myArticleInfo.id}`,
         headers: {
           authorization: `Bearer: ${process.env.Client_Secret}`,
           'Content-Type': 'application/json'
@@ -126,33 +156,37 @@ export const Edit = () => {
           ? <SubmitConfirmModal errorMessage={errorMessage} handleSubmit={handleSubmit} handleCloseNoticeModal={handleCloseNoticeModal} />
           : null}
 
+        {isOpenTextLimitNoticeModal
+          ? <TextLimitNoticeModal errorMessage={errorMessage} handleCloseNoticeModal={handleCloseNoticeModal} />
+          : null}
+
         <EditPageWrapper>
           <BookContainer>
             <BookInfoContainer>
               <SearchBookInfoUpper>
-                <SearchContainer>
+                {/* <SearchContainer>
                   <SearchInputcontainer />
                   <SearchClick>검색</SearchClick>
-                </SearchContainer>
+                </SearchContainer> */}
               </SearchBookInfoUpper>
               <SearchBookInfoLower>
                 <SearchBookTitleContainer>
                   <BookTitleLeftContainer>도서명</BookTitleLeftContainer>
-                  <BookTitleRightContainer>{articleInfo.book_Title}</BookTitleRightContainer>
+                  <BookTitleRightContainer>{myArticleInfo.book_Title}</BookTitleRightContainer>
                 </SearchBookTitleContainer>
                 <BookAuthorContainer>
                   <BookTitleLeftContainer>저자명</BookTitleLeftContainer>
-                  <BookTitleRightContainer>{articleInfo.book_Author}</BookTitleRightContainer>
+                  <BookTitleRightContainer>{myArticleInfo.book_Author}</BookTitleRightContainer>
                 </BookAuthorContainer>
                 <BookPublisherContainer>
                   <BookTitleLeftContainer>출판사</BookTitleLeftContainer>
-                  <BookTitleRightContainer>{articleInfo.book_Publisher}</BookTitleRightContainer>
+                  <BookTitleRightContainer>{myArticleInfo.book_Publisher}</BookTitleRightContainer>
                 </BookPublisherContainer>
               </SearchBookInfoLower>
             </BookInfoContainer>
             <BookImageContainer>
               <BookThumbnailContainer>
-                <BookThumbnail />
+                <BookThumbnail src={myArticleInfo.book_Thumbnail} />
               </BookThumbnailContainer>
             </BookImageContainer>
           </BookContainer>
@@ -160,7 +194,13 @@ export const Edit = () => {
 
         <WriteArticleWrapper>
           <WriteArticleContainer>
+            <WriteTextLimitContainer>
+              <WriteTextLimitResult>{sentenceLength}/120자</WriteTextLimitResult>
+            </WriteTextLimitContainer>
             <WriteSentenceSection value={inputSentence} onChange={handleInputSentence} />
+            <WriteTextLimitContainer>
+              <WriteTextLimitResult>{commentLength}/60자</WriteTextLimitResult>
+            </WriteTextLimitContainer>
             <WriteCommentSection value={inputComment} onChange={handleInputComment} />
           </WriteArticleContainer>
         </WriteArticleWrapper>

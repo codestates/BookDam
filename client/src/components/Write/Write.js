@@ -23,6 +23,8 @@ import {
   WriteArticleWrapper,
   WriteArticleContainer,
   WriteSentenceSection,
+  WriteTextLimitContainer,
+  WriteTextLimitResult,
   WriteCommentSection,
   ArticleButtonWrapper,
   ArticleButtonContainer,
@@ -35,6 +37,7 @@ import { SignupModal } from '../Signup/SignupModal';
 import { BookSearchModal } from '../BookSearchModal/BookSearchModal';
 import { NoInputNoticeModal } from '../NoticeModal/WriteNoticeModal/NoInputNoticeModal';
 import { SubmitConfirmModal } from '../NoticeModal/WriteNoticeModal/SubmitConfirmModal';
+import { TextLimitNoticeModal } from '../NoticeModal/WriteNoticeModal/TextLimitNoticeModal';
 
 export const Write = () => {
   const state = useSelector(state => state.userInfoReducer); // 로그인 상태변경용
@@ -44,6 +47,7 @@ export const Write = () => {
   const [isOpenBookSearchModal, setIsOpenBookSearchModal] = useState(false);
   const [isOpenNoticeModal, setIsOpenNoticeModal] = useState(false);
   const [isOpenSubmitModal, setIsOpenSubmitModal] = useState(false);
+  const [isOpenTextLimitNoticeModal, setIsOpenTextLimitNoticeModal] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [searchData, setSearchData] = useState([]);
@@ -52,6 +56,8 @@ export const Write = () => {
   });
   const [inputSentence, setInputSentence] = useState('');
   const [inputComment, setInputComment] = useState('');
+  const [sentenceLength, setSentenceLength] = useState(0);
+  const [commentLength, setCommentLength] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
 
@@ -107,21 +113,48 @@ export const Write = () => {
       }
     });
     setIsOpenBookSearchModal(false);
+    document.body.style.overflow = 'unset'; // 스크롤 방지 설정
   };
 
   const handleInputSentence = (e) => {
     if (isLogin === false) {
+      setInputSentence('');
       setIsOpenLoginModal(true);
     } else {
       setInputSentence(e.target.value);
+      const textLength = (e.target.value).length;
+      if (textLength === 121) {
+        setIsOpenTextLimitNoticeModal(true);
+        setErrorMessage('글자수 120자까지 가능합니다.');
+        const setenceValue = e.target.value;
+        const newSentence = setenceValue.slice(0, -1);
+        setInputSentence(newSentence);
+        // 입력 자체를 제한
+      } else if (textLength <= 120) {
+        setIsOpenTextLimitNoticeModal(false);
+        setSentenceLength(textLength);
+      }
     }
   };
 
   const handleInputComment = (e) => {
     if (isLogin === false) {
+      setInputComment('');
       setIsOpenLoginModal(true);
     } else {
       setInputComment(e.target.value);
+      const textLength = (e.target.value).length;
+      if (textLength === 61) {
+        setIsOpenTextLimitNoticeModal(true);
+        setErrorMessage('글자수 60자까지 가능합니다.');
+        const commentValue = e.target.value;
+        const newComment = commentValue.slice(0, -1);
+        setInputComment(newComment);
+        // 입력 자체를 제한
+      } else if (textLength <= 60) {
+        setIsOpenTextLimitNoticeModal(false);
+        setCommentLength(textLength);
+      }
     }
   };
 
@@ -145,13 +178,20 @@ export const Write = () => {
   const handleCloseNoticeModal = () => {
     setIsOpenNoticeModal(false);
     setIsOpenSubmitModal(false);
+    setIsOpenTextLimitNoticeModal(false);
     document.body.style.overflow = 'unset';
   };
 
   const submitHandler = () => {
-    if (selectedData.title === '' || inputSentence === '' || inputSentence === '') {
-      setErrorMessage('내용을 입력하세요.');
-      setIsOpenNoticeModal(true);
+    if (isLogin) {
+      if (selectedData.title === '' || (inputSentence === '' && inputSentence === '')) {
+        setErrorMessage('내용을 입력하세요.');
+        setIsOpenNoticeModal(true);
+      } else {
+        setErrorMessage('저장하시겠습니까?');
+        setIsOpenSubmitModal(true);
+        document.body.style.overflow = 'unset'; // 저정하고 스크롤 방지 해제
+      }
     } else {
       setErrorMessage('저장하시겠습니까?');
       setIsOpenSubmitModal(true);
@@ -169,7 +209,7 @@ export const Write = () => {
       comment: inputComment
     };
 
-    if (selectedData.title === '' || inputSentence === ' ' || inputComment === '') {
+    if (selectedData.title === '' || (inputSentence === '' && inputSentence === '')) {
       setErrorMessage('내용을 입력하세요.');
       setIsOpenNoticeModal(true);
       document.body.style.overflow = 'hidden';
@@ -235,6 +275,10 @@ export const Write = () => {
         {isOpenSubmitModal
           ? <SubmitConfirmModal errorMessage={errorMessage} handleSubmit={handleSubmit} handleCloseNoticeModal={handleCloseNoticeModal} />
           : null}
+
+        {isOpenTextLimitNoticeModal
+          ? <TextLimitNoticeModal errorMessage={errorMessage} handleCloseNoticeModal={handleCloseNoticeModal} />
+          : null}
         <SearchBookWrapper>
           <SearchBookContainer>
             <SearchBookInfoContainer>
@@ -261,7 +305,9 @@ export const Write = () => {
             </SearchBookInfoContainer>
             <SearchBookImageContainer>
               <BookThumbnailContainer>
-                <BookThumbnail src={selectedData.image} />
+                {selectedData.image
+                  ? <BookThumbnail src={selectedData.image} />
+                  : null}
               </BookThumbnailContainer>
             </SearchBookImageContainer>
           </SearchBookContainer>
@@ -269,8 +315,14 @@ export const Write = () => {
 
         <WriteArticleWrapper>
           <WriteArticleContainer>
-            <WriteSentenceSection onChange={handleInputSentence} />
-            <WriteCommentSection onChange={handleInputComment} />
+            <WriteTextLimitContainer>
+              <WriteTextLimitResult>{sentenceLength}/120자</WriteTextLimitResult>
+            </WriteTextLimitContainer>
+            <WriteSentenceSection value={inputSentence} onChange={handleInputSentence} />
+            <WriteTextLimitContainer>
+              <WriteTextLimitResult>{commentLength}/60자</WriteTextLimitResult>
+            </WriteTextLimitContainer>
+            <WriteCommentSection value={inputComment} onChange={handleInputComment} />
           </WriteArticleContainer>
         </WriteArticleWrapper>
 

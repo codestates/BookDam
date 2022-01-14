@@ -4,9 +4,9 @@ export const initialState =
 
   userInfo:
     {
-      id: 2,
+      id: 0,
       userId: '',
-      userNickName: 'passenger',
+      userNickName: '',
       userImage: ''
     },
 

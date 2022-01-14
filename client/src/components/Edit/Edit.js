@@ -1,4 +1,4 @@
-import standardOfjava  from  '../../assets/images/standardOfjava-thumbnail.jpeg'
+import standardOfjava from '../../assets/images/standardOfjava-thumbnail.jpeg';
 import React, { useState } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -34,21 +34,20 @@ import {
   ButtonsInEdit
 } from './EditStyle';
 import { NoInputNoticeModal } from '../NoticeModal/EditNoticeModal/NoInputNoticeModal';
-import { SubmitConfirmModal} from '../NoticeModal/EditNoticeModal/SubmitConfirmModal';
+import { SubmitConfirmModal } from '../NoticeModal/EditNoticeModal/SubmitConfirmModal';
 import { TextLimitNoticeModal } from '../NoticeModal/WriteNoticeModal/TextLimitNoticeModal';
 
 export const Edit = () => {
   // const location = useLocation()
   // const articles = location.state.articles; // MyPage 썸네일을 눌러서 넘어오는 articles 정보
   // console.log(articles)
-    //* --- SentenceModal에서 넘겨주는 
-  Imfo 받아오는 변수 ---//
-  const location = useLocation()
-  const myArticleInfo = location.state.myArticleInfo;
-  console.log('SentenceModal로부터: ', myArticleInfo)
-  
-  const userState = useSelector(state => state.userInfoReducer); //테스트용
-  const { isLogin, userInfo } = userState
+  //* --- SentenceModal에서 넘겨주는 Imfo 받아오는 변수 ---//
+  const location = useLocation();
+  const myArticleInfo = location.state.myArticleInfo.myArticleInfo;
+  console.log('SentenceModal로부터: ', myArticleInfo);
+
+  const userState = useSelector(state => state.userInfoReducer); // 테스트용
+  const { isLogin, userInfo } = userState;
   const [isOpenNoticeModal, setIsOpenNoticeModal] = useState(false);
   const [isOpenSubmitModal, setIsOpenSubmitModal] = useState(false);
   const [isOpenTextLimitNoticeModal, setIsOpenTextLimitNoticeModal] = useState(false);
@@ -57,21 +56,21 @@ export const Edit = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [inputSentence, setInputSentence] = useState(myArticleInfo.sentence);
   const [inputComment, setInputComment] = useState(myArticleInfo.comment);
-  const [sentenceLength, setSentenceLength] = useState(0);
-  const [commentLength, setCommentLength] = useState(0);
+  const [sentenceLength, setSentenceLength] = useState(myArticleInfo.sentence.length);
+  const [commentLength, setCommentLength] = useState(myArticleInfo.comment.length);
   const history = useHistory();
 
   const handleInputSentence = (e) => {
     setInputSentence(e.target.value);
-    let textLength = (e.target.value).length;
-    if(textLength === 121) {
+    const textLength = (e.target.value).length;
+    if (textLength === 121) {
       setIsOpenTextLimitNoticeModal(true);
-      let setenceValue = e.target.value;
-      let newSentence = setenceValue.slice(0, -1);
+      const setenceValue = e.target.value;
+      const newSentence = setenceValue.slice(0, -1);
       setInputSentence(newSentence);
-      setErrorMessage('(공백포함)글자수 120자까지 가능합니다.')
-      //입력 자체를 제한
-    } else if(textLength <= 120){
+      setErrorMessage('(공백포함)글자수 120자까지 가능합니다.');
+      // 입력 자체를 제한
+    } else if (textLength <= 120) {
       setIsOpenTextLimitNoticeModal(false);
       setSentenceLength(textLength);
     }
@@ -79,15 +78,15 @@ export const Edit = () => {
 
   const handleInputComment = (e) => {
     setInputComment(e.target.value);
-    let textLength = (e.target.value).length;
-    if(textLength === 61) {
+    const textLength = (e.target.value).length;
+    if (textLength === 61) {
       setIsOpenTextLimitNoticeModal(true);
-      let commentValue = e.target.value;
-      let newComment = commentValue.slice(0, -1);
+      const commentValue = e.target.value;
+      const newComment = commentValue.slice(0, -1);
       setInputComment(newComment);
-      setErrorMessage('(공백포함)글자수 120자까지 가능합니다.')
-      //입력 자체를 제한
-    } else if(textLength <= 60){
+      setErrorMessage('(공백포함)글자수 60자까지 가능합니다.');
+      // 입력 자체를 제한
+    } else if (textLength <= 60) {
       setIsOpenTextLimitNoticeModal(false);
       setCommentLength(textLength);
     }
@@ -101,8 +100,8 @@ export const Edit = () => {
   };
 
   const submitHandler = () => {
-    if(inputSentence === '' && inputSentence === '') {
-      setErrorMessage('내용을 입력하세요.')
+    if (inputSentence === '' && inputSentence === '') {
+      setErrorMessage('내용을 입력하세요.');
       setIsOpenNoticeModal(true);
     } else {
       setErrorMessage('저장하시겠습니까?');
@@ -118,7 +117,7 @@ export const Edit = () => {
     };
 
     if (inputSentence === '' && inputComment === '') {
-      setErrorMessage('내용을 입력하세요.')
+      setErrorMessage('내용을 입력하세요.');
       setIsOpenNoticeModal(true);
       document.body.style.overflow = 'hidden';
     } else {
@@ -156,11 +155,11 @@ export const Edit = () => {
         {isOpenSubmitModal
           ? <SubmitConfirmModal errorMessage={errorMessage} handleSubmit={handleSubmit} handleCloseNoticeModal={handleCloseNoticeModal} />
           : null}
-        
+
         {isOpenTextLimitNoticeModal
           ? <TextLimitNoticeModal errorMessage={errorMessage} handleCloseNoticeModal={handleCloseNoticeModal} />
           : null}
-        
+
         <EditPageWrapper>
           <BookContainer>
             <BookInfoContainer>
@@ -187,7 +186,7 @@ export const Edit = () => {
             </BookInfoContainer>
             <BookImageContainer>
               <BookThumbnailContainer>
-                <BookThumbnail src={myArticleInfo.book_Thumbnail}/>
+                <BookThumbnail src={myArticleInfo.book_Thumbnail} />
               </BookThumbnailContainer>
             </BookImageContainer>
           </BookContainer>
@@ -196,11 +195,11 @@ export const Edit = () => {
         <WriteArticleWrapper>
           <WriteArticleContainer>
             <WriteTextLimitContainer>
-              <WriteTextLimitResult>(공백포함)글자수({sentenceLength}/120자)</WriteTextLimitResult>
+              <WriteTextLimitResult>{sentenceLength}/120자</WriteTextLimitResult>
             </WriteTextLimitContainer>
             <WriteSentenceSection value={inputSentence} onChange={handleInputSentence} />
             <WriteTextLimitContainer>
-              <WriteTextLimitResult>(공백포함)글자수({commentLength}/60자)</WriteTextLimitResult>
+              <WriteTextLimitResult>{commentLength}/60자</WriteTextLimitResult>
             </WriteTextLimitContainer>
             <WriteCommentSection value={inputComment} onChange={handleInputComment} />
           </WriteArticleContainer>

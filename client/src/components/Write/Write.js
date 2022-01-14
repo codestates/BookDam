@@ -36,7 +36,7 @@ import { GuestLoginModal } from '../GuestLoginModal/GuestLoginModal';
 import { SignupModal } from '../Signup/SignupModal';
 import { BookSearchModal } from '../BookSearchModal/BookSearchModal';
 import { NoInputNoticeModal } from '../NoticeModal/WriteNoticeModal/NoInputNoticeModal';
-import { SubmitConfirmModal} from '../NoticeModal/WriteNoticeModal/SubmitConfirmModal';
+import { SubmitConfirmModal } from '../NoticeModal/WriteNoticeModal/SubmitConfirmModal';
 import { TextLimitNoticeModal } from '../NoticeModal/WriteNoticeModal/TextLimitNoticeModal';
 
 export const Write = () => {
@@ -58,7 +58,7 @@ export const Write = () => {
   const [inputComment, setInputComment] = useState('');
   const [sentenceLength, setSentenceLength] = useState(0);
   const [commentLength, setCommentLength] = useState(0);
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
 
   const handleInputValue = (e) => {
@@ -122,15 +122,15 @@ export const Write = () => {
       setIsOpenLoginModal(true);
     } else {
       setInputSentence(e.target.value);
-      let textLength = (e.target.value).length;
-      if(textLength === 121) {
+      const textLength = (e.target.value).length;
+      if (textLength === 121) {
         setIsOpenTextLimitNoticeModal(true);
-        setErrorMessage('글자수 120자까지 가능합니다.')
-        let setenceValue = e.target.value;
-        let newSentence = setenceValue.slice(0, -1);
+        setErrorMessage('글자수 120자까지 가능합니다.');
+        const setenceValue = e.target.value;
+        const newSentence = setenceValue.slice(0, -1);
         setInputSentence(newSentence);
-        //입력 자체를 제한
-      } else if(textLength <= 120){
+        // 입력 자체를 제한
+      } else if (textLength <= 120) {
         setIsOpenTextLimitNoticeModal(false);
         setSentenceLength(textLength);
       }
@@ -143,15 +143,15 @@ export const Write = () => {
       setIsOpenLoginModal(true);
     } else {
       setInputComment(e.target.value);
-      let textLength = (e.target.value).length;
-      if(textLength === 61) {
+      const textLength = (e.target.value).length;
+      if (textLength === 61) {
         setIsOpenTextLimitNoticeModal(true);
-        setErrorMessage('글자수 60자까지 가능합니다.')
-        let commentValue = e.target.value;
-        let newComment = commentValue.slice(0, -1);
+        setErrorMessage('글자수 60자까지 가능합니다.');
+        const commentValue = e.target.value;
+        const newComment = commentValue.slice(0, -1);
         setInputComment(newComment);
-        //입력 자체를 제한
-      } else if(textLength <= 60){
+        // 입력 자체를 제한
+      } else if (textLength <= 60) {
         setIsOpenTextLimitNoticeModal(false);
         setCommentLength(textLength);
       }
@@ -183,14 +183,14 @@ export const Write = () => {
   };
 
   const submitHandler = () => {
-    if(isLogin) {
+    if (isLogin) {
       if (selectedData.title === '' || (inputSentence === '' && inputSentence === '')) {
         setErrorMessage('내용을 입력하세요.');
         setIsOpenNoticeModal(true);
       } else {
         setErrorMessage('저장하시겠습니까?');
         setIsOpenSubmitModal(true);
-        document.body.style.overflow = 'unset'; //저정하고 스크롤 방지 해제 
+        document.body.style.overflow = 'unset'; // 저정하고 스크롤 방지 해제
       }
     } else {
       setErrorMessage('저장하시겠습니까?');
@@ -275,7 +275,7 @@ export const Write = () => {
         {isOpenSubmitModal
           ? <SubmitConfirmModal errorMessage={errorMessage} handleSubmit={handleSubmit} handleCloseNoticeModal={handleCloseNoticeModal} />
           : null}
-        
+
         {isOpenTextLimitNoticeModal
           ? <TextLimitNoticeModal errorMessage={errorMessage} handleCloseNoticeModal={handleCloseNoticeModal} />
           : null}
@@ -305,10 +305,9 @@ export const Write = () => {
             </SearchBookInfoContainer>
             <SearchBookImageContainer>
               <BookThumbnailContainer>
-                {selectedData.image 
+                {selectedData.image
                   ? <BookThumbnail src={selectedData.image} />
-                  : null
-                }
+                  : null}
               </BookThumbnailContainer>
             </SearchBookImageContainer>
           </SearchBookContainer>
@@ -317,11 +316,12 @@ export const Write = () => {
         <WriteArticleWrapper>
           <WriteArticleContainer>
             <WriteTextLimitContainer>
-              <WriteTextLimitResult>글자수({sentenceLength}/120자)</WriteTextLimitResult>
+              <WriteTextLimitResult>{sentenceLength}/120자</WriteTextLimitResult>
             </WriteTextLimitContainer>
             <WriteSentenceSection value={inputSentence} onChange={handleInputSentence} />
             <WriteTextLimitContainer>
-              <WriteTextLimitResult>글자수({commentLength}/60자)</WriteTextLimitResult>
+              <WriteTextLimitResult>{commentLength}/60자</WriteTextLimitResult>
+
             </WriteTextLimitContainer>
             <WriteCommentSection value={inputComment} onChange={handleInputComment} />
           </WriteArticleContainer>

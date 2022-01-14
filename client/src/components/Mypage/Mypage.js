@@ -217,7 +217,7 @@ export default function MyPage () {
           </UserInfoContainer>
           {/* <ArticleListTitle>목록</ArticleListTitle> */}
           <ArticleListContainer>
-            {myArticles}
+            {myArticleList.length === 0 && !loading ? <div>피드를 작성해주세요.</div>: myArticles}
           </ArticleListContainer>
           <div ref={ref}>{loading ? <Loading /> : null}</div>
         </MypageContainer>

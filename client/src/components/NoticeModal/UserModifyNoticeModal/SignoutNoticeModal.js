@@ -6,7 +6,6 @@ import {
 } from './SignoutNoticeModalStyle';
 
 export const SignoutNoticeModal = ({ errorMessage, signoutNoticeModalHandler }) => {
-
   return (
     <>
       <NoticeModalBackground onClick={signoutNoticeModalHandler}>

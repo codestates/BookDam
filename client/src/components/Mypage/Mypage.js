@@ -8,7 +8,7 @@ import { SetenceModal } from '../SentenceModal/SentenceModal';
 import { data } from '../../dummyfiles/dummyMyFeedList';
 import example from '../../assets/images/defaultUserImage.png';
 import { IsGuestNoticeModal } from '../../components/NoticeModal/UserModifyNoticeModal/IsGuestNoticeModal';
-import { Loading } from '../../utils/Loading/Loading'
+import { Loading } from '../../utils/Loading/Loading'; 
 import {
   MyPageWholeContainer,
   MypageContainer,
@@ -46,8 +46,6 @@ export default function MyPage () {
 
   const userState = useSelector(state => state.userInfoReducer);
   const { userInfo } = userState;
-  console.log(userInfo)
-
   const [myUserInfo, setMyUserInfo] = useState({
     id: 0,
     userId: '',
@@ -150,7 +148,6 @@ export default function MyPage () {
       console.log('loading true')
     }
   }, [inView, loading]);
-  
 
   console.log('아티클 목록', myArticleList);
   const myArticles = myArticleList.map((el, index) => {
@@ -203,7 +200,7 @@ export default function MyPage () {
               {isOpenNoticeModal ?
               <IsGuestNoticeModal
                 errorMessage={errorMessage}
-                setIsOpenNoticeModal={setIsOpenNoticeModal} />
+                setIsOpenModifyModal={setIsOpenModifyModal} />
               :
                 null}
               <UserModifyBtn
@@ -220,6 +217,7 @@ export default function MyPage () {
             {myArticleList.length === 0 && !loading ? <div>피드를 작성해주세요.</div>: myArticles}
           </ArticleListContainer>
           <div ref={ref}>{loading ? <Loading /> : null}</div>
+
         </MypageContainer>
       </MyPageWholeContainer>
     </>

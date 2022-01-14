@@ -316,11 +316,12 @@ export const Write = () => {
         <WriteArticleWrapper>
           <WriteArticleContainer>
             <WriteTextLimitContainer>
-              <WriteTextLimitResult>글자수({sentenceLength}/120자)</WriteTextLimitResult>
+              <WriteTextLimitResult>{sentenceLength}/120자</WriteTextLimitResult>
             </WriteTextLimitContainer>
             <WriteSentenceSection value={inputSentence} onChange={handleInputSentence} />
             <WriteTextLimitContainer>
-              <WriteTextLimitResult>글자수({commentLength}/60자)</WriteTextLimitResult>
+              <WriteTextLimitResult>{commentLength}/60자</WriteTextLimitResult>
+
             </WriteTextLimitContainer>
             <WriteCommentSection value={inputComment} onChange={handleInputComment} />
           </WriteArticleContainer>

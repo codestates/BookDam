@@ -10,7 +10,7 @@ import { LoginAction } from './actions/UserInfoAction';
 
 function App () {
   const dispatch = useDispatch();
-  const userInfo = JSON.parse(localStorage.getItem('logged'));
+  const userInfo = JSON.parse(sessionStorage.getItem('logged'));
 
   if (userInfo) {
     dispatch(LoginAction(userInfo));

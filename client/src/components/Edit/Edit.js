@@ -41,8 +41,8 @@ export const Edit = () => {
   // const location = useLocation()
   // const articles = location.state.articles; // MyPage 썸네일을 눌러서 넘어오는 articles 정보
   // console.log(articles)
-  //* --- SentenceModal에서 넘겨주는
-
+  
+  //* --- SentenceModal에서 넘겨주는 Imfo 받아오는 변수 ---//
   const location = useLocation();
   const myArticleInfo = location.state.myArticleInfo.myArticleInfo;
   console.log('SentenceModal로부터: ', myArticleInfo);
@@ -57,8 +57,8 @@ export const Edit = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [inputSentence, setInputSentence] = useState(myArticleInfo.sentence);
   const [inputComment, setInputComment] = useState(myArticleInfo.comment);
-  const [sentenceLength, setSentenceLength] = useState(0);
-  const [commentLength, setCommentLength] = useState(0);
+  const [sentenceLength, setSentenceLength] = useState(myArticleInfo.sentence.length);
+  const [commentLength, setCommentLength] = useState(myArticleInfo.comment.length);
   const history = useHistory();
 
   const handleInputSentence = (e) => {
@@ -196,11 +196,11 @@ export const Edit = () => {
         <WriteArticleWrapper>
           <WriteArticleContainer>
             <WriteTextLimitContainer>
-              <WriteTextLimitResult>(공백포함)글자수({sentenceLength}/120자)</WriteTextLimitResult>
+              <WriteTextLimitResult>{sentenceLength}/120자</WriteTextLimitResult>
             </WriteTextLimitContainer>
             <WriteSentenceSection value={inputSentence} onChange={handleInputSentence} />
             <WriteTextLimitContainer>
-              <WriteTextLimitResult>(공백포함)글자수({commentLength}/60자)</WriteTextLimitResult>
+              <WriteTextLimitResult>{commentLength}/60자</WriteTextLimitResult>
             </WriteTextLimitContainer>
             <WriteCommentSection value={inputComment} onChange={handleInputComment} />
           </WriteArticleContainer>

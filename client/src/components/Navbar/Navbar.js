@@ -77,7 +77,7 @@ export default function Navbar () {
     })
       .then((res) => {
         console.log(res);
-        localStorage.removeItem('logged');
+        sessionStorage.removeItem('logged');
         if (res.data.message === '로그아웃 되었습니다.') {
           dispatch(LogoutAction());
           menuBtnHandler();

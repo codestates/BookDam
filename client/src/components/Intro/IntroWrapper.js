@@ -58,7 +58,7 @@ export const IntroWrapper = () => {
     })
       .then((res) => {
         console.log(res);
-        localStorage.removeItem('logged');
+        sessionStorage.removeItem('logged');
         if (res.data.message === '로그아웃 되었습니다.') {
           dispatch(LogoutAction());
         } else {
@@ -85,6 +85,7 @@ export const IntroWrapper = () => {
         }
       })
         .then((res) => {
+          console.log(res)
           const userInfoData = res.data.userInfo;
           if (userInfoData) {
             console.log(userInfoData)
@@ -95,7 +96,6 @@ export const IntroWrapper = () => {
           history.push('/feedpage');
           
         });
-    
   };
 
   return (

@@ -21,7 +21,7 @@
 |이름|Role|
 |:---:|:---:|
 |김상권|BackEnd & Leader|
-|서한석|BackEnd|
+|서한석|FrontEnd|
 |신현경|FrontEnd|
 |안승호|FrontEnd|
 <br/>

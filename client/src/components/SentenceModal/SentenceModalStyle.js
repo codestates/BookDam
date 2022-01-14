@@ -42,7 +42,7 @@ export const UserInfoContainer = styled.div`
   height: 640px;
   padding: 16px;
   background: white;
-  border-radius: 10px;
+  border-radius: 15px;
   text-align: center;
   background-image: linear-gradient(rgba(0,170, 0, 0.1), rgba(0, 255, 0, 0.5));
 

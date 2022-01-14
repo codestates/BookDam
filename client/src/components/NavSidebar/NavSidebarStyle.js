@@ -113,6 +113,9 @@ export const MenuSection = styled.div`
   justify-content: space-around;
   font-size: 1rem;
   font-weight: 600;
+  > div > a {
+    color: black;
+  }
   /* border: 1px solid blue; */
 `;
 

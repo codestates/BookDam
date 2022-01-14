@@ -15,9 +15,7 @@ import {
   NavbarWrapper,
   LogoImage,
   NavMenuSection,
-  NavMenu1,
-  NavMenu2,
-  NavMenu3,
+  NavMenu,
   NavMenuSub,
   UserSection,
   UserImage,
@@ -66,7 +64,6 @@ export default function Navbar () {
     setSubNavMenu3(true);
   };
 
-
   // 로그아웃 핸들러
   const logoutHandler = async () => {
     await axios({
@@ -106,16 +103,16 @@ export default function Navbar () {
           <NavMenuSection>
             {navMenu1
               ? <NavMenuSub><Link to='/createPage' style={{ textDecoration: 'none' }}>작성하기</Link></NavMenuSub>
-              : <NavMenu1 onClick={handleNav1}><Link to='/createPage' style={{ textDecoration: 'none' }}>작성하기</Link></NavMenu1>}
-            
+              : <NavMenu onClick={handleNav1}><Link to='/createPage' style={{ textDecoration: 'none' }}>작성하기</Link></NavMenu>}
+
             {navMenu2
               ? <NavMenuSub><Link to='/feedPage' style={{ textDecoration: 'none' }}>피드</Link></NavMenuSub>
-              : <NavMenu2 onClick={handleNav2}><Link to='/feedPage' style={{ textDecoration: 'none' }}>피드</Link></NavMenu2>}
-            
+              : <NavMenu onClick={handleNav2}><Link to='/feedPage' style={{ textDecoration: 'none' }}>피드</Link></NavMenu>}
+
             {navMenu3
               ? <NavMenuSub><Link to='/mypage' style={{ textDecoration: 'none' }}>마이페이지</Link></NavMenuSub>
-              : <NavMenu3 onClick={handleNav3}><Link to='/mypage' style={{ textDecoration: 'none' }}>마이페이지</Link></NavMenu3>}
-            
+              : <NavMenu onClick={handleNav3}><Link to='/mypage' style={{ textDecoration: 'none' }}>마이페이지</Link></NavMenu>}
+
             {/* <NavMenu>
               <Link to='/editpage' style={{ textDecoration: 'none' }}>수정하기</Link>
             </NavMenu> */}
@@ -123,7 +120,7 @@ export default function Navbar () {
           <UserSection>
             {/* <UserImage />
             <UserNickName>{userInfo.userNickName}</UserNickName> */}
-            <LoginoutSection >
+            <LoginoutSection>
               {isLogin
                 ? <Link to='/'><Loginout onClick={logoutHandler}>로그아웃</Loginout></Link>
                 : <Link to='/' style={{ textDecoration: 'none' }}><Loginout>시작하기</Loginout></Link>}

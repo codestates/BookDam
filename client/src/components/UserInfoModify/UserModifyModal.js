@@ -114,6 +114,7 @@ export function UserModifyModal ({
   };
   // 회원정보 수정 함수
   const modifyUserInfoHandler = () => {
+    // !  api 확인후 변경하기
     axios
       .patch(`http://localhost:4000/user/${myUserInfo.id}`,
         {

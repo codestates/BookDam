@@ -75,35 +75,22 @@ export const NavMenuSection = styled.ul`
   }
 `;
 
-export const NavMenu1 = styled.li`
+export const NavMenu = styled.li`
   height: 70%;
   display: flex;
   margin: 0.5rem;
   font-size: 1.3rem;
   justify-content: center;
   align-items: center;
-  /* color: red; */
-  /* border: 1px solid black; */
-`;
-
-export const NavMenu2 = styled.li`
-  height: 70%;
-  display: flex;
-  margin: 0.5rem;
-  font-size: 1.3rem;
-  justify-content: center;
-  align-items: center;
-  /* color: red; */
-  /* border: 1px solid black; */
-`;
-
-export const NavMenu3 = styled.li`
-  height: 70%;
-  display: flex;
-  margin: 0.5rem;
-  font-size: 1.3rem;
-  justify-content: center;
-  align-items: center;
+  > a {
+    color: black;
+    :visited {      //  a:visited : 한번 클릭했던 혹은 다녀갔던 링크
+      color: black;
+    }
+    :link {         //  a:link : 클릭하지 않은 링크
+      color: black;
+    }
+  }
   /* color: red; */
   /* border: 1px solid black; */
 `;
@@ -204,7 +191,6 @@ export const Loginout = styled.button`
   border-radius: 2px;
   cursor: pointer;
 `;
-
 
 export const SideMenuSection = styled.div`
   display: none;

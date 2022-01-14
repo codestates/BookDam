@@ -41,6 +41,7 @@ export const Edit = () => {
   // const location = useLocation()
   // const articles = location.state.articles; // MyPage 썸네일을 눌러서 넘어오는 articles 정보
   // console.log(articles)
+  
   //* --- SentenceModal에서 넘겨주는 Imfo 받아오는 변수 ---//
   const location = useLocation();
   const myArticleInfo = location.state.myArticleInfo.myArticleInfo;
@@ -84,7 +85,7 @@ export const Edit = () => {
       const commentValue = e.target.value;
       const newComment = commentValue.slice(0, -1);
       setInputComment(newComment);
-      setErrorMessage('(공백포함)글자수 60자까지 가능합니다.');
+      setErrorMessage('(공백포함)글자수 120자까지 가능합니다.');
       // 입력 자체를 제한
     } else if (textLength <= 60) {
       setIsOpenTextLimitNoticeModal(false);

@@ -9,7 +9,6 @@ import { data } from '../../dummyfiles/dummyMyFeedList';
 import example from '../../assets/images/defaultUserImage.png';
 import { IsGuestNoticeModal } from '../../components/NoticeModal/UserModifyNoticeModal/IsGuestNoticeModal';
 import { Loading } from '../../utils/Loading/Loading'; 
-
 import {
   MyPageWholeContainer,
   MypageContainer,
@@ -47,14 +46,6 @@ export default function MyPage () {
 
   const userState = useSelector(state => state.userInfoReducer);
   const { userInfo } = userState;
-
-  const [isGuest, setIsGuest] = useState({
-    id: 1,
-    userId: 'guest',
-    userNickName: '게스트',
-    userImage: '../../assets/images/defaultUserImage.png'
-  });
-
   const [myUserInfo, setMyUserInfo] = useState({
     id: 0,
     userId: '',
@@ -65,6 +56,7 @@ export default function MyPage () {
     following: 0,
     follower: 0
   });
+  const [more, setMore] = useState(true);
   const [myArticleList, setMyArticleList] = useState([]);
   const [isOpenNoticeModal, setIsOpenNoticeModal] = useState(false);
   const [isOpneModifyModal, setIsOpenModifyModal] = useState(false);
@@ -111,46 +103,51 @@ export default function MyPage () {
   };
 
   // 내 정보 전체를 조회하는 함수 (무한 스크롤 적용)
-  const getMyInfoAll = useCallback(() => {
-    setLoading(true);
-    setTimeout(() => {
-      axios
-        .get(`http://localhost:4000/user/${userInfo.id}?page=${page}`,
-          {
-            headers: { 'Content-Type': 'application/json' }
-          })
-        .then((res) => {
-          console.log(res.data);
-          setMyArticleList(myArticleList => [...myArticleList, ...res.data.articleData.rows]);
-          setMyUserInfo({
-            id: res.data.userInfo.id,
-            userId: res.data.userInfo.userId,
-            userNickName: res.data.userInfo.userNickName,
-            userImage: res.data.userInfo.userImage
-          });
-          setFollow({
-            following: res.data.follow.following,
-            follower: res.data.follow.follower
-          });
-        })
-        .catch((err) => console.log(err))
-    }, 1000);
-    setLoading(false);
-  }, [page]);
 
-  // `getArticleList` 가 바뀔 때 마다 함수 실행
-  useEffect(() => {
-    getMyInfoAll();
-  }, [getMyInfoAll]);
+  useEffect(()=> {
+    const getMyInfoAll = () => {
+      if(more) {
+        setLoading(true);
+        setTimeout(() => {
+          axios
+            .get(`http://localhost:4000/user/${userInfo.id}?page=${page}`,
+              {
+                headers: { 'Content-Type': 'application/json' }
+              })
+            .then((res) => {
+              console.log(res.data);
+              if(res.data.articleData.rows.length === 0) {
+                setMore(false);
+              }
+              setMyArticleList(myArticleList => [...myArticleList, ...res.data.articleData.rows]);
+              setMyUserInfo({
+                id: res.data.userInfo.id,
+                userId: res.data.userInfo.userId,
+                userNickName: res.data.userInfo.userNickName,
+                userImage: res.data.userInfo.userImage
+              });
+              setFollow({
+                following: res.data.follow.following,
+                follower: res.data.follow.follower
+              });
+              
+            })
+            .catch((err) => console.log(err))
+            setLoading(false);
+        }, 1000);}
+  }
+  getMyInfoAll();
+  }, [userInfo.id, page, more]);
 
   useEffect(() => {
     // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
     if (inView && !loading) {
+      console.log('loading false')
       setPage(prevState => prevState + 1);
+    } else {
+      console.log('loading true')
     }
   }, [inView, loading]);
-
-  //
 
   console.log('아티클 목록', myArticleList);
   const myArticles = myArticleList.map((el, index) => {
@@ -217,9 +214,10 @@ export default function MyPage () {
           </UserInfoContainer>
           {/* <ArticleListTitle>목록</ArticleListTitle> */}
           <ArticleListContainer>
-            {myArticles}
+            {myArticleList.length === 0 && !loading ? <div>피드를 작성해주세요.</div>: myArticles}
           </ArticleListContainer>
-          <div ref={ref}><Loading /></div>
+          <div ref={ref}>{loading ? <Loading /> : null}</div>
+
         </MypageContainer>
       </MyPageWholeContainer>
     </>

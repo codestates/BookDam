@@ -88,11 +88,13 @@ export const IntroWrapper = () => {
           console.log(res)
           const userInfoData = res.data.userInfo;
           if (userInfoData) {
+            console.log(userInfoData)
             dispatch(GuestLoginAction(userInfoData));
             setIsOpenLoginModal(false);
             document.body.style.overflow = 'unset'; // 스크롤 방지 해제
-            history.push('/feedpage');
           }
+          history.push('/feedpage');
+          
         });
   };
 

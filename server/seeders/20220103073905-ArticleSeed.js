@@ -627,7 +627,7 @@ module.exports = {
         createdAt: '2022-01-13',
         updatedAt: new Date()
       },
-      { 
+      {
         id: '53',
         user_Id: '2',
         book_Title: '달러구트 꿈 백화점 - 주문하신 꿈은 매진입니다',
@@ -647,8 +647,6 @@ module.exports = {
   }
 };
 
-
-
 // {
 //   id: '1',
 //   user_Id: '2',
@@ -661,7 +659,7 @@ module.exports = {
 //   createdAt: '',
 //   updatedAt: new Date()
 // },
-// { 
+// {
 //   id: '2',
 //   user_Id: '2',
 //   book_Title: '달러구트 꿈 백화점 - 주문하신 꿈은 매진입니다',
@@ -697,7 +695,7 @@ module.exports = {
 //   createdAt: '',
 //   updatedAt: new Date()
 // },
-// { 
+// {
 //   id: '5',
 //   user_Id: '2',
 //   book_Title: '내 아이가 만날 미래 - 무엇을 어떻게 준비할 것인가?',
@@ -709,7 +707,7 @@ module.exports = {
 //   createdAt: '',
 //   updatedAt: new Date()
 // },
-// { 
+// {
 //   id: '6',
 //   user_Id: '2',
 //   book_Title: '뉴 롱 라이프 - 장수와 신기술의 시대에 어떻게 적응할 것인가',
@@ -721,7 +719,7 @@ module.exports = {
 //   createdAt: '',
 //   updatedAt: new Date()
 // },
-// { 
+// {
 //   id: '7',
 //   user_Id: '2',
 //   book_Title: ‘오늘부터 개발자 - 비전공자를 위한 개발자 취업 입문 개론’,
@@ -733,7 +731,7 @@ module.exports = {
 //   createdAt: '',
 //   updatedAt: new Date()
 // },
-// { 
+// {
 //   id: '8',
 //   user_Id: '2',
 //   book_Title: ‘한 공기의 사랑, 아낌의 인문학’,

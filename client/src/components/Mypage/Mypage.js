@@ -220,7 +220,7 @@ export default function MyPage () {
           <ArticleListContainer>
             {myArticleList.length === 0 && !loading ? <div>당신의 문장들을 채워주세요!</div>: myArticles}
           </ArticleListContainer>
-          <div ref={ref}>{loading ? <Loading /> : null}</div>
+          <div ref={ref}>{loading && myArticleList.length > 8 ? <Loading /> : null}</div>
         </MypageContainer>
       </MyPageWholeContainer>
     </>

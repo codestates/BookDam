@@ -1,4 +1,8 @@
-import { GUEST_LOGIN_ACTION, LOGIN_ACTION, LOGOUT_ACTION } from '../actions/UserInfoAction';
+import { 
+  GUEST_LOGIN_ACTION,
+  LOGIN_ACTION,
+  LOGOUT_ACTION,
+  USERINFO_MODIFY_ACTION } from '../actions/UserInfoAction';
 import { initialState } from './initialState';
 
 const userInfoReducer = (state = initialState, action) => {
@@ -20,6 +24,12 @@ const userInfoReducer = (state = initialState, action) => {
       return {
         ...state,
         isLogin: action.isLogin,
+        userInfo: action.payload.userInfo
+      };
+    
+    case USERINFO_MODIFY_ACTION:
+      return {
+        ...state,
         userInfo: action.payload.userInfo
       };
 

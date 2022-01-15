@@ -51,6 +51,9 @@ export const UserImgSection = styled.div`
 `;
 
 export const UserImage = styled.img`
+  border: 1px solid #E6E6E6;
+  border-radius: 50%;
+  /* border: none; */
   height: 100%;
   width: 100%;
 `;

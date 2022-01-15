@@ -55,38 +55,43 @@ export const Followfeed = () => {
   // 서버에서 아이템을 가지고 오는 함수
   useEffect(() => {
     function getFollowFeedLists () {
-      if(more) {
+      if (more) {
+        console.log('1')
         setLoading(true);
         setTimeout(() => {
-        Axios({
-          method: 'get',
-          url: `http://localhost:4000/article/${state.userInfo.id}?page=${page}`,
-          withCredentials: true,
-          headers: {
-            'Contnet-Type': 'application/json',
-          }
-        })
-        .then((res) => {
-          if(res.data.articleData.length === 0) {
-            console.log('마지막줄')
-            setMore(false);
-          }
-          setFolowFeedLists(followFeedLists => [...followFeedLists, ...res.data.articleData]);
-          setLoading(false);
-        })
-      }, 1000)}
+          console.log('2')
+          Axios({
+            method: 'get',
+            url: `http://localhost:4000/article/${state.userInfo.id}?page=${page}`,
+            withCredentials: true,
+            headers: {
+              'Contnet-Type': 'application/json'
+            }
+          })
+            .then((res) => {
+              console.log('3')
+              if (res.data.articleData.length === 0) {
+                console.log('마지막줄');
+                setMore(false);
+              }
+              console.log('4')
+              setFolowFeedLists(followFeedLists => [...followFeedLists, ...res.data.articleData]);
+              setLoading(false);
+            });
+        }, 1000);
+      }
     }
+    console.log('5')
     getFollowFeedLists();
-  }, [state.userInfo.id, page, more])
-
+  }, [state.userInfo.id, page, more]);
 
   useEffect(() => {
     // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
     if (inView && !loading) {
-      console.log('loading false')
+      console.log('loading false');
       setPage(prevState => prevState + 1);
     } else {
-      console.log('loading true')
+      console.log('loading true');
     }
   }, [inView, loading]);
 
@@ -178,7 +183,7 @@ export const Followfeed = () => {
   // console.log(followFeedLists)
   const feedList = followFeedLists.map((el, index) => {
     return (
-      <UserInfoContainer ref={ref}>
+      <UserInfoContainer key={index} ref={ref}>
         <UserInfo>
           <UserNameAndImage>
             <UserImageContainer onClick={() => getFollowInfo(el)}>

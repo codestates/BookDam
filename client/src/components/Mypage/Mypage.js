@@ -8,7 +8,7 @@ import { SetenceModal } from '../SentenceModal/SentenceModal';
 import { data } from '../../dummyfiles/dummyMyFeedList';
 import example from '../../assets/images/defaultUserImage.png';
 import { IsGuestNoticeModal } from '../../components/NoticeModal/UserModifyNoticeModal/IsGuestNoticeModal';
-import { Loading } from '../../utils/Loading/Loading'; 
+import { Loading } from '../../utils/Loading/Loading';
 import {
   MyPageWholeContainer,
   MypageContainer,
@@ -104,9 +104,9 @@ export default function MyPage () {
 
   // 내 정보 전체를 조회하는 함수 (무한 스크롤 적용)
 
-  useEffect(()=> {
+  useEffect(() => {
     const getMyInfoAll = () => {
-      if(more) {
+      if (more) {
         setLoading(true);
         setTimeout(() => {
           axios
@@ -116,7 +116,7 @@ export default function MyPage () {
               })
             .then((res) => {
               console.log(res.data);
-              if(res.data.articleData.rows.length === 0) {
+              if (res.data.articleData.rows.length === 0) {
                 setMore(false);
               }
               setMyArticleList(myArticleList => [...myArticleList, ...res.data.articleData.rows]);
@@ -130,22 +130,22 @@ export default function MyPage () {
                 following: res.data.follow.following,
                 follower: res.data.follow.follower
               });
-              
             })
-            .catch((err) => console.log(err))
-            setLoading(false);
-        }, 1000);}
-  }
-  getMyInfoAll();
+            .catch((err) => console.log(err));
+          setLoading(false);
+        }, 1000);
+      }
+    };
+    getMyInfoAll();
   }, [userInfo.id, page, more]);
 
   useEffect(() => {
     // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
     if (inView && !loading) {
-      console.log('loading false')
+      console.log('loading false');
       setPage(prevState => prevState + 1);
     } else {
-      console.log('loading true')
+      console.log('loading true');
     }
   }, [inView, loading]);
 
@@ -160,6 +160,7 @@ export default function MyPage () {
       </ArticleWrap>
     );
   });
+
 
   return (
     // react suspence hook (데이터가 없을 경우, 로딩 화면) 삼항 연산자로 getUserInfoAll 함수 처리
@@ -182,7 +183,7 @@ export default function MyPage () {
             : null}
           <UserInfoContainer>
             <UserImgSection>
-              <UserImage src='../../assets/images/defaultUserImage.png' />
+              <UserImage src={"https://img.icons8.com/flat-round/512 /000000/cow--v1.png"} />
             </UserImgSection>
             <UserInfoSection>
               <NickNameFollowSection>
@@ -197,12 +198,12 @@ export default function MyPage () {
                 </FollowContainer>
               </NickNameFollowSection>
 
-              {isOpenNoticeModal ?
-              <IsGuestNoticeModal
-                errorMessage={errorMessage}
-                setIsOpenModifyModal={setIsOpenModifyModal} />
-              :
-                null}
+              {isOpenNoticeModal
+                ? <IsGuestNoticeModal
+                    errorMessage={errorMessage}
+                    setIsOpenModifyModal={setIsOpenModifyModal}
+                  />
+                : null}
               <UserModifyBtn
                 onClick={userInfoModifyBtnHandler}
                 setIsOpenModifyModal={setIsOpenModifyModal}
@@ -214,7 +215,7 @@ export default function MyPage () {
           </UserInfoContainer>
           {/* <ArticleListTitle>목록</ArticleListTitle> */}
           <ArticleListContainer>
-            {myArticleList.length === 0 && !loading ? <div>피드를 작성해주세요.</div>: myArticles}
+            {myArticleList.length === 0 && !loading ? <div>피드를 작성해주세요.</div> : myArticles}
           </ArticleListContainer>
           <div ref={ref}>{loading ? <Loading /> : null}</div>
 

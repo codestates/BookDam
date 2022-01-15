@@ -44,8 +44,9 @@ export default function UserPage () {
                 </Follower>
               </FollowContainer>
             </NickNameFollowSection>
-            <>여기에 뭐가 들어가야함?</>
+            <>게시글 숫자 입력칸</>
           </UserInfoSection>
+          <div>소개글 입력 칸</div>
         </UserInfoContainer>
         <ArticleListTitle>수집 목록</ArticleListTitle>
         <ArticleListContainer>

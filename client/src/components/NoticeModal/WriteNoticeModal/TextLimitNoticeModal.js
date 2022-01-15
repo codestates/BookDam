@@ -17,4 +17,3 @@ export const TextLimitNoticeModal = ({ errorMessage, handleCloseNoticeModal }) =
     </>
   );
 };
-

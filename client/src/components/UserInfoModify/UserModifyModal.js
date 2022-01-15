@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import {
   UserInfoModifyModalContainer,
@@ -26,6 +26,7 @@ import { data } from '../../dummyfiles/dummyMyFeedList';
 import { UserModifyNoticeModal } from '../../components/NoticeModal/UserModifyNoticeModal/UserModifyNoticeModal';
 import { SignoutNoticeModal } from '../../components/NoticeModal/UserModifyNoticeModal/SignoutNoticeModal';
 import { Verification } from '../VerificationModal/VerificationModal';
+import { UserInfoModifyAction } from '../../actions/UserInfoAction';
 
 // 회원정보수정 PATCH
 // http://localhost:4000/user/:user_Id
@@ -60,6 +61,7 @@ export function UserModifyModal ({
   const isValidPassword = /(?=.*\d)(?=.*[a-zA-ZS]).{8,}/; // 문자, 숫자 1개이상 포함, 8자리 이상
   const [isChecked, setIsChecked] = useState(false);
   const history = useHistory();
+  const dispatch = useDispatch();
 
   // 모달 창 닫는 버튼 함수
   const closeModal = () => {
@@ -130,10 +132,12 @@ export function UserModifyModal ({
         })
       .then((data) => {
         console.log(data);
-        if (data.status === 200) {
+        if (data.status === 201) {
+          dispatch(UserInfoModifyAction(data.data.userInfo))
           setIsModificationSuccess(true);
           setErrorMessage('회원 정보가 수정되었습니다');
           console.log('회원정보 수정 성공');
+          document.location.reload();
         }
       })
       .catch((err) => {
@@ -157,17 +161,17 @@ export function UserModifyModal ({
           setErrorMessage('다음에 또 만나요!');
           console.log('회원 탈퇴되었습니다');
         }
-        history.push('/')
+        history.push('/');
       })
-      .catch((err) => {;
+      .catch((err) => {
         console.log(err);
       });
   };
 
   // 회원탈퇴 노티스 모달 핸들러
   const signoutNoticeModalHandler = () => {
-    setisSignoutSuccess(false)
-    setIsOpenModifyModal(false)
+    setisSignoutSuccess(false);
+    setIsOpenModifyModal(false);
   };
 
   // 회원정보 수정 버튼 클릭시 본인인증(비밀번호)을 하고
@@ -175,20 +179,20 @@ export function UserModifyModal ({
   // 회원정보 수정창에는 회원정보 수정 기능과 비밀번호 수정 기능이 각각 실행하게 한다
   // 회원정보 수정 로직(server)
   // 회원정보 수정 로직
-    // user/validation/:user_Id
-    // userInfo 에다가 password 담아서 보낸다
-    // 비밀번호 맞는 지 확인한다
-    
-    // user/:user_Id 로 회원정보 수정 요청한다
-    // 닉네임 변경 시 닉네임만 들어오고
-    // password 변경 시 password만 들어온다
-    // req body userInfo 에 담아서 보내준다.
-    // (userNickName or password)
+  // user/validation/:user_Id
+  // userInfo 에다가 password 담아서 보낸다
+  // 비밀번호 맞는 지 확인한다
+
+  // user/:user_Id 로 회원정보 수정 요청한다
+  // 닉네임 변경 시 닉네임만 들어오고
+  // password 변경 시 password만 들어온다
+  // req body userInfo 에 담아서 보내준다.
+  // (userNickName or password)
 
   return (
     <>
-    {!isChecked
-        ? <Verification setIsChecked={setIsChecked} closeModal={closeModal}/>
+      {!isChecked
+        ? <Verification setIsChecked={setIsChecked} closeModal={closeModal} />
         : <UserInfoModifyModalContainer onClick={userInfoModifyBtnHandler}>
           <UserInfoModifyContainer onClick={(e) => e.stopPropagation()}>
             <ModifyCloseSection>

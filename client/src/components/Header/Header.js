@@ -19,7 +19,7 @@ export default function Header () {
           <Route exact path='/'>
             <IntroPage />
             <Footer />
-          </Route>        
+          </Route>
           <Route path='/feedpage'>
             <FeedPage />
           </Route>

@@ -177,21 +177,6 @@ export const Loginout = styled.button`
   cursor: pointer;
 `;
 
-export const Loginout = styled.button`
-  width: 60px;
-  height: 30px;
-  box-sizing: border-box;
-  border: 1px solid grey;
-  border-radius: 5px;
-  background-color: rgba(0,0,0,0);
-  color: rgba(0, 0, 0, 0.5);
-  font-weight: 700;
-  font-size: 13px;
-  /* margin: 10px; */
-  border-radius: 2px;
-  cursor: pointer;
-`;
-
 export const SideMenuSection = styled.div`
   display: none;
 

@@ -17,7 +17,7 @@ export const Verification = ({ setIsChecked, closeModal }) => {
   const passwordInputChangeHandler = (e) => {
     setVerifyPassword({
       password: e.target.value
-    })
+    });
   };
 
   const passwordChk = () => {
@@ -26,14 +26,14 @@ export const Verification = ({ setIsChecked, closeModal }) => {
         userInfo: verifyPassword
       }
     )
-    .then((data) => {
-      setIsChecked(true)
-      console.log(data)
-    })
-    .catch((err) => {
-      setErrorMessage('비밀번호를 확인하세요')
-      console.log(err)
-    })
+      .then((data) => {
+        setIsChecked(true);
+        console.log(data);
+      })
+      .catch((err) => {
+        setErrorMessage('비밀번호를 확인하세요');
+        console.log(err);
+      });
   };
 
   return (
@@ -42,10 +42,11 @@ export const Verification = ({ setIsChecked, closeModal }) => {
         <VerificationContainer onClick={(e) => e.stopPropagation()}>
           <h1>본인 인증</h1>
           <div>아이디: {userInfo.userId}</div>
-          <input 
-            type='password' 
-            placeholder='비밀번호를 입력하세요'  
-            onChange={passwordInputChangeHandler} />
+          <input
+            type='password'
+            placeholder='비밀번호를 입력하세요'
+            onChange={passwordInputChangeHandler}
+          />
           <ErrorMessage>{errorMessage}</ErrorMessage>
           <Button onClick={passwordChk}>확인</Button>
         </VerificationContainer>

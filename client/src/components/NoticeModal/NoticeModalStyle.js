@@ -27,24 +27,27 @@ align-items: center;
 justify-content: center;
 flex-direction: column;
 z-index: 101;
+> div {
+  margin: 20px;
+}
+.BTN {
+  display: flex;
+  flex-direction: column;
+}
 `;
 
 export const Button = styled.button`
-width:  ${props => props.theme.width};
-height:  ${props => props.theme.height};
+width: 120px;
+height: 30px;
 margin: 10px;
 border-style: none;
-border-radius: 10px;
+border-radius: 5px;
 font-size: 14px;
 background: #2D9BF0;
 color: #ffffff;
-font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 transition: all 0.1s ease-in-out;
 cursor: pointer;
 text-align: center;
-outline: none;
-white-space: nowrap;
-overflow: hidden;
 &:hover {
   color: #ffffff;
 }

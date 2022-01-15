@@ -103,7 +103,6 @@ export default function MyPage () {
   };
 
   // 내 정보 전체를 조회하는 함수 (무한 스크롤 적용)
-
   useEffect(() => {
     const getMyInfoAll = () => {
       if (more) {
@@ -215,10 +214,9 @@ export default function MyPage () {
           </UserInfoContainer>
           {/* <ArticleListTitle>목록</ArticleListTitle> */}
           <ArticleListContainer>
-            {myArticleList.length === 0 && !loading ? <div>피드를 작성해주세요.</div> : myArticles}
+            {myArticleList.length === 0 && !loading ? <div>당신의 문장들을 채워주세요!</div>: myArticles}
           </ArticleListContainer>
           <div ref={ref}>{loading ? <Loading /> : null}</div>
-
         </MypageContainer>
       </MyPageWholeContainer>
     </>

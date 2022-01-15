@@ -133,7 +133,6 @@ export default function MyPage () {
                 following: res.data.follow.following,
                 follower: res.data.follow.follower
               });
-              
             })
             .catch((err) => {
               console.log(err)})
@@ -219,7 +218,7 @@ export default function MyPage () {
           <ArticleListContainer>
             {myArticleList.length === 0 && !loading ? <div>피드를 작성해주세요.</div>: myArticles}
           </ArticleListContainer>
-          <div ref={ref}>{loading ? <Loading /> : null}</div>
+          <div ref={ref}>{loading && myArticleList.length > 8 ? <Loading /> : null}</div>
         </MypageContainer>
       </MyPageWholeContainer>
     </>

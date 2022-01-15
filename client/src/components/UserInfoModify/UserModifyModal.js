@@ -197,17 +197,17 @@ export function UserModifyModal ({
           setErrorMessage('다음에 또 만나요!');
           console.log('회원 탈퇴되었습니다');
         }
-        history.push('/')
+        history.push('/');
       })
-      .catch((err) => {;
+      .catch((err) => {
         console.log(err);
       });
   };
 
   // 회원탈퇴 노티스 모달 핸들러
   const signoutNoticeModalHandler = () => {
-    setisSignoutSuccess(false)
-    setIsOpenModifyModal(false)
+    setisSignoutSuccess(false);
+    setIsOpenModifyModal(false);
   };
 
   // 회원정보 수정 버튼 클릭시 본인인증(비밀번호)을 하고
@@ -215,20 +215,20 @@ export function UserModifyModal ({
   // 회원정보 수정창에는 회원정보 수정 기능과 비밀번호 수정 기능이 각각 실행하게 한다
   // 회원정보 수정 로직(server)
   // 회원정보 수정 로직
-    // user/validation/:user_Id
-    // userInfo 에다가 password 담아서 보낸다
-    // 비밀번호 맞는 지 확인한다
-    
-    // user/:user_Id 로 회원정보 수정 요청한다
-    // 닉네임 변경 시 닉네임만 들어오고
-    // password 변경 시 password만 들어온다
-    // req body userInfo 에 담아서 보내준다.
-    // (userNickName or password)
+  // user/validation/:user_Id
+  // userInfo 에다가 password 담아서 보낸다
+  // 비밀번호 맞는 지 확인한다
+
+  // user/:user_Id 로 회원정보 수정 요청한다
+  // 닉네임 변경 시 닉네임만 들어오고
+  // password 변경 시 password만 들어온다
+  // req body userInfo 에 담아서 보내준다.
+  // (userNickName or password)
 
   return (
     <>
-    {!isChecked
-        ? <Verification setIsChecked={setIsChecked} closeModal={closeModal}/>
+      {!isChecked
+        ? <Verification setIsChecked={setIsChecked} closeModal={closeModal} />
         : <UserInfoModifyModalContainer onClick={userInfoModifyBtnHandler}>
           <UserInfoModifyContainer onClick={(e) => e.stopPropagation()}>
             <ModifyCloseSection>

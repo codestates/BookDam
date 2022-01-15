@@ -4,7 +4,6 @@ export const LOGOUT_ACTION = 'LOGIUT_ACTION';
 export const GUEST_LOGIN_ACTION = 'GUEST_LOGIN_ACTION';
 export const USERINFO_MODIFY_ACTION = 'USERINFO_MODIFY_ACTION';
 
-
 export const GuestLoginAction = (userInfo) => {
   return {
     type: GUEST_LOGIN_ACTION,

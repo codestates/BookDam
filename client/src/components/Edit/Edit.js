@@ -41,7 +41,7 @@ export const Edit = () => {
   // const location = useLocation()
   // const articles = location.state.articles; // MyPage 썸네일을 눌러서 넘어오는 articles 정보
   // console.log(articles)
-  
+
   //* --- SentenceModal에서 넘겨주는 Imfo 받아오는 변수 ---//
   const location = useLocation();
   const myArticleInfo = location.state.myArticleInfo.myArticleInfo;

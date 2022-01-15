@@ -161,6 +161,7 @@ export default function MyPage () {
     );
   });
 
+
   return (
     // react suspence hook (데이터가 없을 경우, 로딩 화면) 삼항 연산자로 getUserInfoAll 함수 처리
     <>
@@ -182,7 +183,7 @@ export default function MyPage () {
             : null}
           <UserInfoContainer>
             <UserImgSection>
-              <UserImage src='../../assets/images/defaultUserImage.png' />
+              <UserImage src={"https://img.icons8.com/flat-round/512 /000000/cow--v1.png"} />
             </UserImgSection>
             <UserInfoSection>
               <NickNameFollowSection>

@@ -65,6 +65,7 @@ export const SetenceModal = ({ openSentenceModalHandler, setIsOpenSentenceModal 
         setIsDeleteSuccess(true);
         setErrorMessage('수집하신 문장이 삭제되었습니다');
         console.log('아티클이 삭제되었습니다');
+        document.location.reload();
       })
       .catch((err) => {
         console.log(err);
@@ -82,8 +83,8 @@ export const SetenceModal = ({ openSentenceModalHandler, setIsOpenSentenceModal 
       <SentenceModalBackContainer>
         <SentenceContainer>
           <UserInfoContainer>
-            <EditWrapper onClick={openMeunHandler}>
-              <div>
+            <EditWrapper onClick={(e) => e.stopPropagation()}>
+              <div onClick={openMeunHandler}>
                 <BiDotsVerticalRounded />
               </div>
             </EditWrapper>

@@ -10,6 +10,8 @@ export const FeedPageContainer = styled.div`
   width: 100vw;
   display: flex;
   justify-content: center;
+  border-top: 1px solid #e9ecef;
+
   `;
 
 export const FeedContainer = styled.div`

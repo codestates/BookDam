@@ -69,33 +69,32 @@ export const IntroWrapper = () => {
   };
 
   const guestLoginHandelr = async () => { // 게스트로 둘러보기시에 처리
-      await axios({
-        withCredentials: true,
-        method: 'post',
-        url: 'http://localhost:4000/user/login',
-        headers: {
-          authorization: `Bearer: ${process.env.Client_Secret}`,
-          'Content-Type': 'application/json'
-        },
-        data: {
-          userInfo: {
-            userId: 'guest',
-            password: '1234'
-          }
+    await axios({
+      withCredentials: true,
+      method: 'post',
+      url: 'http://localhost:4000/user/login',
+      headers: {
+        authorization: `Bearer: ${process.env.Client_Secret}`,
+        'Content-Type': 'application/json'
+      },
+      data: {
+        userInfo: {
+          userId: 'guest',
+          password: '1234'
         }
-      })
-        .then((res) => {
-          console.log(res)
-          const userInfoData = res.data.userInfo;
-          if (userInfoData) {
-            console.log(userInfoData)
-            dispatch(GuestLoginAction(userInfoData));
-            setIsOpenLoginModal(false);
-            document.body.style.overflow = 'unset'; // 스크롤 방지 해제
-          }
-          history.push('/feedpage');
-          
-        });
+      }
+    })
+      .then((res) => {
+        console.log(res);
+        const userInfoData = res.data.userInfo;
+        if (userInfoData) {
+          console.log(userInfoData);
+          dispatch(GuestLoginAction(userInfoData));
+          setIsOpenLoginModal(false);
+          document.body.style.overflow = 'unset'; // 스크롤 방지 해제
+        }
+        history.push('/feedpage');
+      });
   };
 
   return (

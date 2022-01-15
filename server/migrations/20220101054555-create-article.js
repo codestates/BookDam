@@ -24,10 +24,10 @@ module.exports = {
         type: Sequelize.STRING
       },
       sentence: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(600)
       },
       comment: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(600)
       },
       createdAt: {
         allowNull: false,

@@ -2,6 +2,7 @@
 export const LOGIN_ACTION = 'LOGIN_ACTION';
 export const LOGOUT_ACTION = 'LOGIUT_ACTION';
 export const GUEST_LOGIN_ACTION = 'GUEST_LOGIN_ACTION';
+export const USERINFO_MODIFY_ACTION = 'USERINFO_MODIFY_ACTION';
 
 export const GuestLoginAction = (userInfo) => {
   return {
@@ -43,6 +44,20 @@ export const LogoutAction = (userInfo) => {
         userId: '',
         userNickName: 'passenger',
         userImage: ''
+      }
+    }
+  };
+};
+
+export const UserInfoModifyAction = (userInfo) => {
+  return {
+    type: USERINFO_MODIFY_ACTION,
+    payload: {
+      userInfo: {
+        id: userInfo.id,
+        userId: userInfo.userId,
+        userNickName: userInfo.userNickName,
+        userImage: userInfo.userImage
       }
     }
   };

@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const { Op } = require('sequelize');
 const bcrypt = require('bcrypt');
+const saltRounds = 10;
 const { User: UserModel, Article: ArticleModel, Follow: FollowModel } = require('../models');
 
 module.exports = {
@@ -51,42 +52,82 @@ module.exports = {
       res.clearCookie('jwt').status(200).json({ message: '로그아웃 되었습니다.' });
     }
   },
-  signup: async (req, res) => { // test done
+  signup: (req, res) => { // test done
     const userInfo = req.body.userInfo;
     const userId = userInfo.userId;
     const userNickName = userInfo.userNickName;
     const password = userInfo.password;
     if (!userId || !password || !userNickName) return res.status(400).json({ message: '회원가입 정보가 정확하게 입력되지 않았습니다.' });
-    const encryptedPassowrd = bcrypt.hashSync(password, 10);
-    const duplication = await UserModel.findOrCreate({
-      where: {
-        userId: userId
-      },
-      defaults: {
-        userId: userId,
-        userNickName: userNickName,
-        password: encryptedPassowrd,
-        userImage: '../../assets/images/defaultUserImage.png'
-      }
-    });
-    if (!duplication[1]) {
-      return res.status(400).json({ message: '중복된 아이디입니다.' });
-    } else {
-      const userDate = duplication[0];
-      delete userDate.dataValues.password;
-      delete userDate.dataValues.createdAt;
-      delete userDate.dataValues.updatedAt;
-      FollowModel.create({ // 북담계정 만들어서 회원가입 시 북담계정 follow 하는 기능
-        user_Id: userDate.dataValues.id,
-        follow_Id: 2
-      })
-        .then(() => {
-          res.status(201).json({ message: 'success', userInfo: userDate });
+    bcrypt.genSalt(saltRounds, function (err, salt) {
+      if (err) return res.status(400).json({ message: 'GenSalt error', error: err });
+      bcrypt.hash(password, salt, function (err, hash) {
+        if (err) return res.status(400).json({ message: 'Password hash error', error: err });
+        UserModel.findOrCreate({
+          where: {
+            userId: userId
+          },
+          defaults: {
+            userId: userId,
+            userNickName: userNickName,
+            password: hash,
+            userImage: '../../assets/images/defaultUserImage.png'
+          }
         })
-        .catch((error) => {
-          res.status(400).json({ message: 'failure' });
-        });
-    }
+          .then((result) => {
+            if (result[1]) {
+              const userDate = result[0];
+              delete userDate.dataValues.password;
+              delete userDate.dataValues.createdAt;
+              delete userDate.dataValues.updatedAt;
+              FollowModel.create({ // 북담계정 만들어서 회원가입 시 북담계정 follow 하는 기능
+                user_Id: userDate.dataValues.id,
+                follow_Id: 2
+              })
+                .then(() => {
+                  res.status(201).json({ message: 'success', userInfo: userDate });
+                })
+                .catch((error) => {
+                  res.status(400).json({ message: 'BookDam follow error', error: error });
+                });
+            } else {
+              return res.status(400).json({ message: '중복된 아이디입니다.' });
+            }
+          })
+          .catch((error) => {
+            res.status(400).json({ message: 'Create User error', error: error });
+          });
+      });
+    });
+    // const encryptedPassowrd = bcrypt.hashSync(password, 10);
+    // const duplication = await UserModel.findOrCreate({
+    //   where: {
+    //     userId: userId
+    //   },
+    //   defaults: {
+    //     userId: userId,
+    //     userNickName: userNickName,
+    //     password: encryptedPassowrd,
+    //     userImage: '../../assets/images/defaultUserImage.png'
+    //   }
+    // });
+    // if (!duplication[1]) {
+    //   return res.status(400).json({ message: '중복된 아이디입니다.' });
+    // } else {
+    //   const userDate = duplication[0];
+    //   delete userDate.dataValues.password;
+    //   delete userDate.dataValues.createdAt;
+    //   delete userDate.dataValues.updatedAt;
+    //   FollowModel.create({ // 북담계정 만들어서 회원가입 시 북담계정 follow 하는 기능
+    //     user_Id: userDate.dataValues.id,
+    //     follow_Id: 2
+    //   })
+    //     .then(() => {
+    //       res.status(201).json({ message: 'success', userInfo: userDate });
+    //     })
+    //     .catch((error) => {
+    //       res.status(400).json({ message: 'failure' });
+    //     });
+    // }
   },
   delete: async (req, res) => { // test done
     const id = parseInt(req.params.user_Id, 10);
@@ -163,24 +204,68 @@ module.exports = {
     if (id !== decodedData.id) return res.status(401).json({ message: 'failure' });
     const userInfo = req.body.userInfo;
     if (!userInfo) return res.status(400).json({ message: 'failure' });
-    if (userInfo.password) userInfo.password = bcrypt.hashSync(userInfo.password, 10);
-    UserModel.update(
-      userInfo, { where: { id: id } })
-      .then(() => {
-        UserModel.findOne({
-          attributes: { exclude: ['updatedAt', 'createdAt', 'password'] },
-          where: { id: id }
-        })
-          .then((result) => {
-            res.status(201).json({ message: 'success', userInfo: result });
-          })
-          .catch((error) => {
-            res.status(400).json({ message: 'failure', error: error });
-          });
-      })
-      .catch((error) => {
-        res.status(400).json({ message: 'failure', error: error });
+    if (userInfo.password) {
+      bcrypt.genSalt(saltRounds, function (err, salt) {
+        if (err) return res.status(400).json({ message: 'GenSalt error', error: err });
+        bcrypt.hash(userInfo.password, salt, function (err, hash) {
+          if (err) return res.status(400).json({ message: 'Password hash error', error: err });
+          userInfo.password = hash;
+          UserModel.update(
+            userInfo, { where: { id: id } })
+            .then(() => {
+              UserModel.findOne({
+                attributes: { exclude: ['updatedAt', 'createdAt', 'password'] },
+                where: { id: id }
+              })
+                .then((result) => {
+                  res.status(201).json({ message: 'success', userInfo: result });
+                })
+                .catch((error) => {
+                  res.status(400).json({ message: 'failure', error: error });
+                });
+            })
+            .catch((error) => {
+              res.status(400).json({ message: 'failure', error: error });
+            });
+        });
       });
+    } else {
+      UserModel.update(
+        userInfo, { where: { id: id } })
+        .then(() => {
+          UserModel.findOne({
+            attributes: { exclude: ['updatedAt', 'createdAt', 'password'] },
+            where: { id: id }
+          })
+            .then((result) => {
+              res.status(201).json({ message: 'success', userInfo: result });
+            })
+            .catch((error) => {
+              res.status(400).json({ message: 'failure', error: error });
+            });
+        })
+        .catch((error) => {
+          res.status(400).json({ message: 'failure', error: error });
+        });
+    }
+    // if (userInfo.password) userInfo.password = bcrypt.hashSync(userInfo.password, 10);
+    // UserModel.update(
+    //   userInfo, { where: { id: id } })
+    //   .then(() => {
+    //     UserModel.findOne({
+    //       attributes: { exclude: ['updatedAt', 'createdAt', 'password'] },
+    //       where: { id: id }
+    //     })
+    //       .then((result) => {
+    //         res.status(201).json({ message: 'success', userInfo: result });
+    //       })
+    //       .catch((error) => {
+    //         res.status(400).json({ message: 'failure', error: error });
+    //       });
+    //   })
+    //   .catch((error) => {
+    //     res.status(400).json({ message: 'failure', error: error });
+    //   });
   },
   search: async (req, res) => { // test done
     const name = req.query.name;

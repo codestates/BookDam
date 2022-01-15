@@ -51,6 +51,7 @@ export const LogoSection = styled.div`
   height: 60%;
   /* margin-left: 30px; */
   /* border: 1px solid orange; */
+  text-align: center;
 
   @media (max-width: 500px) {
     width: 160px;

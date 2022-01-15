@@ -219,10 +219,10 @@ overflow: auto;
 margin: 0px;
 background-color: whitesmoke;
 background-size: contain;
-font-size: 30px;
-font-weight: 800;
+font-size: 20px;
+font-weight: 500;
 @media (max-width: 500px) {
-  font-weight: 700;
+  font-weight: 500;
   font-size: 20px;
   width: 90%;
 }
@@ -238,9 +238,9 @@ width: 95%;
 margin-top: 15px;
 border-radius: 15px;
 background-color: whitesmoke;
-font-size: 20px;
+font-size: 15px;
 @media (max-width: 500px) {
-  font-size: 20px;
+  font-size: 15px;
   width: 90%;
 }
 `;

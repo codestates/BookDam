@@ -19,7 +19,7 @@ export const SearchUserContainer = styled.div`
 height: 30px;
 width: 100%;
 margin-right: 15px;
-border: 0.5px solid #5dc175;
+border: 0.5px solid #e5e5e5;
 `;
 export const UserSearchInput = styled.input.attrs({
   type: 'text',
@@ -41,9 +41,10 @@ height: 100%;
 width: 25%;
 border: 0px;
 float: right;
+font-weight: 600;
 font-size: 14px;
-color: #ffffff;
-background-color: #5dc175;
+color: #000;
+background-color: #e5e5e5;
 cursor: pointer;
 `;
 
@@ -107,6 +108,8 @@ margin: 0 0 2px 2px;
   display: none;
 }
 .Recommend {
+  overflow: hidden;
+  height: 32px;
   background-color: #fff;
   border: 0;
   }

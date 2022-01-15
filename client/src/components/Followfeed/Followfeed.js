@@ -51,7 +51,6 @@ export const Followfeed = () => {
     userNickName: '',
     userImage: ''
   });
-
   // 서버에서 아이템을 가지고 오는 함수
   useEffect(() => {
     function getFollowFeedLists () {
@@ -83,10 +82,7 @@ export const Followfeed = () => {
   useEffect(() => {
     // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
     if (inView && !loading) {
-      console.log('loading false')
       setPage(prevState => prevState + 1);
-    } else {
-      console.log('loading true')
     }
   }, [inView, loading]);
 
@@ -190,7 +186,7 @@ export const Followfeed = () => {
               {el['User.userNickName']}
             </UserNickName>
             <UserFollowIcon value onClick={() => followHandler(el)}>
-              {el['User.Follows.user_Id'] === userInfo.id ? <FaUserCheck onClick={NoticeModalOpenHandler} /> : '팔로우'}
+              {el['User.Follows.user_Id'] === state.userInfo.id ? <FaUserCheck onClick={NoticeModalOpenHandler} /> : '팔로우'}
             </UserFollowIcon>
           </UserNameAndImage>
           <PostCreatedAt>

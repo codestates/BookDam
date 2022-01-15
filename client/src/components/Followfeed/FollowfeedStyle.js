@@ -40,10 +40,12 @@ flex-direction: column;
 align-items: center;
 justify-content: center;
 margin: 10px;
-border: 1px solid black;
+/* border: 1px solid black; */
 height: 930px;
 width: 640px;
-background-image: linear-gradient(rgba(0,170, 0, 0.1), rgba(0, 255, 0, 0.5));
+background-color: whitesmoke;
+box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+/* background-image: linear-gradient(rgba(0,170, 0, 0.1), rgba(0, 255, 0, 0.5)); */
 @media (max-width: 500px){
   height: 630px;
   width: 370px;
@@ -107,18 +109,19 @@ width: 60px;
 margin-left: 15px;
 border: 0;
 border-radius: 2px;
-background-color: rgba(120,250, 100);
+font-size: 15px;
+background-color: rgba(0,0,0,0);
 transition: all 0.1s ease-out;
 cursor: pointer;
 > svg {
   margin-top: 2px;
 }
 :hover {
-  font-size:15px;
-  content: "팔로우 취소"
+  font-size:20px;
 }
 @media screen and (max-width: 500px) {
-width: 40px;
+  font-size: 10px;
+  width: 50px;
 }
 `;
 
@@ -175,7 +178,7 @@ height: 20%;
 width: 95%;
 margin-top: 15px;
 border-radius: 15px;
-background-color: whitesmoke;
+background-color: white;
 font-size: 20px;
 @media (max-width: 500px) {
   font-size: 20px;

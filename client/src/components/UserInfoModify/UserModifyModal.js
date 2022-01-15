@@ -110,11 +110,20 @@ export function UserModifyModal ({
 
   // 유저가 이미지를 넣는 함수
   const handleInputImage = () => {
+    // !모달 오픈 상태 만들어서 setState('')
+    // 상태 변경할 때 모달 오픈되게 
+    // 모달창 안에는 '../../assets/images/userImage/userImage'
+    // 디폴트 이미지는 bird로 선택
+
+  };
+  // 회원정보 수정 함수
+  const modifyUserInfoHandler = () => {
     // 이미지 상태 함수
   };
 
   // 회원정보 닉네임 수정 함수
   const modifyUserNickNameHandler = () => {
+
     axios
       .patch(`http://localhost:4000/user/${myUserInfo.id}`,
         {
@@ -239,7 +248,7 @@ export function UserModifyModal ({
             <UserInfoSection>
               <UserImgSection>
                 <EditPictureWrap>
-                  <EditPictureBtn>사진선택</EditPictureBtn>
+                  <EditPictureBtn onClick={handleInputImage}>사진선택</EditPictureBtn> {/* 이미지 처리 할 것 */}
                 </EditPictureWrap>
                 <UserImage src={myUserInfo.userImage} />
               </UserImgSection>

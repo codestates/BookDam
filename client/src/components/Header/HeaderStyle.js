@@ -7,6 +7,7 @@ export const HeaderContainer = styled.div`
   /* width: 100%; */
   width: 100vw;
   z-index: 4;
+  background-color: whitesmoke;
   /* border: 1px solid black; */
 `;
 

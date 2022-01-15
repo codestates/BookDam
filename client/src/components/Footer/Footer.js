@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   FooterContainer,
   FooterInfo,
@@ -11,14 +12,15 @@ import { AiFillGithub } from 'react-icons/ai';
 import { HiOutlineMail } from 'react-icons/hi';
 import { BiCommentError } from 'react-icons/bi';
 
+
 export default function Footer () {
   return (
     <>
       <FooterContainer>
         <FooterInfo>
-          <a href='http://localhost:3000/'>
+        <Link to='/'>
             <FooterLogo />
-          </a>
+          </Link>
           <FooterContent>
             <FooterTitle>ABOUT US</FooterTitle>
             <br />

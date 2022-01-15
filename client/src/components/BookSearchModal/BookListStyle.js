@@ -22,7 +22,7 @@ export const BookImageContainer = styled.div`
 `;
 
 export const BookThumbnailContainer = styled.img`
- /* border: 1px solid black; //필수 */
+ border: 1px solid black; //필수
  width: 120px;
 `;
 

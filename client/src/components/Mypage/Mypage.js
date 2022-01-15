@@ -46,12 +46,15 @@ export default function MyPage () {
 
   const userState = useSelector(state => state.userInfoReducer);
   const { userInfo } = userState;
+  console.log(userInfo)
+
   const [myUserInfo, setMyUserInfo] = useState({
     id: 0,
     userId: '',
     userNickName: '',
     userImage: ''
   });
+  const [userImage, setUserImage] = useState(example)
   const [follow, setFollow] = useState({
     following: 0,
     follower: 0
@@ -103,7 +106,7 @@ export default function MyPage () {
   };
 
   // 내 정보 전체를 조회하는 함수 (무한 스크롤 적용)
-  useEffect(() => {
+  useEffect(()=> {
     const getMyInfoAll = () => {
       if (more) {
         setLoading(true);
@@ -125,17 +128,19 @@ export default function MyPage () {
                 userNickName: res.data.userInfo.userNickName,
                 userImage: res.data.userInfo.userImage
               });
+              setUserImage(res.data.userInfo.userImage)
               setFollow({
                 following: res.data.follow.following,
                 follower: res.data.follow.follower
               });
             })
-            .catch((err) => console.log(err));
-          setLoading(false);
-        }, 1000);
-      }
-    };
-    getMyInfoAll();
+            .catch((err) => {
+              console.log(err)})
+            setLoading(false);
+        }, 1000);}
+  }
+  getMyInfoAll();
+
   }, [userInfo.id, page, more]);
 
   useEffect(() => {
@@ -147,6 +152,7 @@ export default function MyPage () {
       console.log('loading true');
     }
   }, [inView, loading]);
+  
 
   console.log('아티클 목록', myArticleList);
   const myArticles = myArticleList.map((el, index) => {
@@ -159,7 +165,6 @@ export default function MyPage () {
       </ArticleWrap>
     );
   });
-
 
   return (
     // react suspence hook (데이터가 없을 경우, 로딩 화면) 삼항 연산자로 getUserInfoAll 함수 처리
@@ -196,7 +201,6 @@ export default function MyPage () {
                   </Follower>
                 </FollowContainer>
               </NickNameFollowSection>
-
               {isOpenNoticeModal
                 ? <IsGuestNoticeModal
                     errorMessage={errorMessage}

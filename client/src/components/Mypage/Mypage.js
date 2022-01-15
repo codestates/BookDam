@@ -46,12 +46,15 @@ export default function MyPage () {
 
   const userState = useSelector(state => state.userInfoReducer);
   const { userInfo } = userState;
+  console.log(userInfo)
+
   const [myUserInfo, setMyUserInfo] = useState({
     id: 0,
     userId: '',
     userNickName: '',
     userImage: ''
   });
+  const [userImage, setUserImage] = useState(example)
   const [follow, setFollow] = useState({
     following: 0,
     follower: 0
@@ -103,7 +106,6 @@ export default function MyPage () {
   };
 
   // 내 정보 전체를 조회하는 함수 (무한 스크롤 적용)
-
   useEffect(()=> {
     const getMyInfoAll = () => {
       if(more) {
@@ -126,13 +128,15 @@ export default function MyPage () {
                 userNickName: res.data.userInfo.userNickName,
                 userImage: res.data.userInfo.userImage
               });
+              setUserImage(res.data.userInfo.userImage)
               setFollow({
                 following: res.data.follow.following,
                 follower: res.data.follow.follower
               });
               
             })
-            .catch((err) => console.log(err))
+            .catch((err) => {
+              console.log(err)})
             setLoading(false);
         }, 1000);}
   }
@@ -148,6 +152,7 @@ export default function MyPage () {
       console.log('loading true')
     }
   }, [inView, loading]);
+  
 
   console.log('아티클 목록', myArticleList);
   const myArticles = myArticleList.map((el, index) => {
@@ -160,7 +165,6 @@ export default function MyPage () {
       </ArticleWrap>
     );
   });
-
   return (
     // react suspence hook (데이터가 없을 경우, 로딩 화면) 삼항 연산자로 getUserInfoAll 함수 처리
     <>
@@ -182,7 +186,7 @@ export default function MyPage () {
             : null}
           <UserInfoContainer>
             <UserImgSection>
-              <UserImage src='../../assets/images/defaultUserImage.png' />
+              <UserImage style={{border: '5px solid #a5d8ff'}} src={"https://img.icons8.com/flat-round/512/000000/bird--v1.png"} />
             </UserImgSection>
             <UserInfoSection>
               <NickNameFollowSection>
@@ -196,11 +200,10 @@ export default function MyPage () {
                   </Follower>
                 </FollowContainer>
               </NickNameFollowSection>
-
               {isOpenNoticeModal ?
               <IsGuestNoticeModal
                 errorMessage={errorMessage}
-                setIsOpenModifyModal={setIsOpenModifyModal} />
+                setIsOpenNoticeModal={setIsOpenNoticeModal} />
               :
                 null}
               <UserModifyBtn
@@ -217,7 +220,6 @@ export default function MyPage () {
             {myArticleList.length === 0 && !loading ? <div>피드를 작성해주세요.</div>: myArticles}
           </ArticleListContainer>
           <div ref={ref}>{loading ? <Loading /> : null}</div>
-
         </MypageContainer>
       </MyPageWholeContainer>
     </>

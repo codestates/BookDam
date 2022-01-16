@@ -9,6 +9,7 @@ export const UserImgSelectModalContainer = styled.div`
   left: 0;
   background: rgba(0, 0, 0, 0.5); // 투명 회색 효과
   backdrop-filter: blur(5px); //blur 효과
+  z-index: 999;
 
   @media screen and (max-width: 500px) {
     background: white;
@@ -22,10 +23,22 @@ export const UserImgSelectContainer = styled.div`
   top: 50%;
   transform: translate(-50%, -50%);
   max-height: 80%;
-  width: 20rem;
-  height: 450px;
+  width: 23rem;
+  height: 700px;
   padding: 16px;
   background: white;
   border-radius: 10px;
   text-align: center;
+  z-index: 999;
+`;
+
+export const UserImage = styled.img`
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin: 5px;
+  
+  &:hover {
+    border: 5px solid black;
+  }
 `;

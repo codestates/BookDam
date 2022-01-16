@@ -29,6 +29,7 @@ import {
   ArticleWrap,
   Article
 } from './MypageStyle';
+import { UserImageSelectModal } from '../UserInfoModify/UserImageSelectModal'
 
 axios.defaults.withCredentials = true;
 
@@ -72,8 +73,12 @@ export default function MyPage () {
 
   // 게스트 로그인일 경우 노티스 모달 핸들러
   // 회원정보수정 버튼 누르면 회원정보수정 모달이 나오는 함수
+  const closeNoticeModal = () => {
+    console.log('노티스모달 닫기버튼 클릭')
+    setIsOpenNoticeModal(!isOpenNoticeModal);
+  }
   const userInfoModifyBtnHandler = () => {
-    if (userInfo.userId === 'guset') {
+    if (userInfo.userId === 'guest') {
       setErrorMessage('로그인 후 이용하세요');
       setIsOpenNoticeModal(!isOpenNoticeModal);
     } else {
@@ -169,6 +174,7 @@ export default function MyPage () {
   return (
     // react suspence hook (데이터가 없을 경우, 로딩 화면) 삼항 연산자로 getUserInfoAll 함수 처리
     <>
+    <UserImageSelectModal />
       <MyPageWholeContainer>
         <MypageContainer>
           {isOpneModifyModal
@@ -204,7 +210,7 @@ export default function MyPage () {
               {isOpenNoticeModal
                 ? <IsGuestNoticeModal
                     errorMessage={errorMessage}
-                    setIsOpenModifyModal={setIsOpenModifyModal}
+                    closeNoticeModal={closeNoticeModal}
                   />
                 : null}
               <UserModifyBtn

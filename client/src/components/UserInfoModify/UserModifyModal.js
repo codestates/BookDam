@@ -46,10 +46,11 @@ export function UserModifyModal ({
     id: '',
     userId: '',
     userNickName: '',
-    password: '',
     userImage: ''
   });
-  const { userId, userNickName, password, userImage } = modifyUserInputInfo; // input 값으로 들어오는 정보
+  const { id, userId, userNickName, userImage } = modifyUserInputInfo; // input 값으로 들어오는 정보
+  const [inputUserNickName, setInputUserNickName] = useState('')
+  const [inputPassword, setInputPassword] = useState('')
   const [passwordChk, setPasswordChk] = useState(false);
   const [nickNameErrorMessage, setNickNameErrorMessage] = useState('');
   const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
@@ -69,38 +70,32 @@ export function UserModifyModal ({
     closeUserInfoModify();
   };
 
-  // input handler-NickName
+  // !input handler-NickName
   const handleInputNickName = (e) => {
     if (myUserInfo.userNickName === e.target.value) {
       setNickNameErrorMessage('기존과 동일한 닉네임입니다');
     }
     else {
       setNickNameErrorMessage('');
-      setModifyUserInputInfo({
-        userNickName: e.target.value,
-        password
-      });
+      setInputUserNickName(e.target.value)
     }
   };
 
-  // input handler-PW
+  // !input handler-PW
   const handleInputPW = (e) => {
     if (e.target.value.length > 0 && isValidPassword.test(e.target.value) === false) {
       setPasswordErrorMessage('8자리 이상의 문자+숫자 조합으로 만들어주세요');
     } else {
       setPasswordErrorMessage('');
-      setModifyUserInputInfo({
-        userNickName,
-        password: e.target.value
-      });
+      setInputPassword(e.target.value);
     }
   };
 
-  // input handler-PWSheck
+  // !input handler-PWSheck
   const handlePWCheck = (e) => {
-    if (password.length === 0) {
+    if (e.target.value.length === 0) {
       setPwChkErrorMessage('');
-    } else if (e.target.value === password) {
+    } else if (e.target.value === inputPassword) {
       setPwChkErrorMessage('');
       setPasswordChk(true);
     } else {
@@ -116,78 +111,65 @@ export function UserModifyModal ({
     // 디폴트 이미지는 bird로 선택
 
   };
-  // 회원정보 수정 함수
+
+  // 회원정보 유저정보 수정 함수
   const modifyUserInfoHandler = () => {
-    // 이미지 상태 함수
-  };
-
-  // 회원정보 닉네임 수정 함수
-  const modifyUserNickNameHandler = () => {
-
-    axios
+  if (inputUserNickName.length !== 0) {
+      axios
       .patch(`http://localhost:4000/user/${myUserInfo.id}`,
         {
           userInfo: {
-            userId,
-            userNickName,
+            userNickName : inputUserNickName
           }
         },
         {
           headers: { 'Content-Type': 'application/json' }
-        })
-      .then((data) => {
-        console.log(data.data.userInfo);
-        if (userNickName === '') {
-          return;
         }
-        if (data.status === 201) {
-          dispatch(UserInfoModifyAction(data.data.userInfo))
-          setIsModificationSuccess(true);
-          setErrorMessage('닉네임이 수정되었습니다');
+      )
+      .then((data) => {
+        if (data.data.message === "success") {
+          setModifyUserInputInfo({
+            id: id,
+            userId: userId,
+            userNickName: data.data.userInfo.userNickName,
+            userImage: userImage
+          })
+          setErrorMessage('닉네임이 변경 되었습니다');
           console.log('닉네임 수정 성공');
           document.location.reload();
         }
-        
       })
       .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  // 유저 소개글 수정 함수
-  const modifyIntroductionHandler = () => {
-
-  };
-
-  // 회원정보 비밀번호 수정 함수
-  const modifyPasswordHandler = () => {
-    axios
-      .patch(`http://localhost:4000/user/${myUserInfo.id}`,
-        {
-          userInfo: {
-            userId,
-            password,
+        console.log(err)
+      })
+    }
+    else if (inputPassword.length !== 0) {
+      axios
+        .patch(`http://localhost:4000/user/${myUserInfo.id}`,
+          {
+            userInfo: {
+              password: inputPassword,
+            }
+          },
+          {
+            headers: { 'Content-Type': 'application/json' }
+          })
+        .then((data) => {
+          if (data.status === 201) {
+            setIsModificationSuccess(true);
+            setErrorMessage('비밀번호가 수정 되었습니다');
+            console.log('비밀번호 수정 성공');
+            document.location.reload();
           }
-        },
-        {
-          headers: { 'Content-Type': 'application/json' }
+          
         })
-      .then((data) => {
-        console.log(data.data.userInfo);
-        if (data.status === 201) {
-          dispatch(UserInfoModifyAction(data.data.userInfo))
-          setIsModificationSuccess(true);
-          setErrorMessage('비밀번호가 수정되었습니다');
-          console.log('비밀번호 수정 성공');
-          document.location.reload();
-        }
-        if (password === '') {
-          return;
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+    else {
+      setErrorMessage('변경할 정보를 입력해주세요')
+    }
   };
 
   // 회원정보수정 노티스 모달 핸들러
@@ -257,7 +239,7 @@ export function UserModifyModal ({
             <UserInfoEditSection>
               <span>
                 닉네임: <NickNameInput onChange={handleInputNickName} />
-                <ModificationBtn className='NickNameChangeBtn' onClick={modifyUserNickNameHandler}>
+                <ModificationBtn className='NickNameChangeBtn' onClick={modifyUserInfoHandler}>
                   닉네임 변경
                 </ModificationBtn>
               </span>
@@ -270,6 +252,7 @@ export function UserModifyModal ({
                 비밀번호 확인: <PasswordChkInput onChange={handlePWCheck} />
               </span>
               <ErrorMessage>{pwChkErrorMessage}</ErrorMessage>
+              <ErrorMessage>{errorMessage}</ErrorMessage>
               <UserInfoModifyBtnSection>
                 {isModificationSuccess
                   ? <UserModifyNoticeModal
@@ -277,7 +260,7 @@ export function UserModifyModal ({
                       userModifyNoticeModalHandler={userModifyNoticeModalHandler}
                     />
                   : null}
-                <ModificationBtn className='PasswordChangeBtn' onClick={modifyPasswordHandler}>
+                <ModificationBtn className='PasswordChangeBtn' onClick={modifyUserInfoHandler}>
                   비밀번호 변경
                 </ModificationBtn>
                 {isSignoutSuccess

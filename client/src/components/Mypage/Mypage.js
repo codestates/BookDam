@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 import { useInView } from 'react-intersection-observer';
 import { UserModifyModal } from '../UserInfoModify/UserModifyModal';
 import { SetenceModal } from '../SentenceModal/SentenceModal';
-import { data } from '../../dummyfiles/dummyMyFeedList';
 import example from '../../assets/images/defaultUserImage.png';
 import { IsGuestNoticeModal } from '../../components/NoticeModal/UserModifyNoticeModal/IsGuestNoticeModal';
 import { Loading } from '../../utils/Loading/Loading';
@@ -24,7 +23,6 @@ import {
   Follower,
   FollowerCount,
   UserModifyBtn,
-  ArticleListTitle,
   ArticleListContainer,
   ArticleWrap,
   Article
@@ -46,8 +44,6 @@ export default function MyPage () {
 
   const userState = useSelector(state => state.userInfoReducer);
   const { userInfo } = userState;
-  console.log(userInfo);
-
   const [myUserInfo, setMyUserInfo] = useState({
     id: 0,
     userId: '',
@@ -70,10 +66,12 @@ export default function MyPage () {
   const [ref, inView] = useInView(); // react-intersection-observer -> div가 viewport에 보여질 때 inView 값이 true
   const history = useHistory();
 
-  // 게스트 로그인일 경우 노티스 모달 핸들러
   // 회원정보수정 버튼 누르면 회원정보수정 모달이 나오는 함수
+  const closeNoticeModal = () => {
+    setIsOpenNoticeModal(!isOpenNoticeModal);
+  };
   const userInfoModifyBtnHandler = () => {
-    if (userInfo.userId === 'guset') {
+    if (userInfo.userId === 'guest') {
       setErrorMessage('로그인 후 이용하세요');
       setIsOpenNoticeModal(!isOpenNoticeModal);
     } else {
@@ -124,7 +122,6 @@ export default function MyPage () {
                 headers: { 'Content-Type': 'application/json' }
               })
             .then((res) => {
-              console.log(res.data);
               if (res.data.articleData.rows.length === 0) {
                 setMore(false);
               }
@@ -142,7 +139,6 @@ export default function MyPage () {
               });
             })
             .catch((err) => {
-              console.log(err);
             });
           setLoading(false);
         }, 1000);
@@ -154,14 +150,12 @@ export default function MyPage () {
   useEffect(() => {
     // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
     if (inView && !loading) {
-      console.log('loading false');
       setPage(prevState => prevState + 1);
     } else {
       console.log('loading true');
     }
   }, [inView, loading]);
 
-  console.log('아티클 목록', myArticleList);
   const myArticles = myArticleList.map((el, index) => {
     return (
       <ArticleWrap key={index}>
@@ -174,7 +168,6 @@ export default function MyPage () {
   });
 
   return (
-    // react suspence hook (데이터가 없을 경우, 로딩 화면) 삼항 연산자로 getUserInfoAll 함수 처리
     <>
       <MyPageWholeContainer>
         <MypageContainer>
@@ -194,7 +187,7 @@ export default function MyPage () {
             : null}
           <UserInfoContainer>
             <UserImgSection>
-              <UserImage src='https://img.icons8.com/flat-round/512 /000000/cow--v1.png' />
+              <UserImage src={myUserInfo.userImage} />
             </UserImgSection>
             <UserInfoSection>
               <NickNameFollowSection>
@@ -211,7 +204,7 @@ export default function MyPage () {
               {isOpenNoticeModal
                 ? <IsGuestNoticeModal
                     errorMessage={errorMessage}
-                    setIsOpenModifyModal={setIsOpenModifyModal}
+                    closeNoticeModal={closeNoticeModal}
                   />
                 : null}
               <UserModifyBtn
@@ -223,9 +216,8 @@ export default function MyPage () {
 
             </UserInfoSection>
           </UserInfoContainer>
-          {/* <ArticleListTitle>목록</ArticleListTitle> */}
           <ArticleListContainer>
-            {myArticleList.length === 0 && !loading ? <div>당신의 문장들을 채워주세요!</div> : myArticles}
+            {myArticleList.length === 0 && !loading ? <div className='nodata'>당신의 문장들을 채워주세요!</div> : myArticles}
           </ArticleListContainer>
           <div ref={ref}>{loading && myArticleList.length > 8 ? <Loading /> : null}</div>
         </MypageContainer>

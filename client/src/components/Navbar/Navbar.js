@@ -85,7 +85,6 @@ export default function Navbar () {
         }
       })
       .catch(err => {
-
       });
   };
 

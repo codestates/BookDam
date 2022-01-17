@@ -57,15 +57,15 @@ export const IntroWrapper = () => {
       }
     })
       .then((res) => {
-        console.log(res);
         sessionStorage.removeItem('logged');
         if (res.data.message === '로그아웃 되었습니다.') {
           dispatch(LogoutAction());
         } else {
-          console.log('로그아웃 실패');
         }
       })
-      .catch(err => console.log('err'));
+      .catch(err => {
+
+      });
   };
 
   const guestLoginHandelr = async () => { // 게스트로 둘러보기시에 처리
@@ -85,10 +85,9 @@ export const IntroWrapper = () => {
       }
     })
       .then((res) => {
-        console.log(res);
         const userInfoData = res.data.userInfo;
         if (userInfoData) {
-          console.log(userInfoData);
+          sessionStorage.setItem('logged', JSON.stringify(res.data.userInfo));
           dispatch(GuestLoginAction(userInfoData));
           setIsOpenLoginModal(false);
           document.body.style.overflow = 'unset'; // 스크롤 방지 해제
@@ -155,10 +154,12 @@ export const IntroWrapper = () => {
             <ButtonWrapper>
               <ButtonContainer>
                 <Link to='/feedpage'>
-                  <ButtonsInIntro onClick={guestLoginHandelr}>둘러보기</ButtonsInIntro>
+                  {isLogin
+                    ? <ButtonsInIntro>입장하기</ButtonsInIntro>
+                    : <ButtonsInIntro onClick={guestLoginHandelr}>둘러보기</ButtonsInIntro>}
                 </Link>
                 {isLogin
-                  ? <ButtonsInIntro onClick={logoutHandler}>로그아웃</ButtonsInIntro>
+                  ? null
                   : <ButtonsInIntro onClick={handleLoginModal}>로그인</ButtonsInIntro>}
               </ButtonContainer>
             </ButtonWrapper>

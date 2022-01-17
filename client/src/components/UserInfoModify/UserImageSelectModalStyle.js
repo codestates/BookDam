@@ -27,9 +27,9 @@ export const UserImgSelectContainer = styled.div`
   top: 50%;
   transform: translate(-50%, -50%);
   max-height: 80%;
-  width: 23rem;
-  height: 500px;
-  padding: 16px;
+  width: 25rem;
+  height: 800px;
+  padding: 30px;
   background: white;
   border-radius: 10px;
   text-align: center;

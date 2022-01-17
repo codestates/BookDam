@@ -43,7 +43,6 @@ export default function MyPage () {
 
   const userState = useSelector(state => state.userInfoReducer);
   const { userInfo } = userState;
-
   const [myUserInfo, setMyUserInfo] = useState({
     id: 0,
     userId: '',
@@ -65,7 +64,6 @@ export default function MyPage () {
   const [ref, inView] = useInView(); // react-intersection-observer -> div가 viewport에 보여질 때 inView 값이 true
   const history = useHistory();
 
-  // 게스트 로그인일 경우 노티스 모달 핸들러
   // 회원정보수정 버튼 누르면 회원정보수정 모달이 나오는 함수
   const closeNoticeModal = () => {
     setIsOpenNoticeModal(!isOpenNoticeModal);
@@ -86,6 +84,13 @@ export default function MyPage () {
   // 북 썸네일을 누르면 SentenceModal이 나오는 함수
   const openSentenceModalHandler = (el) => {
     setIsOpenSentenceModal(!isOpenSentenceModal);
+    if (isOpenSentenceModal) {
+      console.log('a');
+      document.body.style.overflow = 'unset';
+    } else {
+      document.body.style.overflow = 'hidden';
+    }
+
     history.push({
       state: {
         articleInfo: {
@@ -158,7 +163,6 @@ export default function MyPage () {
   });
 
   return (
-    // react suspence hook (데이터가 없을 경우, 로딩 화면) 삼항 연산자로 getUserInfoAll 함수 처리
     <>
       <MyPageWholeContainer>
         <MypageContainer>
@@ -207,9 +211,8 @@ export default function MyPage () {
 
             </UserInfoSection>
           </UserInfoContainer>
-          {/* <ArticleListTitle>목록</ArticleListTitle> */}
           <ArticleListContainer>
-            {myArticleList.length === 0 && !loading ? <div>당신의 문장들을 채워주세요!</div> : myArticles}
+            {myArticleList.length === 0 && !loading ? <div className='nodata'>당신의 문장들을 채워주세요!</div> : myArticles}
           </ArticleListContainer>
           <div ref={ref}>{loading && myArticleList.length > 8 ? <Loading /> : null}</div>
         </MypageContainer>

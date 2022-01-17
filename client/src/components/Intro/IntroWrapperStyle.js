@@ -33,7 +33,7 @@ export const SectionInfoContainer = styled.div`
   margin: 10px;
   height: 600px;
 
-  @media screen and (max-width: 910px) {
+  @media screen and (max-width: 500px) {
     flex-direction: column;
   }
 `;
@@ -102,9 +102,6 @@ export const ButtonsInIntro = styled.button`
   overflow: hidden;
   &:hover {
     color: #ffffff;
-  }
-  &:active {
-    background: #2683C9;
   }
 `;
 

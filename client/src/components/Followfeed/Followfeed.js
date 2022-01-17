@@ -47,6 +47,7 @@ export const Followfeed = () => {
       if (more) {
         setLoading(true);
         setTimeout(() => {
+
           Axios({
             method: 'get',
             url: `http://localhost:4000/article/${userInfo.userInfo.id}?page=${page}`,

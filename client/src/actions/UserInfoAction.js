@@ -34,7 +34,6 @@ export const LoginAction = (userInfo) => {
 };
 
 export const LogoutAction = (userInfo) => {
-  console.log(userInfo);
   return {
     type: LOGOUT_ACTION,
     isLogin: false,

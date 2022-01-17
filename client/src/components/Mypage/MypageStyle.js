@@ -183,6 +183,14 @@ export const ArticleListContainer = styled.ul`
   list-style-type: none;
   background-color: white;
   /* border: 1px solid red; */
+  >.nodata {
+    margin-top: 50px;
+    width: 647px;
+    text-align: center;
+    font-weight: 800;
+    font-size: 20px;
+    /* border: 1px solid red; */
+  }
 
   @media (max-width: 500px) {
     width: 100%;

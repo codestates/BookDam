@@ -215,7 +215,7 @@ export const WriteTextLimitResult = styled.div`
 
 export const WriteSentenceSection = styled.textarea.attrs({
   placeholder: '감동적인 문장을 기록하세요.',
-  maxLength: 121
+  maxLength: 301
 })`
   margin-bottom: 20px;
   width: 90%;
@@ -229,7 +229,7 @@ export const WriteSentenceSection = styled.textarea.attrs({
 
 export const WriteCommentSection = styled.textarea.attrs({
   placeholder: '문장에 대한 감상평을 남기세요.',
-  maxLength: 61
+  maxLength: 301
 })`
   /* margin: 10px; */
   width: 90%;
@@ -296,8 +296,5 @@ export const ButtonsInEdit = styled.button`
   overflow: hidden;
   &:hover {
     color: #ffffff;
-  }
-  &:active {
-    background: #2683C9;
   }
 `;

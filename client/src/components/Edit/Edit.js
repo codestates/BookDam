@@ -38,15 +38,8 @@ import { SubmitConfirmModal } from '../NoticeModal/EditNoticeModal/SubmitConfirm
 import { TextLimitNoticeModal } from '../NoticeModal/WriteNoticeModal/TextLimitNoticeModal';
 
 export const Edit = () => {
-  // const location = useLocation()
-  // const articles = location.state.articles; // MyPage 썸네일을 눌러서 넘어오는 articles 정보
-  // console.log(articles)
-
-  //* --- SentenceModal에서 넘겨주는 Imfo 받아오는 변수 ---//
   const location = useLocation();
   const myArticleInfo = location.state.myArticleInfo.myArticleInfo;
-  console.log('SentenceModal로부터: ', myArticleInfo);
-
   const userState = useSelector(state => state.userInfoReducer); // 테스트용
   const { isLogin, userInfo } = userState;
   const [isOpenNoticeModal, setIsOpenNoticeModal] = useState(false);
@@ -64,14 +57,14 @@ export const Edit = () => {
   const handleInputSentence = (e) => {
     setInputSentence(e.target.value);
     const textLength = (e.target.value).length;
-    if (textLength === 121) {
+    if (textLength === 301) {
       setIsOpenTextLimitNoticeModal(true);
       const setenceValue = e.target.value;
       const newSentence = setenceValue.slice(0, -1);
       setInputSentence(newSentence);
-      setErrorMessage('(공백포함)글자수 120자까지 가능합니다.');
+      setErrorMessage('(공백포함)글자수 300자까지 가능합니다.');
       // 입력 자체를 제한
-    } else if (textLength <= 120) {
+    } else if (textLength <= 300) {
       setIsOpenTextLimitNoticeModal(false);
       setSentenceLength(textLength);
     }
@@ -80,14 +73,14 @@ export const Edit = () => {
   const handleInputComment = (e) => {
     setInputComment(e.target.value);
     const textLength = (e.target.value).length;
-    if (textLength === 61) {
+    if (textLength === 301) {
       setIsOpenTextLimitNoticeModal(true);
       const commentValue = e.target.value;
       const newComment = commentValue.slice(0, -1);
       setInputComment(newComment);
-      setErrorMessage('(공백포함)글자수 120자까지 가능합니다.');
+      setErrorMessage('(공백포함)글자수 300자까지 가능합니다.');
       // 입력 자체를 제한
-    } else if (textLength <= 60) {
+    } else if (textLength <= 300) {
       setIsOpenTextLimitNoticeModal(false);
       setCommentLength(textLength);
     }
@@ -135,12 +128,9 @@ export const Edit = () => {
         }
       })
         .then((res) => {
-          console.log(res.data.message);
           if (res.data.message === 'success') {
-            console.log('저장이 완료되었습니다.');
             history.push('/mypage');
           } else {
-            console.log('정상적인 접근이 아닙니다.');
           }
         });
     }
@@ -196,11 +186,11 @@ export const Edit = () => {
         <WriteArticleWrapper>
           <WriteArticleContainer>
             <WriteTextLimitContainer>
-              <WriteTextLimitResult>{sentenceLength}/120자</WriteTextLimitResult>
+              <WriteTextLimitResult>{sentenceLength}/300자</WriteTextLimitResult>
             </WriteTextLimitContainer>
             <WriteSentenceSection value={inputSentence} onChange={handleInputSentence} />
             <WriteTextLimitContainer>
-              <WriteTextLimitResult>{commentLength}/60자</WriteTextLimitResult>
+              <WriteTextLimitResult>{commentLength}/300자</WriteTextLimitResult>
             </WriteTextLimitContainer>
             <WriteCommentSection value={inputComment} onChange={handleInputComment} />
           </WriteArticleContainer>

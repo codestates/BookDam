@@ -21,6 +21,7 @@ export const UserImageSelectModal = ({ handleInputImage, openSelectImgModal }) =
     <>
       <UserImgSelectModalContainer>
         <UserImgSelectContainer>
+          <h3>당신의 이미지를 골라주세요</h3>
           <UserImage src={userImage.bird} alt='bird' onClick={() => selectUserImage('bird')} />
           <UserImage src={userImage.owl} alt='owl' onClick={() => selectUserImage('owl')} />
           <UserImage src={userImage.penguin} alt='penguin' onClick={() => selectUserImage('penguin')} />
@@ -33,7 +34,6 @@ export const UserImageSelectModal = ({ handleInputImage, openSelectImgModal }) =
           <UserImage src={userImage.fox} alt='fox' onClick={() => selectUserImage('fox')} />
           <UserImage src={userImage.whale} alt='whale' onClick={() => selectUserImage('whale')} />
           <UserImage src={userImage.shark} alt='shark' onClick={() => selectUserImage('shark')} />
-
         </UserImgSelectContainer>
       </UserImgSelectModalContainer>
     </>

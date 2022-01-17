@@ -17,6 +17,7 @@ import {
   NavMenuSection,
   NavMenu,
   NavMenuSub,
+  StyledLink,
   UserSection,
   UserImage,
   UserNickName,
@@ -84,7 +85,6 @@ export default function Navbar () {
         }
       })
       .catch(err => {
-
       });
   };
 
@@ -98,20 +98,20 @@ export default function Navbar () {
 
         <NavbarWrapper>
           <LogoSection>
-            <Link to='/feedpage'><LogoImage src={Logo} /></Link>
+            <Link to='/mypage'><LogoImage src={Logo} /></Link>
           </LogoSection>
           <NavMenuSection>
             {navMenu1
-              ? <NavMenuSub><Link to='/createPage' style={{ textDecoration: 'none' }}>작성하기</Link></NavMenuSub>
-              : <NavMenu onClick={handleNav1}><Link to='/createPage' style={{ textDecoration: 'none' }}>작성하기</Link></NavMenu>}
+              ? <NavMenuSub><StyledLink to='/createPage'>작성하기</StyledLink></NavMenuSub>
+              : <NavMenu onClick={handleNav1}><StyledLink to='/createPage'>작성하기</StyledLink></NavMenu>}
 
             {navMenu2
-              ? <NavMenuSub><Link to='/feedPage' style={{ textDecoration: 'none' }}>피드</Link></NavMenuSub>
-              : <NavMenu onClick={handleNav2}><Link to='/feedPage' style={{ textDecoration: 'none' }}>피드</Link></NavMenu>}
+              ? <NavMenuSub><StyledLink to='/feedPage'>피드</StyledLink></NavMenuSub>
+              : <NavMenu onClick={handleNav2}><StyledLink to='/feedPage'>피드</StyledLink></NavMenu>}
 
             {navMenu3
-              ? <NavMenuSub><Link to='/mypage' style={{ textDecoration: 'none' }}>마이페이지</Link></NavMenuSub>
-              : <NavMenu onClick={handleNav3}><Link to='/mypage' style={{ textDecoration: 'none' }}>마이페이지</Link></NavMenu>}
+              ? <NavMenuSub><StyledLink to='/mypage'>마이페이지</StyledLink></NavMenuSub>
+              : <NavMenu onClick={handleNav3}><StyledLink to='/mypage'>마이페이지</StyledLink></NavMenu>}
 
             {/* <NavMenu>
               <Link to='/editpage' style={{ textDecoration: 'none' }}>수정하기</Link>

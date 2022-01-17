@@ -57,7 +57,7 @@ export const SetenceModal = ({ openSentenceModalHandler, setIsOpenSentenceModal 
       }
     });
   };
-  // DELETE http://localhost:4000/article/:user_Id?article_Id=6
+
   const deleteArticle = () => {
     axios
       .delete(`http://localhost:4000/article/${userInfo.id}?article_Id=${myArticleInfo.id}`)
@@ -67,6 +67,7 @@ export const SetenceModal = ({ openSentenceModalHandler, setIsOpenSentenceModal 
         document.location.reload();
       })
       .catch((err) => {
+      
       });
   };
   // 삭제 완료 노티스 모달

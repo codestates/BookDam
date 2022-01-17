@@ -12,13 +12,12 @@ import { AiFillGithub } from 'react-icons/ai';
 import { HiOutlineMail } from 'react-icons/hi';
 import { BiCommentError } from 'react-icons/bi';
 
-
 export default function Footer () {
   return (
     <>
       <FooterContainer>
         <FooterInfo>
-        <Link to='/'>
+          <Link to='/'>
             <FooterLogo />
           </Link>
           <FooterContent>

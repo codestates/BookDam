@@ -1,20 +1,16 @@
 import React, { useState } from 'react';
 import {
   UserImgSelectModalContainer,
-  UserImgSelectContainer,
+  UserImgSelectContainer
 
 } from './UserImageSelectModalStyle';
 
-
 export const UserImageSelectModal = () => {
-
   return (
     <>
       <UserImgSelectModalContainer>
-        <UserImgSelectContainer>
-          
-        </UserImgSelectContainer>
+        <UserImgSelectContainer />
       </UserImgSelectModalContainer>
     </>
-  )
-}
+  );
+};

@@ -73,8 +73,7 @@ export function UserModifyModal ({
   const handleInputNickName = (e) => {
     if (myUserInfo.userNickName === e.target.value) {
       setNickNameErrorMessage('기존과 동일한 닉네임입니다');
-    }
-    else {
+    } else {
       setNickNameErrorMessage('');
       setModifyUserInputInfo({
         userNickName: e.target.value,
@@ -111,7 +110,7 @@ export function UserModifyModal ({
   // 유저가 이미지를 넣는 함수
   const handleInputImage = () => {
     // !모달 오픈 상태 만들어서 setState('')
-    // 상태 변경할 때 모달 오픈되게 
+    // 상태 변경할 때 모달 오픈되게
     // 모달창 안에는 '../../assets/images/userImage/userImage'
     // 디폴트 이미지는 bird로 선택
 
@@ -123,13 +122,12 @@ export function UserModifyModal ({
 
   // 회원정보 닉네임 수정 함수
   const modifyUserNickNameHandler = () => {
-
     axios
       .patch(`http://localhost:4000/user/${myUserInfo.id}`,
         {
           userInfo: {
             userId,
-            userNickName,
+            userNickName
           }
         },
         {
@@ -141,13 +139,12 @@ export function UserModifyModal ({
           return;
         }
         if (data.status === 201) {
-          dispatch(UserInfoModifyAction(data.data.userInfo))
+          dispatch(UserInfoModifyAction(data.data.userInfo));
           setIsModificationSuccess(true);
           setErrorMessage('닉네임이 수정되었습니다');
           console.log('닉네임 수정 성공');
           document.location.reload();
         }
-        
       })
       .catch((err) => {
         console.log(err);
@@ -166,7 +163,7 @@ export function UserModifyModal ({
         {
           userInfo: {
             userId,
-            password,
+            password
           }
         },
         {
@@ -175,14 +172,14 @@ export function UserModifyModal ({
       .then((data) => {
         console.log(data.data.userInfo);
         if (data.status === 201) {
-          dispatch(UserInfoModifyAction(data.data.userInfo))
+          dispatch(UserInfoModifyAction(data.data.userInfo));
           setIsModificationSuccess(true);
           setErrorMessage('비밀번호가 수정되었습니다');
           console.log('비밀번호 수정 성공');
           document.location.reload();
         }
         if (password === '') {
-          return;
+
         }
       })
       .catch((err) => {

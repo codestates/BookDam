@@ -88,7 +88,7 @@ export const IntroWrapper = () => {
         console.log(res);
         const userInfoData = res.data.userInfo;
         if (userInfoData) {
-          console.log(userInfoData);
+          sessionStorage.setItem('logged', JSON.stringify(res.data.userInfo));
           dispatch(GuestLoginAction(userInfoData));
           setIsOpenLoginModal(false);
           document.body.style.overflow = 'unset'; // 스크롤 방지 해제

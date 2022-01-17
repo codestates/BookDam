@@ -6,7 +6,7 @@ export const FooterContainer = styled.div`
   flex-direction: column;
   align-items: center;
   height: 180px;
-  width: 100%;
+  width: 100vw;
   padding-top: 20px;
   background-color: black;
     @media (max-width:500px) {
@@ -14,6 +14,7 @@ export const FooterContainer = styled.div`
       flex-direction: column;
       align-items: center;
       height: 120px;
+      width: 100%;
     }
 `;
 export const FooterInfo = styled.div`

@@ -55,10 +55,10 @@ export const Followfeed = () => {
   useEffect(() => {
     function getFollowFeedLists () {
       if (more) {
-        console.log('1')
+        console.log('1');
         setLoading(true);
         setTimeout(() => {
-          console.log('2')
+          console.log('2');
           Axios({
             method: 'get',
             url: `http://localhost:4000/article/${state.userInfo.id}?page=${page}`,
@@ -68,19 +68,19 @@ export const Followfeed = () => {
             }
           })
             .then((res) => {
-              console.log('3')
+              console.log('3');
               if (res.data.articleData.length === 0) {
                 console.log('마지막줄');
                 setMore(false);
               }
-              console.log('4')
+              console.log('4');
               setFolowFeedLists(followFeedLists => [...followFeedLists, ...res.data.articleData]);
               setLoading(false);
             });
         }, 1000);
       }
     }
-    console.log('5')
+    console.log('5');
     getFollowFeedLists();
   }, [state.userInfo.id, page, more]);
 

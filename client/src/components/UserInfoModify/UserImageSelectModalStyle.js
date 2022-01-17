@@ -24,8 +24,8 @@ export const UserImgSelectContainer = styled.div`
   transform: translate(-50%, -50%);
   max-height: 80%;
   width: 25rem;
-  height: 900px;
-  padding: 50px;
+  height: 800px;
+  padding: 30px;
   background: white;
   border-radius: 10px;
   text-align: center;
@@ -33,8 +33,8 @@ export const UserImgSelectContainer = styled.div`
 `;
 
 export const UserImage = styled.img`
-  width: 100px;
-  height: 100px;
+  width: 75px;
+  height: 75px;
   border-radius: 50%;
   margin: 5px;
   

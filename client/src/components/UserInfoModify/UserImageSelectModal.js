@@ -15,14 +15,13 @@ export const UserImageSelectModal = ({ handleInputImage, openSelectImgModal }) =
   const selectUserImage = (alt) => {
     handleInputImage(alt);
     openSelectImgModal();
-    console.log('userImageSelect-사진선택 모달 열기/닫기');
   };
 
   return (
     <>
       <UserImgSelectModalContainer>
         <UserImgSelectContainer>
-          <h2>당신의 이미지를 골라주세요</h2>
+          <h3>당신의 이미지를 골라주세요</h3>
           <UserImage src={userImage.bird} alt='bird' onClick={() => selectUserImage('bird')} />
           <UserImage src={userImage.owl} alt='owl' onClick={() => selectUserImage('owl')} />
           <UserImage src={userImage.penguin} alt='penguin' onClick={() => selectUserImage('penguin')} />

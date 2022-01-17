@@ -48,7 +48,4 @@ overflow: hidden;
 &:hover {
   color: #ffffff;
 }
-&:active {
-  background: #2683C9;
-}
 `;

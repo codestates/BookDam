@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const NavbarContainer = styled.div`
   height: 70px;
@@ -83,17 +84,6 @@ export const NavMenu = styled.li`
   font-size: 1.3rem;
   justify-content: center;
   align-items: center;
-  > a {
-    color: black;
-    :visited {      //  a:visited : 한번 클릭했던 혹은 다녀갔던 링크
-      color: black;
-    }
-    :link {         //  a:link : 클릭하지 않은 링크
-      color: black;
-    }
-  }
-  /* color: red; */
-  /* border: 1px solid black; */
 `;
 
 export const NavMenu3 = styled.li`
@@ -114,7 +104,26 @@ export const NavMenuSub = styled.li`
   font-size: 1.3rem;
   justify-content: center;
   font-weight: 600;
+`;
 
+export const StyledLink = styled(Link)`
+  &:link { //아직 방문하지 않은
+    color: black;
+    text-decoration: none;
+  }
+
+  &:visited { //사용자가 방문한적이 있는
+    color: black;
+    text-decoration: none;
+  }
+
+  &:hover { //마우스를 링크에 올려두었을 때
+    color: black;
+  }
+
+  &:active { //클릭 후 뗄 떼까지
+    color: black;
+  }
 `;
 
 export const UserSection = styled.div`

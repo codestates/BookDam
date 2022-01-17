@@ -48,10 +48,11 @@ export function NavSidebar ({ menuBtnHandler }) {
           dispatch(LogoutAction());
           menuBtnHandler();
         } else {
-          console.log('로그아웃 실패');
         }
       })
-      .catch(err => console.log('err'));
+      .catch(err => {
+
+      });
   };
 
   return (

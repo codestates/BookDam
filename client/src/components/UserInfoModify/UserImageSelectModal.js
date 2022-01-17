@@ -34,7 +34,6 @@ export const UserImageSelectModal = ({ handleInputImage, openSelectImgModal }) =
           <UserImage src={userImage.fox} alt='fox' onClick={() => selectUserImage('fox')} />
           <UserImage src={userImage.whale} alt='whale' onClick={() => selectUserImage('whale')} />
           <UserImage src={userImage.shark} alt='shark' onClick={() => selectUserImage('shark')} />
-
         </UserImgSelectContainer>
       </UserImgSelectModalContainer>
     </>

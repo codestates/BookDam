@@ -92,7 +92,6 @@ export const SignupModal = ({ handleCloseSignupModal, handleLoginModal }) => {
           }
         })
         .catch((err) => {
-          console.log(err.response.data.message);
           if (err.response.data.message === '중복된 아이디입니다.') {
             setErrorMessage('중복된 아이디입니다.');
           }

@@ -27,7 +27,7 @@ export const BookSearchModal = ({ isLoading, handleSelect, setIsOpenBookSearchMo
           </BookSearchModalHeader>
           <BookListModalContainer>
             {searchData.length !== 0
-              ? searchData.map((el, idx) => <BookList list={el} key={el.isbn} idx={idx} handleDelete={handleSelect} />)
+              ? searchData.map((el, idx) => <BookList list={el} key={el.itemId} idx={idx} handleDelete={handleSelect} />)
               : isLoading
                 ? <NoBookListDisplay>데이터를 불러오고 있습니다.</NoBookListDisplay>
                 : <NoBookListDisplay>검색결과가 없습니다.</NoBookListDisplay>}

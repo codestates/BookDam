@@ -47,7 +47,7 @@ export default function MyPage () {
 
   const userState = useSelector(state => state.userInfoReducer);
   const { userInfo } = userState;
-  console.log(userInfo)
+  // console.log(userInfo)
 
   const [myUserInfo, setMyUserInfo] = useState({
     id: 0,
@@ -122,7 +122,7 @@ export default function MyPage () {
                 headers: { 'Content-Type': 'application/json' }
               })
             .then((res) => {
-              console.log(res.data);
+              // console.log(res.data);
               if (res.data.articleData.rows.length === 0) {
                 setMore(false);
               }
@@ -159,7 +159,7 @@ export default function MyPage () {
   }, [inView, loading]);
   
 
-  console.log('아티클 목록', myArticleList);
+  // console.log('아티클 목록', myArticleList);
   const myArticles = myArticleList.map((el, index) => {
     return (
       <ArticleWrap key={index}>
@@ -174,7 +174,6 @@ export default function MyPage () {
   return (
     // react suspence hook (데이터가 없을 경우, 로딩 화면) 삼항 연산자로 getUserInfoAll 함수 처리
     <>
-    <UserImageSelectModal />
       <MyPageWholeContainer>
         <MypageContainer>
           {isOpneModifyModal
@@ -193,7 +192,7 @@ export default function MyPage () {
             : null}
           <UserInfoContainer>
             <UserImgSection>
-              <UserImage src={"https://img.icons8.com/flat-round/512 /000000/cow--v1.png"} />
+              <UserImage src={myUserInfo.userImage} />
             </UserImgSection>
             <UserInfoSection>
               <NickNameFollowSection>

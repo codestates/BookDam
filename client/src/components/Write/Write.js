@@ -65,6 +65,12 @@ export const Write = () => {
     setInputValue(e.target.value);
   };
 
+  const onKeyPress = (e) => {
+    if(e.key === 'Enter' && inputValue) {
+      bookSearch();
+    }
+  }
+
   const bookSearch = async () => { // 도서 검색 버튼
     if (inputValue) {
       setIsOpenBookSearchModal(true);
@@ -284,7 +290,7 @@ export const Write = () => {
             <SearchBookInfoContainer>
               <SearchBookInfoUpper>
                 <SearchContainer>
-                  <SearchInputcontainer value={inputValue} onChange={handleInputValue} />
+                  <SearchInputcontainer onKeyPress={onKeyPress}  value={inputValue} onChange={handleInputValue} />
                   <SearchClick onClick={bookSearch}>검색</SearchClick>
                 </SearchContainer>
               </SearchBookInfoUpper>

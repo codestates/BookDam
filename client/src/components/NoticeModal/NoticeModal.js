@@ -7,8 +7,6 @@ import {
 } from './NoticeModalStyle';
 
 export const NoticeModal = ({ NoticeModalOpenHandler, followInfo, userInfo }) => {
-  console.log('유저정보', userInfo);
-  console.log('팔로우정보', followInfo);
   const deleteFollowReq = () => {
     if (userInfo.id === 1) {
       NoticeModalOpenHandler();
@@ -21,7 +19,6 @@ export const NoticeModal = ({ NoticeModalOpenHandler, followInfo, userInfo }) =>
           NoticeModalOpenHandler();
         })
         .catch((err) => {
-          console.log(err);
           NoticeModalOpenHandler();
         });
     }
@@ -35,8 +32,8 @@ export const NoticeModal = ({ NoticeModalOpenHandler, followInfo, userInfo }) =>
             <strong>{followInfo.userNickName}</strong>님의 팔로우를 취소 하시겠습니까?
           </div>
           <div className='BTN'>
-          <Button onClick={deleteFollowReq}>확인</Button>
-          <Button onClick={NoticeModalOpenHandler}>닫기</Button>
+            <Button onClick={deleteFollowReq}>확인</Button>
+            <Button onClick={NoticeModalOpenHandler}>닫기</Button>
           </div>
         </NoticeModalContainer>
       </NoticeModalBackground>

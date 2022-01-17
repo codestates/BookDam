@@ -25,33 +25,28 @@ import {
 } from './FollowfeedStyle';
 
 export const Followfeed = () => {
-  const history = useHistory();
-  const state = useSelector(state => state.userInfoReducer);
-
-  // 팔로우 취소 버튼 클릭시 알람 모달 오픈
   const [isOpen, setInOpen] = useState(false);
+  const [more, setMore] = useState(true);
+  const [followFeedLists, setFolowFeedLists] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(0);
+  const [ref, inView] = useInView();
   const [followInfo, setFollowInfo] = useState({
     id: '',
     userId: '',
     userNickName: '',
     userImage: ''
   });
-  const [more, setMore] = useState(true);
-  const [followFeedLists, setFolowFeedLists] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [page, setPage] = useState(0);
-  // ref를 div에 걸어주면 해당 요소가 보일 때 inView가 true로, 안보이면 false로 바뀐다.
-  const [ref, inView] = useInView();
 
-  const [userInfo, setUserInfo] = useState(state);
+  const history = useHistory();
+  const userInfo = useSelector(state => state.userInfoReducer);
+
   // 서버에서 아이템을 가지고 오는 함수
   useEffect(() => {
     function getFollowFeedLists () {
       if (more) {
-        console.log('1')
         setLoading(true);
         setTimeout(() => {
-          console.log('2')
           Axios({
             method: 'get',
             url: `http://localhost:4000/article/${userInfo.userInfo.id}?page=${page}`,
@@ -61,21 +56,17 @@ export const Followfeed = () => {
             }
           })
             .then((res) => {
-              console.log('3')
               if (res.data.articleData.length === 0) {
-                console.log('마지막줄');
                 setMore(false);
               }
-              console.log('4')
               setFolowFeedLists(followFeedLists => [...followFeedLists, ...res.data.articleData]);
               setLoading(false);
             });
         }, 1000);
       }
     }
-    console.log('5')
     getFollowFeedLists();
-  }, [state.userInfo.id, page, more]);
+  }, [userInfo.userInfo.id, page, more]);
 
   useEffect(() => {
     // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
@@ -84,9 +75,7 @@ export const Followfeed = () => {
     }
   }, [inView, loading]);
 
-  
   const getFollowInfo = (el) => {
-    console.log(el);
     history.push({
       pathname: `/userPage/${el['User.userId']}`,
       state: {
@@ -123,14 +112,11 @@ export const Followfeed = () => {
           headers: { 'Contnet-Type': 'application/json' }
         })
         .then((data) => {
-          console.log(data);
         })
         .catch((err) => {
-          console.log(err);
         });
     }
   };
-  // console.log(followFeedLists)
   const feedList = followFeedLists.map((el, index) => {
     return (
       <UserInfoContainer key={index} ref={ref}>
@@ -144,9 +130,9 @@ export const Followfeed = () => {
             <UserNickName onClick={() => getFollowInfo(el)}>
               {el['User.userNickName']}
             </UserNickName>
-            <UserFollowIcon value onClick={() => followHandler(el)}>
-              {el['User.Follows.user_Id'] === state.userInfo.id ? <FaUserCheck onClick={NoticeModalOpenHandler} /> : '팔로우'}
-            </UserFollowIcon>
+            {/* <UserFollowIcon value onClick={() => followHandler(el)}>
+              {el['User.Follows.user_Id'] === userInfo.userInfo.id ? <FaUserCheck onClick={NoticeModalOpenHandler} /> : '팔로우'}
+            </UserFollowIcon> */}
           </UserNameAndImage>
           <PostCreatedAt>
             {el.createdAt}

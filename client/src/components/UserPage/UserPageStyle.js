@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-
 export const UserPageWholeContainer = styled.div`
   /* padding-top: 50px; */
   border: 1px solid #e9ecef;

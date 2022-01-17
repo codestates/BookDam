@@ -28,11 +28,9 @@ export const Verification = ({ setIsChecked, closeModal }) => {
     )
       .then((data) => {
         setIsChecked(true);
-        console.log(data);
       })
       .catch((err) => {
         setErrorMessage('비밀번호를 확인하세요');
-        console.log(err);
       });
   };
 

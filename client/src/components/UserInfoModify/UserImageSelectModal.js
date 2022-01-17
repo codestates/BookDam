@@ -3,9 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   UserImgSelectModalContainer,
   UserImgSelectContainer,
-  UserImage,
+  UserImage
 } from './UserImageSelectModalStyle';
-import { userImage } from '../../assets/images/userImage/userImage'
+import { userImage } from '../../assets/images/userImage/userImage';
 
 export const UserImageSelectModal = ({ handleInputImage, openSelectImgModal }) => {
   const dispatch = useDispatch();
@@ -13,10 +13,9 @@ export const UserImageSelectModal = ({ handleInputImage, openSelectImgModal }) =
   const { userInfo } = userState;
 
   const selectUserImage = (alt) => {
-    handleInputImage(alt)
-    openSelectImgModal()
-    
-  }
+    handleInputImage(alt);
+    openSelectImgModal();
+  };
 
   return (
     <>
@@ -34,9 +33,9 @@ export const UserImageSelectModal = ({ handleInputImage, openSelectImgModal }) =
           <UserImage src={userImage.fox} alt='fox' onClick={() => selectUserImage('fox')} />
           <UserImage src={userImage.whale} alt='whale' onClick={() => selectUserImage('whale')} />
           <UserImage src={userImage.shark} alt='shark' onClick={() => selectUserImage('shark')} />
-    
+
         </UserImgSelectContainer>
       </UserImgSelectModalContainer>
     </>
-  )
-}
+  );
+};

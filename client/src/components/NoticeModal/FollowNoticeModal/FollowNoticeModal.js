@@ -9,19 +9,16 @@ import Axios from 'axios';
 export const FollowNoticeModal = ({ closeNoticeModal, setIsfollow, userInfo, followInfo }) => {
   const deleteFollowReq = () => {
     Axios.delete(`http://localhost:4000/follow/${userInfo.id}?follow_Id=${followInfo.id}`,
-        {
-          headers: { 'Contnet-Type': 'application/json' }
-        })
-        .then((data) => {
-          setIsfollow(0)
-          document.location.reload()
-          console.log(data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-
-  }
+      {
+        headers: { 'Contnet-Type': 'application/json' }
+      })
+      .then((data) => {
+        setIsfollow(0);
+        document.location.reload();
+      })
+      .catch((err) => {
+      });
+  };
   return (
     <>
       <NoticeModalBackground onClick={closeNoticeModal}>

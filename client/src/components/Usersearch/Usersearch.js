@@ -12,7 +12,6 @@ import {
 } from './UsersearchStyle';
 import { useHistory } from 'react-router-dom';
 import Axios from 'axios';
-import userImage from '../../assets/images/defaultUserImage.png';
 
 export const Searchuser = ({ setFollowFeedList }) => {
   const [filter, setFilter] = useState([]);
@@ -26,7 +25,7 @@ export const Searchuser = ({ setFollowFeedList }) => {
   };
 
   // const userInfo = useSelector(state => state.userInfoReducer);
-  // console.log(userInfo)
+
   useEffect(() => {
     const getSearchUserFeedList = () => {
       Axios.get(`http://localhost:4000/user?name=${filter}`,
@@ -34,7 +33,6 @@ export const Searchuser = ({ setFollowFeedList }) => {
           headers: { 'Contnet-Type': 'application/json' }
         })
         .then((data) => {
-          console.log(data);
           setSearchUser(data.data.searchInfo); // 이부분 삭제하고 새로운 함수에 유저정보 담아주는 태그 만들어야함
         });
     };
@@ -42,7 +40,7 @@ export const Searchuser = ({ setFollowFeedList }) => {
       getSearchUserFeedList();
     }
   }, [filter]);
-  console.log(filter);
+
   const callUserPage = (el) => {
     history.push({
       pathname: `/userPage/${el.userNickName}`,
@@ -56,6 +54,7 @@ export const Searchuser = ({ setFollowFeedList }) => {
       }
     });
   };
+
   const getSearchUserFeedList = (result) => {
     setFollowFeedList(result);
   };
@@ -82,7 +81,6 @@ export const Searchuser = ({ setFollowFeedList }) => {
       getSearchUserFeedList(); // 인자값이 없어서 엔터나 버튼클릭시 에러 발생
     }
   };
-
   return (
     <>
       <UpperContainer>
@@ -98,7 +96,7 @@ export const Searchuser = ({ setFollowFeedList }) => {
                   return (
                     <li key={index} onClick={() => callUserPage(el)}>
                       <UserSearchImagebox>
-                        <UserSearchImage src={userImage} />
+                        <UserSearchImage src={el.userImage} />
                       </UserSearchImagebox>
                       <div>{el.userNickName}</div>
                     </li>
@@ -114,7 +112,7 @@ export const Searchuser = ({ setFollowFeedList }) => {
             <UserSearchResultContainer className='Recommend'>
               <li>
                 <UserSearchImagebox>
-                  <UserSearchImage src={userImage} />
+                  <UserSearchImage src='https://img.icons8.com/flat-round/512/000000/bird--v1.png' />
                 </UserSearchImagebox>
                 <div>BookDam</div>
               </li>

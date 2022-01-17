@@ -42,7 +42,7 @@ export const LogoutAction = (userInfo) => {
       userInfo: {
         id: '',
         userId: '',
-        userNickName: 'passenger',
+        userNickName: '',
         userImage: ''
       }
     }

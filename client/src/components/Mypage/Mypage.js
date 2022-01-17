@@ -43,7 +43,6 @@ export default function MyPage () {
 
   const userState = useSelector(state => state.userInfoReducer);
   const { userInfo } = userState;
-  // console.log(userInfo)
 
   const [myUserInfo, setMyUserInfo] = useState({
     id: 0,
@@ -69,9 +68,8 @@ export default function MyPage () {
   // 게스트 로그인일 경우 노티스 모달 핸들러
   // 회원정보수정 버튼 누르면 회원정보수정 모달이 나오는 함수
   const closeNoticeModal = () => {
-    console.log('노티스모달 닫기버튼 클릭')
     setIsOpenNoticeModal(!isOpenNoticeModal);
-  }
+  };
   const userInfoModifyBtnHandler = () => {
     if (userInfo.userId === 'guest') {
       setErrorMessage('로그인 후 이용하세요');
@@ -106,7 +104,7 @@ export default function MyPage () {
   };
 
   // 내 정보 전체를 조회하는 함수 (무한 스크롤 적용)
-  useEffect(()=> {
+  useEffect(() => {
     const getMyInfoAll = () => {
       if (more) {
         setLoading(true);
@@ -117,7 +115,6 @@ export default function MyPage () {
                 headers: { 'Content-Type': 'application/json' }
               })
             .then((res) => {
-              // console.log(res.data);
               if (res.data.articleData.rows.length === 0) {
                 setMore(false);
               }
@@ -134,26 +131,21 @@ export default function MyPage () {
               });
             })
             .catch((err) => {
-              console.log(err)})
-            setLoading(false);
-        }, 1000);}
-    }
+            });
+          setLoading(false);
+        }, 1000);
+      }
+    };
     getMyInfoAll();
-
   }, [userInfo.id, page, more]);
 
   useEffect(() => {
     // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
     if (inView && !loading) {
-      console.log('loading false');
       setPage(prevState => prevState + 1);
-    } else {
-      console.log('loading true');
     }
   }, [inView, loading]);
-  
 
-  // console.log('아티클 목록', myArticleList);
   const myArticles = myArticleList.map((el, index) => {
     return (
       <ArticleWrap key={index}>
@@ -217,7 +209,7 @@ export default function MyPage () {
           </UserInfoContainer>
           {/* <ArticleListTitle>목록</ArticleListTitle> */}
           <ArticleListContainer>
-            {myArticleList.length === 0 && !loading ? <div>당신의 문장들을 채워주세요!</div>: myArticles}
+            {myArticleList.length === 0 && !loading ? <div>당신의 문장들을 채워주세요!</div> : myArticles}
           </ArticleListContainer>
           <div ref={ref}>{loading && myArticleList.length > 8 ? <Loading /> : null}</div>
         </MypageContainer>

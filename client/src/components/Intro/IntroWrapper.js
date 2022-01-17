@@ -57,15 +57,15 @@ export const IntroWrapper = () => {
       }
     })
       .then((res) => {
-        console.log(res);
         sessionStorage.removeItem('logged');
         if (res.data.message === '로그아웃 되었습니다.') {
           dispatch(LogoutAction());
         } else {
-          console.log('로그아웃 실패');
         }
       })
-      .catch(err => console.log('err'));
+      .catch(err => {
+
+      });
   };
 
   const guestLoginHandelr = async () => { // 게스트로 둘러보기시에 처리
@@ -85,7 +85,6 @@ export const IntroWrapper = () => {
       }
     })
       .then((res) => {
-        console.log(res);
         const userInfoData = res.data.userInfo;
         if (userInfoData) {
           sessionStorage.setItem('logged', JSON.stringify(res.data.userInfo));
@@ -154,7 +153,7 @@ export const IntroWrapper = () => {
             </SectionInfoContainer>
             <ButtonWrapper>
               <ButtonContainer>
-              <Link to='/feedpage'>
+                <Link to='/feedpage'>
                   {isLogin
                     ? <ButtonsInIntro>입장하기</ButtonsInIntro>
                     : <ButtonsInIntro onClick={guestLoginHandelr}>둘러보기</ButtonsInIntro>}

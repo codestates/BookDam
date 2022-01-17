@@ -107,7 +107,6 @@ export const NavMenuSub = styled.li`
 `;
 
 export const StyledLink = styled(Link)`
-  
   &:link { //아직 방문하지 않은
     color: black;
     text-decoration: none;
@@ -125,7 +124,6 @@ export const StyledLink = styled(Link)`
   &:active { //클릭 후 뗄 떼까지
     color: black;
   }
-  
 `;
 
 export const UserSection = styled.div`

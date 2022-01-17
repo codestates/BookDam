@@ -66,10 +66,10 @@ export const Write = () => {
   };
 
   const onKeyPress = (e) => {
-    if(e.key === 'Enter' && inputValue) {
+    if (e.key === 'Enter' && inputValue) {
       bookSearch();
     }
-  }
+  };
 
   const bookSearch = async () => { // 도서 검색 버튼
     if (inputValue) {
@@ -90,7 +90,6 @@ export const Write = () => {
           const resultData = [];
           // eslint-disable-next-line array-callback-return
           res.data.map((list) => {
-            console.log(list);
             resultData.push({
               itemId: list.$.itemId,
               title: list.title[0],
@@ -103,7 +102,7 @@ export const Write = () => {
           setSearchData(resultData);
         })
         .catch(err => {
-          console.log(err.response);
+
         });
     } else {
       setErrorMessage('검색어를 입력하세요.');
@@ -129,14 +128,14 @@ export const Write = () => {
     } else {
       setInputSentence(e.target.value);
       const textLength = (e.target.value).length;
-      if (textLength === 601) {
+      if (textLength === 301) {
         setIsOpenTextLimitNoticeModal(true);
-        setErrorMessage('글자수 600자까지 가능합니다.');
+        setErrorMessage('글자수 300자까지 가능합니다.');
         const setenceValue = e.target.value;
         const newSentence = setenceValue.slice(0, -1);
         setInputSentence(newSentence);
         // 입력 자체를 제한
-      } else if (textLength <= 600) {
+      } else if (textLength <= 300) {
         setIsOpenTextLimitNoticeModal(false);
         setSentenceLength(textLength);
       }
@@ -150,14 +149,14 @@ export const Write = () => {
     } else {
       setInputComment(e.target.value);
       const textLength = (e.target.value).length;
-      if (textLength === 601) {
+      if (textLength === 301) {
         setIsOpenTextLimitNoticeModal(true);
-        setErrorMessage('글자수 600자까지 가능합니다.');
+        setErrorMessage('글자수 300자까지 가능합니다.');
         const commentValue = e.target.value;
         const newComment = commentValue.slice(0, -1);
         setInputComment(newComment);
         // 입력 자체를 제한
-      } else if (textLength <= 600) {
+      } else if (textLength <= 300) {
         setIsOpenTextLimitNoticeModal(false);
         setCommentLength(textLength);
       }
@@ -233,16 +232,14 @@ export const Write = () => {
         }
       })
         .then((res) => {
-          console.log(res.data.message);
           if (res.data.message === 'success') {
-            console.log('저장이 완료되었습니다.');
             history.push('/myPage');
           } else {
-            console.log('정상적인 접근이 아닙니다.');
+
           }
         })
         .catch(err => {
-          console.log(err.response);
+
         });
     }
   };
@@ -290,7 +287,7 @@ export const Write = () => {
             <SearchBookInfoContainer>
               <SearchBookInfoUpper>
                 <SearchContainer>
-                  <SearchInputcontainer onKeyPress={onKeyPress}  value={inputValue} onChange={handleInputValue} />
+                  <SearchInputcontainer onKeyPress={onKeyPress} value={inputValue} onChange={handleInputValue} />
                   <SearchClick onClick={bookSearch}>검색</SearchClick>
                 </SearchContainer>
               </SearchBookInfoUpper>
@@ -322,11 +319,11 @@ export const Write = () => {
         <WriteArticleWrapper>
           <WriteArticleContainer>
             <WriteTextLimitContainer>
-              <WriteTextLimitResult>{sentenceLength}/600자</WriteTextLimitResult>
+              <WriteTextLimitResult>{sentenceLength}/300자</WriteTextLimitResult>
             </WriteTextLimitContainer>
             <WriteSentenceSection value={inputSentence} onChange={handleInputSentence} />
             <WriteTextLimitContainer>
-              <WriteTextLimitResult>{commentLength}/600자</WriteTextLimitResult>
+              <WriteTextLimitResult>{commentLength}/300자</WriteTextLimitResult>
 
             </WriteTextLimitContainer>
             <WriteCommentSection value={inputComment} onChange={handleInputComment} />

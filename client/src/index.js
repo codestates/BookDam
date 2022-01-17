@@ -11,7 +11,7 @@ import ScrollTop from './components/ScrollTop';
 
 ReactDOM.render(
   <BrowserRouter>
-  <ScrollTop />
+    <ScrollTop />
     <ThemeProvider theme={theme}>
       <Provider store={store}>
         <App />

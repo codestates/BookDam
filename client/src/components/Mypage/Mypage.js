@@ -46,7 +46,7 @@ export default function MyPage () {
 
   const userState = useSelector(state => state.userInfoReducer);
   const { userInfo } = userState;
-  console.log(userInfo)
+  console.log(userInfo);
 
   const [myUserInfo, setMyUserInfo] = useState({
     id: 0,
@@ -54,7 +54,7 @@ export default function MyPage () {
     userNickName: '',
     userImage: ''
   });
-  const [userImage, setUserImage] = useState(example)
+  const [userImage, setUserImage] = useState(example);
   const [follow, setFollow] = useState({
     following: 0,
     follower: 0
@@ -88,13 +88,13 @@ export default function MyPage () {
   // 북 썸네일을 누르면 SentenceModal이 나오는 함수
   const openSentenceModalHandler = (el) => {
     setIsOpenSentenceModal(!isOpenSentenceModal);
-    if(isOpenSentenceModal) {
-      console.log('a')
+    if (isOpenSentenceModal) {
+      console.log('a');
       document.body.style.overflow = 'unset';
     } else {
       document.body.style.overflow = 'hidden';
     }
-    
+
     history.push({
       state: {
         articleInfo: {
@@ -113,7 +113,7 @@ export default function MyPage () {
   };
 
   // 내 정보 전체를 조회하는 함수 (무한 스크롤 적용)
-  useEffect(()=> {
+  useEffect(() => {
     const getMyInfoAll = () => {
       if (more) {
         setLoading(true);
@@ -135,19 +135,20 @@ export default function MyPage () {
                 userNickName: res.data.userInfo.userNickName,
                 userImage: res.data.userInfo.userImage
               });
-              setUserImage(res.data.userInfo.userImage)
+              setUserImage(res.data.userInfo.userImage);
               setFollow({
                 following: res.data.follow.following,
                 follower: res.data.follow.follower
               });
             })
             .catch((err) => {
-              console.log(err)})
-            setLoading(false);
-        }, 1000);}
-  }
-  getMyInfoAll();
-
+              console.log(err);
+            });
+          setLoading(false);
+        }, 1000);
+      }
+    };
+    getMyInfoAll();
   }, [userInfo.id, page, more]);
 
   useEffect(() => {
@@ -159,7 +160,6 @@ export default function MyPage () {
       console.log('loading true');
     }
   }, [inView, loading]);
-  
 
   console.log('아티클 목록', myArticleList);
   const myArticles = myArticleList.map((el, index) => {
@@ -194,7 +194,7 @@ export default function MyPage () {
             : null}
           <UserInfoContainer>
             <UserImgSection>
-              <UserImage src={"https://img.icons8.com/flat-round/512 /000000/cow--v1.png"} />
+              <UserImage src='https://img.icons8.com/flat-round/512 /000000/cow--v1.png' />
             </UserImgSection>
             <UserInfoSection>
               <NickNameFollowSection>
@@ -225,7 +225,7 @@ export default function MyPage () {
           </UserInfoContainer>
           {/* <ArticleListTitle>목록</ArticleListTitle> */}
           <ArticleListContainer>
-            {myArticleList.length === 0 && !loading ? <div>당신의 문장들을 채워주세요!</div>: myArticles}
+            {myArticleList.length === 0 && !loading ? <div>당신의 문장들을 채워주세요!</div> : myArticles}
           </ArticleListContainer>
           <div ref={ref}>{loading && myArticleList.length > 8 ? <Loading /> : null}</div>
         </MypageContainer>

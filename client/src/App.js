@@ -9,17 +9,16 @@ import { useDispatch } from 'react-redux'; // 로그인 상태변경용
 import { GuestLoginAction, LoginAction } from './actions/UserInfoAction';
 
 function App () {
-
   const dispatch = useDispatch();
 
   useEffect(() => {
     const userInfo = JSON.parse(sessionStorage.getItem('logged'));
     if (userInfo && userInfo.userId !== 'guest') {
       dispatch(LoginAction(userInfo));
-    } else if(userInfo && userInfo.userId === 'guest') {
-      dispatch(GuestLoginAction(userInfo))
-    };
-  })
+    } else if (userInfo && userInfo.userId === 'guest') {
+      dispatch(GuestLoginAction(userInfo));
+    }
+  });
 
   return (
     <>

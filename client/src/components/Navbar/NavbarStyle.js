@@ -83,13 +83,16 @@ export const NavMenu = styled.li`
   font-size: 1.3rem;
   justify-content: center;
   align-items: center;
+
   > a {
-    color: black;
     :visited {      //  a:visited : 한번 클릭했던 혹은 다녀갔던 링크
-      color: black;
+      color: blue;
+      text-decoration: none;
+
     }
     :link {         //  a:link : 클릭하지 않은 링크
-      color: black;
+      color: red;
+      text-decoration: none;
     }
   }
   /* color: red; */

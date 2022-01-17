@@ -16,7 +16,7 @@ function App () {
     const userInfo = JSON.parse(sessionStorage.getItem('logged'));
     if (userInfo && userInfo.userId !== 'guest') {
       dispatch(LoginAction(userInfo));
-    } else {
+    } else if(userInfo && userInfo.userId === 'guest') {
       dispatch(GuestLoginAction(userInfo))
     };
   })

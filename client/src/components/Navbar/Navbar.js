@@ -102,8 +102,8 @@ export default function Navbar () {
           </LogoSection>
           <NavMenuSection>
             {navMenu1
-              ? <NavMenuSub><Link to='/createPage' style={{ textDecoration: 'none' }}>작성하기</Link></NavMenuSub>
-              : <NavMenu onClick={handleNav1}><Link to='/createPage' style={{ textDecoration: 'none' }}>작성하기</Link></NavMenu>}
+              ? <NavMenuSub><Link to='/createPage'>작성하기</Link></NavMenuSub>
+              : <NavMenu onClick={handleNav1}><Link to='/createPage'>작성하기</Link></NavMenu>}
 
             {navMenu2
               ? <NavMenuSub><Link to='/feedPage' style={{ textDecoration: 'none' }}>피드</Link></NavMenuSub>

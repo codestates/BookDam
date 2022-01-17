@@ -123,9 +123,7 @@ export const Followfeed = () => {
         <UserInfo>
           <UserNameAndImage>
             <UserImageContainer onClick={() => getFollowInfo(el)}>
-              {el['User.userImage'].length === 0
-                ? <UserImage src={el['User.userImage']} />
-                : <DefaultUserImage src={userImage} />}
+              <UserImage src={el['User.userImage']} />
             </UserImageContainer>
             <UserNickName onClick={() => getFollowInfo(el)}>
               {el['User.userNickName']}

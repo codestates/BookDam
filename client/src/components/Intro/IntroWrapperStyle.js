@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const IntroWholeContainer = styled.div`
   border: 1px solid black;
+  overflow: hidden;
   position: relative;
   height: 2300px;
   width: 100vw;

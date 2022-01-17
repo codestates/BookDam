@@ -11,17 +11,15 @@ import { GuestLoginAction, LoginAction } from './actions/UserInfoAction';
 function App () {
 
   const dispatch = useDispatch();
-  const userInfo = JSON.parse(sessionStorage.getItem('logged'));
 
   useEffect(() => {
+    const userInfo = JSON.parse(sessionStorage.getItem('logged'));
     if (userInfo && userInfo.userId !== 'guest') {
       dispatch(LoginAction(userInfo));
     } else {
       dispatch(GuestLoginAction(userInfo))
     };
-  }, [])
-  
-
+  })
 
   return (
     <>

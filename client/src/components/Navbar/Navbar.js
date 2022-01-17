@@ -76,7 +76,6 @@ export default function Navbar () {
       }
     })
       .then((res) => {
-        console.log(res);
         sessionStorage.removeItem('logged');
         if (res.data.message === '로그아웃 되었습니다.') {
           dispatch(LogoutAction());
@@ -84,8 +83,7 @@ export default function Navbar () {
         } else {
           console.log('로그아웃 실패');
         }
-      })
-      .catch(err => console.log('err'));
+      });
   };
 
   return (

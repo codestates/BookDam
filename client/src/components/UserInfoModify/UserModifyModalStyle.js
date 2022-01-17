@@ -23,7 +23,7 @@ export const UserInfoModifyContainer = styled.div`
   transform: translate(-50%, -50%);
   max-height: 80%;
   width: 20rem;
-  height: 450px;
+  height: 500px;
   padding: 16px;
   background: white;
   border-radius: 10px;
@@ -110,6 +110,7 @@ export const UserInfoEditSection = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  font-size: 14px;
   /* border: 1px solid skyblue; */
 `;
 
@@ -117,15 +118,14 @@ export const NickNameInput = styled.input.attrs({
   placeholder: 'NickName',
   type: 'text'
 })`
-  margin-top: 10px;
+  margin: 10px 0 0 10px;
   border-radius: 2px;
-  width: 60%;
+  width: 170px;
   height: 40px;
   border: 1px solid #e5e5e5;
   padding: 9px 12px;
   outline: none;
   box-sizing: border-box;
-
 `;
 
 export const PasswordInput = styled.input.attrs({
@@ -133,9 +133,9 @@ export const PasswordInput = styled.input.attrs({
   type: 'password'
 })`
   position: sticky;
-  margin-top: 10px;
+  margin: 10px 0 0 10px;
   border-radius: 2px;
-  width: 60%;
+  width: 170px;
   height: 40px;
   border: 1px solid #e5e5e5;
   padding: 9px 12px;
@@ -147,9 +147,9 @@ export const PasswordChkInput = styled.input.attrs({
   placeholder: 'Password Check',
   type: 'password'
 })`
-  margin-top: 10px;
+  margin: 10px 0 0 10px;
   border-radius: 2px;
-  width: 60%;
+  width: 170px;
   height: 40px;
   border: 1px solid #e5e5e5;
   padding: 9px 12px;
@@ -157,22 +157,37 @@ export const PasswordChkInput = styled.input.attrs({
   box-sizing: border-box;
 `;
 
-export const ErrorMessage = styled.div`
-
-`;
-
 export const UserInfoModifyBtnSection = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
   height: 90px;
-  margin-top: 20px;
+  margin: 0;
   /* border: 1px solid blue; */
 `;
 
+// 사진/닉네임 변경 버튼
 export const ModificationBtn = styled.button`
   display: flex;
-  width: 100%;
+  width: 170px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border: 1px solid #12e272;
+  border-radius: 5px;
+  background-color: rgba(0,0,0,0);
+  color: #12e272;
+  font-weight: 900;
+  margin: 10px 0 0 25px;
+  padding: 9px 12px;
+  border-radius: 2px;
+`;
+
+// 비밀번호 변경 버튼
+export const ModifyPasswordBtn = styled.button`
+  display: flex;
+  width: 260px;
   height: 40px;
   align-items: center;
   justify-content: center;
@@ -189,7 +204,7 @@ export const ModificationBtn = styled.button`
 
 export const SignOutBtn = styled.button`
   display: flex;
-  width: 100%;
+  width: 260px;
   height: 40px;
   align-items: center;
   justify-content: center;

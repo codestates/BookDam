@@ -57,18 +57,14 @@ export const SetenceModal = ({ openSentenceModalHandler, setIsOpenSentenceModal 
       }
     });
   };
-  // DELETE http://localhost:4000/article/:user_Id?article_Id=6
+
   const deleteArticle = () => {
     axios
       .delete(`http://localhost:4000/article/${userInfo.id}?article_Id=${myArticleInfo.id}`)
       .then((data) => {
         setIsDeleteSuccess(true);
         setErrorMessage('수집하신 문장이 삭제되었습니다');
-        console.log('아티클이 삭제되었습니다');
         document.location.reload();
-      })
-      .catch((err) => {
-        console.log(err);
       });
   };
   // 삭제 완료 노티스 모달

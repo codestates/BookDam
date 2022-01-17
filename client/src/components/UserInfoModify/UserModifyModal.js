@@ -18,6 +18,7 @@ import {
   PasswordChkInput,
   UserInfoModifyBtnSection,
   ModificationBtn,
+  ModifyPasswordBtn,
   SignOutBtn
 } from './UserModifyModalStyle';
 import { ErrorMessage } from '../GlobalMessage/GlobalMessage';
@@ -25,7 +26,11 @@ import { IoClose } from 'react-icons/io5';
 import { UserModifyNoticeModal } from '../../components/NoticeModal/UserModifyNoticeModal/UserModifyNoticeModal';
 import { SignoutNoticeModal } from '../../components/NoticeModal/UserModifyNoticeModal/SignoutNoticeModal';
 import { Verification } from '../VerificationModal/VerificationModal';
-import { UserInfoModifyAction } from '../../actions/UserInfoAction';
+import { UserImageSelectModal } from './UserImageSelectModal';
+import { userImage } from '../../assets/images/userImage/userImage';
+import { RiUserLine } from 'react-icons/ri'; // 아이디 아이콘
+import { RiShieldKeyholeLine } from 'react-icons/ri'; // 새 비밀번호 아이콘
+import { RiShieldKeyholeFill } from 'react-icons/ri'; // 새 비밀번호 아이콘
 
 // 회원정보수정 PATCH
 // http://localhost:4000/user/:user_Id
@@ -46,10 +51,13 @@ export function UserModifyModal ({
     id: '',
     userId: '',
     userNickName: '',
-    password: '',
     userImage: ''
   });
-  const { userId, userNickName, password, userImage } = modifyUserInputInfo; // input 값으로 들어오는 정보
+  const { id, userId, userNickName, userImages } = modifyUserInputInfo; // input 값으로 들어오는 정보
+  const [inputUserNickName, setInputUserNickName] = useState(null);
+  const [inputPassword, setInputPassword] = useState('');
+  const [inputUserImage, setInputUserImage] = useState(null);
+  const [inputModifyInfoCheck, setInputModifyInfoCheck] = useState(false);
   const [passwordChk, setPasswordChk] = useState(false);
   const [nickNameErrorMessage, setNickNameErrorMessage] = useState('');
   const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
@@ -59,6 +67,7 @@ export function UserModifyModal ({
   const [isSignoutSuccess, setisSignoutSuccess] = useState(false);
   const isValidPassword = /(?=.*\d)(?=.*[a-zA-ZS]).{8,}/; // 문자, 숫자 1개이상 포함, 8자리 이상
   const [isChecked, setIsChecked] = useState(false);
+  const [isSelectUserImgOpen, setIsSelectUserImgOpen] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
   const userState = useSelector(state => state.userInfoReducer);
@@ -69,38 +78,31 @@ export function UserModifyModal ({
     closeUserInfoModify();
   };
 
-  // input handler-NickName
+  // !input handler-NickName
   const handleInputNickName = (e) => {
     if (myUserInfo.userNickName === e.target.value) {
       setNickNameErrorMessage('기존과 동일한 닉네임입니다');
-    }
-    else {
+    } else {
       setNickNameErrorMessage('');
-      setModifyUserInputInfo({
-        userNickName: e.target.value,
-        password
-      });
+      setInputUserNickName(e.target.value);
     }
   };
 
-  // input handler-PW
+  // !input handler-PW
   const handleInputPW = (e) => {
     if (e.target.value.length > 0 && isValidPassword.test(e.target.value) === false) {
       setPasswordErrorMessage('8자리 이상의 문자+숫자 조합으로 만들어주세요');
     } else {
       setPasswordErrorMessage('');
-      setModifyUserInputInfo({
-        userNickName,
-        password: e.target.value
-      });
+      setInputPassword(e.target.value);
     }
   };
 
-  // input handler-PWSheck
+  // !input handler-PWSheck
   const handlePWCheck = (e) => {
-    if (password.length === 0) {
+    if (e.target.value.length === 0) {
       setPwChkErrorMessage('');
-    } else if (e.target.value === password) {
+    } else if (e.target.value === inputPassword) {
       setPwChkErrorMessage('');
       setPasswordChk(true);
     } else {
@@ -108,86 +110,58 @@ export function UserModifyModal ({
     }
   };
 
+  // 사진 선택 모달 열기
+  const openSelectImgModal = () => {
+    setIsSelectUserImgOpen(!isSelectUserImgOpen);
+  };
+
   // 유저가 이미지를 넣는 함수
-  const handleInputImage = () => {
-    // !모달 오픈 상태 만들어서 setState('')
-    // 상태 변경할 때 모달 오픈되게 
-    // 모달창 안에는 '../../assets/images/userImage/userImage'
-    // 디폴트 이미지는 bird로 선택
-
+  const handleInputImage = (alt) => {
+    setInputUserImage(userImage[`${alt}`]);
   };
-  // 회원정보 수정 함수
+
+  // 회원정보 유저정보 수정 함수
   const modifyUserInfoHandler = () => {
-    // 이미지 상태 함수
-  };
-
-  // 회원정보 닉네임 수정 함수
-  const modifyUserNickNameHandler = () => {
-
-    axios
-      .patch(`http://localhost:4000/user/${myUserInfo.id}`,
-        {
-          userInfo: {
-            userId,
-            userNickName,
+    if (!inputUserImage || !inputUserNickName) {
+      axios
+        .patch(`http://localhost:4000/user/${myUserInfo.id}`,
+          {
+            userInfo: {
+              userNickName: inputUserNickName || myUserInfo.userNickName,
+              userImage: inputUserImage || myUserInfo.userImage
+            }
+          },
+          {
+            headers: { 'Content-Type': 'application/json' }
           }
-        },
-        {
-          headers: { 'Content-Type': 'application/json' }
-        })
-      .then((data) => {
-        console.log(data.data.userInfo);
-        if (userNickName === '') {
-          return;
-        }
-        if (data.status === 201) {
-          dispatch(UserInfoModifyAction(data.data.userInfo))
-          setIsModificationSuccess(true);
-          setErrorMessage('닉네임이 수정되었습니다');
-          console.log('닉네임 수정 성공');
-          document.location.reload();
-        }
-        
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  // 유저 소개글 수정 함수
-  const modifyIntroductionHandler = () => {
-
-  };
-
-  // 회원정보 비밀번호 수정 함수
-  const modifyPasswordHandler = () => {
-    axios
-      .patch(`http://localhost:4000/user/${myUserInfo.id}`,
-        {
-          userInfo: {
-            userId,
-            password,
+        )
+        .then((data) => {
+          if (data.data.message === 'success') {
+            setErrorMessage('닉네임이 변경 되었습니다');
+            document.location.reload();
           }
-        },
-        {
-          headers: { 'Content-Type': 'application/json' }
-        })
-      .then((data) => {
-        console.log(data.data.userInfo);
-        if (data.status === 201) {
-          dispatch(UserInfoModifyAction(data.data.userInfo))
-          setIsModificationSuccess(true);
-          setErrorMessage('비밀번호가 수정되었습니다');
-          console.log('비밀번호 수정 성공');
-          document.location.reload();
-        }
-        if (password === '') {
-          return;
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+        });
+    } else if (inputPassword.length !== 0) {
+      axios
+        .patch(`http://localhost:4000/user/${myUserInfo.id}`,
+          {
+            userInfo: {
+              password: inputPassword
+            }
+          },
+          {
+            headers: { 'Content-Type': 'application/json' }
+          })
+        .then((data) => {
+          if (data.status === 201) {
+            setIsModificationSuccess(true);
+            setErrorMessage('비밀번호가 수정 되었습니다');
+            document.location.reload();
+          }
+        });
+    } else {
+      setErrorMessage('변경할 정보를 입력해주세요');
+    }
   };
 
   // 회원정보수정 노티스 모달 핸들러
@@ -204,12 +178,8 @@ export function UserModifyModal ({
         if (data.status === 200) {
           setisSignoutSuccess(true);
           setErrorMessage('다음에 또 만나요!');
-          console.log('회원 탈퇴되었습니다');
         }
         history.push('/');
-      })
-      .catch((err) => {
-        console.log(err);
       });
   };
 
@@ -219,27 +189,18 @@ export function UserModifyModal ({
     setIsOpenModifyModal(false);
   };
 
-  // 회원정보 수정 버튼 클릭시 본인인증(비밀번호)을 하고
-  // 서버에 저장된 비밀번호와 입력한 비밀번호가 동일하면  -> `http://localhost:4000/user/validation/:user_Id`
-  // 회원정보 수정창에는 회원정보 수정 기능과 비밀번호 수정 기능이 각각 실행하게 한다
-  // 회원정보 수정 로직(server)
-  // 회원정보 수정 로직
-  // user/validation/:user_Id
-  // userInfo 에다가 password 담아서 보낸다
-  // 비밀번호 맞는 지 확인한다
-
-  // user/:user_Id 로 회원정보 수정 요청한다
-  // 닉네임 변경 시 닉네임만 들어오고
-  // password 변경 시 password만 들어온다
-  // req body userInfo 에 담아서 보내준다.
-  // (userNickName or password)
-
   return (
     <>
       {!isChecked
         ? <Verification setIsChecked={setIsChecked} closeModal={closeModal} />
         : <UserInfoModifyModalContainer onClick={userInfoModifyBtnHandler}>
           <UserInfoModifyContainer onClick={(e) => e.stopPropagation()}>
+            {isSelectUserImgOpen
+              ? <UserImageSelectModal
+                  handleInputImage={handleInputImage}
+                  openSelectImgModal={openSelectImgModal}
+                />
+              : null}
             <ModifyCloseSection>
               <div onClick={closeModal}>
                 <IoClose />
@@ -248,28 +209,30 @@ export function UserModifyModal ({
             <UserInfoSection>
               <UserImgSection>
                 <EditPictureWrap>
-                  <EditPictureBtn onClick={handleInputImage}>사진선택</EditPictureBtn> {/* 이미지 처리 할 것 */}
+                  <EditPictureBtn onClick={openSelectImgModal}>사진선택</EditPictureBtn> {/* 이미지 처리 할 것 */}
                 </EditPictureWrap>
-                <UserImage src={myUserInfo.userImage} />
+                <UserImage src={inputUserImage || myUserInfo.userImage} />
               </UserImgSection>
               <UserNickName>{myUserInfo.userNickName}</UserNickName>
             </UserInfoSection>
             <UserInfoEditSection>
               <span>
-                닉네임: <NickNameInput onChange={handleInputNickName} />
-                <ModificationBtn className='NickNameChangeBtn' onClick={modifyUserNickNameHandler}>
-                  닉네임 변경
+                <span><RiUserLine /></span><NickNameInput onChange={handleInputNickName} />
+                <span><ModificationBtn className='NickNameChangeBtn' onClick={modifyUserInfoHandler}>
+                  사진 / 닉네임 변경
                 </ModificationBtn>
+                </span>
+                <ErrorMessage>{nickNameErrorMessage}</ErrorMessage>
               </span>
-              <ErrorMessage>{nickNameErrorMessage}</ErrorMessage>
               <span>
-                새 비밀번호: <PasswordInput onChange={handleInputPW} />
+                <span><RiShieldKeyholeLine /></span><PasswordInput onChange={handleInputPW} />
               </span>
               <ErrorMessage>{passwordErrorMessage}</ErrorMessage>
               <span>
-                비밀번호 확인: <PasswordChkInput onChange={handlePWCheck} />
+                <span><RiShieldKeyholeFill /></span><PasswordChkInput onChange={handlePWCheck} />
               </span>
               <ErrorMessage>{pwChkErrorMessage}</ErrorMessage>
+              <ErrorMessage>{errorMessage}</ErrorMessage>
               <UserInfoModifyBtnSection>
                 {isModificationSuccess
                   ? <UserModifyNoticeModal
@@ -277,9 +240,9 @@ export function UserModifyModal ({
                       userModifyNoticeModalHandler={userModifyNoticeModalHandler}
                     />
                   : null}
-                <ModificationBtn className='PasswordChangeBtn' onClick={modifyPasswordHandler}>
+                <ModifyPasswordBtn className='PasswordChangeBtn' onClick={modifyUserInfoHandler}>
                   비밀번호 변경
-                </ModificationBtn>
+                </ModifyPasswordBtn>
                 {isSignoutSuccess
                   ? <SignoutNoticeModal
                       errorMessage={errorMessage}

@@ -43,7 +43,6 @@ export function NavSidebar ({ menuBtnHandler }) {
       }
     })
       .then((res) => {
-        console.log(res);
         sessionStorage.removeItem('logged');
         if (res.data.message === '로그아웃 되었습니다.') {
           dispatch(LogoutAction());

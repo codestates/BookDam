@@ -6,7 +6,6 @@ import {
 } from './IsGuestNoticeModalStyle';
 
 export const IsGuestNoticeModal = ({ errorMessage, closeNoticeModal }) => {
-  
   return (
     <>
       <NoticeModalBackground onClick={closeNoticeModal}>

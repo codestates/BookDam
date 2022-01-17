@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import {
   VerificationBackground,
   VerificationContainer,
+  VerificationTitle,
+  ID,
+  InputPassword,
   Button
 } from './VerificationModalStyle';
 import { useSelector } from 'react-redux';
@@ -28,11 +31,9 @@ export const Verification = ({ setIsChecked, closeModal }) => {
     )
       .then((data) => {
         setIsChecked(true);
-        console.log(data);
       })
       .catch((err) => {
         setErrorMessage('비밀번호를 확인하세요');
-        console.log(err);
       });
   };
 
@@ -40,9 +41,9 @@ export const Verification = ({ setIsChecked, closeModal }) => {
     <>
       <VerificationBackground onClick={closeModal}>
         <VerificationContainer onClick={(e) => e.stopPropagation()}>
-          <h1>본인 인증</h1>
-          <div>아이디: {userInfo.userId}</div>
-          <input
+          <VerificationTitle>본인 인증</VerificationTitle>
+          <ID>ID: {userInfo.userId}</ID>
+          <InputPassword
             type='password'
             placeholder='비밀번호를 입력하세요'
             onChange={passwordInputChangeHandler}

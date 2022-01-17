@@ -32,6 +32,31 @@ flex-direction: column;
 z-index: 101;
 `;
 
+// 본인인증 제목
+export const VerificationTitle = styled.h2`
+
+`;
+
+// 본인 아이디
+export const ID = styled.h3`
+
+`;
+
+// 비밀번호 입력input
+export const InputPassword = styled.input.attrs({
+  placeholder: '비밀번호를 입력하세요',
+  type: 'password'
+})`
+  margin: 10px 0 0 10px;
+  border-radius: 2px;
+  width: 170px;
+  height: 40px;
+  border: 1px solid #e5e5e5;
+  padding: 9px 12px;
+  outline: none;
+  box-sizing: border-box;
+`;
+
 export const Button = styled.button`
   width: 130px;
   height: 40px;

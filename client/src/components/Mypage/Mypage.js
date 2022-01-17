@@ -1,11 +1,10 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { useInView } from 'react-intersection-observer';
 import { UserModifyModal } from '../UserInfoModify/UserModifyModal';
 import { SetenceModal } from '../SentenceModal/SentenceModal';
-import example from '../../assets/images/defaultUserImage.png';
 import { IsGuestNoticeModal } from '../../components/NoticeModal/UserModifyNoticeModal/IsGuestNoticeModal';
 import { Loading } from '../../utils/Loading/Loading';
 import {
@@ -50,7 +49,6 @@ export default function MyPage () {
     userNickName: '',
     userImage: ''
   });
-  const [userImage, setUserImage] = useState(example);
   const [follow, setFollow] = useState({
     following: 0,
     follower: 0
@@ -132,7 +130,6 @@ export default function MyPage () {
                 userNickName: res.data.userInfo.userNickName,
                 userImage: res.data.userInfo.userImage
               });
-              setUserImage(res.data.userInfo.userImage);
               setFollow({
                 following: res.data.follow.following,
                 follower: res.data.follow.follower
@@ -151,8 +148,6 @@ export default function MyPage () {
     // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
     if (inView && !loading) {
       setPage(prevState => prevState + 1);
-    } else {
-      console.log('loading true');
     }
   }, [inView, loading]);
 

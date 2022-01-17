@@ -7,8 +7,6 @@ import {
 } from './NoticeModalStyle';
 
 export const NoticeModal = ({ NoticeModalOpenHandler, followInfo, userInfo }) => {
-  console.log('유저정보', userInfo);
-  console.log('팔로우정보', followInfo);
   const deleteFollowReq = () => {
     if (userInfo.id === 1) {
       NoticeModalOpenHandler();
@@ -21,7 +19,6 @@ export const NoticeModal = ({ NoticeModalOpenHandler, followInfo, userInfo }) =>
           NoticeModalOpenHandler();
         })
         .catch((err) => {
-          console.log(err);
           NoticeModalOpenHandler();
         });
     }

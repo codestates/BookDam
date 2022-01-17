@@ -65,6 +65,9 @@ export const SetenceModal = ({ openSentenceModalHandler, setIsOpenSentenceModal 
         setIsDeleteSuccess(true);
         setErrorMessage('수집하신 문장이 삭제되었습니다');
         document.location.reload();
+      })
+      .catch((err) => {
+      
       });
   };
   // 삭제 완료 노티스 모달

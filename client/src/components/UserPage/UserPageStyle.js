@@ -73,16 +73,24 @@ export const NickNameFollowSection = styled.div`
   flex-wrap: nowrap;
   margin-bottom: 5px;
   /* border: 1px solid red; */
+  > .BtnContainer{
+    width: 40px;
+    /* border: 2px solid; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 export const NickName = styled.div`
   display: flex;
   width: 100px;
   font-size: 1.1rem;
+  font-weight: 900;
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin-left: 5px;
+  padding: 0px;
   /* border: 1px solid green; */
 `;
 
@@ -204,4 +212,26 @@ export const Article = styled.img`
   height: 100%;
   border-radius: 5px;
   cursor: pointer;
+`;
+
+export const UserFollowIcon = styled.button`
+font-weight: 900;
+height: 20px;
+width: 60px;
+border: 0;
+border-radius: 2px;
+font-size: 15px;
+background-color: rgba(0,0,0,0);
+transition: all 0.1s ease-out;
+cursor: pointer;
+> svg {
+  margin-top: 2px;
+}
+:hover {
+  font-size:20px;
+}
+@media screen and (max-width: 500px) {
+  font-size: 10px;
+  width: 50px;
+}
 `;

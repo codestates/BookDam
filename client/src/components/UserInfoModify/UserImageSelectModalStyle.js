@@ -18,6 +18,10 @@ export const UserImgSelectModalContainer = styled.div`
 
 // 모달: UserModify 모달창
 export const UserImgSelectContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
   position: fixed;
   left: 50%;
   top: 50%;

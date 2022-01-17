@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
@@ -57,7 +57,8 @@ export function UserModifyModal ({
   const [inputUserNickName, setInputUserNickName] = useState(null);
   const [inputPassword, setInputPassword] = useState('');
   const [inputUserImage, setInputUserImage] = useState(null);
-  const [inputModifyInfoCheck, setInputModifyInfoCheck] = useState(false);
+
+  const [inputUserInfoModifyCheck, setInputUserInfoModifyCheck] = useState(false);
   const [passwordChk, setPasswordChk] = useState(false);
   const [nickNameErrorMessage, setNickNameErrorMessage] = useState('');
   const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
@@ -76,6 +77,7 @@ export function UserModifyModal ({
   // 모달 창 닫는 버튼 함수
   const closeModal = () => {
     closeUserInfoModify();
+    console.log('회원정보수정 모달 닫힘');
   };
 
   // !input handler-NickName
@@ -84,6 +86,7 @@ export function UserModifyModal ({
       setNickNameErrorMessage('기존과 동일한 닉네임입니다');
     } else {
       setNickNameErrorMessage('');
+      setInputUserInfoModifyCheck(true);
       setInputUserNickName(e.target.value);
     }
   };
@@ -118,11 +121,14 @@ export function UserModifyModal ({
   // 유저가 이미지를 넣는 함수
   const handleInputImage = (alt) => {
     setInputUserImage(userImage[`${alt}`]);
+    setInputUserInfoModifyCheck(true);
+
   };
 
   // 회원정보 유저정보 수정 함수
   const modifyUserInfoHandler = () => {
-    if (!inputUserImage || !inputUserNickName) {
+    if (inputUserInfoModifyCheck) {
+
       axios
         .patch(`http://localhost:4000/user/${myUserInfo.id}`,
           {
@@ -138,8 +144,12 @@ export function UserModifyModal ({
         .then((data) => {
           if (data.data.message === 'success') {
             setErrorMessage('닉네임이 변경 되었습니다');
+            setInputUserInfoModifyCheck(false);
             document.location.reload();
           }
+        })
+        .catch((err) => {
+
         });
     } else if (inputPassword.length !== 0) {
       axios
@@ -158,6 +168,9 @@ export function UserModifyModal ({
             setErrorMessage('비밀번호가 수정 되었습니다');
             document.location.reload();
           }
+        })
+        .catch((err) => {
+
         });
     } else {
       setErrorMessage('변경할 정보를 입력해주세요');
@@ -168,6 +181,7 @@ export function UserModifyModal ({
   const userModifyNoticeModalHandler = () => {
     setIsModificationSuccess(false);
     setIsOpenModifyModal(false);
+    console.log('회원정보수정 노티스 모달 열기/닫기');
   };
 
   // 회원정보 탈퇴 함수
@@ -187,7 +201,9 @@ export function UserModifyModal ({
   const signoutNoticeModalHandler = () => {
     setisSignoutSuccess(false);
     setIsOpenModifyModal(false);
+    console.log('회원탈퇴 노티스 모달 열기/닫기');
   };
+
 
   return (
     <>

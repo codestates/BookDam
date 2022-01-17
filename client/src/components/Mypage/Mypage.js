@@ -88,6 +88,13 @@ export default function MyPage () {
   // 북 썸네일을 누르면 SentenceModal이 나오는 함수
   const openSentenceModalHandler = (el) => {
     setIsOpenSentenceModal(!isOpenSentenceModal);
+    if(isOpenSentenceModal) {
+      console.log('a')
+      document.body.style.overflow = 'unset';
+    } else {
+      document.body.style.overflow = 'hidden';
+    }
+    
     history.push({
       state: {
         articleInfo: {

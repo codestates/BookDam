@@ -103,9 +103,6 @@ export const ButtonsInIntro = styled.button`
   &:hover {
     color: #ffffff;
   }
-  &:active {
-    background: #2683C9;
-  }
 `;
 
 export const SectionWrapperTwo = styled.div`

@@ -299,7 +299,4 @@ export const ButtonsInWrite = styled.button`
   &:hover {
     color: #ffffff;
   }
-  &:active {
-    background: #2683C9;
-  }
 `;

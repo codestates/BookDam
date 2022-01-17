@@ -98,7 +98,7 @@ export default function Navbar () {
 
         <NavbarWrapper>
           <LogoSection>
-            <Link to='/feedpage'><LogoImage src={Logo} /></Link>
+            <Link to='/mypage'><LogoImage src={Logo} /></Link>
           </LogoSection>
           <NavMenuSection>
             {navMenu1

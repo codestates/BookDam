@@ -50,9 +50,10 @@ export function UserModifyModal ({
     userImage: ''
   });
   const { id, userId, userNickName, userImages } = modifyUserInputInfo; // input 값으로 들어오는 정보
-  const [inputUserNickName, setInputUserNickName] = useState('')
+  const [inputUserNickName, setInputUserNickName] = useState(null)
   const [inputPassword, setInputPassword] = useState('')
-  const [inputUserImage, setInputUserImage] = useState('')
+  const [inputUserImage, setInputUserImage] = useState(null)
+  const [inputUserInfoModifyCheck, setInputUserInfoModifyCheck] = useState(false)
   const [passwordChk, setPasswordChk] = useState(false);
   const [nickNameErrorMessage, setNickNameErrorMessage] = useState('');
   const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
@@ -81,6 +82,7 @@ export function UserModifyModal ({
     }
     else {
       setNickNameErrorMessage('');
+      setInputUserInfoModifyCheck(true)
       setInputUserNickName(e.target.value)
     }
   };
@@ -117,17 +119,18 @@ export function UserModifyModal ({
   const handleInputImage = (alt) => {
     console.log(userImage[`${alt}`])
     setInputUserImage(userImage[`${alt}`])
+    setInputUserInfoModifyCheck(true)
   };
 
   // 회원정보 유저정보 수정 함수
   const modifyUserInfoHandler = () => {
-    if (inputUserNickName.length !== 0 || inputUserImage) {
+    if (inputUserInfoModifyCheck) {
         axios
         .patch(`http://localhost:4000/user/${myUserInfo.id}`,
           {
             userInfo: {
-              userNickName : inputUserNickName || userNickName,
-              userImage : inputUserImage || userImages
+              userNickName : inputUserNickName || myUserInfo.userNickName,
+              userImage : inputUserImage || myUserInfo.userImage
             }
           },
           {
@@ -137,6 +140,7 @@ export function UserModifyModal ({
         .then((data) => {
           if (data.data.message === "success") {
             setErrorMessage('닉네임이 변경 되었습니다');
+            setInputUserInfoModifyCheck(false)
             console.log('닉네임 수정 성공');
             document.location.reload();
           }

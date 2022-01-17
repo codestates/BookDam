@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const IntroWholeContainer = styled.div`
   border: 1px solid black;
-  overflow: hidden;
   position: relative;
   height: 2300px;
   width: 100vw;
@@ -33,7 +32,7 @@ export const SectionInfoContainer = styled.div`
   margin: 10px;
   height: 600px;
 
-  @media screen and (max-width: 910px) {
+  @media screen and (max-width: 500px) {
     flex-direction: column;
   }
 `;

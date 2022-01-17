@@ -28,7 +28,7 @@ function App () {
       <Switch>
         <Route exact path='/'>
           <IntroPage />
-          {/* <Footer /> */}
+          <Footer />
         </Route>
         <Header />
       </Switch>

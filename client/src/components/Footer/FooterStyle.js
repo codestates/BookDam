@@ -6,24 +6,27 @@ export const FooterContainer = styled.div`
   flex-direction: column;
   align-items: center;
   height: 180px;
-  width: 100vw;
-  padding-top: 20px;
+  width: 100%;
   background-color: black;
-    @media (max-width:500px) {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      height: 120px;
-      width: 100%;
-    }
-`;
-export const FooterInfo = styled.div`
-width: 970px;
-display: flex;
-flex-direction: row;
-justify-content: space-around;
 
-/* @media (max-width: ) */
+  @media screen and (max-width:500px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 120px;
+    width: 100%;
+  }
+`;
+
+export const FooterInfo = styled.div`
+  width: 970px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  @media (max-width: 500px) {
+    width: 100%;
+  }
 `;
 
 export const FooterLogo = styled.img.attrs({

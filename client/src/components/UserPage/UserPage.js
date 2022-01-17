@@ -1,6 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import example from '../../assets/images/defaultUserImage.png';
+import { useInView } from 'react-intersection-observer';
+import Axios from 'axios';
+import { FaUserCheck } from 'react-icons/fa';
+import { Loading } from '../../utils/Loading/Loading';
+import { useSelector } from 'react-redux';
+import { FollowNoticeModal } from '../NoticeModal/FollowNoticeModal/FollowNoticeModal'
+
 import {
   UserPageContainer,
   UserInfoContainer,
@@ -14,56 +20,142 @@ import {
   FollowCount,
   Follower,
   FollowerCount,
-  ArticleListTitle,
   ArticleListContainer,
   ArticleWrap,
-  Article
+  Article,
+  UserFollowIcon
 } from './UserPageStyle';
 
 export default function UserPage () {
+  const [loading, setLoading] = useState(false)
+  const [more, setMore] = useState(true);
+  const [page, setPage] = useState(0);
+  const [ref, inView] = useInView();
+  const [articleCnt, setArticleCnt] = useState(0)
+  const [articleList, setArticleList] = useState([])
+  const [followCnt, setFollowCnt] = useState({})
+  const [isfollow, setIsfollow] = useState(1)
+  const [isOpenNoticeModal, setIsOpenNoticeModal] = useState(false)
   const location = useLocation();
   const followInfo = location.state.followInfo;
+  const userState = useSelector(state => state.userInfoReducer);
+  const { userInfo } = userState;
 
-  console.log(location.state);
+  // console.log(userInfo)
+  // console.log(followInfo)
+  const closeNoticeModal = () => {
+    console.log('노티스모달 닫기버튼 클릭')
+    setIsOpenNoticeModal(!isOpenNoticeModal);
+  }
+  useEffect(()=> {
+    const getMyInfoAll = () => {
+      if (more) {
+        setLoading(true);
+        setTimeout(() => {
+          Axios
+            .get(`http://localhost:4000/user/${followInfo.id}?page=${page}`,
+              {
+                headers: { 'Content-Type': 'application/json' }
+              })
+            .then((res) => {
+              console.log(res.data);
+              if (res.data.articleData.rows.length === 0) {
+                setMore(false);
+              }
+              setIsfollow(res.data.isfollow)
+              setArticleCnt(res.data.articleData.count)
+              setArticleList(articleList => [...articleList, ...res.data.articleData.rows]);
+              setFollowCnt({
+                following: res.data.follow.following,
+                follower: res.data.follow.follower
+              });
+            })
+            .catch((err) => {
+              console.log(err)})
+            setLoading(false);
+        }, 1000);}
+  }
+  getMyInfoAll();
+  }, [followInfo.id, page, more]);
+
+  useEffect(() => {
+    // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
+    if (inView && !loading) {
+      console.log('loading false');
+      setPage(prevState => prevState + 1);
+    } else {
+      console.log('loading true');
+    }
+  }, [inView, loading]);
+
+  // 팔로우 신청 함수
+  const following = () => {
+    if (isfollow === 1) {
+      setIsOpenNoticeModal(true)
+    }
+    else if (isfollow === 0) {
+      Axios.post(`http://localhost:4000/follow/${userInfo.id}?follow_Id=${followInfo.id}`,
+      {
+        headers: { 'Contnet-Type': 'application/json' }
+      })
+      .then((data) => {
+        setIsfollow(1)
+        document.location.reload()
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    }
+  }
+
+
+  const articles = articleList.map((el, index) => {
+    return (
+      <ArticleWrap key={index}>
+        <Article
+          src={el.book_Thumbnail}
+        />
+      </ArticleWrap>
+    );
+  });
+
+
   return (
     <>
       <UserPageContainer>
+        {isOpenNoticeModal ? 
+        <FollowNoticeModal 
+          setIsfollow={setIsfollow}
+          closeNoticeModal={closeNoticeModal}
+          userInfo={userInfo}
+          followInfo={followInfo}
+          /> : null}
         <UserInfoContainer>
           <UserImgSection>
-            <UserImage src={example} />
+            <UserImage src={followInfo.userImage} />
           </UserImgSection>
           <UserInfoSection>
             <NickNameFollowSection>
               <NickName>{followInfo.userNickName}</NickName>
+              <div className='BtnContainer'><UserFollowIcon onClick={following}>{isfollow === 1 ? <FaUserCheck/> : <div>"팔로우"</div>}</UserFollowIcon></div>
+            </NickNameFollowSection>
+            <span><strong>게시글</strong> {articleCnt}
               <FollowContainer>
                 <Follow>팔로우
-                  <FollowCount>123</FollowCount>
+                  <FollowCount>{followCnt.following}</FollowCount>
                 </Follow>
                 <Follower>팔로워
-                  <FollowerCount>225</FollowerCount>
+                  <FollowerCount>{followCnt.follower}</FollowerCount>
                 </Follower>
               </FollowContainer>
-            </NickNameFollowSection>
-            <>게시글 숫자 입력칸</>
+            </span>
           </UserInfoSection>
-          <div>소개글 입력 칸</div>
         </UserInfoContainer>
-        <ArticleListTitle>수집 목록</ArticleListTitle>
         <ArticleListContainer>
-
-          <ArticleWrap>
-            <Article />
-          </ArticleWrap>
-          <ArticleWrap>
-            <Article />
-          </ArticleWrap>
-          <ArticleWrap>
-            <Article />
-          </ArticleWrap>
-          <ArticleWrap>
-            <Article />
-          </ArticleWrap>
+          {articles}
         </ArticleListContainer>
+        <div ref={ref}>{loading && articleList.length > 8 ? <Loading /> : null}</div>
 
       </UserPageContainer>
     </>

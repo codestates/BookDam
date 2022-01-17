@@ -129,14 +129,14 @@ export const Write = () => {
     } else {
       setInputSentence(e.target.value);
       const textLength = (e.target.value).length;
-      if (textLength === 121) {
+      if (textLength === 601) {
         setIsOpenTextLimitNoticeModal(true);
-        setErrorMessage('글자수 120자까지 가능합니다.');
+        setErrorMessage('글자수 600자까지 가능합니다.');
         const setenceValue = e.target.value;
         const newSentence = setenceValue.slice(0, -1);
         setInputSentence(newSentence);
         // 입력 자체를 제한
-      } else if (textLength <= 120) {
+      } else if (textLength <= 600) {
         setIsOpenTextLimitNoticeModal(false);
         setSentenceLength(textLength);
       }
@@ -150,14 +150,14 @@ export const Write = () => {
     } else {
       setInputComment(e.target.value);
       const textLength = (e.target.value).length;
-      if (textLength === 61) {
+      if (textLength === 601) {
         setIsOpenTextLimitNoticeModal(true);
-        setErrorMessage('글자수 60자까지 가능합니다.');
+        setErrorMessage('글자수 600자까지 가능합니다.');
         const commentValue = e.target.value;
         const newComment = commentValue.slice(0, -1);
         setInputComment(newComment);
         // 입력 자체를 제한
-      } else if (textLength <= 60) {
+      } else if (textLength <= 600) {
         setIsOpenTextLimitNoticeModal(false);
         setCommentLength(textLength);
       }
@@ -322,11 +322,11 @@ export const Write = () => {
         <WriteArticleWrapper>
           <WriteArticleContainer>
             <WriteTextLimitContainer>
-              <WriteTextLimitResult>{sentenceLength}/120자</WriteTextLimitResult>
+              <WriteTextLimitResult>{sentenceLength}/600자</WriteTextLimitResult>
             </WriteTextLimitContainer>
             <WriteSentenceSection value={inputSentence} onChange={handleInputSentence} />
             <WriteTextLimitContainer>
-              <WriteTextLimitResult>{commentLength}/60자</WriteTextLimitResult>
+              <WriteTextLimitResult>{commentLength}/600자</WriteTextLimitResult>
 
             </WriteTextLimitContainer>
             <WriteCommentSection value={inputComment} onChange={handleInputComment} />

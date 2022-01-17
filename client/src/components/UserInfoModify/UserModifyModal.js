@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
@@ -25,8 +25,9 @@ import { IoClose } from 'react-icons/io5';
 import { UserModifyNoticeModal } from '../../components/NoticeModal/UserModifyNoticeModal/UserModifyNoticeModal';
 import { SignoutNoticeModal } from '../../components/NoticeModal/UserModifyNoticeModal/SignoutNoticeModal';
 import { Verification } from '../VerificationModal/VerificationModal';
+import { UserImageSelectModal } from './UserImageSelectModal';
+import { userImage } from '../../assets/images/userImage/userImage';
 import { UserInfoModifyAction } from '../../actions/UserInfoAction';
-
 // 회원정보수정 PATCH
 // http://localhost:4000/user/:user_Id
 // { userInfo: {userId:sangkwon2406, } }
@@ -48,9 +49,10 @@ export function UserModifyModal ({
     userNickName: '',
     userImage: ''
   });
-  const { id, userId, userNickName, userImage } = modifyUserInputInfo; // input 값으로 들어오는 정보
+  const { id, userId, userNickName, userImages } = modifyUserInputInfo; // input 값으로 들어오는 정보
   const [inputUserNickName, setInputUserNickName] = useState('')
   const [inputPassword, setInputPassword] = useState('')
+  const [inputUserImage, setInputUserImage] = useState('')
   const [passwordChk, setPasswordChk] = useState(false);
   const [nickNameErrorMessage, setNickNameErrorMessage] = useState('');
   const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
@@ -60,6 +62,7 @@ export function UserModifyModal ({
   const [isSignoutSuccess, setisSignoutSuccess] = useState(false);
   const isValidPassword = /(?=.*\d)(?=.*[a-zA-ZS]).{8,}/; // 문자, 숫자 1개이상 포함, 8자리 이상
   const [isChecked, setIsChecked] = useState(false);
+  const [isSelectUserImgOpen, setIsSelectUserImgOpen] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
   const userState = useSelector(state => state.userInfoReducer);
@@ -68,9 +71,10 @@ export function UserModifyModal ({
   // 모달 창 닫는 버튼 함수
   const closeModal = () => {
     closeUserInfoModify();
+    console.log('회원정보수정 모달 닫힘')
   };
 
-  // !input handler-NickName
+  // input handler-NickName
   const handleInputNickName = (e) => {
     if (myUserInfo.userNickName === e.target.value) {
       setNickNameErrorMessage('기존과 동일한 닉네임입니다');
@@ -81,7 +85,7 @@ export function UserModifyModal ({
     }
   };
 
-  // !input handler-PW
+  // input handler-PW
   const handleInputPW = (e) => {
     if (e.target.value.length > 0 && isValidPassword.test(e.target.value) === false) {
       setPasswordErrorMessage('8자리 이상의 문자+숫자 조합으로 만들어주세요');
@@ -91,7 +95,7 @@ export function UserModifyModal ({
     }
   };
 
-  // !input handler-PWSheck
+  // input handler-PWSheck
   const handlePWCheck = (e) => {
     if (e.target.value.length === 0) {
       setPwChkErrorMessage('');
@@ -103,79 +107,81 @@ export function UserModifyModal ({
     }
   };
 
-  // 유저가 이미지를 넣는 함수
-  const handleInputImage = () => {
-    // !모달 오픈 상태 만들어서 setState('')
-    // 상태 변경할 때 모달 오픈되게 
-    // 모달창 안에는 '../../assets/images/userImage/userImage'
-    // 디폴트 이미지는 bird로 선택
+  // 사진 선택 모달 열기
+  const openSelectImgModal = () => {
+    setIsSelectUserImgOpen(!isSelectUserImgOpen)
+    console.log('사진선택 모달 열기/닫기')
+  }
 
+  // 유저가 이미지를 넣는 함수
+  const handleInputImage = (alt) => {
+    console.log(userImage[`${alt}`])
+    setInputUserImage(userImage[`${alt}`])
   };
 
   // 회원정보 유저정보 수정 함수
   const modifyUserInfoHandler = () => {
-  if (inputUserNickName.length !== 0) {
-      axios
-      .patch(`http://localhost:4000/user/${myUserInfo.id}`,
-        {
-          userInfo: {
-            userNickName : inputUserNickName
-          }
-        },
-        {
-          headers: { 'Content-Type': 'application/json' }
-        }
-      )
-      .then((data) => {
-        if (data.data.message === "success") {
-          setModifyUserInputInfo({
-            id: id,
-            userId: userId,
-            userNickName: data.data.userInfo.userNickName,
-            userImage: userImage
-          })
-          setErrorMessage('닉네임이 변경 되었습니다');
-          console.log('닉네임 수정 성공');
-          document.location.reload();
-        }
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-    }
-    else if (inputPassword.length !== 0) {
-      axios
+    if (inputUserNickName.length !== 0 || inputUserImage) {
+        axios
         .patch(`http://localhost:4000/user/${myUserInfo.id}`,
           {
             userInfo: {
-              password: inputPassword,
+              userNickName : inputUserNickName || userNickName,
+              userImage : inputUserImage || userImages
             }
           },
           {
             headers: { 'Content-Type': 'application/json' }
-          })
+          }
+        )
         .then((data) => {
-          if (data.status === 201) {
-            setIsModificationSuccess(true);
-            setErrorMessage('비밀번호가 수정 되었습니다');
-            console.log('비밀번호 수정 성공');
+          if (data.data.message === "success") {
+            setErrorMessage('닉네임이 변경 되었습니다');
+            console.log('닉네임 수정 성공');
             document.location.reload();
           }
-          
         })
         .catch((err) => {
-          console.log(err);
-        });
-    }
-    else {
-      setErrorMessage('변경할 정보를 입력해주세요')
-    }
-  };
+          console.log(err)
+        })
+      }
+      else if (inputPassword.length !== 0) {
+        axios
+          .patch(`http://localhost:4000/user/${myUserInfo.id}`,
+            {
+              userInfo: {
+                password: inputPassword,
+              }
+            },
+            {
+              headers: { 'Content-Type': 'application/json' }
+            })
+          .then((data) => {
+            if (data.status === 201) {
+              setIsModificationSuccess(true);
+              setErrorMessage('비밀번호가 수정 되었습니다');
+              console.log('비밀번호 수정 성공');
+              document.location.reload();
+            }
+            
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+      else {
+        setErrorMessage('변경할 정보를 입력해주세요')
+      }
+    };
+  
+    
 
-  // 회원정보수정 노티스 모달 핸들러
-  const userModifyNoticeModalHandler = () => {
-    setIsModificationSuccess(false);
-    setIsOpenModifyModal(false);
+
+    // 회원정보수정 노티스 모달 핸들러
+    const userModifyNoticeModalHandler = () => {
+      setIsModificationSuccess(false);
+      setIsOpenModifyModal(false);
+      console.log('회원정보수정 노티스 모달 열기/닫기')
   };
 
   // 회원정보 탈퇴 함수
@@ -193,12 +199,14 @@ export function UserModifyModal ({
       .catch((err) => {
         console.log(err);
       });
+
   };
 
   // 회원탈퇴 노티스 모달 핸들러
   const signoutNoticeModalHandler = () => {
     setisSignoutSuccess(false);
     setIsOpenModifyModal(false);
+    console.log('회원탈퇴 노티스 모달 열기/닫기')
   };
 
   // 회원정보 수정 버튼 클릭시 본인인증(비밀번호)을 하고
@@ -215,13 +223,18 @@ export function UserModifyModal ({
   // password 변경 시 password만 들어온다
   // req body userInfo 에 담아서 보내준다.
   // (userNickName or password)
-
   return (
     <>
       {!isChecked
         ? <Verification setIsChecked={setIsChecked} closeModal={closeModal} />
         : <UserInfoModifyModalContainer onClick={userInfoModifyBtnHandler}>
           <UserInfoModifyContainer onClick={(e) => e.stopPropagation()}>
+          {isSelectUserImgOpen ? 
+            <UserImageSelectModal 
+              handleInputImage={handleInputImage}
+              openSelectImgModal={openSelectImgModal}
+              /> 
+          : null}
             <ModifyCloseSection>
               <div onClick={closeModal}>
                 <IoClose />
@@ -230,9 +243,9 @@ export function UserModifyModal ({
             <UserInfoSection>
               <UserImgSection>
                 <EditPictureWrap>
-                  <EditPictureBtn onClick={handleInputImage}>사진선택</EditPictureBtn> {/* 이미지 처리 할 것 */}
+                  <EditPictureBtn onClick={openSelectImgModal}>사진선택</EditPictureBtn> {/* 이미지 처리 할 것 */}
                 </EditPictureWrap>
-                <UserImage src={myUserInfo.userImage} />
+                <UserImage src={inputUserImage || myUserInfo.userImage} />
               </UserImgSection>
               <UserNickName>{myUserInfo.userNickName}</UserNickName>
             </UserInfoSection>
@@ -278,4 +291,4 @@ export function UserModifyModal ({
         </UserInfoModifyModalContainer>}
     </>
   );
-}
+};

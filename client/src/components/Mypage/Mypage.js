@@ -64,10 +64,12 @@ export default function MyPage () {
   const [ref, inView] = useInView(); // react-intersection-observer -> div가 viewport에 보여질 때 inView 값이 true
   const history = useHistory();
 
-  // 회원정보수정 버튼 누르면 회원정보수정 모달이 나오는 함수
+  // 회원정보수정 모달을 닫는 함수
   const closeNoticeModal = () => {
     setIsOpenNoticeModal(!isOpenNoticeModal);
   };
+  
+  // 회원정보수정 버튼 누르면 회원정보수정 모달이 나오는 함수
   const userInfoModifyBtnHandler = () => {
     if (userInfo.userId === 'guest') {
       setErrorMessage('로그인 후 이용하세요');
@@ -76,7 +78,7 @@ export default function MyPage () {
       setIsOpenModifyModal(!isOpneModifyModal);
     }
   };
-  // 회원정보수정 모달 창을 닫는 버튼(x) 함수
+  // 회원정보수정 모달 안에 있는 닫기(x)버튼 함수
   const closeUserInfoModify = () => {
     setIsOpenModifyModal(!isOpneModifyModal);
   };
@@ -85,7 +87,6 @@ export default function MyPage () {
   const openSentenceModalHandler = (el) => {
     setIsOpenSentenceModal(!isOpenSentenceModal);
     if (isOpenSentenceModal) {
-      console.log('a');
       document.body.style.overflow = 'unset';
     } else {
       document.body.style.overflow = 'hidden';
@@ -208,7 +209,6 @@ export default function MyPage () {
               >
                 회원정보수정
               </UserModifyBtn>
-
             </UserInfoSection>
           </UserInfoContainer>
           <ArticleListContainer>

@@ -181,7 +181,6 @@ export function UserModifyModal ({
   const userModifyNoticeModalHandler = () => {
     setIsModificationSuccess(false);
     setIsOpenModifyModal(false);
-    console.log('회원정보수정 노티스 모달 열기/닫기');
   };
 
   // 회원정보 탈퇴 함수
@@ -201,7 +200,6 @@ export function UserModifyModal ({
   const signoutNoticeModalHandler = () => {
     setisSignoutSuccess(false);
     setIsOpenModifyModal(false);
-    console.log('회원탈퇴 노티스 모달 열기/닫기');
   };
 
 

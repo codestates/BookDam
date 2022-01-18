@@ -5,7 +5,7 @@ const morgan = require('morgan');
 
 const router = require('./router/index');
 const app = express();
-const port = 4000;
+const port = 80;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

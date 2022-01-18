@@ -98,6 +98,7 @@ module.exports = {
           });
       });
     });
+    // bcrypt 동기적, 비동기적인 처리 차이를 실제로 보고 처리를 해볼 예정입니다.
     // const encryptedPassowrd = bcrypt.hashSync(password, 10);
     // const duplication = await UserModel.findOrCreate({
     //   where: {
@@ -251,6 +252,7 @@ module.exports = {
           res.status(400).json({ message: 'failure', error: error });
         });
     }
+    // bcrypt 동기적, 비동기적인 처리 차이를 실제로 보고 처리를 해볼 예정입니다.
     // if (userInfo.password) userInfo.password = bcrypt.hashSync(userInfo.password, 10);
     // UserModel.update(
     //   userInfo, { where: { id: id } })

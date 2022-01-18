@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const IntroWholeContainer = styled.div`
-  border: 1px solid black;
+  /* border: 10px solid black; */
   overflow: hidden;
   position: relative;
   height: 2300px;
@@ -12,7 +12,7 @@ export const SectionWrapperOne = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   height: 750px;
 `;
 

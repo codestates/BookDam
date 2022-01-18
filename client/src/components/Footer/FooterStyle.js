@@ -5,7 +5,7 @@ export const FooterWholeContainer = styled.div`
   border: 1px solid black;
   overflow: hidden;
   position: relative;
-  height: 2300px;
+  height: 180px;
   width: 100vw;
 `;
 
@@ -28,7 +28,7 @@ export const FooterContainer = styled.div`
 `;
 
 export const FooterInfo = styled.div`
-  width: 970px;
+  width: 100%;
   display: flex;
   flex-direction: row;
   /* border: 1px solid blue; */

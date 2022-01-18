@@ -11,7 +11,6 @@ export const LoginModalWholeBackground = styled.div`
   backdrop-filter: blur(5px); //blur 효과
 
   @media screen and (max-width: 500px) {
-    /* background: white; */
     display: hidden;
   }
 `;

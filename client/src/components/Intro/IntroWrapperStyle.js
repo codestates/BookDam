@@ -32,7 +32,6 @@ export const SectionInfoContainer = styled.div`
   border: 3px solid blue;
   margin: 10px;
   height: 600px;
-
   @media screen and (max-width: 500px) {
     flex-direction: column;
   }

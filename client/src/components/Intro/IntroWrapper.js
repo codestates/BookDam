@@ -139,10 +139,12 @@ export const IntroWrapper = () => {
         </SectionWrapperOne>
 
         <SectionWrapperTwo>
-          <SectionInfoContainer>{/* SectionInfo2 */}
-            <TextContainer>로그인 성공여부{isLogin ? 'true' : 'false'}</TextContainer>
-            <ImageContainer>Text2</ImageContainer>
-          </SectionInfoContainer>
+          <SectionContainer>
+            <SectionInfoContainer>{/* SectionInfo2 */}
+              <TextContainer>로그인 성공여부{isLogin ? 'true' : 'false'}</TextContainer>
+              <ImageContainer>Text2</ImageContainer>
+            </SectionInfoContainer>
+          </SectionContainer>
         </SectionWrapperTwo>
 
         <SectionWrapperThree>

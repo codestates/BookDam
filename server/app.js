@@ -23,7 +23,10 @@ app.use(
   })
 );
 
-app.use('/', router);
+app.use('/', (req, res) => {
+  console.log('welecome bookdam')
+})
+// app.use('/', router);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

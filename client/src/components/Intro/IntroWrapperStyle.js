@@ -4,7 +4,7 @@ export const IntroWholeContainer = styled.div`
   /* border: 10px solid black; */
   overflow: hidden;
   position: relative;
-  height: 2300px;
+  height: 2500px;
   width: 100vw;
 `;
 
@@ -13,7 +13,7 @@ export const SectionWrapperOne = styled.div`
   justify-content: center;
   align-items: center;
   /* border: 1px solid red; */
-  height: 750px;
+  height: 950px;
 `;
 
 export const SectionContainer = styled.div`
@@ -108,7 +108,7 @@ export const SectionWrapperTwo = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   height: 750px;
 `;
 

@@ -36,7 +36,7 @@ export function NavSidebar ({ menuBtnHandler }) {
     await axios({
       withCredentials: true,
       method: 'post',
-      url: 'http://localhost:4000/user/logout',
+      url: 'http://server.bookdam.link/user/logout',
       headers: {
         authorization: `Bearer: ${process.env.Client_Secret}`,
         'Content-Type': 'application/json'
@@ -66,7 +66,7 @@ export function NavSidebar ({ menuBtnHandler }) {
             </SidebarHeader>
             <UserSection>
               <UserImageWrap>
-                <UserImage />
+                <UserImage src={userInfo.userImage}/>
               </UserImageWrap>
               <UserNickNamge>{userInfo.userNickName}</UserNickNamge>
             </UserSection>

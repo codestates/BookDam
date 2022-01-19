@@ -11,7 +11,7 @@ export const NoticeModal = ({ NoticeModalOpenHandler, followInfo, userInfo }) =>
     if (userInfo.id === 1) {
       NoticeModalOpenHandler();
     } else {
-      Axios.delete(`http://localhost:4000/follow/${userInfo.id}?follow_Id=${followInfo.id}`,
+      Axios.delete(`http://server.bookdam.link/follow/${userInfo.id}?follow_Id=${followInfo.id}`,
         {
           headers: { 'Contnet-Type': 'application/json' }
         })

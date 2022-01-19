@@ -88,7 +88,7 @@ export const UserImageWrap = styled.div`
   width: 90px;
   height: 90px;
   margin: 5px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 `;
 
 export const UserImage = styled.img`

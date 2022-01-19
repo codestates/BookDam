@@ -66,7 +66,7 @@ export function NavSidebar ({ menuBtnHandler }) {
             </SidebarHeader>
             <UserSection>
               <UserImageWrap>
-                <UserImage />
+                <UserImage src={userInfo.userImage}/>
               </UserImageWrap>
               <UserNickNamge>{userInfo.userNickName}</UserNickNamge>
             </UserSection>

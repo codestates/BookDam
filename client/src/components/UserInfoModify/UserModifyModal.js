@@ -42,7 +42,8 @@ export function UserModifyModal ({
   closeUserInfoModify,
   userInfoModifyBtnHandler,
   myUserInfo,
-  setIsOpenModifyModal
+  setIsOpenModifyModal,
+  updateUserInfo
 }) {
   // const userState = useSelector(state => state.userInfoReducer);
   // const { userInfo } = userState; // 저장된 유저 정보
@@ -57,7 +58,6 @@ export function UserModifyModal ({
   const [inputUserNickName, setInputUserNickName] = useState(null);
   const [inputPassword, setInputPassword] = useState('');
   const [inputUserImage, setInputUserImage] = useState(null);
-
   const [inputUserInfoModifyCheck, setInputUserInfoModifyCheck] = useState(false);
   const [passwordChk, setPasswordChk] = useState(false);
   const [nickNameErrorMessage, setNickNameErrorMessage] = useState('');
@@ -70,9 +70,9 @@ export function UserModifyModal ({
   const [isChecked, setIsChecked] = useState(false);
   const [isSelectUserImgOpen, setIsSelectUserImgOpen] = useState(false);
   const history = useHistory();
-  const dispatch = useDispatch();
-  const userState = useSelector(state => state.userInfoReducer);
-  const { userInfo } = userState;
+  // const dispatch = useDispatch();
+  // const userState = useSelector(state => state.userInfoReducer);
+  // const { userInfo } = userState;
 
   // 모달 창 닫는 버튼 함수
   const closeModal = () => {
@@ -128,14 +128,15 @@ export function UserModifyModal ({
   // 회원정보 유저정보 수정 함수
   const modifyUserInfoHandler = () => {
     if (inputUserInfoModifyCheck) {
+      const tempUserInfo = {
+        userNickName: inputUserNickName || myUserInfo.userNickName,
+        userImage: inputUserImage || myUserInfo.userImage
+      };
 
       axios
         .patch(`http://localhost:4000/user/${myUserInfo.id}`,
           {
-            userInfo: {
-              userNickName: inputUserNickName || myUserInfo.userNickName,
-              userImage: inputUserImage || myUserInfo.userImage
-            }
+            userInfo: tempUserInfo
           },
           {
             headers: { 'Content-Type': 'application/json' }
@@ -143,9 +144,14 @@ export function UserModifyModal ({
         )
         .then((data) => {
           if (data.data.message === 'success') {
-            setErrorMessage('닉네임이 변경 되었습니다');
+            updateUserInfo(
+              {...myUserInfo, 
+                userNickName: tempUserInfo.userNickName,
+                userImage: tempUserInfo.userImage
+              })
             setInputUserInfoModifyCheck(false);
-            document.location.reload();
+            // closeModal();
+            // document.location.reload();
           }
         })
         .catch((err) => {
@@ -181,7 +187,6 @@ export function UserModifyModal ({
   const userModifyNoticeModalHandler = () => {
     setIsModificationSuccess(false);
     setIsOpenModifyModal(false);
-    console.log('회원정보수정 노티스 모달 열기/닫기');
   };
 
   // 회원정보 탈퇴 함수
@@ -193,6 +198,7 @@ export function UserModifyModal ({
           setisSignoutSuccess(true);
           setErrorMessage('다음에 또 만나요!');
         }
+        // 세션스토리지 지우기
         history.push('/');
       });
   };
@@ -201,7 +207,6 @@ export function UserModifyModal ({
   const signoutNoticeModalHandler = () => {
     setisSignoutSuccess(false);
     setIsOpenModifyModal(false);
-    console.log('회원탈퇴 노티스 모달 열기/닫기');
   };
 
 

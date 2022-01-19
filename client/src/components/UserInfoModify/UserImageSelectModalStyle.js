@@ -29,11 +29,21 @@ export const UserImgSelectContainer = styled.div`
   max-height: 80%;
   width: 25rem;
   height: 800px;
-  padding: 30px;
+  padding: 20px;
   background: white;
   border-radius: 10px;
   text-align: center;
   z-index: 999;
+`;
+
+export const SelectImgText = styled.h2`
+  margin: 0;
+  padding: 0;
+`;
+
+export const UserImageContainer = styled.div`
+  margin: 0;
+  padding: 0;
 `;
 
 export const UserImage = styled.img`
@@ -43,6 +53,6 @@ export const UserImage = styled.img`
   margin: 5px;
   
   &:hover {
-    border: 5px solid black;
+    border: 3px solid #adb5bd;
   }
 `;

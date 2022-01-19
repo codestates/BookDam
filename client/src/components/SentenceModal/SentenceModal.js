@@ -13,7 +13,6 @@ import {
   UserInfo,
   UserImageContainer,
   UserImage,
-  DefaultUserImage,
   UserNameAndImage,
   UserNickName,
   PostCreatedAt,
@@ -39,13 +38,17 @@ export const SetenceModal = ({ openSentenceModalHandler, setIsOpenSentenceModal 
   const location = useLocation();
   const articleInfo = location.state.articleInfo;
   const [isOpenMenu, setIsOpenMenu] = useState(false); // 삭제, 편집 메뉴 모달 오픈
+  const [isOpenArticleNotice, setIsOpenArticleNotice] = useState(false); // 아티클 노티스 모달 오픈
   const [myArticleInfo, setMyArticleInfo] = useState(articleInfo); // write page로 넘기는 상태
-  const [isDeleteSuccess, setIsDeleteSuccess] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
 
+  // SentenceModal 속 menu 모달 여는 함수
   const openMeunHandler = () => {
     setIsOpenMenu(!isOpenMenu);
   };
+  // 삭제 버튼을 눌렀을 경우 열리는 노티스 모달 여는 함수
+  const openArticleNoticeHandler = () => {
+    setIsOpenArticleNotice(!isOpenArticleNotice);
+  }
 
   const sendToEditPage = () => {
     history.push({
@@ -58,22 +61,22 @@ export const SetenceModal = ({ openSentenceModalHandler, setIsOpenSentenceModal 
     });
   };
 
+  // 아티클을 삭제 하는 함수
   const deleteArticle = () => {
     axios
       .delete(`http://server.bookdam.link/article/${userInfo.id}?article_Id=${myArticleInfo.id}`)
       .then((data) => {
-        setIsDeleteSuccess(true);
-        setErrorMessage('수집하신 문장이 삭제되었습니다');
         document.location.reload();
       })
       .catch((err) => {
       
       });
   };
+
   // 삭제 완료 노티스 모달
   const deleteNoticModalHandler = () => {
+    setIsOpenArticleNotice(false);
     setIsOpenSentenceModal(false);
-    setIsDeleteSuccess(false);
     setIsOpenMenu(false);
   };
 
@@ -94,15 +97,15 @@ export const SetenceModal = ({ openSentenceModalHandler, setIsOpenSentenceModal 
                 >
                   편집
                 </Edit>
-                {isDeleteSuccess
+                {isOpenArticleNotice
                   ? <ArticleNoticeModal
-                      errorMessage={errorMessage}
                       deleteNoticModalHandler={deleteNoticModalHandler}
+                      deleteArticle={deleteArticle}
                     />
                   : null}
-                <Delete onClick={deleteArticle}>
-                  삭제
-                </Delete>
+                  <Delete onClick={openArticleNoticeHandler}>
+                    삭제
+                  </Delete>
               </EditMenuWrapper>
               : null}
             <UserInfo>

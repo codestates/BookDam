@@ -4,24 +4,23 @@ import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import {
   IntroWholeContainer,
-  SectionWrapperOne,
-  SectionWrapperTwo,
   SectionWrapperThree,
   SectionContainer,
   SectionInfoContainer,
   ImageContainer,
+  ImageAnimation,
   TextContainer,
+  SectionThreeText,
   TextHeaderContainer,
   ButtonWrapper,
   ButtonContainer,
   ButtonsInIntro
-} from './IntroWrapperStyle';
-import { LoginModal } from '../LoginModal/LoginModal';
-import { SignupModal } from '../Signup/SignupModal';
-import { GuestLoginAction, LogoutAction } from '../../actions/UserInfoAction';
-import { Section1 } from '../Landing/Section1/SectionOne'
+} from './Section3Style';
+import { LoginModal } from '../../LoginModal/LoginModal';
+import { SignupModal } from '../../Signup/SignupModal';
+import { GuestLoginAction, LogoutAction } from '../../../actions/UserInfoAction';
 
-export const IntroWrapper = () => {
+export const Section3 = () => {
   const [isOpenLoginModal, setIsOpenLoginModal] = useState(false);
   const [isOpenSignupModal, setIsOpenSignupModal] = useState(false);
   const [guestInfo, setGuestInfo] = useState({ userId: 'guest', password: '1234' });
@@ -51,7 +50,7 @@ export const IntroWrapper = () => {
     await axios({
       withCredentials: true,
       method: 'post',
-      url: 'http://server.bookdam.link/user/logout',
+      url: 'http://localhost:4000/user/logout',
       headers: {
         authorization: `Bearer: ${process.env.Client_Secret}`,
         'Content-Type': 'application/json'
@@ -73,7 +72,7 @@ export const IntroWrapper = () => {
     await axios({
       withCredentials: true,
       method: 'post',
-      url: 'http://server.bookdam.link/user/login',
+      url: 'http://localhost:4000/user/login',
       headers: {
         authorization: `Bearer: ${process.env.Client_Secret}`,
         'Content-Type': 'application/json'
@@ -112,24 +111,18 @@ export const IntroWrapper = () => {
               handleLoginModal={handleLoginModal}
             />
           : null}
-        <SectionWrapperOne>
-        <Section1/>
-        </SectionWrapperOne>
-
-        <SectionWrapperTwo>
-          <SectionContainer>
-            <SectionInfoContainer>{/* SectionInfo2 */}
-              <TextContainer>로그인 성공여부{isLogin ? 'true' : 'false'}</TextContainer>
-              <ImageContainer>Text2</ImageContainer>
-            </SectionInfoContainer>
-          </SectionContainer>
-        </SectionWrapperTwo>
 
         <SectionWrapperThree>
           <SectionContainer>
             <SectionInfoContainer>{/* SectionInfo3 */}
-              <ImageContainer>Image3</ImageContainer>
-              <TextContainer>Text3</TextContainer>
+              <ImageContainer>
+                <ImageAnimation />
+              </ImageContainer>
+              <TextContainer>
+                <SectionThreeText>북담으로 당신이 읽은 책의</SectionThreeText>
+                <SectionThreeText>멋진 문장을 모아 보세요. </SectionThreeText>
+                <SectionThreeText>북담</SectionThreeText>
+              </TextContainer>
             </SectionInfoContainer>
             <ButtonWrapper>
               <ButtonContainer>

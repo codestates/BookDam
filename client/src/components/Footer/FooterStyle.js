@@ -1,14 +1,22 @@
 import styled from 'styled-components';
 import logo from '../../assets/images/logo-bigw.png';
 
+export const FooterWholeContainer = styled.div`
+  border: 1px solid black;
+  overflow: hidden;
+  height: 180px;
+  width: 100vw;
+`;
+
 export const FooterContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   height: 180px;
   width: 100%;
+  /* border: 10px solid red; */
   background-color: black;
-
   @media screen and (max-width:500px) {
     display: flex;
     flex-direction: column;
@@ -19,11 +27,11 @@ export const FooterContainer = styled.div`
 `;
 
 export const FooterInfo = styled.div`
-  width: 970px;
+  width: 100%;
   display: flex;
   flex-direction: row;
+  /* border: 1px solid blue; */
   justify-content: space-around;
-
   @media (max-width: 500px) {
     width: 100%;
   }
@@ -41,7 +49,6 @@ export const FooterLogo = styled.img.attrs({
       width: 70px;
     }
 `;
-
 export const FooterContent = styled.ul`
   color: #E6E6E6;
   text-align: center;
@@ -57,7 +64,6 @@ export const FooterContent = styled.ul`
     font-size: 9px;
   }
 `;
-
 export const FooterCopyright = styled.div`
   color: #E6E6E6;
   text-align: center;
@@ -65,7 +71,6 @@ export const FooterCopyright = styled.div`
       font-size: 12px;
     }
 `;
-
 export const FooterTitle = styled.h3`
   font-weight: 900;
   font-family: 'Bebas Neue';

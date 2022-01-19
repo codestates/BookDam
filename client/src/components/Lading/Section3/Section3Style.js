@@ -1,19 +1,13 @@
 import styled from 'styled-components';
+import intro3Animation from './intro3-animation.gif'; 
+import animation from './animation.gif'
 
 export const IntroWholeContainer = styled.div`
   /* border: 10px solid black; */
   overflow: hidden;
   position: relative;
-  height: 2500px;
+  height: 2300px;
   width: 100vw;
-`;
-
-export const SectionWrapperOne = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* border: 1px solid red; */
-  height: 950px;
 `;
 
 export const SectionContainer = styled.div`
@@ -27,9 +21,10 @@ export const SectionContainer = styled.div`
 
 export const SectionInfoContainer = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 3px solid blue;
+  /* border: 3px solid blue; */
   margin: 10px;
   height: 600px;
   @media screen and (max-width: 500px) {
@@ -42,21 +37,35 @@ export const ImageContainer = styled.div`
   justify-content: center;
   align-items: center;
   margin: 10px;
-  border: 1px solid black;
-  height: 550px;
+  /* border: 1px solid black; */
+  height: 350px;
   width: 450px;
-  background-image: linear-gradient(rgba(0,170, 0, 0.1), rgba(0, 255, 0, 0.5));
+`;
+
+export const ImageAnimation = styled.img.attrs({
+  src: `${animation}`
+})`
+  /* border: 1px solid black; */
+  width: 100%;
 `;
 
 export const TextContainer = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
   margin: 10px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   height: 450px;
   width: 450px;
+  
+  @media screen and (max-width:500px) {
+    flex-direction: column;
+  }
+`;
+
+export const SectionThreeText = styled.h2`
+   /* border: 1px solid black; */
 `;
 
 export const TextHeaderContainer = styled.div`
@@ -102,14 +111,6 @@ export const ButtonsInIntro = styled.button`
   &:hover {
     color: #ffffff;
   }
-`;
-
-export const SectionWrapperTwo = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* border: 1px solid red; */
-  height: 750px;
 `;
 
 export const SectionWrapperThree = styled.div`

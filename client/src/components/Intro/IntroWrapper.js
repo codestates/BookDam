@@ -19,6 +19,7 @@ import {
 import { LoginModal } from '../LoginModal/LoginModal';
 import { SignupModal } from '../Signup/SignupModal';
 import { GuestLoginAction, LogoutAction } from '../../actions/UserInfoAction';
+import { Section1 } from '../Landing/Section1/SectionOne'
 
 export const IntroWrapper = () => {
   const [isOpenLoginModal, setIsOpenLoginModal] = useState(false);
@@ -112,30 +113,7 @@ export const IntroWrapper = () => {
             />
           : null}
         <SectionWrapperOne>
-          <SectionContainer>
-            <SectionInfoContainer>{/* SectionInfo3 */}
-              <ImageContainer>{userInfo.userNickName}</ImageContainer>
-              <TextContainer>
-                <TextHeaderContainer>
-                  <h1>Write</h1>
-                </TextHeaderContainer>
-                <h2>책에서 본 감명 깊은 문장을</h2>
-                <h2>기록할 수 있어요</h2>
-              </TextContainer>
-            </SectionInfoContainer>
-            <ButtonWrapper>
-              <ButtonContainer>
-                <Link to='/feedpage'>
-                  {isLogin
-                    ? <ButtonsInIntro>입장하기</ButtonsInIntro>
-                    : <ButtonsInIntro onClick={guestLoginHandelr}>둘러보기</ButtonsInIntro>}
-                </Link>
-                {isLogin
-                  ? null
-                  : <ButtonsInIntro onClick={handleLoginModal}>로그인</ButtonsInIntro>}
-              </ButtonContainer>
-            </ButtonWrapper>
-          </SectionContainer>
+        <Section1/>
         </SectionWrapperOne>
 
         <SectionWrapperTwo>

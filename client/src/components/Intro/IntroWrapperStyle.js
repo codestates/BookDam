@@ -12,8 +12,8 @@ export const SectionWrapperOne = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid red;
-  height: 750px;
+  /* border: 1px solid red; */
+  height: 950px;
 `;
 
 export const SectionContainer = styled.div`
@@ -109,7 +109,7 @@ export const SectionWrapperTwo = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   height: 750px;
 `;
 

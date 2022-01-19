@@ -163,6 +163,11 @@ export default function MyPage () {
     );
   });
 
+  // 내 정보(닉네임, 유저이미지)를 업데이트 하는 함수
+  const updateMyInfo = (data) => {
+    setMyUserInfo(data);
+  }
+
   return (
     <>
       <MyPageWholeContainer>
@@ -173,6 +178,7 @@ export default function MyPage () {
                 closeUserInfoModify={closeUserInfoModify}
                 myUserInfo={myUserInfo}
                 setIsOpenModifyModal={setIsOpenModifyModal}
+                updateUserInfo={updateMyInfo}
               />
             : null}
           {isOpenSentenceModal

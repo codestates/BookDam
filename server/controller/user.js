@@ -52,7 +52,7 @@ module.exports = {
       res.clearCookie('jwt').status(200).json({ message: '로그아웃 되었습니다.' });
     }
   },
-  signup: (req, res) => { // test done
+  signup: async (req, res) => { // test done
     const userInfo = req.body.userInfo;
     const userId = userInfo.userId;
     const userNickName = userInfo.userNickName;
@@ -193,7 +193,7 @@ module.exports = {
     if (Number.isNaN(findArtilces.count)) return res.status(400).json({ message: 'failure' });
     res.status(200).json({ message: 'success', userInfo: findUser, follow, articleData: findArtilces, isfollow : isfollow.count });
     },
-  patch: async (req, res) => { // test done
+  patch: (req, res) => { // test done
     const id = parseInt(req.params.user_Id, 10);
     if (Number.isNaN(id)) return res.status(400).json({ message: 'failure' });
     const cookie = req.cookies.jwt;

@@ -239,7 +239,7 @@ width: 95%;
 margin-top: 15px;
 border-radius: 15px;
 background-color: whitesmoke;
-font-size: 15px;
+font-size: 16px;
 @media (max-width: 500px) {
   font-size: 15px;
   width: 90%;
@@ -261,10 +261,11 @@ export const BookInfoWrap = styled.div`
 `;
 
 export const BookTitle = styled.div`
-  font-size: 20px;
+  font-size: 14px;
+  width: 350px;
   padding: 0;
   margin: 0;
-  margin-left: 20px;
+  margin-left: 7px;
   /* border: 1px solid black; */
 
   @media screen and (max-width: 500px) {
@@ -273,10 +274,12 @@ export const BookTitle = styled.div`
 `;
 
 export const BookAuthor = styled.div`
-  font-size: 20px;
+  font-size: 14px;
+  width: 330px;
   padding: 0;
   margin: 0;
-  margin-left: 20px;
+  margin-left: 15px;
+  /* border: 1px solid black; */
 
   @media screen and (max-width: 500px) {
     font-size: 10px

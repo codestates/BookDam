@@ -54,7 +54,7 @@ export const TextContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 10px;
+  /* margin: 10px; */
   /* border: 1px solid black; */
   height: 450px;
   width: 450px;
@@ -64,13 +64,15 @@ export const TextContainer = styled.div`
   }
 `;
 
-export const SectionThreeText = styled.h2`
+export const SectionThreeText = styled.div`
    /* border: 1px solid black; */
+   font-size: 25px;
+   font-weight: 600;
 `;
 
 export const TextHeaderContainer = styled.div`
   /* border: 1px solid black; */
-`;
+// `;
 
 export const ButtonWrapper = styled.div`
   margin: 10px;

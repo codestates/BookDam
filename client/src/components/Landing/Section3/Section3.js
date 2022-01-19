@@ -50,7 +50,7 @@ export const Section3 = () => {
     await axios({
       withCredentials: true,
       method: 'post',
-      url: 'http://localhost:4000/user/logout',
+      url: 'http://server.bookdam.link/user/logout',
       headers: {
         authorization: `Bearer: ${process.env.Client_Secret}`,
         'Content-Type': 'application/json'
@@ -72,7 +72,7 @@ export const Section3 = () => {
     await axios({
       withCredentials: true,
       method: 'post',
-      url: 'http://localhost:4000/user/login',
+      url: 'http://server.bookdam.link/user/login',
       headers: {
         authorization: `Bearer: ${process.env.Client_Secret}`,
         'Content-Type': 'application/json'
@@ -119,9 +119,9 @@ export const Section3 = () => {
                 <ImageAnimation />
               </ImageContainer>
               <TextContainer>
-                <SectionThreeText>북담으로 당신이 읽은 책의</SectionThreeText>
-                <SectionThreeText>멋진 문장을 모아 보세요. </SectionThreeText>
-                <SectionThreeText>북담</SectionThreeText>
+                <SectionThreeText>인생을 바꾸는 의미있는 작은 변화, 북담</SectionThreeText>
+                <br></br>
+                <SectionThreeText>오늘부터 북담을 시작해볼까요?</SectionThreeText>
               </TextContainer>
             </SectionInfoContainer>
             <ButtonWrapper>

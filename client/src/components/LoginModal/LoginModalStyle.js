@@ -11,12 +11,23 @@ export const LoginModalWholeBackground = styled.div`
   backdrop-filter: blur(5px); //blur 효과
 
   @media screen and (max-width: 500px) {
-    /* background: white; */
     display: hidden;
   }
 `;
 
+export const LoginModalWholeContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0%;
+`;
+
 export const LoginModalWrapper = styled.div`
+  position: fixed;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -50%);
   width: 480px;
   height: 621px;
   background-color: white;

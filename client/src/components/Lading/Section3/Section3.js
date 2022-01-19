@@ -4,23 +4,23 @@ import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import {
   IntroWholeContainer,
-  SectionWrapperOne,
-  SectionWrapperTwo,
   SectionWrapperThree,
   SectionContainer,
   SectionInfoContainer,
   ImageContainer,
+  ImageAnimation,
   TextContainer,
+  SectionThreeText,
   TextHeaderContainer,
   ButtonWrapper,
   ButtonContainer,
   ButtonsInIntro
-} from './IntroWrapperStyle';
-import { LoginModal } from '../LoginModal/LoginModal';
-import { SignupModal } from '../Signup/SignupModal';
-import { GuestLoginAction, LogoutAction } from '../../actions/UserInfoAction';
+} from './Section3Style';
+import { LoginModal } from '../../LoginModal/LoginModal';
+import { SignupModal } from '../../Signup/SignupModal';
+import { GuestLoginAction, LogoutAction } from '../../../actions/UserInfoAction';
 
-export const IntroWrapper = () => {
+export const Section3 = () => {
   const [isOpenLoginModal, setIsOpenLoginModal] = useState(false);
   const [isOpenSignupModal, setIsOpenSignupModal] = useState(false);
   const [guestInfo, setGuestInfo] = useState({ userId: 'guest', password: '1234' });
@@ -111,47 +111,18 @@ export const IntroWrapper = () => {
               handleLoginModal={handleLoginModal}
             />
           : null}
-        <SectionWrapperOne>
-          <SectionContainer>
-            <SectionInfoContainer>{/* SectionInfo3 */}
-              <ImageContainer>{userInfo.userNickName}</ImageContainer>
-              <TextContainer>
-                <TextHeaderContainer>
-                  <h1>Write</h1>
-                </TextHeaderContainer>
-                <h2>책에서 본 감명 깊은 문장을</h2>
-                <h2>기록할 수 있어요</h2>
-              </TextContainer>
-            </SectionInfoContainer>
-            <ButtonWrapper>
-              <ButtonContainer>
-                <Link to='/feedpage'>
-                  {isLogin
-                    ? <ButtonsInIntro>입장하기</ButtonsInIntro>
-                    : <ButtonsInIntro onClick={guestLoginHandelr}>둘러보기</ButtonsInIntro>}
-                </Link>
-                {isLogin
-                  ? null
-                  : <ButtonsInIntro onClick={handleLoginModal}>로그인</ButtonsInIntro>}
-              </ButtonContainer>
-            </ButtonWrapper>
-          </SectionContainer>
-        </SectionWrapperOne>
-
-        <SectionWrapperTwo>
-          <SectionContainer>
-            <SectionInfoContainer>{/* SectionInfo2 */}
-              <TextContainer>로그인 성공여부{isLogin ? 'true' : 'false'}</TextContainer>
-              <ImageContainer>Text2</ImageContainer>
-            </SectionInfoContainer>
-          </SectionContainer>
-        </SectionWrapperTwo>
 
         <SectionWrapperThree>
           <SectionContainer>
             <SectionInfoContainer>{/* SectionInfo3 */}
-              <ImageContainer>Image3</ImageContainer>
-              <TextContainer>Text3</TextContainer>
+              <ImageContainer>
+                <ImageAnimation />
+              </ImageContainer>
+              <TextContainer>
+                <SectionThreeText>북담으로 당신이 읽은 책의</SectionThreeText>
+                <SectionThreeText>멋진 문장을 모아 보세요. </SectionThreeText>
+                <SectionThreeText>북담</SectionThreeText>
+              </TextContainer>
             </SectionInfoContainer>
             <ButtonWrapper>
               <ButtonContainer>

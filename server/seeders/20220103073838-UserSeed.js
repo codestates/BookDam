@@ -8,7 +8,7 @@ module.exports = {
         userId: 'guest',
         userNickName: '게스트',
         password: '$2b$10$RJq0gXxBHhLsRhMtI8U3p./kk.KPvdohoMx179N3HvbUaDpPbMi1.', // 1234
-        userImage: "https://img.icons8.com/flat-round/512/000000/bird--v1.png",
+        userImage: 'https://img.icons8.com/flat-round/512/000000/bird--v1.png',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -17,7 +17,7 @@ module.exports = {
         userId: 'BookDam',
         userNickName: 'BookDam',
         password: '$2b$10$RJq0gXxBHhLsRhMtI8U3p./kk.KPvdohoMx179N3HvbUaDpPbMi1.', // 1234
-        userImage: "https://img.icons8.com/flat-round/512/000000/dog--v1.png",
+        userImage: 'https://img.icons8.com/flat-round/512/000000/dog--v1.png',
         createdAt: new Date(),
         updatedAt: new Date()
       }

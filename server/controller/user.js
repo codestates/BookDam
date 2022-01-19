@@ -167,12 +167,12 @@ module.exports = {
     let decodedData;
     jwt.verify(cookie, process.env.ACCESS_SECRET, function (error, decoded) {
       if (error) return res.status(401).json({ message: '토큰 만료로 로그인이 필요합니다.' });
-      decodedData = decoded
+      decodedData = decoded;
     });
     const findUser = await UserModel.findOne({
       where: { id: id }
     });
-    const isfollow = await FollowModel.findAndCountAll({ where: { user_Id: decodedData.id,  follow_Id: id} })
+    const isfollow = await FollowModel.findAndCountAll({ where: { user_Id: decodedData.id, follow_Id: id } });
     if (!findUser) return res.status(401).json({ message: 'failure' });
     const findFollowing = await FollowModel.findAndCountAll({ where: { user_Id: id } });
     const findFollower = await FollowModel.findAndCountAll({ where: { follow_Id: id } });
@@ -191,8 +191,8 @@ module.exports = {
       }]
     });
     if (Number.isNaN(findArtilces.count)) return res.status(400).json({ message: 'failure' });
-    res.status(200).json({ message: 'success', userInfo: findUser, follow, articleData: findArtilces, isfollow : isfollow.count });
-    },
+    res.status(200).json({ message: 'success', userInfo: findUser, follow, articleData: findArtilces, isfollow: isfollow.count });
+  },
   patch: (req, res) => { // test done
     const id = parseInt(req.params.user_Id, 10);
     if (Number.isNaN(id)) return res.status(400).json({ message: 'failure' });

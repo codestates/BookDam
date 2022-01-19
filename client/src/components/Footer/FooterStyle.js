@@ -4,7 +4,6 @@ import logo from '../../assets/images/logo-bigw.png';
 export const FooterWholeContainer = styled.div`
   border: 1px solid black;
   overflow: hidden;
-  position: relative;
   height: 180px;
   width: 100vw;
 `;

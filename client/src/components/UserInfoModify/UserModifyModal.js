@@ -33,7 +33,7 @@ import { RiShieldKeyholeLine } from 'react-icons/ri'; // 새 비밀번호 아이
 import { RiShieldKeyholeFill } from 'react-icons/ri'; // 새 비밀번호 아이콘
 
 // 회원정보수정 PATCH
-// http://localhost:4000/user/:user_Id
+// http://server.bookdam.link/user/:user_Id
 // { userInfo: {userId:sangkwon2406, } }
 
 axios.defaults.withCredentials = true;
@@ -130,7 +130,7 @@ export function UserModifyModal ({
     if (inputUserInfoModifyCheck) {
 
       axios
-        .patch(`http://localhost:4000/user/${myUserInfo.id}`,
+        .patch(`http://server.bookdam.link/user/${myUserInfo.id}`,
           {
             userInfo: {
               userNickName: inputUserNickName || myUserInfo.userNickName,
@@ -153,7 +153,7 @@ export function UserModifyModal ({
         });
     } else if (inputPassword.length !== 0) {
       axios
-        .patch(`http://localhost:4000/user/${myUserInfo.id}`,
+        .patch(`http://server.bookdam.link/user/${myUserInfo.id}`,
           {
             userInfo: {
               password: inputPassword
@@ -187,7 +187,7 @@ export function UserModifyModal ({
   // 회원정보 탈퇴 함수
   const signOutHandler = () => {
     axios
-      .delete(`http://localhost:4000/user/${myUserInfo.id}`)
+      .delete(`http://server.bookdam.link/user/${myUserInfo.id}`)
       .then((data) => {
         if (data.status === 200) {
           setisSignoutSuccess(true);

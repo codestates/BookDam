@@ -60,7 +60,7 @@ export const SetenceModal = ({ openSentenceModalHandler, setIsOpenSentenceModal 
 
   const deleteArticle = () => {
     axios
-      .delete(`http://localhost:4000/article/${userInfo.id}?article_Id=${myArticleInfo.id}`)
+      .delete(`http://server.bookdam.link/article/${userInfo.id}?article_Id=${myArticleInfo.id}`)
       .then((data) => {
         setIsDeleteSuccess(true);
         setErrorMessage('수집하신 문장이 삭제되었습니다');

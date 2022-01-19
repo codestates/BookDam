@@ -52,7 +52,7 @@ export default function UserPage () {
         setLoading(true);
         setTimeout(() => {
           Axios
-            .get(`http://localhost:4000/user/${followInfo.id}?page=${page}`,
+            .get(`http://server.bookdam.link/user/${followInfo.id}?page=${page}`,
               {
                 headers: { 'Content-Type': 'application/json' }
               })
@@ -89,7 +89,7 @@ export default function UserPage () {
     if (isfollow === 1) {
       setIsOpenNoticeModal(true);
     } else if (isfollow === 0) {
-      Axios.post(`http://localhost:4000/follow/${userInfo.id}?follow_Id=${followInfo.id}`,
+      Axios.post(`http://server.bookdam.link/follow/${userInfo.id}?follow_Id=${followInfo.id}`,
         {
           headers: { 'Contnet-Type': 'application/json' }
         })

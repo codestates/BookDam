@@ -5,13 +5,13 @@ import {
   Button
 } from './SignoutNoticeModalStyle';
 
-export const SignoutNoticeModal = ({ errorMessage, signoutNoticeModalHandler }) => {
+export const SignoutNoticeModal = ({ signOutHandler, openSignoutNoticelHandler }) => {
   return (
     <>
-      <NoticeModalBackground onClick={signoutNoticeModalHandler}>
+      <NoticeModalBackground onClick={openSignoutNoticelHandler}>
         <NoticeModalContainer onClick={(e) => e.stopPropagation()}>
-          <div>{errorMessage}</div>
-          <Button onClick={signoutNoticeModalHandler}>닫기</Button>
+          <div>다음에 또 만나요!</div>
+          <Button onClick={signOutHandler}>닫기</Button>
         </NoticeModalContainer>
       </NoticeModalBackground>
     </>

@@ -39,7 +39,7 @@ export default function MyPage () {
   // 4. 렌더링 : MyPage 접속한 경우, 새로운 article이 생길 경우 -> 회원 정보 조회 GET으로 가져오기
 
   // axios로 회원 정보 조회(유저 정보 및 아티클)
-  // http://server.bookdam.link/user/:userId
+  // http://localhost:4000/user/:userId
 
   const userState = useSelector(state => state.userInfoReducer);
   const { userInfo } = userState;
@@ -68,7 +68,7 @@ export default function MyPage () {
   const closeNoticeModal = () => {
     setIsOpenNoticeModal(!isOpenNoticeModal);
   };
-  
+
   // 회원정보수정 버튼 누르면 회원정보수정 모달이 나오는 함수
   const userInfoModifyBtnHandler = () => {
     if (userInfo.userId === 'guest') {
@@ -116,7 +116,7 @@ export default function MyPage () {
         setLoading(true);
         setTimeout(() => {
           axios
-            .get(`http://server.bookdam.link/user/${userInfo.id}?page=${page}`,
+            .get(`http://localhost:4000/user/${userInfo.id}?page=${page}`,
               {
                 headers: { 'Content-Type': 'application/json' }
               })
@@ -152,6 +152,7 @@ export default function MyPage () {
     }
   }, [inView, loading]);
 
+  console.log('마이아티클리스트: ', myArticleList);
   const myArticles = myArticleList.map((el, index) => {
     return (
       <ArticleWrap key={index}>
@@ -166,7 +167,12 @@ export default function MyPage () {
   // 내 정보(닉네임, 유저이미지)를 업데이트 하는 함수
   const updateMyInfo = (data) => {
     setMyUserInfo(data);
-  }
+  };
+
+  // 내 아티클을 업데이트 하는 함수
+  const updateMyArticles = (data) => {
+    setMyArticleList(data);
+  };
 
   return (
     <>
@@ -185,6 +191,8 @@ export default function MyPage () {
             ? <SetenceModal
                 openSentenceModalHandler={openSentenceModalHandler}
                 setIsOpenSentenceModal={setIsOpenSentenceModal}
+                updateMyArticles={updateMyArticles}
+                myArticleList={myArticleList}
               />
             : null}
           <UserInfoContainer>

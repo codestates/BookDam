@@ -19,7 +19,8 @@ app.use(
       'https://www.bookdam.link'
     ],
     credentials: true,
-    methods: ['GET', 'POST', 'OPTIONS', 'DELETE', 'PATCH']
+    methods: ['GET', 'POST', 'OPTIONS', 'DELETE', 'PATCH'],
+    maxAge = 3600
   })
 );
 

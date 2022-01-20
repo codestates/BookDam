@@ -16,10 +16,6 @@ export default function Header () {
       <HeaderContainer>
         <Navbar />
         <Switch>
-          <Route exact path='/'>
-            <IntroPage />
-            <Footer />
-          </Route>
           <Route path='/feedpage'>
             <FeedPage />
           </Route>

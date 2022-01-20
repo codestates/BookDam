@@ -29,6 +29,9 @@ import {
   WriteTextLimitResult,
   WriteCommentSection,
   ArticleButtonWrapper,
+  ArticleButtonContainer,
+  ArticleButtonSection,
+  ButtonContainer,
   ButtonsInWrite
 } from './WriteStyle';
 import { GuestLoginModal } from '../GuestLoginModal/GuestLoginModal';
@@ -325,14 +328,19 @@ export const Write = () => {
             <WriteSentenceSection value={inputSentence} onChange={handleInputSentence} />
             <WriteTextLimitContainer>
               <WriteTextLimitResult>{commentLength}/300자</WriteTextLimitResult>
-
             </WriteTextLimitContainer>
             <WriteCommentSection value={inputComment} onChange={handleInputComment} />
           </WriteArticleContainer>
         </WriteArticleWrapper>
 
         <ArticleButtonWrapper>
-          <ButtonsInWrite onClick={submitHandler}>저장하기</ButtonsInWrite>
+          <ArticleButtonContainer>
+            <ArticleButtonSection>
+              <ButtonContainer>
+                <ButtonsInWrite onClick={submitHandler}>저장하기</ButtonsInWrite>
+              </ButtonContainer>
+            </ArticleButtonSection>
+          </ArticleButtonContainer>
         </ArticleButtonWrapper>
       </WriteWholeContainer>
     </>

@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
 export const WriteWholeContainer = styled.div`
-  padding-top: 80px;
+  padding-top: 100px;
   border: 1px solid #e9ecef;
   overflow: hidden;
   /* position: relative; */
-  height: 900px;
+  /* height: 900px; */
+  height: 100vh;
   width: 100vw;
 `;
 
@@ -205,7 +206,7 @@ export const WriteArticleWrapper = styled.div`
   justify-content: center;
   align-items: center;
   /* border: 1px solid red; */
-  height: 40%;
+  height: 45%;
 `;
 
 export const WriteArticleContainer = styled.div`
@@ -263,7 +264,7 @@ export const WriteCommentSection = styled.textarea.attrs({
 })`
   /* margin: 10px; */
   width: 90%;
-  height: 25%;
+  height: 50%;
   border: thick double #5dc175;
   padding: 20px;
   border-radius: 7px;
@@ -274,11 +275,35 @@ export const WriteCommentSection = styled.textarea.attrs({
 export const ArticleButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   /* border: 1px solid red; */
   height: 10%;
 `;
-
+export const ArticleButtonContainer = styled.div`
+  width: 970px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid blue; */
+`;
+export const ArticleButtonSection = styled.div`
+  /* border: 1px solid red; */
+  width: 90%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+export const ButtonContainer = styled.div`
+  margin: 5px;
+  /* border: 2px solid red; */
+  width: 350px;
+  height: 55px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+`;
 export const ButtonsInWrite = styled.button`
   width: 150px;
   height: 40px;

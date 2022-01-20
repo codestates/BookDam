@@ -140,18 +140,6 @@ export const TextAndButtonContainer = styled.div`
   }
 `;
 
-export const TextAndSpan = styled.div`
-  /* border: 1px solid black; */
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-
-  @media screen and (max-width: 500px) {
-    flex-direction: column;
-  }
-`;
-
 export const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -161,10 +149,6 @@ export const TextContainer = styled.div`
   /* border: 1px solid black; */
   height: 200x;
   width: 100%;
-  
-  @media screen and (max-width:500px) {
-    flex-direction: column;
-  }
 `;
 
 export const SectionThreeText = styled.div`
@@ -178,15 +162,40 @@ export const SectionThreeText = styled.div`
   }   
 `;
 
-export const SectionThreeTextDiv = styled.span`
-   /* border: 1px solid bla1ck; */
-   font-size: 40px;
-   font-weight: 600;
-   text-align: center;
+export const SectionThreeTextBookDam1 = styled.div`
+  display: none;
 
-   @media screen and (max-width:500px) {
-    text-decoration: underline #FF3028
-  }
+  @media screen and (max-width:500px) {
+  display: block;
+  font-size: 40px;
+  margin-bottom: 10px;
+  line-height: 0.5em;
+  vertical-align: 0.5em;
+  border-bottom: 0.3em solid;
+  border-image: linear-gradient(#f6b73c, #4d9f0c) 30;
+  border-image-slice: 1;
+}   
+`;
+
+export const SectionThreeTextBookDam2 = styled.div`
+  font-size: 40px;
+  font-weight: 600;
+  text-align: center;
+
+  @media screen and (max-width:500px) {
+  display: none;
+}   
+`;
+
+export const SectionThreeTextBookDam3 = styled.div`
+  display: none;
+
+  @media screen and (max-width:500px) {
+  display: block;
+  font-size: 25px;
+  font-weight: 600;
+  text-align: center;
+}   
 `;
 
 export const ButtonContainer = styled.div`
@@ -197,10 +206,10 @@ export const ButtonContainer = styled.div`
   justify-content: center;
   align-items: center;
 
-  @media screen and (max-width: 500px) {
+  /* @media screen and (max-width: 500px) {
     height: 200px;
     flex-direction: column;
-  }
+  } */
 `;
 
 const blink = keyframes`
@@ -214,12 +223,12 @@ const blink = keyframes`
 
 export const ButtonsInIntro = styled.button`
   width: 150px;
-  height: 50px;
+  height: 40px;
   /* border: 1px solid black; */
-  margin: 12px;
+  margin: 10px;
   border-style: none;
   border-radius: 7px;
-  font-size: 25px;
+  font-size: 20px;
   background: #2cc05a;
   color:  black;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -229,11 +238,6 @@ export const ButtonsInIntro = styled.button`
   white-space: nowrap;
   overflow: hidden;
   animation: ${blink} 2s ease-out 5s 1;
-
-  @media screen and (max-width:500px) {
-    height: 50px;
-    font-size: 20px;
-  }
 `;
 
 export const ButtonSubContainer = styled.div`
@@ -246,14 +250,14 @@ export const ButtonSubContainer = styled.div`
 export const TakeTourButtonImage = styled.img.attrs({
   src: `${"https://img.icons8.com/fluency-systems-regular/500/000000/circle-around.png"}`
 })`
-  width: 20%;
+  width: 18%;
   margin-right: 10px;
 `;
 
 export const LoginButtonImage = styled.img.attrs({
   src: `${"https://img.icons8.com/ios-filled/500/000000/login-rounded-right.png"}`
 })`
-  width: 18%;
+  width: 16%;
   margin-right: 10px;
 `;
 

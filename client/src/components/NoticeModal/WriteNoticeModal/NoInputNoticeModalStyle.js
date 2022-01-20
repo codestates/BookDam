@@ -30,8 +30,8 @@ z-index: 101;
 `;
 
 export const Button = styled.button`
-width:  ${props => props.theme.width};
-height:  ${props => props.theme.height};
+width: 80px;
+height: 30px;
 margin: 10px;
 border-style: none;
 border-radius: 10px;

@@ -1,9 +1,8 @@
-import Axios from 'axios';
-import React, { useState } from 'react';
+import React from 'react';
 import {
   NoticeModalBackground,
   NoticeModalContainer,
-  Button
+  NoInputButton
 } from './NoInputNoticeModalStyle';
 
 export const NoInputNoticeModal = ({ errorMessage, handleCloseNoticeModal }) => {
@@ -12,7 +11,7 @@ export const NoInputNoticeModal = ({ errorMessage, handleCloseNoticeModal }) => 
       <NoticeModalBackground onClick={handleCloseNoticeModal}>
         <NoticeModalContainer onClick={(e) => e.stopPropagation()}>
           <div>{errorMessage}</div>
-          <Button onClick={handleCloseNoticeModal}>닫기</Button>
+          <NoInputButton onClick={handleCloseNoticeModal}>닫기</NoInputButton>
         </NoticeModalContainer>
       </NoticeModalBackground>
     </>

@@ -23,7 +23,13 @@ function App () {
   return (
     <>
 
-      <Section2 />
+      <Switch>
+        <Header />
+        <Route exact path='/'>
+          <IntroPage />
+          <Footer />
+        </Route>
+      </Switch>
     </>
   );
 }

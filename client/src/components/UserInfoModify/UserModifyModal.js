@@ -161,6 +161,7 @@ export function UserModifyModal ({
     } else if (inputPassword.length !== 0) {
       axios
         .patch(`http://localhost:4000/user/${myUserInfo.id}`,
+
           {
             userInfo: {
               password: inputPassword

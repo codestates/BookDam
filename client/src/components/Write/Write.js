@@ -80,7 +80,7 @@ export const Write = () => {
       axios({
         withCredentials: true,
         method: 'get',
-        url: `http://server.bookdam.link/search/book?query=${inputValue}`,
+        url: `http://localhost:4000/search/book?query=${inputValue}`,
         headers: {
           authorization: `Bearer: ${process.env.Client_Secret}`,
           'Content-Type': 'application/json'
@@ -222,7 +222,7 @@ export const Write = () => {
       await axios({
         withCredentials: true,
         method: 'post',
-        url: `http://server.bookdam.link/article/${userInfo.id}`,
+        url: `http://localhost:4000/article/${userInfo.id}`,
         headers: {
           authorization: `Bearer: ${process.env.Client_Secret}`,
           'Content-Type': 'application/json'
@@ -331,13 +331,7 @@ export const Write = () => {
         </WriteArticleWrapper>
 
         <ArticleButtonWrapper>
-          <ArticleButtonContainer>
-            <ArticleButtonSection>
-              <ButtonContainer>
-                <ButtonsInWrite onClick={submitHandler}>저장하기</ButtonsInWrite>
-              </ButtonContainer>
-            </ArticleButtonSection>
-          </ArticleButtonContainer>
+          <ButtonsInWrite onClick={submitHandler}>저장하기</ButtonsInWrite>
         </ArticleButtonWrapper>
       </WriteWholeContainer>
     </>

@@ -29,18 +29,18 @@ flex-direction: column;
 z-index: 101;
 `;
 
-export const Button = styled.button`
-width:  ${props => props.theme.width};
-height:  ${props => props.theme.height};
+export const NoInputButton = styled.button`
+width: 200px;
+height: 120px;
 margin: 10px;
-border-style: none;
+/* border-style: none; */
 border-radius: 10px;
 font-size: 14px;
 background: #2D9BF0;
 color: #ffffff;
 font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-transition: all 0.1s ease-in-out;
-cursor: pointer;
+/* transition: all 0.1s ease-in-out; */
+/* cursor: pointer; */
 text-align: center;
 outline: none;
 white-space: nowrap;

@@ -19,11 +19,17 @@ export const BookImageContainer = styled.div`
  justify-content: center;
  padding-top: 10px;
  padding-bottom: 10px;
+
+ /* @media screen and (max-width: 500px) {
+   width: 250px;
+   height: 200px; */
+ }
 `;
 
 export const BookThumbnailContainer = styled.img`
  border: 1px solid black; //필수
  width: 120px;
+ height: 155px;
 `;
 
 export const BookInfoContainer = styled.div`
@@ -47,6 +53,9 @@ export const BookTitleContainer = styled.div`
   align-items: center;
   font-size: 15px;
 
+  @media screen and (max-width: 500px) {
+   height: 30%;
+ }
 `;
 
 export const BookAuthorContainer = styled.div`

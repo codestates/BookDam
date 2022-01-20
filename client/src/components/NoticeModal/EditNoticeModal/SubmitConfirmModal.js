@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   NoticeModalBackground,
   NoticeModalContainer,
-  Button
+  SubmitConfirmButton
 } from './SubmitConfirmModalStyle';
 
 export const SubmitConfirmModal = ({ errorMessage, handleSubmit, handleCloseNoticeModal }) => {
@@ -11,8 +11,8 @@ export const SubmitConfirmModal = ({ errorMessage, handleSubmit, handleCloseNoti
       <NoticeModalBackground onClick={handleCloseNoticeModal}>
         <NoticeModalContainer onClick={(e) => e.stopPropagation()}>
           <div>{errorMessage}</div>
-          <Button onClick={handleSubmit}>확인</Button>
-          <Button onClick={handleCloseNoticeModal}>취소</Button>
+          <SubmitConfirmButton onClick={handleSubmit}>확인</SubmitConfirmButton>
+          <SubmitConfirmButton onClick={handleCloseNoticeModal}>취소</SubmitConfirmButton>
         </NoticeModalContainer>
       </NoticeModalBackground>
     </>

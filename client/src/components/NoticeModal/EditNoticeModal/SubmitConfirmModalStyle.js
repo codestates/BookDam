@@ -13,39 +13,39 @@ export const NoticeModalBackground = styled.div`
 `;
 
 export const NoticeModalContainer = styled.div`
-position: fixed;
-left: 50%;
-top: 50%;
-transform: translate(-50%, -50%);
-height: 300px;
-width: 400px;
-position: fixed;
-background-color: snow;
-border-radius: 15px;
-display: flex;
-align-items: center;
-justify-content: center;
-flex-direction: column;
-z-index: 101;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 300px;
+  width: 400px;
+  position: fixed;
+  background-color: snow;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 101;
 `;
 
-export const Button = styled.button`
-width:  ${props => props.theme.width};
-height:  ${props => props.theme.height};
-margin: 10px;
-border-style: none;
-border-radius: 10px;
-font-size: 14px;
-background: #2D9BF0;
-color: #ffffff;
-font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-transition: all 0.1s ease-in-out;
-cursor: pointer;
-text-align: center;
-outline: none;
-white-space: nowrap;
-overflow: hidden;
-&:hover {
+export const SubmitConfirmButton = styled.button`
+  width: 80px;
+  height: 30px;
+  margin: 10px;
+  border-style: none;
+  border-radius: 10px;
+  font-size: 14px;
+  background: #2D9BF0;
   color: #ffffff;
-}
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  transition: all 0.1s ease-in-out;
+  cursor: pointer;
+  text-align: center;
+  outline: none;
+  white-space: nowrap;
+  overflow: hidden;
+  &:hover {
+    color: #ffffff;
+  }
 `;

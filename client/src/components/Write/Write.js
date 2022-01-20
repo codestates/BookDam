@@ -125,8 +125,8 @@ export const Write = () => {
 
   const handleInputSentence = (e) => {
     if (isLogin === false) {
-      setInputSentence('');
-      setIsOpenLoginModal(true);
+      setErrorMessage('로그인이 필요합니다.');
+      setIsOpenNoticeModal(true);
     } else {
       setInputSentence(e.target.value);
       const textLength = (e.target.value).length;
@@ -146,8 +146,8 @@ export const Write = () => {
 
   const handleInputComment = (e) => {
     if (isLogin === false) {
-      setInputComment('');
-      setIsOpenLoginModal(true);
+      setErrorMessage('로그인이 필요합니다.');
+      setIsOpenNoticeModal(true);
     } else {
       setInputComment(e.target.value);
       const textLength = (e.target.value).length;
@@ -200,9 +200,8 @@ export const Write = () => {
         document.body.style.overflow = 'unset'; // 저정하고 스크롤 방지 해제
       }
     } else {
-      setErrorMessage('저장하시겠습니까?');
-      setIsOpenSubmitModal(true);
-      document.body.style.overflow = 'unset'; // 저정하고 스크롤 방지 해제
+      setErrorMessage('로그인이 필요합니다.');
+      setIsOpenNoticeModal(true);
     }
   };
 

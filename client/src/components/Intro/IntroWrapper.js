@@ -112,6 +112,7 @@ export const IntroWrapper = () => {
               handleLoginModal={handleLoginModal}
             />
           : null}
+          
         <SectionWrapperOne>
           <Section1/>
         </SectionWrapperOne>
@@ -124,6 +125,7 @@ export const IntroWrapper = () => {
             </SectionInfoContainer>
           </SectionContainer>
         </SectionWrapperTwo>
+
         <SectionWrapperThree>
           <Section3 isLogin={isLogin} guestLoginHandelr={guestLoginHandelr} handleLoginModal={handleLoginModal}/>
         </SectionWrapperThree>

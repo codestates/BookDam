@@ -52,7 +52,7 @@ export const BookTitleContainer = styled.div`
   flex-direction: row;
   align-items: center;
   font-size: 15px;
-  overflow: scroll;
+  overflow: hidden;
 
   @media screen and (max-width: 500px) {
    height: 30%;

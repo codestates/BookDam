@@ -116,6 +116,6 @@ export const SectionWrapperThree = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   height: 750px;
 `;

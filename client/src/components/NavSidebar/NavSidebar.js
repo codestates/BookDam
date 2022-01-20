@@ -36,7 +36,7 @@ export function NavSidebar ({ menuBtnHandler }) {
     await axios({
       withCredentials: true,
       method: 'post',
-      url: 'https://server.bookdam.link/user/logout',
+      url: 'http://localhost:4000/user/logout',
       headers: {
         authorization: `Bearer: ${process.env.Client_Secret}`,
         'Content-Type': 'application/json'

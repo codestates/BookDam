@@ -28,7 +28,7 @@ export const Searchuser = ({ setFollowFeedList }) => {
 
   useEffect(() => {
     const getSearchUserFeedList = () => {
-      Axios.get(`https://server.bookdam.link/user?name=${filter}`,
+      Axios.get(`http://localhost:4000/user?name=${filter}`,
         {
           headers: { 'Contnet-Type': 'application/json' }
         })

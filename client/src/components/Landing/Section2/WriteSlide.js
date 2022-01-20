@@ -1,8 +1,4 @@
 import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Navigation } from 'swiper';
-import 'swiper/css';
-import 'swiper/css/bundle';
 import {
   WriteWholeContainer,
   TypoSection,
@@ -10,20 +6,17 @@ import {
   WriteTypo,
   WriteIntroduction,
   SkillSection,
-  SkillGIF,
-
+  FeatureGifWrapper,
+  PhoneFrame
 } from './WriteSlideStyle';
-// import { WriteTypo } from './WriteTypo';
-
-SwiperCore.use([Navigation]);
+import iFrame from '../../../assets/images/phoneFrame.png';
 
 export const WriteSlide = () => {
-  
   return (
     <>
       <WriteWholeContainer>
         <TypoSection>
-          <WriteTypoWrapper>
+          <WriteTypoWrapper className='fadein'>
             <WriteTypo>
               <span className='underline'>
                 <span>Write</span>
@@ -32,13 +25,14 @@ export const WriteSlide = () => {
           </WriteTypoWrapper>
           <WriteIntroduction>
             <div className='fadein'>
-            책에서 본 감명 깊은 문장을 기록할 수 있습니다.
+              책에서 본 감명 깊은 문장을 기록하세요.
             </div>
           </WriteIntroduction>
         </TypoSection>
-
         <SkillSection>
-          <SkillGIF />
+          <FeatureGifWrapper>
+            <PhoneFrame src={iFrame} alt='' />
+          </FeatureGifWrapper>
         </SkillSection>
       </WriteWholeContainer>
     </>

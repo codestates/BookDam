@@ -76,7 +76,7 @@ export const SignupModal = ({ handleCloseSignupModal, handleLoginModal }) => {
       await axios({
         withCredentials: true,
         method: 'post',
-        url: 'https://server.bookdam.link/user/signup',
+        url: 'http://localhost:4000/user/signup',
         headers: {
           authorization: `Bearer: ${process.env.Client_Secret}`,
           'Content-Type': 'application/json'

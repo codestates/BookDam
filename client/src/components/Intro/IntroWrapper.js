@@ -51,7 +51,7 @@ export const IntroWrapper = () => {
     await axios({
       withCredentials: true,
       method: 'post',
-      url: 'http://server.bookdam.link/user/logout',
+      url: 'http://localhost:4000/user/logout',
       headers: {
         authorization: `Bearer: ${process.env.Client_Secret}`,
         'Content-Type': 'application/json'
@@ -73,7 +73,7 @@ export const IntroWrapper = () => {
     await axios({
       withCredentials: true,
       method: 'post',
-      url: 'http://server.bookdam.link/user/login',
+      url: 'http://localhost:4000/user/login',
       headers: {
         authorization: `Bearer: ${process.env.Client_Secret}`,
         'Content-Type': 'application/json'

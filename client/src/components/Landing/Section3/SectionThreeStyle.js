@@ -44,6 +44,10 @@ export const ImageAnimation1 = styled.img.attrs({
   /* border: 1px solid black; */
   width: 25%;
   animation: ${bounceTop1} 6s 1s infinite;
+
+  @media screen and (max-width: 500px) {
+    width: 15%;
+  }
 `;
 
 export const ImageAnimation2 = styled.img.attrs({
@@ -52,6 +56,11 @@ export const ImageAnimation2 = styled.img.attrs({
   /* border: 1px solid black; */
   width: 15%;
   animation: ${bounceTop2} 6s 1s infinite;
+
+  @media screen and (max-width: 500px) {
+    width: 15%;
+    margin-right: 10px;
+  }
 `;
 
 export const ImageAnimation3 = styled.img.attrs({
@@ -60,6 +69,10 @@ export const ImageAnimation3 = styled.img.attrs({
   /* border: 1px solid blue; */
   width: 30%;
   animation: ${bounceTop3} 6s 1s infinite;
+
+  @media screen and (max-width: 500px) {
+    width: 25%;
+  }
 `;
 
 export const ImageAnimation4 = styled.img.attrs({
@@ -68,6 +81,10 @@ export const ImageAnimation4 = styled.img.attrs({
   /* border: 1px solid black; */
   width: 20%;
   animation: ${bounceTop4} 6s 1s infinite;
+
+  @media screen and (max-width: 500px) {
+    width: 15%;
+  }
 `;
 
 export const ImageAnimation5 = styled.img.attrs({
@@ -76,6 +93,11 @@ export const ImageAnimation5 = styled.img.attrs({
   /* border: 1px solid red; */
   width: 27%;
   animation: ${bounceTop5} 6s 1s infinite;
+
+  @media screen and (max-width: 500px) {
+    width: 20%;
+    margin-left: 20px;
+  }
 `;
 
 
@@ -85,6 +107,10 @@ export const ImageAnimation6 = styled.img.attrs({
   /* border: 1px solid green; */
   width: 25%;
   animation: ${bounceTop6} 6s 1s infinite;
+
+  @media screen and (max-width: 500px) {
+    width: 18%;
+  }
 `;
 
 
@@ -94,6 +120,10 @@ export const ImageAnimation7 = styled.img.attrs({
   /* border: 1px solid black; */
   width: 20%;
   animation: ${bounceTop7} 6s 1s infinite;
+
+  @media screen and (max-width: 500px) {
+    width: 20%;
+  }
 `;
 
 export const TextAndButtonContainer = styled.div`
@@ -183,8 +213,9 @@ const blink = keyframes`
 `;
 
 export const ButtonsInIntro = styled.button`
-  width: 240px;
-  height: 70px;
+  width: 150px;
+  height: 50px;
+  /* border: 1px solid black; */
   margin: 12px;
   border-style: none;
   border-radius: 7px;
@@ -213,27 +244,18 @@ export const ButtonSubContainer = styled.div`
 `;
 
 export const TakeTourButtonImage = styled.img.attrs({
-  src: `${"https://img.icons8.com/fluency-systems-regular/64/000000/circle-around.png"}`
+  src: `${"https://img.icons8.com/fluency-systems-regular/500/000000/circle-around.png"}`
 })`
-  width: 13%;
-  margin-right: 17px;
-
-  @media screen and (max-width:500px) {
-    width: 10%;
-  }
+  width: 20%;
+  margin-right: 10px;
 `;
 
 export const LoginButtonImage = styled.img.attrs({
   src: `${"https://img.icons8.com/ios-filled/500/000000/login-rounded-right.png"}`
 })`
-  width: 10%;
-  margin-right: 17px;
-
-  @media screen and (max-width:500px) {
-    width: 8%;
-  }
+  width: 18%;
+  margin-right: 10px;
 `;
-
 
 export const SectionWrapperThree = styled.div`
   display: flex;

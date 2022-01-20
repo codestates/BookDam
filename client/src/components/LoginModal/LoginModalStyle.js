@@ -16,19 +16,19 @@ export const LoginModalWholeBackground = styled.div`
   }
 `;
 
-export const LoginModalWholeContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0%;
-`;
+// export const LoginModalWholeContainer = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   padding: 0%;
+// `;
 
 export const LoginModalWrapper = styled.div`
-  position: fixed;
+  /* position: fixed;
   left: 50%;
-  top: 30%;
-  transform: translate(-50%, -50%);
+  top: 50%;
+  transform: translate(-50%, -50%); */
   width: 480px;
   height: 621px;
   background-color: white;
@@ -41,8 +41,8 @@ export const LoginModalWrapper = styled.div`
   /* border: 1px solid black; */
 
   @media screen and (max-width: 500px) {
-    left: 50%;
-    top: 50%;
+    /* left: 50%;
+    top: 50%; */
     width: 100%;
     height: 100%;
     background-color: white;

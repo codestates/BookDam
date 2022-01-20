@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import {
   LoginModalWholeBackground,
-  LoginModalWholeContainer,
+  // LoginModalWholeContainer,
   LoginModalWrapper,
   LoginCloseButton,
   LoginModalContainer,
@@ -89,7 +89,7 @@ export const LoginModal = ({
   return (
     <div>
       <LoginModalWholeBackground onClick={handleCloseLoginModal}>
-        <LoginModalWholeContainer>
+        {/* <LoginModalWholeContainer> */}
           <LoginModalWrapper onClick={(e) => e.stopPropagation()}>
               <LoginModalHeader>
                 <LoginModalLeft />
@@ -107,7 +107,7 @@ export const LoginModal = ({
                 </InputContainer>
               </LoginModalContainer>
             </LoginModalWrapper>
-        </LoginModalWholeContainer>
+        {/* </LoginModalWholeContainer> */}
 
       </LoginModalWholeBackground>
     </div>

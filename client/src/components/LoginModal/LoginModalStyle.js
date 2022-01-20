@@ -41,6 +41,8 @@ export const LoginModalWrapper = styled.div`
   /* border: 1px solid black; */
 
   @media screen and (max-width: 500px) {
+    left: 50%;
+    top: 50%;
     width: 100%;
     height: 100%;
     background-color: white;

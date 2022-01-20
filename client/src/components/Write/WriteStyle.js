@@ -90,7 +90,7 @@ export const SearchBookTitleContainer = styled.div`
   /* font-size: 18px; */
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
 
   @media screen and (max-width: 500px) {
     font-size: 15px;
@@ -113,11 +113,12 @@ export const BookTitleLeftContainer = styled.div` //도서명, 저자, 출판사
 
 export const BookTitleRightContainer = styled.div`
   width: 80%;
-  height: 33%;
+  height: 100%;
   margin-left: 10px;
   /* border: 1px solid black; */
   font-size: 18px;
   font-weight: 600;
+  overflow: hidden;
 
   @media screen and (max-width: 500px) {
     font-size: 15px;
@@ -133,6 +134,19 @@ export const SearchBookAuthorContainer = styled.div`
   align-items: center;
 `;
 
+export const BookAuthorRightContainer = styled.div`
+  width: 80%;
+  height: 33%;
+  margin-left: 10px;
+  /* border: 1px solid black; */
+  font-size: 18px;
+  font-weight: 600;
+
+  @media screen and (max-width: 500px) {
+    font-size: 15px;
+  }
+`;
+
 export const SearchBookPublisherContainer = styled.div`
   width: 80%;
   height: 33%;
@@ -140,6 +154,19 @@ export const SearchBookPublisherContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+`;
+
+export const BookPublisherRightContainer = styled.div`
+  width: 80%;
+  height: 33%;
+  margin-left: 10px;
+  /* border: 1px solid black; */
+  font-size: 18px;
+  font-weight: 600;
+
+  @media screen and (max-width: 500px) {
+    font-size: 15px;
+  }
 `;
 
 export const SearchBookImageContainer = styled.div`

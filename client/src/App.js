@@ -22,7 +22,6 @@ function App () {
     <>
       <Header />
       <Switch>
-        <Header />
         <Route exact path='/'>
           <IntroPage />
           <Footer />

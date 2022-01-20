@@ -16,6 +16,8 @@ import {
   BookTitleLeftContainer,
   BookTitleRightContainer,
   SearchBookAuthorContainer,
+  BookPublisherRightContainer,
+  BookAuthorRightContainer,
   SearchBookPublisherContainer,
   SearchBookImageContainer,
   BookThumbnailContainer,
@@ -27,9 +29,6 @@ import {
   WriteTextLimitResult,
   WriteCommentSection,
   ArticleButtonWrapper,
-  ArticleButtonContainer,
-  ArticleButtonSection,
-  ButtonContainer,
   ButtonsInWrite
 } from './WriteStyle';
 import { GuestLoginModal } from '../GuestLoginModal/GuestLoginModal';
@@ -102,7 +101,10 @@ export const Write = () => {
           setSearchData(resultData);
         })
         .catch(err => {
-
+          if(err.response.status === 400) {
+            setIsLoading(false);
+            setSearchData([]);
+          }
         });
     } else {
       setErrorMessage('검색어를 입력하세요.');
@@ -298,11 +300,11 @@ export const Write = () => {
                 </SearchBookTitleContainer>
                 <SearchBookAuthorContainer>
                   <BookTitleLeftContainer>저자명</BookTitleLeftContainer>
-                  <BookTitleRightContainer>{selectedData.author}</BookTitleRightContainer>
+                  <BookAuthorRightContainer>{selectedData.author}</BookAuthorRightContainer>
                 </SearchBookAuthorContainer>
                 <SearchBookPublisherContainer>
                   <BookTitleLeftContainer>출판사</BookTitleLeftContainer>
-                  <BookTitleRightContainer>{selectedData.publisher}</BookTitleRightContainer>
+                  <BookPublisherRightContainer>{selectedData.publisher}</BookPublisherRightContainer>
                 </SearchBookPublisherContainer>
               </SearchBookInfoLower>
             </SearchBookInfoContainer>

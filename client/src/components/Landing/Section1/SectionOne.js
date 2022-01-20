@@ -1,6 +1,6 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { EffectCoverflow, Navigation, Pagination } from 'swiper';
+import SwiperCore, { EffectCoverflow, Autoplay, Navigation, Pagination } from 'swiper';
 import { SwiperContainer, StyledSwiper,SwiperWrapper } from './SectionOneStyle';
 
 import 'swiper/css';
@@ -15,11 +15,11 @@ export const Section1 = () => {
   const onClickHandler = (e) => {
     // 클릭시 확대
   }
-  SwiperCore.use([EffectCoverflow, Navigation, Pagination])
+  SwiperCore.use([EffectCoverflow, Autoplay, Navigation, Pagination])
 
   const booklist = bookcover.map((el, index) => {
     return (
-      <SwiperSlide index={index} onClick={() => onClickHandler(index)}>
+      <SwiperSlide className='section1-swiper-slide'>
         <div className="imgBx">
           <img src={el.src} alt=''/>
         </div>
@@ -38,7 +38,7 @@ export const Section1 = () => {
         grabCursor={true}              // 마우스 커서 그랩
         centeredSlides={true}          // true일 때, 슬라이드가 가운데로
         autoplay= {{                   // 자동넘김 기능
-            "delay": 500,
+            "delay": 4500,
             "disableOnInteraction": false,
         }}
         slidesPerView={"auto"}        // 한 번에 볼 수 있는 슬라이드 숫자
@@ -59,6 +59,7 @@ export const Section1 = () => {
             "nextEl": '.swiper-button-next',
             "prevEl": '.swiper-button-prev',
         }}
+        className='section1-swiper-wrapper'
       >
         <SwiperWrapper>
         

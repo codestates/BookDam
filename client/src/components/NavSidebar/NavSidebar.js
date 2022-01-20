@@ -94,7 +94,7 @@ export function NavSidebar ({ menuBtnHandler }) {
             <LoginoutSection>
               {isLogin
                 ? <Link to='/'><Loginout onClick={logoutHandler}>로그아웃</Loginout></Link>
-                : <Link to='/' style={{ textDecoration: 'none' }}><Loginout>시작하기</Loginout></Link>}
+                : <Link to='/'><Loginout onClick={menuBtnHandler}>시작하기</Loginout></Link>}
             </LoginoutSection>
           </SidebarBottom>
         </SidebarContainer>

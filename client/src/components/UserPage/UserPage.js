@@ -130,9 +130,9 @@ export default function UserPage () {
           <UserInfoSection>
             <NickNameFollowSection>
               <NickName>{followInfo.userNickName}</NickName>
-              <div className='BtnContainer'><UserFollowIcon onClick={following}>{isfollow === 1 ? <FaUserCheck /> : <div>"팔로우"</div>}</UserFollowIcon></div>
+              <div className='BtnContainer'><UserFollowIcon onClick={following}>{isfollow === 1 ? <FaUserCheck /> : <div>팔로우</div>}</UserFollowIcon></div>
             </NickNameFollowSection>
-            <span><strong>게시글</strong> {articleCnt}
+            <span>
               <FollowContainer>
                 <Follow>팔로우
                   <FollowCount>{followCnt.following}</FollowCount>
@@ -140,6 +140,7 @@ export default function UserPage () {
                 <Follower>팔로워
                   <FollowerCount>{followCnt.follower}</FollowerCount>
                 </Follower>
+                <strong>게시글</strong> {articleCnt}
               </FollowContainer>
             </span>
           </UserInfoSection>

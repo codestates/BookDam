@@ -5,8 +5,6 @@ import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import { useDispatch } from 'react-redux'; // 로그인 상태변경용
 import { GuestLoginAction, LoginAction } from './actions/UserInfoAction';
-import { Section2 } from './components/Landing/Section2/Section2';
-import { Section3 } from './components/Landing/Section3/Section3';
 
 function App () {
   const dispatch = useDispatch();
@@ -22,7 +20,7 @@ function App () {
 
   return (
     <>
-
+      <Header />
       <Switch>
         <Header />
         <Route exact path='/'>

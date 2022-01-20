@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export const NavbarContainer = styled.div`
   height: 70px;
-  width: 100%;
+  width: 100vw;
   /* background: #2cc05a; */
   display: flex;
   align-items: center;
@@ -23,7 +23,7 @@ export const BackSection = styled.div`
   font-size: 30px;
   /* border: 1px solid orange; */
 
-  @media (max-width: 500px) {
+  @media (max-width: 630px) {
     height: 40px;
     width: 5%;
     display: flex;
@@ -42,7 +42,7 @@ export const NavbarWrapper = styled.div`
   justify-content: space-between;
   width: 870px;
 
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 630px) {
     justify-content: center;
   }
 `;
@@ -54,7 +54,7 @@ export const LogoSection = styled.div`
   /* border: 1px solid orange; */
   text-align: center;
 
-  @media (max-width: 500px) {
+  @media (max-width: 630px) {
     width: 160px;
   }
 `;
@@ -66,38 +66,30 @@ export const LogoImage = styled.img`
 
 export const NavMenuSection = styled.ul`
   height: 40px;
-  width: 40%;
+  width: 50%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0;
   /* border: 1px solid orange; */
 
-  @media (max-width: 500px) {
+  @media (max-width: 630px) {
     display: none;
   }
 `;
 
 export const NavMenu = styled.li`
+  /* border: 1px solid orange; */
   height: 70%;
   display: flex;
   margin: 0.5rem;
   font-size: 1.3rem;
   justify-content: center;
   align-items: center;
-`;
-
-export const NavMenu3 = styled.li`
-  height: 70%;
-  display: flex;
-  margin: 0.5rem;
-  font-size: 1.3rem;
-  justify-content: center;
-  align-items: center;
-  /* color: red; */
-  /* border: 1px solid black; */
 `;
 
 export const NavMenuSub = styled.li`
+  /* border: 1px solid orange; */
   height: 70%;
   display: flex;
   margin: 0.5rem;
@@ -135,31 +127,11 @@ export const UserSection = styled.div`
   justify-content: flex-end;
   /* border: 1px solid black; */
 
-  @media (max-width: 500px) {
+  @media (max-width: 630px) {
     display: none;
   }
 `;
 
-export const UserImage = styled.img`
-  height: 30px;
-  width: 30px;
-  display: flex;
-  margin: 0.5rem;
-  align-items: center;
-  border: 1px solid black;
-  `;
-
-export const UserNickName = styled.div`
-  height: 50%;
-  width: 100px;
-  display: flex;
-  margin: 0.2rem;
-  font-size: 0.8rem;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  border: 1px solid black;
-`;
 
 // 로그아웃 섹션
 export const LoginoutSection = styled.div`
@@ -173,7 +145,7 @@ export const LoginoutSection = styled.div`
 `;
 
 export const Loginout = styled.button`
-  width: 60px;
+  width: 100%;
   height: 30px;
   box-sizing: border-box;
   border: 1px solid grey;
@@ -190,7 +162,7 @@ export const Loginout = styled.button`
 export const SideMenuSection = styled.div`
   display: none;
 
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 630px) {
     height: 40px;
     width: 5%;
     display: flex;

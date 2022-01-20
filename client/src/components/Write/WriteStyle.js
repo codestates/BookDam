@@ -54,12 +54,15 @@ export const SearchContainer = styled.div`
   justify-content: center;
 `;
 
-export const SearchInputcontainer = styled.input`
+export const SearchInputcontainer = styled.input.attrs({
+  placeholder: '책과 저자를 함께 입력하면 빠른 검색이 가능합니다.'
+})`
   width: 100%;
   border: 2px solid #e5e5e5;
   outline: none;
   font-size: 1rem;
   font-weight: 600;
+  padding-left: 10px;
 `;
 
 export const SearchClick = styled.div`

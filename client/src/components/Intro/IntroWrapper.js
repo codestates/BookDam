@@ -7,18 +7,12 @@ import {
   SectionWrapperOne,
   SectionWrapperTwo,
   SectionWrapperThree,
-  SectionContainer,
-  SectionInfoContainer,
-  ImageContainer,
-  TextContainer,
-  ButtonWrapper,
-  ButtonContainer,
-  ButtonsInIntro
 } from './IntroWrapperStyle';
 import { LoginModal } from '../LoginModal/LoginModal';
 import { SignupModal } from '../Signup/SignupModal';
 import { GuestLoginAction, LogoutAction } from '../../actions/UserInfoAction';
 import { Section1 } from '../Landing/Section1/SectionOne';
+import { Section2 } from '../Landing/Section2/Section2';
 import { Section3 } from '../Landing/Section3/SectionThree';
 
 export const IntroWrapper = () => {
@@ -118,12 +112,7 @@ export const IntroWrapper = () => {
         </SectionWrapperOne>
 
         <SectionWrapperTwo>
-          <SectionContainer>
-            <SectionInfoContainer>{/* SectionInfo2 */}
-              <TextContainer>로그인 성공여부{isLogin ? 'true' : 'false'}</TextContainer>
-              <ImageContainer>Text2</ImageContainer>
-            </SectionInfoContainer>
-          </SectionContainer>
+          <Section2 />
         </SectionWrapperTwo>
 
         <SectionWrapperThree>

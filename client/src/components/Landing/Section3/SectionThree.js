@@ -40,7 +40,7 @@ export const Section3 = ({ isLogin, guestLoginHandelr, handleLoginModal }) => {
           <TextAndButtonContainer>
           <TextContainer>
             <SectionThreeText>인생을 바꾸는 의미있는 작은 변화,</SectionThreeText><br />
-            <SectionThreeTextBookDam1>북담</SectionThreeTextBookDam1>
+            <SectionThreeTextBookDam1>'북담'</SectionThreeTextBookDam1>
             <SectionThreeTextBookDam2>오늘부터 북담을 시작해볼까요?</SectionThreeTextBookDam2>
             <SectionThreeTextBookDam3>오늘부터 시작해볼까요?</SectionThreeTextBookDam3>
           </TextContainer>

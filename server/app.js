@@ -5,7 +5,7 @@ const morgan = require('morgan');
 
 const router = require('./router/index');
 const app = express();
-const port = 80;
+const port = 4000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -20,7 +20,7 @@ app.use(
     ],
     credentials: true,
     methods: ['GET', 'POST', 'OPTIONS', 'DELETE', 'PATCH'],
-    maxAge = 3600
+    maxAge: 3600
   })
 );
 

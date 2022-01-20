@@ -168,12 +168,7 @@ export const SectionThreeTextBookDam1 = styled.div`
   @media screen and (max-width:500px) {
   display: block;
   font-size: 40px;
-  margin-bottom: 10px;
-  line-height: 0.5em;
-  vertical-align: 0.5em;
-  border-bottom: 0.3em solid;
-  border-image: linear-gradient(#f6b73c, #4d9f0c) 30;
-  border-image-slice: 1;
+  margin-bottom: 15px;
 }   
 `;
 

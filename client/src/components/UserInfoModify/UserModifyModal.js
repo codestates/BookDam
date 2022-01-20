@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { LogoutAction } from '../../actions/UserInfoAction';
 import axios from 'axios';
 import {
   UserInfoModifyModalContainer,
@@ -33,7 +34,7 @@ import { RiShieldKeyholeLine } from 'react-icons/ri'; // 새 비밀번호 아이
 import { RiShieldKeyholeFill } from 'react-icons/ri'; // 새 비밀번호 아이콘
 
 // 회원정보수정 PATCH
-// http://server.bookdam.link/user/:user_Id
+// http://localhost:4000/user/:user_Id
 // { userInfo: {userId:sangkwon2406, } }
 
 axios.defaults.withCredentials = true;
@@ -54,7 +55,7 @@ export function UserModifyModal ({
     userNickName: '',
     userImage: ''
   });
-  const { id, userId, userNickName, userImages } = modifyUserInputInfo; // input 값으로 들어오는 정보
+  // const { id, userId, userNickName, userImages } = modifyUserInputInfo; // input 값으로 들어오는 정보
   const [inputUserNickName, setInputUserNickName] = useState(null);
   const [inputPassword, setInputPassword] = useState('');
   const [inputUserImage, setInputUserImage] = useState(null);
@@ -69,15 +70,15 @@ export function UserModifyModal ({
   const isValidPassword = /(?=.*\d)(?=.*[a-zA-ZS]).{8,}/; // 문자, 숫자 1개이상 포함, 8자리 이상
   const [isChecked, setIsChecked] = useState(false);
   const [isSelectUserImgOpen, setIsSelectUserImgOpen] = useState(false);
+  const [isOpenSignoutNotice, setIsOpenSignoutNotice] = useState(false);
   const history = useHistory();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   // const userState = useSelector(state => state.userInfoReducer);
   // const { userInfo } = userState;
 
   // 모달 창 닫는 버튼 함수
   const closeModal = () => {
     closeUserInfoModify();
-    console.log('회원정보수정 모달 닫힘');
   };
 
   // !input handler-NickName
@@ -122,7 +123,6 @@ export function UserModifyModal ({
   const handleInputImage = (alt) => {
     setInputUserImage(userImage[`${alt}`]);
     setInputUserInfoModifyCheck(true);
-
   };
 
   // 회원정보 유저정보 수정 함수
@@ -134,7 +134,7 @@ export function UserModifyModal ({
       };
 
       axios
-        .patch(`http://server.bookdam.link/user/${myUserInfo.id}`,
+        .patch(`http://localhost:4000/user/${myUserInfo.id}`,
           {
             userInfo: tempUserInfo
           },
@@ -145,10 +145,11 @@ export function UserModifyModal ({
         .then((data) => {
           if (data.data.message === 'success') {
             updateUserInfo(
-              {...myUserInfo, 
+              {
+                ...myUserInfo,
                 userNickName: tempUserInfo.userNickName,
                 userImage: tempUserInfo.userImage
-              })
+              });
             setInputUserInfoModifyCheck(false);
             // closeModal();
             // document.location.reload();
@@ -159,7 +160,7 @@ export function UserModifyModal ({
         });
     } else if (inputPassword.length !== 0) {
       axios
-        .patch(`http://server.bookdam.link/user/${myUserInfo.id}`,
+        .patch(`http://localhost:4000/user/${myUserInfo.id}`,
           {
             userInfo: {
               password: inputPassword
@@ -172,7 +173,6 @@ export function UserModifyModal ({
           if (data.status === 201) {
             setIsModificationSuccess(true);
             setErrorMessage('비밀번호가 수정 되었습니다');
-            document.location.reload();
           }
         })
         .catch((err) => {
@@ -192,23 +192,24 @@ export function UserModifyModal ({
   // 회원정보 탈퇴 함수
   const signOutHandler = () => {
     axios
-      .delete(`http://server.bookdam.link/user/${myUserInfo.id}`)
+      .delete(`http://localhost:4000/user/${myUserInfo.id}`)
       .then((data) => {
-        if (data.status === 200) {
+        console.log(data);
+        sessionStorage.removeItem('logged');
+        if (data.status === 200) { // 상태코드 확인
+          dispatch(LogoutAction());
           setisSignoutSuccess(true);
-          setErrorMessage('다음에 또 만나요!');
         }
-        // 세션스토리지 지우기
         history.push('/');
       });
   };
 
-  // 회원탈퇴 노티스 모달 핸들러
-  const signoutNoticeModalHandler = () => {
+  // 회원탈퇴 버튼을 눌렀을 열리는 노티스 모달 여는 함수
+  const openSignoutNoticelHandler = () => {
+    console.log('클릭')
     setisSignoutSuccess(false);
-    setIsOpenModifyModal(false);
+    setIsOpenSignoutNotice(!isOpenSignoutNotice);
   };
-
 
   return (
     <>
@@ -264,13 +265,13 @@ export function UserModifyModal ({
                 <ModifyPasswordBtn className='PasswordChangeBtn' onClick={modifyUserInfoHandler}>
                   비밀번호 변경
                 </ModifyPasswordBtn>
-                {isSignoutSuccess
+                {isOpenSignoutNotice
                   ? <SignoutNoticeModal
-                      errorMessage={errorMessage}
-                      signoutNoticeModalHandler={signoutNoticeModalHandler}
+                      openSignoutNoticelHandler={openSignoutNoticelHandler}
+                      signOutHandler={signOutHandler}
                     />
                   : null}
-                <SignOutBtn onClick={signOutHandler}>
+                <SignOutBtn onClick={openSignoutNoticelHandler}>
                   회원탈퇴
                 </SignOutBtn>
               </UserInfoModifyBtnSection>

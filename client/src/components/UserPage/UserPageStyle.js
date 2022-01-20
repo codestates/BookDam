@@ -70,15 +70,20 @@ export const NickNameFollowSection = styled.div`
   width: 100% ;
   height: 55%;
   flex-direction: row;
-  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: start;
   margin-bottom: 5px;
   /* border: 1px solid red; */
   > .BtnContainer{
-    width: 40px;
+    width: 60px;
     /* border: 2px solid; */
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  > .BtnContainer div {
+    color: rgba(10, 120, 220, 1);
   }
 `;
 
@@ -91,15 +96,19 @@ export const NickName = styled.div`
   align-items: center;
   text-align: center;
   padding: 0px;
+  margin: 0px;
   /* border: 1px solid green; */
 `;
 
 export const FollowContainer = styled.div`
   display: flex;
-  width: 180px;
+  width: 200px;
   flex-direction: row;
   margin-left: 5px;
   /* border: 1px solid orange; */
+  > strong {
+    width: 30%
+  }
 `;
 
 export const Follow = styled.div`
@@ -218,6 +227,7 @@ export const UserFollowIcon = styled.button`
 font-weight: 900;
 height: 20px;
 width: 60px;
+padding: 0px;
 border: 0;
 border-radius: 2px;
 font-size: 15px;
@@ -228,7 +238,7 @@ cursor: pointer;
   margin-top: 2px;
 }
 :hover {
-  font-size:20px;
+  font-size:16px;
 }
 @media screen and (max-width: 500px) {
   font-size: 10px;

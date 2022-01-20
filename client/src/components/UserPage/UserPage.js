@@ -52,7 +52,7 @@ export default function UserPage () {
         setLoading(true);
         setTimeout(() => {
           Axios
-            .get(`http://server.bookdam.link/user/${followInfo.id}?page=${page}`,
+            .get(`http://localhost:4000/user/${followInfo.id}?page=${page}`,
               {
                 headers: { 'Content-Type': 'application/json' }
               })
@@ -89,7 +89,7 @@ export default function UserPage () {
     if (isfollow === 1) {
       setIsOpenNoticeModal(true);
     } else if (isfollow === 0) {
-      Axios.post(`http://server.bookdam.link/follow/${userInfo.id}?follow_Id=${followInfo.id}`,
+      Axios.post(`http://localhost:4000/follow/${userInfo.id}?follow_Id=${followInfo.id}`,
         {
           headers: { 'Contnet-Type': 'application/json' }
         })
@@ -130,9 +130,9 @@ export default function UserPage () {
           <UserInfoSection>
             <NickNameFollowSection>
               <NickName>{followInfo.userNickName}</NickName>
-              <div className='BtnContainer'><UserFollowIcon onClick={following}>{isfollow === 1 ? <FaUserCheck /> : <div>"팔로우"</div>}</UserFollowIcon></div>
+              <div className='BtnContainer'><UserFollowIcon onClick={following}>{isfollow === 1 ? <FaUserCheck /> : <div>팔로우</div>}</UserFollowIcon></div>
             </NickNameFollowSection>
-            <span><strong>게시글</strong> {articleCnt}
+            <span>
               <FollowContainer>
                 <Follow>팔로우
                   <FollowCount>{followCnt.following}</FollowCount>
@@ -140,6 +140,7 @@ export default function UserPage () {
                 <Follower>팔로워
                   <FollowerCount>{followCnt.follower}</FollowerCount>
                 </Follower>
+                <strong>게시글</strong> {articleCnt}
               </FollowContainer>
             </span>
           </UserInfoSection>

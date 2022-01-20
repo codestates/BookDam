@@ -64,7 +64,7 @@ export const SetenceModal = ({ openSentenceModalHandler, setIsOpenSentenceModal 
   // 아티클을 삭제 하는 함수
   const deleteArticle = () => {
     axios
-      .delete(`http://server.bookdam.link/article/${userInfo.id}?article_Id=${myArticleInfo.id}`)
+      .delete(`https://server.bookdam.link/article/${userInfo.id}?article_Id=${myArticleInfo.id}`)
       .then((data) => {
         document.location.reload();
       })

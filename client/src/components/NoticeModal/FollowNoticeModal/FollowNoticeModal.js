@@ -8,7 +8,7 @@ import Axios from 'axios';
 
 export const FollowNoticeModal = ({ closeNoticeModal, setIsfollow, userInfo, followInfo }) => {
   const deleteFollowReq = () => {
-    Axios.delete(`http://server.bookdam.link/follow/${userInfo.id}?follow_Id=${followInfo.id}`,
+    Axios.delete(`https://server.bookdam.link/follow/${userInfo.id}?follow_Id=${followInfo.id}`,
       {
         headers: { 'Contnet-Type': 'application/json' }
       })

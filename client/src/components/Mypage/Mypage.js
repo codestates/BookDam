@@ -39,7 +39,7 @@ export default function MyPage () {
   // 4. 렌더링 : MyPage 접속한 경우, 새로운 article이 생길 경우 -> 회원 정보 조회 GET으로 가져오기
 
   // axios로 회원 정보 조회(유저 정보 및 아티클)
-  // http://server.bookdam.link/user/:userId
+  // https://server.bookdam.link/user/:userId
 
   const userState = useSelector(state => state.userInfoReducer);
   const { userInfo } = userState;
@@ -116,7 +116,7 @@ export default function MyPage () {
         setLoading(true);
         setTimeout(() => {
           axios
-            .get(`http://server.bookdam.link/user/${userInfo.id}?page=${page}`,
+            .get(`https://server.bookdam.link/user/${userInfo.id}?page=${page}`,
               {
                 headers: { 'Content-Type': 'application/json' }
               })

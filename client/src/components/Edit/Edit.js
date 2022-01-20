@@ -118,7 +118,7 @@ export const Edit = () => {
       await axios({
         withCredentials: true,
         method: 'patch',
-        url: `http://server.bookdam.link/article/${userInfo.id}?article_Id=${myArticleInfo.id}`,
+        url: `https://server.bookdam.link/article/${userInfo.id}?article_Id=${myArticleInfo.id}`,
         headers: {
           authorization: `Bearer: ${process.env.Client_Secret}`,
           'Content-Type': 'application/json'

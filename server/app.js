@@ -19,12 +19,13 @@ app.use(
       'https://www.bookdam.link'
     ],
     credentials: true,
-    methods: ['GET', 'POST', 'OPTIONS', 'DELETE', 'PATCH']
+    methods: ['GET', 'POST', 'OPTIONS', 'DELETE', 'PATCH'],
+    maxAge = 3600
   })
 );
 
 app.use('/', router);
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`Example app listening at https://server.bookdam.link:${port}`);
 });

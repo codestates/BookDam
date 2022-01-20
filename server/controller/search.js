@@ -4,7 +4,7 @@ const axios = require('axios');
 
 module.exports = {
   get: (req, res) => {
-    const api_url = `https://www.aladin.co.kr/ttb/api/ItemSearch.aspx?ttbkey=${ttbkey}&Query=${encodeURI(req.query.query)}&QueryType=Title&SearchTarget=Book&Sort=Title&Cover=Big&Output=XML`;
+    const api_url = `https://www.aladin.co.kr/ttb/api/ItemSearch.aspx?ttbkey=${ttbkey}&Query=${encodeURI(req.query.query)}&QueryType=Keyword&SearchTarget=Book&Sort=accuracy&Cover=Big&Output=XML`;
 
     axios.get(api_url)
       .then((result) => {

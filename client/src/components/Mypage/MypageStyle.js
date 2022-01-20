@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const MyPageWholeContainer = styled.div`
-  /* padding-top: 50px; */
+  padding-top: 80px;
   border-top: 1px solid #e9ecef;
   overflow: hidden;
   position: relative;

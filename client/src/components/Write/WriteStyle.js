@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const WriteWholeContainer = styled.div`
-  padding-top: 50px;
+  padding-top: 80px;
   border: 1px solid #e9ecef;
   overflow: hidden;
   /* position: relative; */

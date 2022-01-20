@@ -246,37 +246,9 @@ export const WriteCommentSection = styled.textarea.attrs({
 export const ArticleButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   /* border: 1px solid red; */
   height: 10%;
-`;
-
-export const ArticleButtonContainer = styled.div`
-  width: 970px;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* border: 1px solid blue; */
-`;
-
-export const ArticleButtonSection = styled.div`
-  /* border: 1px solid red; */
-  width: 90%;
-  height: 80%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const ButtonContainer = styled.div`
-  margin: 5px;
-  /* border: 2px solid red; */
-  width: 350px;
-  height: 55px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
 `;
 
 export const ButtonsInWrite = styled.button`

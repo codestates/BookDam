@@ -68,7 +68,7 @@ export default function MyPage () {
   const closeNoticeModal = () => {
     setIsOpenNoticeModal(!isOpenNoticeModal);
   };
-  
+
   // 회원정보수정 버튼 누르면 회원정보수정 모달이 나오는 함수
   const userInfoModifyBtnHandler = () => {
     if (userInfo.userId === 'guest') {
@@ -152,6 +152,7 @@ export default function MyPage () {
     }
   }, [inView, loading]);
 
+  console.log('마이아티클리스트: ', myArticleList);
   const myArticles = myArticleList.map((el, index) => {
     return (
       <ArticleWrap key={index}>
@@ -166,7 +167,12 @@ export default function MyPage () {
   // 내 정보(닉네임, 유저이미지)를 업데이트 하는 함수
   const updateMyInfo = (data) => {
     setMyUserInfo(data);
-  }
+  };
+
+  // 내 아티클을 업데이트 하는 함수
+  const updateMyArticles = (data) => {
+    setMyArticleList(data);
+  };
 
   return (
     <>
@@ -185,6 +191,8 @@ export default function MyPage () {
             ? <SetenceModal
                 openSentenceModalHandler={openSentenceModalHandler}
                 setIsOpenSentenceModal={setIsOpenSentenceModal}
+                updateMyArticles={updateMyArticles}
+                myArticleList={myArticleList}
               />
             : null}
           <UserInfoContainer>

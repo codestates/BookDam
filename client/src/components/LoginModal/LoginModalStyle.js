@@ -9,6 +9,7 @@ export const LoginModalWholeBackground = styled.div`
   left: 0;
   background: rgba(0, 0, 0, 0.5); // 투명 회색 효과
   backdrop-filter: blur(5px); //blur 효과
+  z-index: 2;
 
   @media screen and (max-width: 500px) {
     display: hidden;

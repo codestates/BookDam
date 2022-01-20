@@ -331,13 +331,7 @@ export const Write = () => {
         </WriteArticleWrapper>
 
         <ArticleButtonWrapper>
-          <ArticleButtonContainer>
-            <ArticleButtonSection>
-              <ButtonContainer>
-                <ButtonsInWrite onClick={submitHandler}>저장하기</ButtonsInWrite>
-              </ButtonContainer>
-            </ArticleButtonSection>
-          </ArticleButtonContainer>
+          <ButtonsInWrite onClick={submitHandler}>저장하기</ButtonsInWrite>
         </ArticleButtonWrapper>
       </WriteWholeContainer>
     </>

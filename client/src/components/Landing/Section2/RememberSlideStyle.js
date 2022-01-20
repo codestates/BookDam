@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-// Write 전체 컨테이너
-export const WriteWholeContainer = styled.div`
+// 전체 컨테이너
+export const RememberWholeContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: row;
@@ -30,7 +30,6 @@ export const TypoSection = styled.section`
     position: relative;
     overflow: hidden;
     animation: fadein 3s ease-in-out;
-    animation-delay: 1s;
     -moz-animation: fadein 3s ease-in-out; /* Firefox */
     -webkit-animation: fadein 3s ease-in-out; /* Safari and Chrome */
     -o-animation: fadein 3s ease-in-out; /* Opera */
@@ -48,22 +47,23 @@ export const TypoSection = styled.section`
 `;
 
 // 타이포그래픽 랩퍼
-export const WriteTypoWrapper = styled.div`
+export const RememberTypoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 400px;
+  width: 430px;
   height: 150px;
   margin: 10px 0 30px 0;
   /* border: 1px solid grey; */
 `;
 
 // 타이포
-export const WriteTypo = styled.h1`
+export const RememberTypo = styled.h1`
   width: 80%;
   max-width: 480px;
   /* margin: 1.6em 2em; */
+  text-align: center;
   font-family: 'Playfair Display', serif;
   font-size: 4em;
   line-height: 1.4em;
@@ -91,8 +91,8 @@ export const WriteTypo = styled.h1`
 `;
 
 // 소개
-export const WriteIntroduction = styled.div`
-  width: 400px;
+export const RememberIntroduction = styled.div`
+  width: 430px;
   height: 100px;
   /* border: 1px solid grey; */
 `;

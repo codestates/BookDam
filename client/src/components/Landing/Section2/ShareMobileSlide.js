@@ -24,7 +24,7 @@ export const ShareMobileSlide = () => {
           <ShareTypoWrapper className='fadein'>
             <ShareTypo>
               <span className='underline'>
-                <span>Share</span>
+                <span>공유</span>
               </span>
             </ShareTypo>
           </ShareTypoWrapper>

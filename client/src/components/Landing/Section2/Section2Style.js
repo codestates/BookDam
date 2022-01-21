@@ -12,9 +12,16 @@ export const Section2WholeContainer = styled.div`
   height: 100%;
   width: 100vw;
 
-  @media screen and (max-width: 650px) {
-    width: 70%;
+  @media screen and (max-width: 500px) {
+    width: 90%;
   } 
+  > .swiper .swiper-wrapper .swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid black; */
+  }
+
 `;
 
 // 슬라이드 스와이퍼(부모)

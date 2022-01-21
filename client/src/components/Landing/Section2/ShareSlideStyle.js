@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import share from '../../../assets/images/introgif/share.gif';
 
 // Write 전체 컨테이너
 export const ShareWholeContainer = styled.div`
@@ -133,11 +134,16 @@ export const FeatureGifWrapper = styled.div`
   padding: 0;
   width: 250px;
   height: 500px;
-  border-radius: 50px;
+  border-radius: 40px;
+  background-image: url(${share});
+  background-size: 240px 490px;
+  background-position-y: .6rem;
+  background-position-x: .3rem;
+  background-repeat: no-repeat;
 
-  @media screen and (max-width: 650px) {
+  /* @media screen and (max-width: 650px) {
     width: 200px;
-  }
+  } */
 `;
 
 // 아이폰 목업 img

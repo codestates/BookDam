@@ -19,7 +19,7 @@ export const WriteSlide = () => {
           <WriteTypoWrapper className='fadein'>
             <WriteTypo>
               <span className='underline'>
-                <span>Write</span>
+                <span>기록</span>
               </span>
             </WriteTypo>
           </WriteTypoWrapper>

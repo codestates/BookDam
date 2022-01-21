@@ -6,7 +6,7 @@ import {
   IntroWholeContainer,
   SectionWrapperOne,
   SectionWrapperTwo,
-  SectionWrapperThree,
+  SectionWrapperThree
 } from './IntroWrapperStyle';
 import { LoginModal } from '../LoginModal/LoginModal';
 import { SignupModal } from '../Signup/SignupModal';
@@ -106,9 +106,9 @@ export const IntroWrapper = () => {
               handleLoginModal={handleLoginModal}
             />
           : null}
-          
+
         <SectionWrapperOne>
-          <Section1/>
+          <Section1 />
         </SectionWrapperOne>
 
         <SectionWrapperTwo>
@@ -116,9 +116,9 @@ export const IntroWrapper = () => {
         </SectionWrapperTwo>
 
         <SectionWrapperThree>
-          <Section3 isLogin={isLogin} guestLoginHandelr={guestLoginHandelr} handleLoginModal={handleLoginModal}/>
+          <Section3 isLogin={isLogin} guestLoginHandelr={guestLoginHandelr} handleLoginModal={handleLoginModal} />
         </SectionWrapperThree>
-        
+
       </IntroWholeContainer>
     </>
   );

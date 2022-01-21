@@ -7,7 +7,6 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/bundle';
 
-
 export const SwiperContainer = styled.div`
   font-family: "Noto Sans KR",sans-serif;
   background-color: rgb(0,110,20, 0.2);
@@ -18,7 +17,7 @@ export const SwiperContainer = styled.div`
   > .title-container {
     margin-top: 130px;
     @media screen and (max-width: 500px) {
-      margin-top: 80px;
+      margin-top: 150px;
     }
   }
   > div > .subtitle {
@@ -44,7 +43,7 @@ export const SwiperContainer = styled.div`
       margin-bottom: 0px;
     }
   }
-`
+`;
 export const StyledSwiper = styled(Swiper)`
   display: flex;
   align-items: center;
@@ -52,7 +51,7 @@ export const StyledSwiper = styled(Swiper)`
   padding-top: 50px;
   padding-bottom: 200px;
 
-`
+`;
 
 export const SwiperWrapper = styled.div`
   border: 2px solid blue;
@@ -88,9 +87,4 @@ export const SwiperWrapper = styled.div`
     height: 380px;
       object-fit: cover;
     }
-`
-
-
-
-
-
+`;

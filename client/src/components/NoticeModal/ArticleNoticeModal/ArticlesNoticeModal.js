@@ -6,8 +6,6 @@ import {
 } from './ArticlesNoticeModalStyle';
 
 export const ArticleNoticeModal = ({ deleteNoticModalHandler, deleteArticle }) => {
-
-  
   return (
     <>
       <NoticeModalBackground onClick={deleteNoticModalHandler}>

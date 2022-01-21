@@ -1,18 +1,18 @@
 import styled from 'styled-components';
 
 export const UserPageWholeContainer = styled.div`
-  /* padding-top: 50px; */
+  padding-top: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid #e9ecef;
+  border-top: 1px solid #e9ecef;
   overflow: hidden;
   position: relative;
   width: 100vw;
   /* background-color: whitesmoke; */
 
   @media (max-width: 500px) {
-    width: 100%;
+    width: 100vw;
     /* padding-top: 5px; */
   }  
 `;
@@ -41,15 +41,20 @@ export const UserInfoContainer = styled.div`
   width: 72%;
   height: 90px;
   margin: 0;
-  padding: 0;
+  padding: 0 0 0 80px;
   background-color: white;
   margin-block-start: 1em;
   margin-block-end: 1em;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
+  padding-inline-start: 40px;
+  > .space {
+    margin: 0 10px 0 10px;
+    @media (max-width: 500px) {
+      display: none;
+    }
 
-
-
+  }
   @media (max-width: 500px) {
     width: 355px;
   }
@@ -187,9 +192,9 @@ export const ArticleListTitle = styled.div`
 export const ArticleListContainer = styled.ul`
   display: flex;
   width: 970px;
-  flex-direction: row;
+  /* flex-direction: row; */
   flex-wrap: wrap;
-  align-content: flex-start;
+  justify-content: center;
   align-items: center;
   list-style-type: none;
   background-color: white;
@@ -197,9 +202,10 @@ export const ArticleListContainer = styled.ul`
   margin-block-end: 1em;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
+  padding-bottom: 20px;
+
   /* padding-inline-start: 40px;
   padding-inline-end: 0px; */
-
   >.nodata {
     margin-top: 50px;
     width: 647px;
@@ -207,9 +213,9 @@ export const ArticleListContainer = styled.ul`
     font-weight: 800;
     font-size: 20px;
   }
-
   @media screen and (max-width: 500px) {
-    width: 75%;
+    width: 100%;
+    padding: 0px;
     > .nodata {
       margin: 10px 0 0 0;
       font-weight: 600;

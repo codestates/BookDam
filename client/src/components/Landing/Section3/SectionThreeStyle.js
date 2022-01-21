@@ -1,12 +1,13 @@
 import styled, { keyframes } from 'styled-components';
-import { bounceTop1,
-         bounceTop2,
-         bounceTop3,
-         bounceTop4,
-         bounceTop5,
-         bounceTop6,
-         bounceTop7
-        } from './SectionThreeCSS';
+import {
+  bounceTop1,
+  bounceTop2,
+  bounceTop3,
+  bounceTop4,
+  bounceTop5,
+  bounceTop6,
+  bounceTop7
+} from './SectionThreeCSS';
 
 export const IntroWholeContainer = styled.div`
   /* border: 10px solid black; */
@@ -28,18 +29,18 @@ export const SectionContainer = styled.div`
 `;
 
 export const ImageContainer = styled.div`
+  
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 10px;
+  margin: 0;
   /* border: 1px solid black; */
   height: 55%;
   width: 450px;
 `;
 
-
 export const ImageAnimation1 = styled.img.attrs({
-  src: `${"https://img.icons8.com/external-vitaliy-gorbachev-lineal-color-vitaly-gorbachev/480/000000/external-share-social-media-vitaliy-gorbachev-lineal-color-vitaly-gorbachev.png"}`
+  src: `${'https://img.icons8.com/external-vitaliy-gorbachev-lineal-color-vitaly-gorbachev/480/000000/external-share-social-media-vitaliy-gorbachev-lineal-color-vitaly-gorbachev.png'}`
 })`
   /* border: 1px solid black; */
   width: 25%;
@@ -51,7 +52,7 @@ export const ImageAnimation1 = styled.img.attrs({
 `;
 
 export const ImageAnimation2 = styled.img.attrs({
-  src: `${"https://img.icons8.com/bubbles/500/000000/book-and-pencil.png"}`
+  src: `${'https://img.icons8.com/bubbles/500/000000/book-and-pencil.png'}`
 })`
   /* border: 1px solid black; */
   width: 15%;
@@ -64,7 +65,7 @@ export const ImageAnimation2 = styled.img.attrs({
 `;
 
 export const ImageAnimation3 = styled.img.attrs({
-  src: `${"https://img.icons8.com/clouds/500/000000/book.png"}`
+  src: `${'https://img.icons8.com/clouds/500/000000/book.png'}`
 })`
   /* border: 1px solid blue; */
   width: 30%;
@@ -76,7 +77,7 @@ export const ImageAnimation3 = styled.img.attrs({
 `;
 
 export const ImageAnimation4 = styled.img.attrs({
-  src: `${"https://img.icons8.com/doodle/480/000000/books.png"}`
+  src: `${'https://img.icons8.com/doodle/480/000000/books.png'}`
 })`
   /* border: 1px solid black; */
   width: 20%;
@@ -88,7 +89,7 @@ export const ImageAnimation4 = styled.img.attrs({
 `;
 
 export const ImageAnimation5 = styled.img.attrs({
-  src: `${"https://img.icons8.com/external-vitaliy-gorbachev-lineal-color-vitaly-gorbachev/480/000000/external-woman-stay-home-vitaliy-gorbachev-lineal-color-vitaly-gorbachev.png"}`
+  src: `${'https://img.icons8.com/external-vitaliy-gorbachev-lineal-color-vitaly-gorbachev/480/000000/external-woman-stay-home-vitaliy-gorbachev-lineal-color-vitaly-gorbachev.png'}`
 })`
   /* border: 1px solid red; */
   width: 27%;
@@ -100,9 +101,8 @@ export const ImageAnimation5 = styled.img.attrs({
   }
 `;
 
-
 export const ImageAnimation6 = styled.img.attrs({
-  src: `${"https://img.icons8.com/bubbles/500/000000/books.png"}`
+  src: `${'https://img.icons8.com/bubbles/500/000000/books.png'}`
 })`
   /* border: 1px solid green; */
   width: 25%;
@@ -113,9 +113,8 @@ export const ImageAnimation6 = styled.img.attrs({
   }
 `;
 
-
 export const ImageAnimation7 = styled.img.attrs({
-  src: `${"https://img.icons8.com/bubbles/500/000000/book-reading.png"}`
+  src: `${'https://img.icons8.com/bubbles/500/000000/book-reading.png'}`
 })`
   /* border: 1px solid black; */
   width: 20%;
@@ -200,7 +199,7 @@ export const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
+  margin-bottom: 80px;
   /* @media screen and (max-width: 500px) {
     height: 200px;
     flex-direction: column;
@@ -246,14 +245,14 @@ export const ButtonSubContainer = styled.div`
 `;
 
 export const TakeTourButtonImage = styled.img.attrs({
-  src: `${"https://img.icons8.com/fluency-systems-regular/500/000000/circle-around.png"}`
+  src: `${'https://img.icons8.com/fluency-systems-regular/500/000000/circle-around.png'}`
 })`
   width: 18%;
   margin-right: 10px;
 `;
 
 export const LoginButtonImage = styled.img.attrs({
-  src: `${"https://img.icons8.com/ios-filled/500/000000/login-rounded-right.png"}`
+  src: `${'https://img.icons8.com/ios-filled/500/000000/login-rounded-right.png'}`
 })`
   width: 16%;
   margin-right: 10px;
@@ -274,4 +273,3 @@ export const SectionWrapperThree = styled.div`
 //   width: 30%;
 //   animation: ${move} 2s 1s infinite;
 // `;
-

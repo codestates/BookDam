@@ -14,7 +14,6 @@ import Axios from 'axios';
 import { ErrorMessage } from '../GlobalMessage/GlobalMessage';
 import { IoClose } from 'react-icons/io5';
 
-
 export const Verification = ({ setIsChecked, closeModal }) => {
   const [errorMessage, setErrorMessage] = useState('');
   const userState = useSelector(state => state.userInfoReducer);

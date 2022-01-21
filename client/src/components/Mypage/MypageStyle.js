@@ -2,18 +2,35 @@ import styled from 'styled-components';
 
 export const MyPageWholeContainer = styled.div`
   padding-top: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-top: 1px solid #e9ecef;
   overflow: hidden;
+  position: relative;
   width: 100vw;
-  height: 900px;
+  /* background-color: whitesmoke; */
+
+  @media (max-width: 500px) {
+    width: 100vw;
+    /* padding-top: 5px; */
+  }  
 `;
 
 export const MypageContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   padding-top: 30px;
+  width: 970px;
+  margin: 0px;
+  
+  /* border: 1px solid black; */
+  
+  @media (max-width: 500px) {
+    width: 100%;
+  }
 `;
 
 // UserInfo 영역
@@ -24,14 +41,20 @@ export const UserInfoContainer = styled.div`
   width: 72%;
   height: 90px;
   margin: 0;
-  padding: 0;
+  padding: 0 0 0 80px;
   background-color: white;
   margin-block-start: 1em;
   margin-block-end: 1em;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   padding-inline-start: 40px;
+  > .space {
+    margin: 0 10px 0 10px;
+    @media (max-width: 500px) {
+      display: none;
+    }
 
+  }
   @media (max-width: 500px) {
     width: 355px;
   }
@@ -145,12 +168,25 @@ export const UserModifyBtn = styled.button`
   background-color: #1dc078;
   color: white;
   cursor: pointer;
-  
+  display: inline-block;
+  font-family: Inter,-apple-system,system-ui,Roboto,"Helvetica Neue",Arial,sans-serif;
+  box-sizing: border-box;
+  line-height: 1.5;
+  border: 2px solid #1dc078;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: normal;
+  padding: 3px;
+  text-align: center;
+  white-space: nowrap;
+
   @media (max-width: 500px) {
-    cursor: none;
+    width: 200px;
+    font-size: small;
+
   }
 `;
-
 
 // Article 영역 (목록 제목)
 export const ArticleListTitle = styled.div`
@@ -170,10 +206,10 @@ export const ArticleListTitle = styled.div`
 // Article 영역 (목록)
 export const ArticleListContainer = styled.ul`
   display: flex;
-  width: 75%;
-  flex-direction: row;
+  width: 970px;
+  /* flex-direction: row; */
   flex-wrap: wrap;
-  align-content: flex-start;
+  justify-content: center;
   align-items: center;
   list-style-type: none;
   background-color: white;
@@ -181,9 +217,9 @@ export const ArticleListContainer = styled.ul`
   margin-block-end: 1em;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
+  padding-bottom: 20px;
   /* padding-inline-start: 40px;
   padding-inline-end: 0px; */
-
   >.nodata {
     margin-top: 50px;
     width: 647px;
@@ -191,9 +227,9 @@ export const ArticleListContainer = styled.ul`
     font-weight: 800;
     font-size: 20px;
   }
-
   @media screen and (max-width: 500px) {
-    width: 75%unset;
+    width: 100%;
+    padding: 0px 0 20px 0;
     > .nodata {
       margin: 10px 0 0 0;
       font-weight: 600;

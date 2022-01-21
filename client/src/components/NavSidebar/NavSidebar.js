@@ -25,6 +25,7 @@ import {
   LoginoutSection,
   Loginout
 } from './NavSidebarStyle';
+import { userImage } from '../../assets/images/userImage/userImage';
 
 export function NavSidebar ({ menuBtnHandler }) {
   const userState = useSelector(state => state.userInfoReducer);
@@ -66,7 +67,7 @@ export function NavSidebar ({ menuBtnHandler }) {
             </SidebarHeader>
             <UserSection>
               <UserImageWrap>
-                <UserImage src={userInfo.userImage}/>
+                {userInfo ? <UserImage src={userInfo.userImage} /> : <UserImage src={userImage.bird} />}
               </UserImageWrap>
               <UserNickNamge>{userInfo.userNickName}</UserNickNamge>
             </UserSection>

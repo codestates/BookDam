@@ -109,7 +109,7 @@ export default function Navbar () {
           <LogoSection>
             <Link to='/myPage'><LogoImage src={Logo} /></Link>
           </LogoSection>
-          
+
           <NavMenuSection>
             {navMenu1
               ? <NavMenuSub><StyledLink to='/'>소개</StyledLink></NavMenuSub>

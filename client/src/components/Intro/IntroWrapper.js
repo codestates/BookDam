@@ -120,6 +120,7 @@ export const IntroWrapper = () => {
         <SectionWrapperTwo>
           <Section2 />
         </SectionWrapperTwo>
+        
         <SectionWrapperThree>
           <Section3 isLogin={isLogin} guestLoginHandelr={guestLoginHandelr} handleLoginModal={handleLoginModal}/>
         </SectionWrapperThree>

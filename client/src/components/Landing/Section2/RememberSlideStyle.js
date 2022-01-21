@@ -2,17 +2,17 @@ import styled from 'styled-components';
 
 // 전체 컨테이너
 export const RememberWholeContainer = styled.div`
-  position: relative;
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
   margin: 0;
   padding: 0;
   height: 750px;
   width: 100%;
-  /* border: 2px solid grey; */
 
-  @media (max-width: 500px) {
-    width: 100%;
+  @media screen and (max-width: 650px) {
+    display: none;
   } 
 `;
 
@@ -23,7 +23,6 @@ export const TypoSection = styled.section`
   align-items: center;
   justify-content: center;
   width: 600px;
-  /* border: 1px solid green; */
 
   .fadein {
     /* font-size: 20px; */
@@ -44,6 +43,10 @@ export const TypoSection = styled.section`
       transform: none;
       }
     }
+
+    @media screen and (max-width: 650px) {
+    display: none;
+  }
 `;
 
 // 타이포그래픽 랩퍼
@@ -55,14 +58,17 @@ export const RememberTypoWrapper = styled.div`
   width: 430px;
   height: 150px;
   margin: 10px 0 30px 0;
-  /* border: 1px solid grey; */
+
+  @media screen and (max-width: 650px) {
+    align-items: center;
+    justify-content: flex-start;
+  }
 `;
 
 // 타이포
 export const RememberTypo = styled.h1`
   width: 80%;
   max-width: 480px;
-  /* margin: 1.6em 2em; */
   text-align: center;
   font-family: 'Playfair Display', serif;
   font-size: 4em;
@@ -88,13 +94,20 @@ export const RememberTypo = styled.h1`
   *::selection {
     background: rgba(226,145,230,.2);
   }
+
+  @media screen and (max-width: 650px) {
+    width: 60%;
+    font-size: 2.5em;
+  }
 `;
 
 // 소개
 export const RememberIntroduction = styled.div`
   width: 430px;
-  height: 100px;
-  /* border: 1px solid grey; */
+
+  @media screen and (max-width: 650px) {
+    font-size: 0.8em;
+  }
 `;
 
 // 기능 섹션
@@ -104,7 +117,10 @@ export const SkillSection = styled.div`
   align-items: center;
   justify-content: center;
   width: 380px;
-  /* border: 1px solid green; */
+
+  @media screen and (max-width: 650px) {
+    display: none;
+  }
 `;
 
 // 기능 시현 GIF
@@ -116,8 +132,8 @@ export const FeatureGifWrapper = styled.div`
   border-radius: 50px;
   /* border: 1px solid orange; */
 
-  @media screen and (max-width: 500px) {
-
+  @media screen and (max-width: 650px) {
+    width: 200px;
   }
 `;
 

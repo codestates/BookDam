@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
 export const WriteWholeContainer = styled.div`
-  padding-top: 50px;
+  padding-top: 100px;
   border: 1px solid #e9ecef;
   overflow: hidden;
   /* position: relative; */
-  height: 900px;
+  /* height: 900px; */
+  height: 100vh;
   width: 100vw;
 `;
 
@@ -53,12 +54,15 @@ export const SearchContainer = styled.div`
   justify-content: center;
 `;
 
-export const SearchInputcontainer = styled.input`
+export const SearchInputcontainer = styled.input.attrs({
+  placeholder: '책과 저자를 함께 입력하면 빠른 검색이 가능합니다.'
+})`
   width: 100%;
   border: 2px solid #e5e5e5;
   outline: none;
   font-size: 1rem;
   font-weight: 600;
+  padding-left: 10px;
 `;
 
 export const SearchClick = styled.div`
@@ -76,6 +80,7 @@ export const SearchClick = styled.div`
 export const SearchBookInfoLower = styled.div`
   width: 100%;
   height: 70%;
+  margin-top: 20px;
   /* border: 1px solid black; */
   display: flex;
   justify-content: center;
@@ -90,7 +95,7 @@ export const SearchBookTitleContainer = styled.div`
   /* font-size: 18px; */
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
 
   @media screen and (max-width: 500px) {
     font-size: 15px;
@@ -113,11 +118,12 @@ export const BookTitleLeftContainer = styled.div` //도서명, 저자, 출판사
 
 export const BookTitleRightContainer = styled.div`
   width: 80%;
-  height: 33%;
+  height: 100%;
   margin-left: 10px;
   /* border: 1px solid black; */
   font-size: 18px;
   font-weight: 600;
+  overflow: hidden;
 
   @media screen and (max-width: 500px) {
     font-size: 15px;
@@ -133,6 +139,19 @@ export const SearchBookAuthorContainer = styled.div`
   align-items: center;
 `;
 
+export const BookAuthorRightContainer = styled.div`
+  width: 80%;
+  height: 33%;
+  margin-left: 10px;
+  /* border: 1px solid black; */
+  font-size: 18px;
+  font-weight: 600;
+
+  @media screen and (max-width: 500px) {
+    font-size: 15px;
+  }
+`;
+
 export const SearchBookPublisherContainer = styled.div`
   width: 80%;
   height: 33%;
@@ -140,6 +159,19 @@ export const SearchBookPublisherContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+`;
+
+export const BookPublisherRightContainer = styled.div`
+  width: 80%;
+  height: 33%;
+  margin-left: 10px;
+  /* border: 1px solid black; */
+  font-size: 18px;
+  font-weight: 600;
+
+  @media screen and (max-width: 500px) {
+    font-size: 15px;
+  }
 `;
 
 export const SearchBookImageContainer = styled.div`
@@ -177,7 +209,7 @@ export const WriteArticleWrapper = styled.div`
   justify-content: center;
   align-items: center;
   /* border: 1px solid red; */
-  height: 40%;
+  height: 45%;
 `;
 
 export const WriteArticleContainer = styled.div`
@@ -235,7 +267,7 @@ export const WriteCommentSection = styled.textarea.attrs({
 })`
   /* margin: 10px; */
   width: 90%;
-  height: 25%;
+  height: 50%;
   border: thick double #5dc175;
   padding: 20px;
   border-radius: 7px;
@@ -246,29 +278,62 @@ export const WriteCommentSection = styled.textarea.attrs({
 export const ArticleButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   /* border: 1px solid red; */
   height: 10%;
 `;
-
+export const ArticleButtonContainer = styled.div`
+  width: 970px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid blue; */
+`;
+export const ArticleButtonSection = styled.div`
+  /* border: 1px solid red; */
+  width: 90%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+export const ButtonContainer = styled.div`
+  margin: 5px;
+  /* border: 2px solid red; */
+  width: 350px;
+  height: 55px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+`;
 export const ButtonsInWrite = styled.button`
   width: 150px;
   height: 40px;
-  margin: 10px;
-  border-style: none;
-  border-radius: 10px;
-  font-size: 20px;
-  font-weight: 600;
-  background: #2cc05a;
-  color: black;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  transition: all 0.1s ease-in-out;
+  background-color: #1dc078;
+  color: white;
   cursor: pointer;
-  text-align: center;
-  outline: none;
-  white-space: nowrap;
+  display: inline-block;
+  font-family: Inter,-apple-system,system-ui,Roboto,"Helvetica Neue",Arial,sans-serif;
+  line-height: 44px;
+  outline: 0;
   overflow: hidden;
+  padding: 0 20px;
+  pointer-events: auto;
+  position: relative;
+  text-align: center;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: top;
+  white-space: nowrap;
+  border: 0;
+  margin: 10px;
+  font-weight: 600;
+  font-size: 20px;
+  border-radius: 5px;
+  
   &:hover {
-    color: #ffffff;
+  background: #00bd68;
   }
 `;

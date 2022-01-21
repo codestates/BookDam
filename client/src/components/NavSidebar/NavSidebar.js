@@ -78,7 +78,7 @@ export function NavSidebar ({ menuBtnHandler }) {
                 <Link to='/feedPage' style={{ textDecoration: 'none' }}>피드</Link>
               </Feed>
               <MyPage onClick={menuBtnHandler}>
-                <Link to='/mypage' style={{ textDecoration: 'none' }}>마이페이지</Link>
+                <Link to='/myPage' style={{ textDecoration: 'none' }}>마이페이지</Link>
               </MyPage>
             </MenuSection>
           </SidebarTop>
@@ -94,7 +94,7 @@ export function NavSidebar ({ menuBtnHandler }) {
             <LoginoutSection>
               {isLogin
                 ? <Link to='/'><Loginout onClick={logoutHandler}>로그아웃</Loginout></Link>
-                : <Link to='/' style={{ textDecoration: 'none' }}><Loginout>시작하기</Loginout></Link>}
+                : <Link to='/'><Loginout onClick={menuBtnHandler}>시작하기</Loginout></Link>}
             </LoginoutSection>
           </SidebarBottom>
         </SidebarContainer>

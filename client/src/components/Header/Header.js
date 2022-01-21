@@ -1,22 +1,21 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import { HeaderContainer } from './HeaderStyle';
-import { CreatePage } from '../../pages/CreatePage/CreatePage';
-import { FeedPage } from '../../pages/FeedPage/FeedPage';
-import UserPage from '../../pages/UserPage/UserPage';
-import MyPage from '../../pages/MyPage/MyPage';
-import { EditPage } from '../../pages/EditPage/EditPage';
-import { IntroPage } from '../../pages/IntroPage/IntroPage';
-import Footer from '../../components/Footer/Footer';
+// import { CreatePage } from '../../pages/CreatePage/CreatePage';
+// import { FeedPage } from '../../pages/FeedPage/FeedPage';
+// import UserPage from '../../pages/UserPage/UserPage';
+// import MyPage from '../../pages/MyPage/MyPage';
+// import { EditPage } from '../../pages/EditPage/EditPage';
+// import { IntroPage } from '../../pages/IntroPage/IntroPage';
+// import Footer from '../../components/Footer/Footer';
 
 export default function Header () {
   return (
     <>
       <HeaderContainer>
         <Navbar />
-        <Switch>
-          <Route path='/feedpage'>
+        {/* <Switch>
+          <Route path='/feedPage'>
             <FeedPage />
           </Route>
           <Route path='/createPage'>
@@ -28,10 +27,10 @@ export default function Header () {
           <Route path='/userPage'>
             <UserPage />
           </Route>
-          <Route path='/editpage'>
+          <Route path='/'>
             <EditPage />
           </Route>
-        </Switch>
+        </Switch> */}
       </HeaderContainer>
     </>
   );

@@ -57,7 +57,7 @@ export const SentenceModal = ({
 
   const sendToEditPage = () => {
     history.push({
-      pathname: '/editpage',
+      pathname: '/editPage',
       state: {
         myArticleInfo: {
           myArticleInfo

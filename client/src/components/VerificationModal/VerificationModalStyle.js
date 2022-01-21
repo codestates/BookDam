@@ -44,6 +44,7 @@ export const VerificationSection = styled.section`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  z-index: 101;
 `;
 
 // 본인인증 제목
@@ -74,15 +75,28 @@ export const InputPassword = styled.input.attrs({
 export const Button = styled.button`
   width: 130px;
   height: 40px;
-  box-sizing: border-box;
-  border: 1px solid #12e272;
-  border-radius: 5px;
-  background-color: rgba(0,0,0,0);
-  color: rgba(0, 0, 0, 0.5);
-  font-weight: 700;
+  background-color: #1dc078;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Inter,-apple-system,system-ui,Roboto,"Helvetica Neue",Arial,sans-serif;
+  outline: 0;
+  overflow: hidden;
+  padding: 0 20px;
+  pointer-events: auto;
+  position: relative;
+  text-align: center;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: top;
+  white-space: nowrap;
+  border: 0;
   margin: 10px;
-  border-radius: 2px; 
-&:hover {
-  color: #12e272;
-}
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 5px;
+  
+  &:hover {
+  background: #00bd68;
 `;

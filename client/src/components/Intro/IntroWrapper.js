@@ -7,13 +7,6 @@ import {
   SectionWrapperOne,
   SectionWrapperTwo,
   SectionWrapperThree,
-  SectionContainer,
-  SectionInfoContainer,
-  ImageContainer,
-  TextContainer,
-  ButtonWrapper,
-  ButtonContainer,
-  ButtonsInIntro
 } from './IntroWrapperStyle';
 import { LoginModal } from '../LoginModal/LoginModal';
 import { SignupModal } from '../Signup/SignupModal';
@@ -94,7 +87,7 @@ export const IntroWrapper = () => {
           setIsOpenLoginModal(false);
           document.body.style.overflow = 'unset'; // 스크롤 방지 해제
         }
-        history.push('/feedpage');
+        history.push('/feedPage');
       });
   };
 
@@ -113,6 +106,7 @@ export const IntroWrapper = () => {
               handleLoginModal={handleLoginModal}
             />
           : null}
+          
         <SectionWrapperOne>
           <Section1/>
         </SectionWrapperOne>
@@ -120,7 +114,7 @@ export const IntroWrapper = () => {
         <SectionWrapperTwo>
           <Section2 />
         </SectionWrapperTwo>
-        
+
         <SectionWrapperThree>
           <Section3 isLogin={isLogin} guestLoginHandelr={guestLoginHandelr} handleLoginModal={handleLoginModal}/>
         </SectionWrapperThree>

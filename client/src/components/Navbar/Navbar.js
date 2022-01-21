@@ -19,8 +19,6 @@ import {
   NavMenuSub,
   StyledLink,
   UserSection,
-  UserImage,
-  UserNickName,
   LoginoutSection,
   Loginout,
   SideMenuSection
@@ -34,6 +32,7 @@ export default function Navbar () {
   const [navMenu1, setSubNavMenu1] = useState(false);
   const [navMenu2, setSubNavMenu2] = useState(false);
   const [navMenu3, setSubNavMenu3] = useState(false);
+  const [navMenu4, setSubNavMenu4] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -51,18 +50,28 @@ export default function Navbar () {
     setSubNavMenu1(true);
     setSubNavMenu2(false);
     setSubNavMenu3(false);
+    setSubNavMenu4(false);
   };
 
   const handleNav2 = () => {
     setSubNavMenu1(false);
     setSubNavMenu2(true);
     setSubNavMenu3(false);
+    setSubNavMenu4(false);
   };
 
   const handleNav3 = () => {
     setSubNavMenu1(false);
     setSubNavMenu2(false);
     setSubNavMenu3(true);
+    setSubNavMenu4(false);
+  };
+
+  const handleNav4 = () => {
+    setSubNavMenu1(false);
+    setSubNavMenu2(false);
+    setSubNavMenu3(false);
+    setSubNavMenu4(true);
   };
 
   // 로그아웃 핸들러
@@ -103,24 +112,22 @@ export default function Navbar () {
           
           <NavMenuSection>
             {navMenu1
-              ? <NavMenuSub><StyledLink to='/createPage'>작성하기</StyledLink></NavMenuSub>
-              : <NavMenu onClick={handleNav1}><StyledLink to='/createPage'>작성하기</StyledLink></NavMenu>}
+              ? <NavMenuSub><StyledLink to='/'>소개</StyledLink></NavMenuSub>
+              : <NavMenu onClick={handleNav1}><StyledLink to='/'>소개</StyledLink></NavMenu>}
 
             {navMenu2
-              ? <NavMenuSub><StyledLink to='/feedPage'>피드</StyledLink></NavMenuSub>
-              : <NavMenu onClick={handleNav2}><StyledLink to='/feedPage'>피드</StyledLink></NavMenu>}
+              ? <NavMenuSub><StyledLink to='/createPage'>작성하기</StyledLink></NavMenuSub>
+              : <NavMenu onClick={handleNav2}><StyledLink to='/createPage'>작성하기</StyledLink></NavMenu>}
 
             {navMenu3
-              ? <NavMenuSub><StyledLink to='/myPage'>마이페이지</StyledLink></NavMenuSub>
-              : <NavMenu onClick={handleNav3}><StyledLink to='/myPage'>마이페이지</StyledLink></NavMenu>}
+              ? <NavMenuSub><StyledLink to='/feedPage'>피드</StyledLink></NavMenuSub>
+              : <NavMenu onClick={handleNav3}><StyledLink to='/feedPage'>피드</StyledLink></NavMenu>}
 
-            {/* <NavMenu>
-              <Link to='/editpage' style={{ textDecoration: 'none' }}>수정하기</Link>
-            </NavMenu> */}
+            {navMenu4
+              ? <NavMenuSub><StyledLink to='/mypage'>마이페이지</StyledLink></NavMenuSub>
+              : <NavMenu onClick={handleNav4}><StyledLink to='/mypage'>마이페이지</StyledLink></NavMenu>}
           </NavMenuSection>
           <UserSection>
-            {/* <UserImage />
-            <UserNickName>{userInfo.userNickName}</UserNickName> */}
             <LoginoutSection>
               {isLogin
                 ? <Link to='/'><Loginout onClick={logoutHandler}>로그아웃</Loginout></Link>

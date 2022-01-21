@@ -16,6 +16,8 @@ import {
   BookTitleLeftContainer,
   BookTitleRightContainer,
   SearchBookAuthorContainer,
+  BookPublisherRightContainer,
+  BookAuthorRightContainer,
   SearchBookPublisherContainer,
   SearchBookImageContainer,
   BookThumbnailContainer,
@@ -102,7 +104,10 @@ export const Write = () => {
           setSearchData(resultData);
         })
         .catch(err => {
-
+          if(err.response.status === 400) {
+            setIsLoading(false);
+            setSearchData([]);
+          }
         });
     } else {
       setErrorMessage('검색어를 입력하세요.');
@@ -123,8 +128,8 @@ export const Write = () => {
 
   const handleInputSentence = (e) => {
     if (isLogin === false) {
-      setInputSentence('');
-      setIsOpenLoginModal(true);
+      setErrorMessage('로그인이 필요합니다.');
+      setIsOpenNoticeModal(true);
     } else {
       setInputSentence(e.target.value);
       const textLength = (e.target.value).length;
@@ -144,8 +149,8 @@ export const Write = () => {
 
   const handleInputComment = (e) => {
     if (isLogin === false) {
-      setInputComment('');
-      setIsOpenLoginModal(true);
+      setErrorMessage('로그인이 필요합니다.');
+      setIsOpenNoticeModal(true);
     } else {
       setInputComment(e.target.value);
       const textLength = (e.target.value).length;
@@ -198,9 +203,8 @@ export const Write = () => {
         document.body.style.overflow = 'unset'; // 저정하고 스크롤 방지 해제
       }
     } else {
-      setErrorMessage('저장하시겠습니까?');
-      setIsOpenSubmitModal(true);
-      document.body.style.overflow = 'unset'; // 저정하고 스크롤 방지 해제
+      setErrorMessage('로그인이 필요합니다.');
+      setIsOpenNoticeModal(true);
     }
   };
 
@@ -298,11 +302,11 @@ export const Write = () => {
                 </SearchBookTitleContainer>
                 <SearchBookAuthorContainer>
                   <BookTitleLeftContainer>저자명</BookTitleLeftContainer>
-                  <BookTitleRightContainer>{selectedData.author}</BookTitleRightContainer>
+                  <BookAuthorRightContainer>{selectedData.author}</BookAuthorRightContainer>
                 </SearchBookAuthorContainer>
                 <SearchBookPublisherContainer>
                   <BookTitleLeftContainer>출판사</BookTitleLeftContainer>
-                  <BookTitleRightContainer>{selectedData.publisher}</BookTitleRightContainer>
+                  <BookPublisherRightContainer>{selectedData.publisher}</BookPublisherRightContainer>
                 </SearchBookPublisherContainer>
               </SearchBookInfoLower>
             </SearchBookInfoContainer>
@@ -324,14 +328,19 @@ export const Write = () => {
             <WriteSentenceSection value={inputSentence} onChange={handleInputSentence} />
             <WriteTextLimitContainer>
               <WriteTextLimitResult>{commentLength}/300자</WriteTextLimitResult>
-
             </WriteTextLimitContainer>
             <WriteCommentSection value={inputComment} onChange={handleInputComment} />
           </WriteArticleContainer>
         </WriteArticleWrapper>
 
         <ArticleButtonWrapper>
-          <ButtonsInWrite onClick={submitHandler}>저장하기</ButtonsInWrite>
+          <ArticleButtonContainer>
+            <ArticleButtonSection>
+              <ButtonContainer>
+                <ButtonsInWrite onClick={submitHandler}>저장하기</ButtonsInWrite>
+              </ButtonContainer>
+            </ArticleButtonSection>
+          </ArticleButtonContainer>
         </ArticleButtonWrapper>
       </WriteWholeContainer>
     </>

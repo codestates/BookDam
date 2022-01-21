@@ -13,6 +13,7 @@ export const SignupModalWholeBackground = styled.div`
 
   @media screen and (max-width: 500px) {
     display: hidden;
+    padding-top: 70px;
   }
 `;
 

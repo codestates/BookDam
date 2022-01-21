@@ -2,8 +2,11 @@ import styled from 'styled-components';
 
 // 페이지 상단 Header & 반응형 미디어 사이즈 넣기
 export const HeaderContainer = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
   height: 70px;
-  position: relative;
+  /* position: relative; */
   /* width: 100%; */
   width: 100vw;
   z-index: 4;

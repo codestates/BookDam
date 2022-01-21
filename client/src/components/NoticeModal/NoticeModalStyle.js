@@ -37,21 +37,30 @@ z-index: 101;
 `;
 
 export const Button = styled.button`
-width: 120px;
-height: 30px;
-margin: 10px;
-border-style: none;
-border-radius: 5px;
-font-size: 14px;
-background: #2D9BF0;
-color: #ffffff;
-transition: all 0.1s ease-in-out;
-cursor: pointer;
-text-align: center;
-&:hover {
-  color: #ffffff;
-}
-&:active {
-  background: #2683C9;
-}
+  width: 120px;
+  height: 30px;
+  background-color: #1dc078;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Inter,-apple-system,system-ui,Roboto,"Helvetica Neue",Arial,sans-serif;
+  outline: 0;
+  overflow: hidden;
+  padding: 0 20px;
+  pointer-events: auto;
+  position: relative;
+  text-align: center;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: top;
+  white-space: nowrap;
+  border: 0;
+  margin: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 5px;
+  
+  &:hover {
+  background: #00bd68;
 `;

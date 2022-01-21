@@ -2,10 +2,14 @@ import styled from 'styled-components';
 import logo from '../../assets/images/logo-bigw.png';
 
 export const FooterWholeContainer = styled.div`
-  border: 1px solid black;
+  /* border: 10px solid red; */
   overflow: hidden;
   height: 180px;
   width: 100vw;
+
+  @media screen and (max-width: 500px) {
+    height: 120px;
+  }
 `;
 
 export const FooterContainer = styled.div`

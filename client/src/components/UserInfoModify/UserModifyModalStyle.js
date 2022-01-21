@@ -169,37 +169,65 @@ export const UserInfoModifyBtnSection = styled.div`
 // 사진/닉네임 변경 버튼
 export const ModificationBtn = styled.button`
   display: flex;
-  width: 170px;
-  height: 40px;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  border: 1px solid #12e272;
-  border-radius: 5px;
-  background-color: rgba(0,0,0,0);
-  color: #12e272;
-  font-weight: 900;
   margin: 10px 0 0 25px;
   padding: 9px 12px;
-  border-radius: 2px;
+  width: 170px;
+  height: 40px;
+  background-color: #1dc078;
+  color: white;
+  cursor: pointer;
+  font-family: Inter,-apple-system,system-ui,Roboto,"Helvetica Neue",Arial,sans-serif;
+  outline: 0;
+  overflow: hidden;
+  padding: 0 20px;
+  pointer-events: auto;
+  position: relative;
+  text-align: center;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: top;
+  white-space: nowrap;
+  border: 0;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 5px;
+  
+  &:hover {
+  background: #00bd68;
 `;
 
 // 비밀번호 변경 버튼
 export const ModifyPasswordBtn = styled.button`
-  display: flex;
   width: 260px;
   height: 40px;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  border: 1px solid #12e272;
-  border-radius: 5px;
-  background-color: rgba(0,0,0,0);
-  color: #12e272;
-  font-weight: 900;
+  background-color: #1dc078;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Inter,-apple-system,system-ui,Roboto,"Helvetica Neue",Arial,sans-serif;
+  outline: 0;
+  overflow: hidden;
+  padding: 0 20px;
+  pointer-events: auto;
+  position: relative;
+  text-align: center;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: top;
+  white-space: nowrap;
+  border: 0;
   margin: 10px;
-  padding: 9px 12px;
-  border-radius: 2px;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 5px;
+  
+  &:hover {
+  background: #00bd68;
 `;
 
 export const SignOutBtn = styled.button`
@@ -216,4 +244,5 @@ export const SignOutBtn = styled.button`
   margin: 10px;
   padding: 9px 12px;
   border-radius: 2px;
+  font-weight: 600;
 `;

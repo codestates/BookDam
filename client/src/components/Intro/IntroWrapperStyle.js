@@ -100,7 +100,7 @@ export const ButtonsInIntro = styled.button`
   white-space: nowrap;
   overflow: hidden;
   &:hover {
-    color: #ffffff;
+    color: #ffffff;ㅎ
   }
 `;
 

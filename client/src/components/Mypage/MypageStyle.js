@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const MyPageWholeContainer = styled.div`
+  padding-top: 80px;
   border-top: 1px solid #e9ecef;
   overflow: hidden;
   width: 100vw;
@@ -144,17 +145,19 @@ export const UserModifyBtn = styled.button`
   background-color: #1dc078;
   color: white;
   cursor: pointer;
-  display: inline-block;
-  font-family: Inter,-apple-system,system-ui,Roboto,"Helvetica Neue",Arial,sans-serif;
-  box-sizing: border-box;
-  line-height: 1.5;
-  border: 2px solid #1dc078;
-  border-radius: 5px;
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: normal;
-  padding: 3px;
-  position: relative;
+  
+  @media (max-width: 500px) {
+    cursor: none;
+  }
+`;
+
+
+// Article 영역 (목록 제목)
+export const ArticleListTitle = styled.div`
+  height: 30px;
+  width: 970px;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   white-space: nowrap;
 

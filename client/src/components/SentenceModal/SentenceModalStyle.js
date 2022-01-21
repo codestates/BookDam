@@ -44,7 +44,7 @@ export const UserInfoContainer = styled.div`
   background: white;
   border-radius: 15px;
   text-align: center;
-  background-image: linear-gradient(rgba(0,170, 0, 0.1), rgba(0, 255, 0, 0.5));
+  /* background-image: linear-gradient(rgba(0,170, 0, 0.1), rgba(0, 255, 0, 0.5)); */
 
   @media (max-width: 500px){
     height: 630px;
@@ -219,11 +219,11 @@ overflow: auto;
 margin: 0px;
 background-color: whitesmoke;
 background-size: contain;
-font-size: 20px;
-font-weight: 500;
+font-size: 40px;
+font-family: 'Dongle', sans-serif;
 @media (max-width: 500px) {
   font-weight: 500;
-  font-size: 20px;
+  font-size: 40px;
   width: 90%;
 }
 `;
@@ -239,8 +239,10 @@ margin-top: 15px;
 border-radius: 15px;
 background-color: whitesmoke;
 font-size: 16px;
+font-size: 40px;
+font-family: 'Dongle', sans-serif;
 @media (max-width: 500px) {
-  font-size: 15px;
+  font-size: 30px;
   width: 90%;
 }
 `;
@@ -295,19 +297,33 @@ export const CloseBtnWrap = styled.div`
 `;
 
 export const CloseBtn = styled.button`
-  display: flex;
-  width: 100%;
+  width: 100px;
   height: 40px;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  border: 1px solid #12e272;
-  border-radius: 5px;
-  background-color: #12e272;
+  background-color: #1dc078;
   color: white;
-  font-weight: 600;
   cursor: pointer;
+  display: inline-block;
+  font-family: Inter,-apple-system,system-ui,Roboto,"Helvetica Neue",Arial,sans-serif;
+  line-height: 44px;
+  outline: 0;
+  overflow: hidden;
+  padding: 0 20px;
+  pointer-events: auto;
+  position: relative;
+  text-align: center;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: top;
+  white-space: nowrap;
+  border: 0;
   margin: 10px;
-  padding: 9px 12px;
-  border-radius: 2px;
+  font-weight: 600;
+  font-size: 20px;
+  border-radius: 5px;
+  
+  &:hover {
+  background: #00bd68;
+
+  
 `;

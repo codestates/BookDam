@@ -44,6 +44,10 @@ export const ImageAnimation1 = styled.img.attrs({
   /* border: 1px solid black; */
   width: 25%;
   animation: ${bounceTop1} 6s 1s infinite;
+
+  @media screen and (max-width: 500px) {
+    width: 15%;
+  }
 `;
 
 export const ImageAnimation2 = styled.img.attrs({
@@ -52,6 +56,11 @@ export const ImageAnimation2 = styled.img.attrs({
   /* border: 1px solid black; */
   width: 15%;
   animation: ${bounceTop2} 6s 1s infinite;
+
+  @media screen and (max-width: 500px) {
+    width: 15%;
+    margin-right: 10px;
+  }
 `;
 
 export const ImageAnimation3 = styled.img.attrs({
@@ -60,6 +69,10 @@ export const ImageAnimation3 = styled.img.attrs({
   /* border: 1px solid blue; */
   width: 30%;
   animation: ${bounceTop3} 6s 1s infinite;
+
+  @media screen and (max-width: 500px) {
+    width: 25%;
+  }
 `;
 
 export const ImageAnimation4 = styled.img.attrs({
@@ -68,6 +81,10 @@ export const ImageAnimation4 = styled.img.attrs({
   /* border: 1px solid black; */
   width: 20%;
   animation: ${bounceTop4} 6s 1s infinite;
+
+  @media screen and (max-width: 500px) {
+    width: 15%;
+  }
 `;
 
 export const ImageAnimation5 = styled.img.attrs({
@@ -76,6 +93,11 @@ export const ImageAnimation5 = styled.img.attrs({
   /* border: 1px solid red; */
   width: 27%;
   animation: ${bounceTop5} 6s 1s infinite;
+
+  @media screen and (max-width: 500px) {
+    width: 20%;
+    margin-left: 20px;
+  }
 `;
 
 
@@ -85,6 +107,10 @@ export const ImageAnimation6 = styled.img.attrs({
   /* border: 1px solid green; */
   width: 25%;
   animation: ${bounceTop6} 6s 1s infinite;
+
+  @media screen and (max-width: 500px) {
+    width: 18%;
+  }
 `;
 
 
@@ -94,6 +120,10 @@ export const ImageAnimation7 = styled.img.attrs({
   /* border: 1px solid black; */
   width: 20%;
   animation: ${bounceTop7} 6s 1s infinite;
+
+  @media screen and (max-width: 500px) {
+    width: 20%;
+  }
 `;
 
 export const TextAndButtonContainer = styled.div`
@@ -110,18 +140,6 @@ export const TextAndButtonContainer = styled.div`
   }
 `;
 
-export const TextAndSpan = styled.div`
-  /* border: 1px solid black; */
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-
-  @media screen and (max-width: 500px) {
-    flex-direction: column;
-  }
-`;
-
 export const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -131,10 +149,6 @@ export const TextContainer = styled.div`
   /* border: 1px solid black; */
   height: 200x;
   width: 100%;
-  
-  @media screen and (max-width:500px) {
-    flex-direction: column;
-  }
 `;
 
 export const SectionThreeText = styled.div`
@@ -148,15 +162,35 @@ export const SectionThreeText = styled.div`
   }   
 `;
 
-export const SectionThreeTextDiv = styled.span`
-   /* border: 1px solid bla1ck; */
-   font-size: 40px;
-   font-weight: 600;
-   text-align: center;
+export const SectionThreeTextBookDam1 = styled.div`
+  display: none;
 
-   @media screen and (max-width:500px) {
-    text-decoration: underline #FF3028
-  }
+  @media screen and (max-width:500px) {
+  display: block;
+  font-size: 40px;
+  margin-bottom: 15px;
+}   
+`;
+
+export const SectionThreeTextBookDam2 = styled.div`
+  font-size: 40px;
+  font-weight: 600;
+  text-align: center;
+
+  @media screen and (max-width:500px) {
+  display: none;
+}   
+`;
+
+export const SectionThreeTextBookDam3 = styled.div`
+  display: none;
+
+  @media screen and (max-width:500px) {
+  display: block;
+  font-size: 25px;
+  font-weight: 600;
+  text-align: center;
+}   
 `;
 
 export const ButtonContainer = styled.div`
@@ -167,41 +201,40 @@ export const ButtonContainer = styled.div`
   justify-content: center;
   align-items: center;
 
-  @media screen and (max-width: 500px) {
+  /* @media screen and (max-width: 500px) {
     height: 200px;
     flex-direction: column;
-  }
-`;
-
-const blink = keyframes`
-  0%, 50%, 100% {
-    opacity: 1;
-  }
-  25%, 75% {
-    opacity: 0;
-  }
+  } */
 `;
 
 export const ButtonsInIntro = styled.button`
-  width: 240px;
-  height: 70px;
-  margin: 12px;
-  border-style: none;
-  border-radius: 7px;
-  font-size: 25px;
-  background: #2cc05a;
-  color:  black;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  width: 150px;
+  height: 40px;
+  background-color: #1dc078;
+  color: white;
   cursor: pointer;
-  text-align: center;
-  outline: none;
-  white-space: nowrap;
+  display: inline-block;
+  font-family: Inter,-apple-system,system-ui,Roboto,"Helvetica Neue",Arial,sans-serif;
+  line-height: 44px;
+  outline: 0;
   overflow: hidden;
-  animation: ${blink} 2s ease-out 5s 1;
-
-  @media screen and (max-width:500px) {
-    height: 50px;
-    font-size: 20px;
+  padding: 0 20px;
+  pointer-events: auto;
+  position: relative;
+  text-align: center;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: top;
+  white-space: nowrap;
+  border: 0;
+  margin: 10px;
+  font-weight: 600;
+  font-size: 20px;
+  border-radius: 5px;
+  
+  &:hover {
+  background: #00bd68;
   }
 `;
 
@@ -213,27 +246,18 @@ export const ButtonSubContainer = styled.div`
 `;
 
 export const TakeTourButtonImage = styled.img.attrs({
-  src: `${"https://img.icons8.com/fluency-systems-regular/64/000000/circle-around.png"}`
+  src: `${"https://img.icons8.com/fluency-systems-regular/500/000000/circle-around.png"}`
 })`
-  width: 13%;
-  margin-right: 17px;
-
-  @media screen and (max-width:500px) {
-    width: 10%;
-  }
+  width: 18%;
+  margin-right: 10px;
 `;
 
 export const LoginButtonImage = styled.img.attrs({
   src: `${"https://img.icons8.com/ios-filled/500/000000/login-rounded-right.png"}`
 })`
-  width: 10%;
-  margin-right: 17px;
-
-  @media screen and (max-width:500px) {
-    width: 8%;
-  }
+  width: 16%;
+  margin-right: 10px;
 `;
-
 
 export const SectionWrapperThree = styled.div`
   display: flex;

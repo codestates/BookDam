@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import {
   LoginModalWholeBackground,
-  LoginModalWholeContainer,
+  // LoginModalWholeContainer,
   LoginModalWrapper,
   LoginCloseButton,
   LoginModalContainer,
@@ -20,7 +20,6 @@ import { LoginThemeBtn } from '../GlobalButton/GlobalButton';
 import { LoginAction } from '../../actions/UserInfoAction';
 
 export const LoginModal = ({
-  introcheck,
   setIsOpenLoginModal,
   handleSignupModal,
   handleCloseSignupModal
@@ -73,8 +72,7 @@ export const LoginModal = ({
             dispatch(LoginAction(userInfoData));
             setIsOpenLoginModal(false);
             document.body.style.overflow = 'unset'; // 스크롤 방지 해제
-            introcheck()
-            history.push('/feedpage');
+            history.push('/feedPage');
           }
         })
         .catch((err) => {
@@ -91,7 +89,7 @@ export const LoginModal = ({
   return (
     <div>
       <LoginModalWholeBackground onClick={handleCloseLoginModal}>
-        <LoginModalWholeContainer>
+        {/* <LoginModalWholeContainer> */}
           <LoginModalWrapper onClick={(e) => e.stopPropagation()}>
               <LoginModalHeader>
                 <LoginModalLeft />
@@ -109,7 +107,7 @@ export const LoginModal = ({
                 </InputContainer>
               </LoginModalContainer>
             </LoginModalWrapper>
-        </LoginModalWholeContainer>
+        {/* </LoginModalWholeContainer> */}
 
       </LoginModalWholeBackground>
     </div>

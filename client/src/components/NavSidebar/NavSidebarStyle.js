@@ -11,7 +11,7 @@ export const UserInfoModifyModalBackground = styled.div`
   backdrop-filter: blur(5px); //blur 효과
   z-index: 100;
 
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 630px) {
     display: block;
   }
 `;
@@ -31,7 +31,7 @@ export const SidebarContainer = styled.div`
   z-index: 101;
   /* border: 10px solid blue; */
 
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 630px) {
     /* right: -200px; */
   right: 0;
   

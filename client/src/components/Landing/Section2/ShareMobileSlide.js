@@ -8,10 +8,10 @@ import {
   SkillSection,
   FeatureGifWrapper,
   PhoneFrame
-} from './ShareSlideStyle';
+} from './ShareMobileSlideStyle';
 import iFrame from '../../../assets/images/phoneFrame.png';
 
-export const ShareSlide = () => {
+export const ShareMobileSlide = () => {
   return (
     <>
       <ShareWholeContainer>

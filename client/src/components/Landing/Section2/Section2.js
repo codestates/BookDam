@@ -10,8 +10,11 @@ import {
   StyledSlide
 } from './Section2Style';
 import { WriteSlide } from './WriteSlide';
+import { WriteMobileSlide } from './WriteMobileSlide';
 import { ShareSlide } from './ShareSlide';
+import { ShareMobileSlide } from './ShareMobileSlide'
 import { RememberSlide } from './RememberSlide';
+import { RememberMobileSlide } from './RememberMobileSlide';
 
 SwiperCore.use([Navigation]);
 
@@ -29,16 +32,19 @@ export const Section2 = () => {
           <SwiperSlide>
             <StyledSlide>
               <WriteSlide />
+              <WriteMobileSlide />
             </StyledSlide>
           </SwiperSlide>
           <SwiperSlide>
             <StyledSlide>
               <ShareSlide />
+              <ShareMobileSlide />
             </StyledSlide>
           </SwiperSlide>
           <SwiperSlide>
             <StyledSlide>
               <RememberSlide />
+              <RememberMobileSlide />
             </StyledSlide>
           </SwiperSlide>
         </StyledSwiper>

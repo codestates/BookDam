@@ -22,7 +22,7 @@ export const VerificationContainer = styled.div`
   transform: translate(-50%, -50%);
   height: 300px;
   width: 400px;
-  background-color: snow;
+  background-color: white;
   border-radius: 15px;
   z-index: 101;
 `;

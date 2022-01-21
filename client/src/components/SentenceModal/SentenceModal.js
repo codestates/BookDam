@@ -27,11 +27,11 @@ import {
 } from './SentenceModalStyle';
 import { BiDotsVerticalRounded } from 'react-icons/bi';
 import example from '../../assets/images/defaultUserImage.png';
-import { ArticleNoticeModal } from '../../components/NoticeModal/ArticleNoticeModal/ArticlesNoticeModal';
+import { ArticleNoticeModal } from '../NoticeModal/ArticleNoticeModal/ArticlesNoticeModal';
 
 axios.defaults.withCredentials = true;
 
-export const SetenceModal = ({
+export const SentenceModal = ({
   openSentenceModalHandler,
   setIsOpenSentenceModal,
   updateMyArticles,
@@ -45,7 +45,6 @@ export const SetenceModal = ({
   const [isOpenMenu, setIsOpenMenu] = useState(false); // 삭제, 편집 메뉴 모달 오픈
   const [isOpenArticleNotice, setIsOpenArticleNotice] = useState(false); // 아티클 노티스 모달 오픈
   const [myArticleInfo, setMyArticleInfo] = useState(articleInfo); // write page로 넘기는 상태
-  console.log('마이아티클인포: ', myArticleInfo);
 
   // SentenceModal 속 menu 모달 여는 함수
   const openMeunHandler = () => {

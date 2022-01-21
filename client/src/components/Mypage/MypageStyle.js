@@ -5,10 +5,6 @@ export const MyPageWholeContainer = styled.div`
   overflow: hidden;
   width: 100vw;
   height: 900px;
-
-  /* @media (max-width: 500px) {
-    width: 100%;
-  }   */
 `;
 
 export const MypageContainer = styled.div`
@@ -17,11 +13,6 @@ export const MypageContainer = styled.div`
   justify-content: center;
   align-items: center;
   padding-top: 30px;
-  /* border: 1px solid black; */
-
-  /* @media (max-width: 500px) {
-    width: 100%;
-  } */
 `;
 
 // UserInfo 영역
@@ -39,7 +30,6 @@ export const UserInfoContainer = styled.div`
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   padding-inline-start: 40px;
-  /* border: 1px solid skyblue; */
 
   @media (max-width: 500px) {
     width: 355px;
@@ -52,7 +42,6 @@ export const UserImgSection = styled.div`
   margin: 0;
   padding: 0;
   border-radius: 50%;
-  /* border: 1px solid black; */
 
   @media (max-width: 500px) {
     width: 80px;
@@ -74,7 +63,6 @@ export const UserInfoSection = styled.div`
   flex-direction: column;
   flex-wrap: nowrap;
   margin-left: 25px;
-  /* border: 1px solid blue; */
 `;
 
 export const NickNameFollowSection = styled.div`
@@ -84,7 +72,6 @@ export const NickNameFollowSection = styled.div`
   flex-direction: column;
   flex-wrap: nowrap;
   margin-bottom: 5px;
-  /* border: 1px solid red; */
 `;
 
 export const NickName = styled.div`
@@ -97,8 +84,6 @@ export const NickName = styled.div`
   font-size: x-large;
   padding-left: 5px;
   font-weight: 500;
-  /* border: 1px solid green; */
-
 
   @media (max-width: 500px) {
     font-size: larger;
@@ -112,7 +97,6 @@ export const FollowContainer = styled.div`
   padding-left: 5px;
   font-size: medium;
   font-weight: 500;
-  /* border: 1px solid orange; */
 
   @media (max-width: 500px) {
     font-size: smaller;
@@ -127,7 +111,6 @@ export const Follow = styled.div`
   justify-content: flex-start;
   align-items: center;
   text-align: start;
-  /* border: 1px solid yellow; */
 `;
 
 export const FollowCount = styled.span`
@@ -145,7 +128,6 @@ export const Follower = styled.div`
   justify-content: flex-start;
   align-items: center;
   text-align: start;
-  /* border: 1px solid black; */
 `;
 
 export const FollowerCount = styled.span`
@@ -159,15 +141,22 @@ export const FollowerCount = styled.span`
 export const UserModifyBtn = styled.button`
   width: 230px;
   height: 40%;
-  border: 1px solid #12e272;
-  border-radius: 5px;
-  background-color: rgba(0,0,0,0);
-  color: #12e272;
-  padding: 0ch;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  background-color: #1dc078;
+  color: white;
   cursor: pointer;
+  display: inline-block;
+  font-family: Inter,-apple-system,system-ui,Roboto,"Helvetica Neue",Arial,sans-serif;
+  box-sizing: border-box;
+  line-height: 1.5;
+  border: 2px solid #1dc078;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: normal;
+  padding: 3px;
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
 
   @media (max-width: 500px) {
     width: 200px;
@@ -183,8 +172,6 @@ export const ArticleListContainer = styled.ul`
   flex-wrap: wrap;
   align-content: flex-start;
   align-items: center;
-  /* margin: 0;
-  padding: 0; */
   list-style-type: none;
   background-color: white;
   margin-block-start: 1em;
@@ -193,14 +180,22 @@ export const ArticleListContainer = styled.ul`
   margin-inline-end: 0px;
   /* padding-inline-start: 40px;
   padding-inline-end: 0px; */
-  /* border: 1px solid red; */
+
   >.nodata {
     margin-top: 50px;
     width: 647px;
     text-align: center;
     font-weight: 800;
     font-size: 20px;
-    
+  }
+
+  @media screen and (max-width: 500px) {
+    width: 75%unset;
+    > .nodata {
+      margin: 10px 0 0 0;
+      font-weight: 600;
+      font-size: 18px;
+    }
   }
 `;
 
@@ -221,6 +216,7 @@ export const ArticleWrap = styled.li`
   @media (max-width: 500px) {
     width: 90px;
     height: 120px;
+    margin: 20px 10px 0px 10px;
   }
 `;
 
@@ -229,5 +225,4 @@ export const Article = styled.img`
   height: 100%;
   border-radius: 5px;
   cursor: pointer;
-  
 `;

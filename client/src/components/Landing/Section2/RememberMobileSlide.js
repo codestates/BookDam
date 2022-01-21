@@ -8,10 +8,10 @@ import {
   SkillSection,
   FeatureGifWrapper,
   PhoneFrame
-} from './RememberSlideStyle';
+} from './RememberMobileSlideStyle';
 import iFrame from '../../../assets/images/phoneFrame.png';
 
-export const RememberSlide = () => {
+export const RememberMobileSlide = () => {
   return (
     <>
       <RememberWholeContainer>
@@ -25,7 +25,7 @@ export const RememberSlide = () => {
           </RememberTypoWrapper>
           <RememberIntroduction>
             <div className='fadein'>
-              언제든 기록한 문장을 꺼내보세요
+            언제든 기록한 문장을 꺼내보세요
             </div>
           </RememberIntroduction>
         </TypoSection>

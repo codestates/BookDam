@@ -35,6 +35,7 @@ module.exports = {
       }]
     })
       .then((result) => {
+        res.location('https://bookdam.link/feedPage');
         res.status(200).json({ articleData: result });
       })
       .catch((error) => {
@@ -72,6 +73,7 @@ module.exports = {
     })
       .then((result) => {
         delete result.dataValues.updatedAt;
+        res.location('https://bookdam.link/myPage');
         res.status(200).json({ message: 'success', articleInfo: result });
       })
       .catch((error) => {
@@ -142,8 +144,10 @@ module.exports = {
       }
     })
       .then((result) => {
-        if (result === 1) res.status(200).json({ message: 'success' });
-        else res.status(401).json({ message: '해당 게시물이 존재하지 않습니다.' });
+        if (result === 1) {
+          res.location('https://bookdam.link/myPage');
+          res.status(200).json({ message: 'success' });
+        } else res.status(401).json({ message: '해당 게시물이 존재하지 않습니다.' });
       })
       .catch((error) => {
         res.status(401).json({ message: 'failure', error: error });

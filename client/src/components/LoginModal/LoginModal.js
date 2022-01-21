@@ -20,6 +20,7 @@ import { LoginThemeBtn } from '../GlobalButton/GlobalButton';
 import { LoginAction } from '../../actions/UserInfoAction';
 
 export const LoginModal = ({
+  introcheck,
   setIsOpenLoginModal,
   handleSignupModal,
   handleCloseSignupModal
@@ -72,6 +73,7 @@ export const LoginModal = ({
             dispatch(LoginAction(userInfoData));
             setIsOpenLoginModal(false);
             document.body.style.overflow = 'unset'; // 스크롤 방지 해제
+            introcheck()
             history.push('/feedpage');
           }
         })

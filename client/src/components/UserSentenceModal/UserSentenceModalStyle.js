@@ -3,6 +3,7 @@ import styled from 'styled-components';
 // 모달: 전체 배경, background
 export const SentenceModalBackContainer = styled.div`
   position: fixed;
+  
   top: 0;
   right: 0;
   bottom: 0;
@@ -310,4 +311,35 @@ export const CloseBtn = styled.button`
   margin: 10px;
   padding: 9px 12px;
   border-radius: 2px;
+`;
+
+export const CloseBtn2 = styled.button`
+  background-color: initial;
+  background-image: linear-gradient(-180deg, #00D775, #00BD68);
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Inter,-apple-system,system-ui,Roboto,"Helvetica Neue",Arial,sans-serif;
+  height: 44px;
+  line-height: 44px;
+  outline: 0;
+  overflow: hidden;
+  padding: 0 20px;
+  pointer-events: auto;
+  position: relative;
+  text-align: center;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: top;
+  white-space: nowrap;
+  width: 100%;
+  z-index: 9;
+  border: 0;
+
+  &:hover {
+  background: #00bd68;
+  }
 `;

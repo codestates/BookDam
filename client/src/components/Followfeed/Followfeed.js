@@ -2,8 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useInView } from 'react-intersection-observer';
 import Axios from 'axios';
-import { FaUserCheck, FaCaretUp } from 'react-icons/fa';
-import userImage from '../../assets/images/defaultUserImage.png';
+import { FaCaretUp } from 'react-icons/fa';
 import { NoticeModal } from '../NoticeModal/NoticeModal';
 import { useSelector } from 'react-redux';
 import { Loading } from '../../utils/Loading/Loading';
@@ -14,9 +13,7 @@ import {
   UserNameAndImage,
   UserImageContainer,
   UserImage,
-  DefaultUserImage,
   UserNickName,
-  UserFollowIcon,
   PostCreatedAt,
   ContentsContainer,
   Sentence,
@@ -43,36 +40,45 @@ export const Followfeed = () => {
 
   // 서버에서 아이템을 가지고 오는 함수
   useEffect(() => {
+    let cleanUp = true
     function getFollowFeedLists () {
       if (more) {
         setLoading(true);
-        setTimeout(() => {
-
-          Axios({
-            method: 'get',
-            url: `http://localhost:4000/article/${userInfo.userInfo.id}?page=${page}`,
-            withCredentials: true,
-            headers: {
-              'Contnet-Type': 'application/json'
-            }
-          })
-            .then((res) => {
-              if (res.data.articleData.length === 0) {
-                setMore(false);
+        setTimeout(async () => {
+          if (cleanUp) {
+            await Axios({
+              method: 'get',
+              url: `http://localhost:4000/article/${userInfo.userInfo.id}?page=${page}`,
+              withCredentials: true,
+              headers: {
+                'Contnet-Type': 'application/json'
               }
-              setFolowFeedLists(followFeedLists => [...followFeedLists, ...res.data.articleData]);
-              setLoading(false);
-            });
+            })
+              .then((res) => {
+                if (res.data.articleData.length === 0) {
+                  setMore(false);
+                }
+                setFolowFeedLists(followFeedLists => [...followFeedLists, ...res.data.articleData]);
+                setLoading(false);
+              });
+          }
         }, 1000);
       }
     }
     getFollowFeedLists();
+    return () => {
+      cleanUp = false
+    }
   }, [userInfo.userInfo.id, page, more]);
 
   useEffect(() => {
+    let abortController = new AbortController()
     // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
     if (inView && !loading) {
       setPage(prevState => prevState + 1);
+    }
+    return () => {
+      abortController.abort()
     }
   }, [inView, loading]);
 
@@ -118,9 +124,9 @@ export const Followfeed = () => {
         });
     }
   };
-  const feedList = followFeedLists.map((el, index) => {
+  const feedList = followFeedLists.map((el) => {
     return (
-      <UserInfoContainer key={index} ref={ref}>
+      <UserInfoContainer ref={ref} key={el.id}>
         <UserInfo>
           <UserNameAndImage>
             <UserImageContainer onClick={() => getFollowInfo(el)}>

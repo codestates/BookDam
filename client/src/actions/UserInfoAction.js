@@ -7,6 +7,7 @@ export const USERINFO_MODIFY_ACTION = 'USERINFO_MODIFY_ACTION';
 export const GuestLoginAction = (userInfo) => {
   return {
     type: GUEST_LOGIN_ACTION,
+    isGuest: false,
     payload: {
       userInfo: {
         id: userInfo.id,

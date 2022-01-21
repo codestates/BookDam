@@ -22,7 +22,7 @@ export default function Header () {
           <Route path='/createPage'>
             <CreatePage />
           </Route>
-          <Route path='/mypage'>
+          <Route path='/myPage'>
             <MyPage />
           </Route>
           <Route path='/userPage'>

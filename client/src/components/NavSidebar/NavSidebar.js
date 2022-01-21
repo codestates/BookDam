@@ -78,7 +78,7 @@ export function NavSidebar ({ menuBtnHandler }) {
                 <Link to='/feedPage' style={{ textDecoration: 'none' }}>피드</Link>
               </Feed>
               <MyPage onClick={menuBtnHandler}>
-                <Link to='/mypage' style={{ textDecoration: 'none' }}>마이페이지</Link>
+                <Link to='/myPage' style={{ textDecoration: 'none' }}>마이페이지</Link>
               </MyPage>
             </MenuSection>
           </SidebarTop>

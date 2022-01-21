@@ -207,15 +207,6 @@ export const ButtonContainer = styled.div`
   } */
 `;
 
-const blink = keyframes`
-  0%, 50%, 100% {
-    opacity: 1;
-  }
-  25%, 75% {
-    opacity: 0;
-  }
-`;
-
 export const ButtonsInIntro = styled.button`
   width: 150px;
   height: 40px;
@@ -232,7 +223,6 @@ export const ButtonsInIntro = styled.button`
   outline: none;
   white-space: nowrap;
   overflow: hidden;
-  animation: ${blink} 2s ease-out 5s 1;
 `;
 
 export const ButtonSubContainer = styled.div`

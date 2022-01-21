@@ -72,7 +72,7 @@ export const LoginModal = ({
             dispatch(LoginAction(userInfoData));
             setIsOpenLoginModal(false);
             document.body.style.overflow = 'unset'; // 스크롤 방지 해제
-            history.push('/feedpage');
+            history.push('/feedPage');
           }
         })
         .catch((err) => {

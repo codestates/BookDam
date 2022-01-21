@@ -15,19 +15,19 @@ export default function Header () {
       <HeaderContainer>
         <Navbar />
         {/* <Switch>
-          <Route path='/feedpage'>
+          <Route path='/feedPage'>
             <FeedPage />
           </Route>
           <Route path='/createPage'>
             <CreatePage />
           </Route>
-          <Route path='/mypage'>
+          <Route path='/myPage'>
             <MyPage />
           </Route>
           <Route path='/userPage'>
             <UserPage />
           </Route>
-          <Route path='/editpage'>
+          <Route path='/'>
             <EditPage />
           </Route>
         </Switch> */}

@@ -45,7 +45,7 @@ export const Section3 = ({ isLogin, guestLoginHandelr, handleLoginModal }) => {
             <SectionThreeTextBookDam3>오늘부터 시작해볼까요?</SectionThreeTextBookDam3>
           </TextContainer>
             <ButtonContainer>
-              <Link to='/feedpage'>
+              <Link to='/feedPage'>
                 {isLogin
                   ? <ButtonsInIntro>
                       <ButtonSubContainer>

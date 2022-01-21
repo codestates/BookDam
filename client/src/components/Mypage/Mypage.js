@@ -111,38 +111,43 @@ export default function MyPage () {
 
   // 내 정보 전체를 조회하는 함수 (무한 스크롤 적용)
   useEffect(() => {
+    let cleanUp = true
     const getMyInfoAll = () => {
       if (more) {
         setLoading(true);
         setTimeout(() => {
-          axios
-            .get(`http://localhost:4000/user/${userInfo.id}?page=${page}`,
-              {
-                headers: { 'Content-Type': 'application/json' }
+          if (cleanUp) {
+            axios
+              .get(`http://localhost:4000/user/${userInfo.id}?page=${page}`,
+                {
+                  headers: { 'Content-Type': 'application/json' }
+                })
+              .then((res) => {
+                if (res.data.articleData.rows.length === 0) {
+                  setMore(false);
+                }
+                setMyArticleList(myArticleList => [...myArticleList, ...res.data.articleData.rows]);
+                setMyUserInfo({
+                  id: res.data.userInfo.id,
+                  userId: res.data.userInfo.userId,
+                  userNickName: res.data.userInfo.userNickName,
+                  userImage: res.data.userInfo.userImage
+                });
+                setFollow({
+                  following: res.data.follow.following,
+                  follower: res.data.follow.follower
+                });
               })
-            .then((res) => {
-              if (res.data.articleData.rows.length === 0) {
-                setMore(false);
-              }
-              setMyArticleList(myArticleList => [...myArticleList, ...res.data.articleData.rows]);
-              setMyUserInfo({
-                id: res.data.userInfo.id,
-                userId: res.data.userInfo.userId,
-                userNickName: res.data.userInfo.userNickName,
-                userImage: res.data.userInfo.userImage
+              .catch((err) => {
               });
-              setFollow({
-                following: res.data.follow.following,
-                follower: res.data.follow.follower
-              });
-            })
-            .catch((err) => {
-            });
-          setLoading(false);
-        }, 1000);
+            setLoading(false);
+          }}, 1000);
       }
     };
     getMyInfoAll();
+    return () => {
+      cleanUp = false
+    }
   }, [userInfo.id, page, more]);
 
   useEffect(() => {
@@ -152,10 +157,10 @@ export default function MyPage () {
     }
   }, [inView, loading]);
 
-  console.log('마이아티클리스트: ', myArticleList);
+  // console.log('마이아티클리스트: ', myArticleList);
   const myArticles = myArticleList.map((el, index) => {
     return (
-      <ArticleWrap key={index}>
+      <ArticleWrap key={el.id}>
         <Article
           src={el.book_Thumbnail}
           onClick={() => openSentenceModalHandler(el)}

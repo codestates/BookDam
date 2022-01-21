@@ -169,7 +169,7 @@ font-weight: 600;
 font-family: 'Dongle', sans-serif;
 @media (max-width: 500px) {
   font-weight: 700;
-  font-size: 20px;
+  font-size: 30px;
   width: 90%;
 }
 `;
@@ -188,7 +188,7 @@ font-size: 30px;
 font-weight: 600;
 font-family: 'Dongle', sans-serif;
 @media (max-width: 500px) {
-  font-size: 20px;
+  font-size: 25px;
   width: 90%;
 }
 `;

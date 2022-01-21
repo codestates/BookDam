@@ -98,8 +98,9 @@ export default function Navbar () {
 
         <NavbarWrapper>
           <LogoSection>
-            <Link to='/mypage'><LogoImage src={Logo} /></Link>
+            <Link to='/myPage'><LogoImage src={Logo} /></Link>
           </LogoSection>
+          
           <NavMenuSection>
             {navMenu1
               ? <NavMenuSub><StyledLink to='/createPage'>작성하기</StyledLink></NavMenuSub>
@@ -110,8 +111,8 @@ export default function Navbar () {
               : <NavMenu onClick={handleNav2}><StyledLink to='/feedPage'>피드</StyledLink></NavMenu>}
 
             {navMenu3
-              ? <NavMenuSub><StyledLink to='/mypage'>마이페이지</StyledLink></NavMenuSub>
-              : <NavMenu onClick={handleNav3}><StyledLink to='/mypage'>마이페이지</StyledLink></NavMenu>}
+              ? <NavMenuSub><StyledLink to='/myPage'>마이페이지</StyledLink></NavMenuSub>
+              : <NavMenu onClick={handleNav3}><StyledLink to='/myPage'>마이페이지</StyledLink></NavMenu>}
 
             {/* <NavMenu>
               <Link to='/editpage' style={{ textDecoration: 'none' }}>수정하기</Link>

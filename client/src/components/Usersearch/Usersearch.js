@@ -92,9 +92,9 @@ export const Searchuser = ({ setFollowFeedList }) => {
           {hasInputValue
             ? <UserSearchResultContainer>
               {searchUser.length !== 0
-                ? searchUser.slice(0, 9).map((el, index) => {
+                ? searchUser.slice(0, 9).map((el) => {
                   return (
-                    <li key={index} onClick={() => callUserPage(el)}>
+                    <li onClick={() => callUserPage(el)}>
                       <UserSearchImagebox>
                         <UserSearchImage src={el.userImage} />
                       </UserSearchImagebox>

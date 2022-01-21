@@ -3,7 +3,6 @@ import styled from 'styled-components';
 // 모달: 전체 배경, background
 export const SentenceModalBackContainer = styled.div`
   position: fixed;
-  
   top: 0;
   right: 0;
   bottom: 0;

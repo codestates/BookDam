@@ -63,9 +63,9 @@ export default function UserPage () {
     const getMyInfoAll = () => {
       if (more) {
         setLoading(true);
-        setTimeout(() => {
+        setTimeout(async () => {
           if (cleanUp) {
-            Axios
+            await Axios
               .get(`http://localhost:4000/user/${followInfo.id}?page=${page}`,
                 {
                   headers: { 'Content-Type': 'application/json' }

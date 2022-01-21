@@ -40,7 +40,7 @@ export const Followfeed = () => {
 
   // 서버에서 아이템을 가지고 오는 함수
   useEffect(() => {
-    let cleanUp = true
+    let cleanUp = true;
     function getFollowFeedLists () {
       if (more) {
         setLoading(true);
@@ -67,19 +67,19 @@ export const Followfeed = () => {
     }
     getFollowFeedLists();
     return () => {
-      cleanUp = false
-    }
+      cleanUp = false;
+    };
   }, [userInfo.userInfo.id, page, more]);
 
   useEffect(() => {
-    let abortController = new AbortController()
+    const abortController = new AbortController();
     // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
     if (inView && !loading) {
       setPage(prevState => prevState + 1);
     }
     return () => {
-      abortController.abort()
-    }
+      abortController.abort();
+    };
   }, [inView, loading]);
 
   const getFollowInfo = (el) => {

@@ -104,7 +104,7 @@ export const Write = () => {
           setSearchData(resultData);
         })
         .catch(err => {
-          if(err.response.status === 400) {
+          if (err.response.status === 400) {
             setIsLoading(false);
             setSearchData([]);
           }

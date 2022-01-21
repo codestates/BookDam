@@ -17,15 +17,15 @@ export const RememberMobileSlide = () => {
       <RememberWholeContainer>
         <TypoSection>
           <RememberTypoWrapper className='fadein'>
-            <RememberTypo>
+            <RememberTypo className='title'>
               <span className='underline'>
-                <span>Remember</span>
+                <span>회상</span>
               </span>
             </RememberTypo>
           </RememberTypoWrapper>
           <RememberIntroduction>
             <div className='fadein'>
-            언제든 기록한 문장을 꺼내보세요
+              언제든 기록한 문장을 꺼내보세요
             </div>
           </RememberIntroduction>
         </TypoSection>

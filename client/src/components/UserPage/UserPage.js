@@ -30,7 +30,7 @@ import {
 
 export default function UserPage () {
   const [loading, setLoading] = useState(false);
-  const [isOpenSentenceModal, setIsOpenSentenceModal] = useState(false)
+  const [isOpenSentenceModal, setIsOpenSentenceModal] = useState(false);
   const [more, setMore] = useState(true);
   const [page, setPage] = useState(0);
   const [ref, inView] = useInView();
@@ -45,9 +45,9 @@ export default function UserPage () {
     sentence: '',
     comment: '',
     createAt: '',
-    book_Author: "",
-    book_Title: ""
-  }) 
+    book_Author: '',
+    book_Title: ''
+  });
 
   const location = useLocation();
   const followInfo = location.state.followInfo;
@@ -59,12 +59,12 @@ export default function UserPage () {
     setIsOpenNoticeModal(!isOpenNoticeModal);
   };
   useEffect(() => {
-    let cleanUp = true
+    let cleanUp = true;
     const getMyInfoAll = () => {
       if (more) {
         setLoading(true);
         setTimeout(() => {
-          if (cleanUp){
+          if (cleanUp) {
             Axios
               .get(`http://localhost:4000/user/${followInfo.id}?page=${page}`,
                 {
@@ -85,13 +85,14 @@ export default function UserPage () {
               .catch((err) => {
               });
             setLoading(false);
-        }}, 1000);
+          }
+        }, 1000);
       }
     };
     getMyInfoAll();
     return () => {
-      cleanUp = false
-    }
+      cleanUp = false;
+    };
   }, [followInfo.id, page, more]);
 
   useEffect(() => {
@@ -121,29 +122,29 @@ export default function UserPage () {
 
   const openSentenceModalHandler = (el) => {
     SetArticleInfo({
-      userNickName: el["User.userNickName"],
-      userImage: el["User.userImage"],
+      userNickName: el['User.userNickName'],
+      userImage: el['User.userImage'],
       sentence: el.sentence,
       comment: el.comment,
       createAt: el.createAt,
       book_Title: el.book_Title,
-      book_Author: el.book_Author,
-    })
+      book_Author: el.book_Author
+    });
     setIsOpenSentenceModal(!isOpenSentenceModal);
     if (isOpenSentenceModal) {
       document.body.style.overflow = 'unset';
     } else {
       document.body.style.overflow = 'hidden';
     }
-  }
-
+  };
 
   const articles = articleList.map((el, index) => {
     return (
       <ArticleWrap key={el.id}>
         <Article
           src={el.book_Thumbnail}
-          onClick={() => openSentenceModalHandler(el)}        />
+          onClick={() => openSentenceModalHandler(el)}
+        />
       </ArticleWrap>
     );
   });
@@ -152,12 +153,12 @@ export default function UserPage () {
     <>
       <UserPageWholeContainer>
         <UserPageContainer>
-          {isOpenSentenceModal 
+          {isOpenSentenceModal
             ? <UserSentenceModal
-            openSentenceModalHandler={openSentenceModalHandler}
-            setIsOpenSentenceModal={setIsOpenSentenceModal}
-            articleInfo={articleInfo}
-            />
+                openSentenceModalHandler={openSentenceModalHandler}
+                setIsOpenSentenceModal={setIsOpenSentenceModal}
+                articleInfo={articleInfo}
+              />
             : null}
           {isOpenNoticeModal
             ? <FollowNoticeModal
@@ -168,6 +169,7 @@ export default function UserPage () {
               />
             : null}
           <UserInfoContainer>
+            <div className='space' />
             <UserImgSection>
               <UserImage src={followInfo.userImage} />
             </UserImgSection>

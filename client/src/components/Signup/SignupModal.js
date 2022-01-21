@@ -30,7 +30,7 @@ export const SignupModal = ({ handleCloseSignupModal, handleLoginModal }) => {
 
   const handleInputIdValidCheck = (e) => { // 아이디 반영
     if (!isValidId.test(e.target.value)) {
-      setErrorMessage('4~20자리의 소문자+숫자 조합으로 만들어주세요(언더바/하이픈 가능');
+      setErrorMessage('4~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.');
     } else {
       setErrorMessage('');
       setUserInfo({

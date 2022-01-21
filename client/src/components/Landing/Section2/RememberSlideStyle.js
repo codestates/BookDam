@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-
+import remember from '../../../assets/images/introgif/remember.gif';
 // 전체 컨테이너
 export const RememberWholeContainer = styled.div`
   display: flex;
@@ -60,8 +60,7 @@ export const RememberTypoWrapper = styled.div`
   margin: 10px 0 30px 0;
 
   @media screen and (max-width: 650px) {
-    align-items: center;
-    justify-content: flex-start;
+    display: none;
   }
 `;
 
@@ -96,8 +95,7 @@ export const RememberTypo = styled.h1`
   }
 
   @media screen and (max-width: 650px) {
-    width: 60%;
-    font-size: 2.5em;
+    display: none;
   }
 `;
 
@@ -125,13 +123,17 @@ export const SkillSection = styled.div`
 
 // 기능 시현 GIF
 export const FeatureGifWrapper = styled.div`
-  margin: 0;
+  margin: 0px 0 0 0;
   padding: 0;
   width: 250px;
   height: 500px;
-  border-radius: 50px;
+  border-radius: 40px;
   /* border: 1px solid orange; */
-
+  background-image: url(${remember});
+  background-size: 240px 490px;
+  background-position-y: .7rem;
+  background-position-x: .2rem;
+  background-repeat: no-repeat;
   @media screen and (max-width: 650px) {
     width: 200px;
   }

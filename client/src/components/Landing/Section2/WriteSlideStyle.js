@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import write from '../../../assets/images/introgif/write.gif';
 
 // Write 전체 컨테이너
 export const WriteWholeContainer = styled.div`
@@ -130,7 +131,12 @@ export const FeatureGifWrapper = styled.div`
   padding: 0;
   width: 250px;
   height: 500px;
-  border-radius: 50px;
+  border-radius: 40px;
+  background-image: url(${write});
+  background-size: 240px 490px;
+  background-position-y: .6rem;
+  background-position-x: .3rem;
+  background-repeat: no-repeat;
 
   @media screen and (max-width: 650px) {
     width: 200px;

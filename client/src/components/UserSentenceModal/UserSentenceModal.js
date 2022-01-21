@@ -23,8 +23,7 @@ import example from '../../assets/images/defaultUserImage.png';
 
 axios.defaults.withCredentials = true;
 
-export const UserSentenceModal = ({ openSentenceModalHandler, articleInfo}) => {
-
+export const UserSentenceModal = ({ openSentenceModalHandler, articleInfo }) => {
   return (
     <>
       <SentenceModalBackContainer>

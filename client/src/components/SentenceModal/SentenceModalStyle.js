@@ -24,8 +24,9 @@ export const SentenceContainer = styled.div`
   padding: 0%;
   /* position: relative; */
   /* flex-wrap: wrap; */
-  /* border: 10px solid black; */
+  /* border: 1px solid black; */
   width: 100vw;
+  
 `;
 
 export const UserInfoContainer = styled.div`
@@ -294,6 +295,10 @@ export const CloseBtnWrap = styled.div`
   width: 20%;
   height: 90px;
   /* border: 1px solid blue; */
+  @media screen and (max-width: 500px) {
+    width: 100%;
+    justify-content: center;
+  }
 `;
 
 export const CloseBtn = styled.button`
@@ -324,6 +329,5 @@ export const CloseBtn = styled.button`
   
   &:hover {
   background: #00bd68;
-
-  
+  }
 `;

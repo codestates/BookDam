@@ -100,7 +100,7 @@ export default function MyPage () {
 
   // 내 정보 전체를 조회하는 함수 (무한 스크롤 적용)
   useEffect(() => {
-    let cleanUp = true
+    let cleanUp = true;
     const getMyInfoAll = () => {
       if (more) {
         setLoading(true);
@@ -130,13 +130,14 @@ export default function MyPage () {
               .catch((err) => {
               });
             setLoading(false);
-          }}, 1000);
+          }
+        }, 1000);
       }
     };
     getMyInfoAll();
     return () => {
-      cleanUp = false
-    }
+      cleanUp = false;
+    };
   }, [userInfo.id, page, more]);
 
   useEffect(() => {
@@ -189,6 +190,7 @@ export default function MyPage () {
               />
             : null}
           <UserInfoContainer>
+            <div className='space' />
             <UserImgSection>
               <UserImage src={myUserInfo.userImage} />
             </UserImgSection>
@@ -219,12 +221,13 @@ export default function MyPage () {
             </UserInfoSection>
           </UserInfoContainer>
           <ArticleListContainer>
-            {myArticleList.length === 0 && !loading ? 
-              <div className='nodata'>당신의 문장들을 채워주세요!</div> 
+            {myArticleList.length === 0 && !loading
+              ? <div className='nodata'>당신의 문장들을 채워주세요!</div>
               : myArticles}
           </ArticleListContainer>
           <div ref={ref}>
-            {loading && myArticleList.length > 8 ? <Loading /> : null}</div>
+            {loading && myArticleList.length > 8 ? <Loading /> : null}
+          </div>
         </MypageContainer>
       </MyPageWholeContainer>
     </>

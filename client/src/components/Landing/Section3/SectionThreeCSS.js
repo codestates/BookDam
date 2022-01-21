@@ -96,7 +96,6 @@ export const bounceTop3 = keyframes`
   }
 `;
 
-
 export const bounceTop4 = keyframes`
   0% {
     transform: translateX(-50px) translateY(-110px);

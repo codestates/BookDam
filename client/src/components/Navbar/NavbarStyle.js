@@ -132,7 +132,6 @@ export const UserSection = styled.div`
   }
 `;
 
-
 // 로그아웃 섹션
 export const LoginoutSection = styled.div`
   display: flex;

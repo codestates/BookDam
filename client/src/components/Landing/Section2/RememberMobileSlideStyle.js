@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import remember from '../../../assets/images/introgif/remember.gif';
 
 // 전체 컨테이너
 export const RememberWholeContainer = styled.div`
@@ -56,7 +57,6 @@ export const RememberTypoWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  justify-content: flex-start;
   width: 100%;
   height: 150px;
   margin: 0;
@@ -64,12 +64,13 @@ export const RememberTypoWrapper = styled.div`
 `;
 
 // 타이포
-export const RememberTypo = styled.h1`
-  width: 80%;
-  max-width: 480px;
+export const RememberTypo = styled.div`
+  width: 100%;
+  text-align: center;
+  /* max-width: 480px; */
   /* margin: 1.6em 2em; */
   font-family: 'Playfair Display', serif;
-  font-size: 4em;
+  font-size: 3em;
   line-height: 1.4em;
   font-weight: 700;
   color: #333333;
@@ -128,7 +129,12 @@ export const FeatureGifWrapper = styled.div`
   padding: 0;
   width: 250px;
   height: 500px;
-  border-radius: 50px;
+  border-radius: 40px;
+  background-image: url(${remember});
+  background-size: 240px 490px;
+  background-position-y: .7rem;
+  background-position-x: .2rem;
+  background-repeat: no-repeat;
   /* border: 1px solid orange; */
 
   

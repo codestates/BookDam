@@ -206,7 +206,7 @@ export function UserModifyModal ({
 
   // 회원탈퇴 버튼을 눌렀을 열리는 노티스 모달 여는 함수
   const openSignoutNoticelHandler = () => {
-    console.log('클릭')
+    console.log('클릭');
     setisSignoutSuccess(false);
     setIsOpenSignoutNotice(!isOpenSignoutNotice);
   };

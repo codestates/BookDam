@@ -101,6 +101,7 @@ width: 100%;
 `;
 
 export const RecommendListContainer = styled.div`
+display: none;
 width: 100%;
 height: 450px;
 margin: 0 0 2px 2px;

@@ -19,7 +19,7 @@ export const RememberSlide = () => {
           <RememberTypoWrapper className='fadein'>
             <RememberTypo>
               <span className='underline'>
-                <span>Remember</span>
+                <span>회상</span>
               </span>
             </RememberTypo>
           </RememberTypoWrapper>

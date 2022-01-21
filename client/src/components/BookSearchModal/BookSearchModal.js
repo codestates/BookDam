@@ -16,7 +16,6 @@ export const BookSearchModal = ({ isLoading, handleSelect, setIsOpenBookSearchMo
     setSearchData([]);
     document.body.style.overflow = 'unset'; // 스크롤 방지 해제
   };
-  console.log(searchData);
 
   return (
     <div>

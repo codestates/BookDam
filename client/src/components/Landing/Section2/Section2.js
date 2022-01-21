@@ -12,7 +12,7 @@ import {
 import { WriteSlide } from './WriteSlide';
 import { WriteMobileSlide } from './WriteMobileSlide';
 import { ShareSlide } from './ShareSlide';
-import { ShareMobileSlide } from './ShareMobileSlide'
+import { ShareMobileSlide } from './ShareMobileSlide';
 import { RememberSlide } from './RememberSlide';
 import { RememberMobileSlide } from './RememberMobileSlide';
 

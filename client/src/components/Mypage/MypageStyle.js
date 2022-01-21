@@ -156,6 +156,7 @@ export const UserModifyBtn = styled.button`
   }
 `;
 
+
 // Article 영역 (목록 제목)
 export const ArticleListTitle = styled.div`
   height: 30px;

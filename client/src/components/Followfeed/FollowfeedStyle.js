@@ -187,6 +187,7 @@ background-color: white;
 font-size: 30px;
 font-weight: 600;
 font-family: 'Dongle', sans-serif;
+letter-spacing: 3px;
 @media (max-width: 500px) {
   font-size: 25px;
   width: 90%;

@@ -32,20 +32,28 @@ export const NoticeModalContainer = styled.div`
 export const NoInputButton = styled.button`
   width: 80px;
   height: 30px;
-  margin: 10px;
-  /* border-style: none; */
-  border-radius: 10px;
-  font-size: 14px;
-  background: #2D9BF0;
-  color: #ffffff;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  /* transition: all 0.1s ease-in-out; */
-  /* cursor: pointer; */
-  text-align: center;
-  outline: none;
-  white-space: nowrap;
+  background-color: #1dc078;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Inter,-apple-system,system-ui,Roboto,"Helvetica Neue",Arial,sans-serif;
+  outline: 0;
   overflow: hidden;
+  padding: 0 20px;
+  pointer-events: auto;
+  position: relative;
+  text-align: center;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: top;
+  white-space: nowrap;
+  border: 0;
+  margin: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 5px;
+  
   &:hover {
-    color: #ffffff;
-  }
+  background: #00bd68;
 `;

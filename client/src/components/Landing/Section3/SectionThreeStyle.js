@@ -210,19 +210,32 @@ export const ButtonContainer = styled.div`
 export const ButtonsInIntro = styled.button`
   width: 150px;
   height: 40px;
-  /* border: 1px solid black; */
-  margin: 10px;
-  border-style: none;
-  border-radius: 7px;
-  font-size: 20px;
-  background: #2cc05a;
-  color:  black;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: #1dc078;
+  color: white;
   cursor: pointer;
-  text-align: center;
-  outline: none;
-  white-space: nowrap;
+  display: inline-block;
+  font-family: Inter,-apple-system,system-ui,Roboto,"Helvetica Neue",Arial,sans-serif;
+  line-height: 44px;
+  outline: 0;
   overflow: hidden;
+  padding: 0 20px;
+  pointer-events: auto;
+  position: relative;
+  text-align: center;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: top;
+  white-space: nowrap;
+  border: 0;
+  margin: 10px;
+  font-weight: 600;
+  font-size: 20px;
+  border-radius: 5px;
+  
+  &:hover {
+  background: #00bd68;
+  }
 `;
 
 export const ButtonSubContainer = styled.div`

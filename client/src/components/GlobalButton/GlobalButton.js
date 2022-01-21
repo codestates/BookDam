@@ -54,20 +54,33 @@ overflow: hidden;
 `;
 
 export const LoginThemeBtn = styled.button`  // 로그인 페이지 버튼 테마
-  background: #2cc05a;
-  border: none;
-  color: black;
-  width: 60%;
+  width: 263px;
   height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  margin: 10px;
-  padding: 9px 12px;
-  border-radius: 2px;
-  font-size: 17px;
+  background-color: #1dc078;
+  color: white;
   cursor: pointer;
+  display: inline-block;
+  font-family: Inter,-apple-system,system-ui,Roboto,"Helvetica Neue",Arial,sans-serif;
+  line-height: 44px;
+  outline: 0;
+  overflow: hidden;
+  padding: 0 20px;
+  pointer-events: auto;
+  position: relative;
+  text-align: center;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: top;
+  white-space: nowrap;
+  border: 0;
+  margin: 10px;
+  font-weight: 600;
+  font-size: 20px;
+  border-radius: 5px;
+  
+  &:hover {
+  background: #00bd68;
 `;
 
 export const SocialLoginBtn = styled.button`

@@ -6,9 +6,9 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-padding: 80px;
 margin: 16px 0px 0px 0px;
 list-style-type: none;
+padding-top: 80px;
 > .nodata {
   width: 647px;
   text-align: center;
@@ -31,6 +31,10 @@ list-style-type: none;
   rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, 
   rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
   cursor: pointer;
+}
+
+@media screen and (max-width: 500px) {
+  /* padding-top: 0px; */
 }
 `;
 
@@ -151,7 +155,7 @@ padding: 10px;
 justify-content: center;
 align-items: center;
 text-align: center;
-line-height: 35px;
+line-height: 60px;
 height: 60%;
 width: 95%;
 border-radius: 15px;
@@ -160,8 +164,9 @@ margin: 0px;
 background-color: whitesmoke;
 background-image: url(${background});
 background-size: contain;
-font-size: 30px;
-font-weight: 800;
+font-size: 50px;
+font-weight: 600;
+font-family: 'Dongle', sans-serif;
 @media (max-width: 500px) {
   font-weight: 700;
   font-size: 20px;
@@ -179,7 +184,9 @@ width: 95%;
 margin-top: 15px;
 border-radius: 15px;
 background-color: white;
-font-size: 20px;
+font-size: 30px;
+font-weight: 600;
+font-family: 'Dongle', sans-serif;
 @media (max-width: 500px) {
   font-size: 20px;
   width: 90%;

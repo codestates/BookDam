@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const UpperContainer = styled.div`
 /* border: 1px solid; */
+padding-top: 80px;
 display: flex;
 flex-direction: column;
 justify-content: space-between;

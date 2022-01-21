@@ -20,7 +20,7 @@ app.use(
     ],
     credentials: true,
     methods: ['GET', 'POST', 'OPTIONS', 'DELETE', 'PATCH'],
-    maxAge = 3600
+    maxAge: 3600
   })
 );
 

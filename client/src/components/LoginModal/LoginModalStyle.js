@@ -13,6 +13,7 @@ export const LoginModalWholeBackground = styled.div`
 
   @media screen and (max-width: 500px) {
     display: hidden;
+    padding-top: 70px;
   }
 `;
 
@@ -22,6 +23,8 @@ export const LoginModalWholeBackground = styled.div`
 //   justify-content: center;
 //   align-items: center;
 //   padding: 0%;
+//   border: 1px solid black;
+//   z-index: 2;
 // `;
 
 export const LoginModalWrapper = styled.div`

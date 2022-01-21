@@ -11,6 +11,7 @@ const userInfoReducer = (state = initialState, action) => {
     case GUEST_LOGIN_ACTION:
       return {
         ...state,
+        isGuest: action.isGuest,
         userInfo: action.payload.userInfo
       };
 

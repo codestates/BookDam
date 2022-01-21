@@ -23,6 +23,8 @@ export const SentenceContainer = styled.div`
   justify-content: center;
   align-items: center;
   padding: 0%;
+  background: #fff;
+
   /* position: relative; */
   /* flex-wrap: wrap; */
   /* border: 10px solid black; */
@@ -45,91 +47,17 @@ export const UserInfoContainer = styled.div`
   background: white;
   border-radius: 15px;
   text-align: center;
-  background-image: linear-gradient(rgba(0,170, 0, 0.1), rgba(0, 255, 0, 0.5));
+  /* border: 1px solid; */
+  box-shadow:   
+  rgba(0, 0, 0, 0.17) 0px -3px 15px 0px inset;
+  /* background-image: linear-gradient(rgba(0,170, 0, 0.1), rgba(0, 255, 0, 0.5)); */
 
   @media (max-width: 500px){
     height: 630px;
-    width: 370px;
+    width: 80%;
+    min-width: 350px;
   }
   `;
-
-// 삭제, 편집 버튼
-export const EditWrapper = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: flex-end;
-  padding: 0;
-  font-size: 25px;
-  color: rgba(0, 0, 0, 0.3);
-  /* border: 1px solid black; */
-  > div {
-    cursor: pointer;
-    margin: 5px 5px 0 0;
-  }
-`;
-
-// Edit buttion 클릭 시 나오는 메뉴
-export const EditMenuWrapper = styled.div`
-  position: absolute;
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: center;
-  padding: 0;
-  margin: 0 50px 0 0;
-  top: 8%; 
-  height: 50px;
-  text-align: center;
-  font-size: 13px;
-  /* border: 1px solid grey; */
-  z-index: 101;
-`;
-
-export const Edit = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 10%;
-  height: 50%;
-  background-color: honeydew;
-  margin: 0;
-  padding: 0 .3em;
-  transition: all .3s;
-  cursor: pointer;
-
-  &:hover {
-    color: #fff;
-    background-color: #2ecc71;
-  }
-
-  @media (max-width: 500px){
-    cursor: none;
-  }
-`;
-
-export const Delete = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 10%;
-  height: 50%;
-  background-color: honeydew;
-  margin: 0;
-  padding: 0 .3em;
-  transition: all .3s;
-  color: red;
-  cursor: pointer;
-  
-  &:hover {
-    color: red;
-    background-color: #ffc9c9;
-  }
-
-  @media (max-width: 500px){
-    cursor: none;
-  }
-`;
 
 export const UserInfo = styled.div`
   width: 90%;
@@ -239,10 +167,14 @@ width: 95%;
 margin-top: 15px;
 border-radius: 15px;
 background-color: whitesmoke;
+overflow: auto;
+line-height: 40px;
 font-size: 16px;
 @media (max-width: 500px) {
   font-size: 15px;
+  line-height: 30px;
   width: 90%;
+
 }
 `;
 

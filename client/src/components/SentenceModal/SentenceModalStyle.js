@@ -45,11 +45,14 @@ export const UserInfoContainer = styled.div`
   background: white;
   border-radius: 15px;
   text-align: center;
+  box-shadow:   
+  rgba(0, 0, 0, 0.17) 0px -3px 15px 0px inset;
   /* background-image: linear-gradient(rgba(0,170, 0, 0.1), rgba(0, 255, 0, 0.5)); */
 
   @media (max-width: 500px){
     height: 630px;
-    width: 370px;
+    width: 80%;
+    min-width: 350px;
   }
   `;
 
@@ -238,12 +241,15 @@ height: 20%;
 width: 95%;
 margin-top: 15px;
 border-radius: 15px;
+overflow: auto;
 background-color: whitesmoke;
 font-size: 16px;
 font-size: 40px;
 font-family: 'Dongle', sans-serif;
+line-height: 40px;
 @media (max-width: 500px) {
   font-size: 30px;
+  line-height: 30px;
   width: 90%;
 }
 `;

@@ -19,11 +19,11 @@ import {
   CloseBtnWrap,
   CloseBtn2
 } from './UserSentenceModalStyle';
-import example from '../../assets/images/defaultUserImage.png';
 
 axios.defaults.withCredentials = true;
 
 export const UserSentenceModal = ({ openSentenceModalHandler, articleInfo }) => {
+  
   return (
     <>
       <SentenceModalBackContainer>
@@ -32,7 +32,7 @@ export const UserSentenceModal = ({ openSentenceModalHandler, articleInfo }) => 
             <UserInfo>
               <UserNameAndImage>
                 <UserImageContainer>
-                  <UserImage src={example} />
+                  <UserImage src={articleInfo.userImage} />
                 </UserImageContainer>
                 <UserNickName>
                   {articleInfo.userNickName}

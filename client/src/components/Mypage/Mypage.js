@@ -104,9 +104,9 @@ export default function MyPage () {
     const getMyInfoAll = () => {
       if (more) {
         setLoading(true);
-        setTimeout(() => {
+        setTimeout(async () => {
           if (cleanUp) {
-            axios
+            await axios
               .get(`http://localhost:4000/user/${userInfo.id}?page=${page}`,
                 {
                   headers: { 'Content-Type': 'application/json' }

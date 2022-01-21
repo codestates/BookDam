@@ -22,9 +22,24 @@ export const VerificationContainer = styled.div`
   transform: translate(-50%, -50%);
   height: 300px;
   width: 400px;
-  position: fixed;
-  background-color: snow;
+  background-color: white;
   border-radius: 15px;
+  z-index: 101;
+`;
+
+export const CloseSection = styled.section`
+  display: flex;
+  justify-content: flex-end;
+  padding: 15px 15px 0 0;
+  font-size: 25px;
+  color: rgba(0, 0, 0, 0.3);
+  > div {
+    cursor: pointer;
+  }
+`;
+
+// 본인인증 섹션
+export const VerificationSection = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -34,12 +49,12 @@ export const VerificationContainer = styled.div`
 
 // 본인인증 제목
 export const VerificationTitle = styled.h2`
-
+  
 `;
 
 // 본인 아이디
 export const ID = styled.h3`
-
+  margin: 0;
 `;
 
 // 비밀번호 입력input

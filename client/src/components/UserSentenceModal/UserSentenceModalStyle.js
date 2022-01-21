@@ -3,6 +3,7 @@ import styled from 'styled-components';
 // 모달: 전체 배경, background
 export const SentenceModalBackContainer = styled.div`
   position: fixed;
+  
   top: 0;
   right: 0;
   bottom: 0;
@@ -44,7 +45,7 @@ export const UserInfoContainer = styled.div`
   background: white;
   border-radius: 15px;
   text-align: center;
-  /* background-image: linear-gradient(rgba(0,170, 0, 0.1), rgba(0, 255, 0, 0.5)); */
+  background-image: linear-gradient(rgba(0,170, 0, 0.1), rgba(0, 255, 0, 0.5));
 
   @media (max-width: 500px){
     height: 630px;
@@ -219,11 +220,11 @@ overflow: auto;
 margin: 0px;
 background-color: whitesmoke;
 background-size: contain;
-font-size: 40px;
-font-family: 'Dongle', sans-serif;
+font-size: 20px;
+font-weight: 500;
 @media (max-width: 500px) {
   font-weight: 500;
-  font-size: 40px;
+  font-size: 20px;
   width: 90%;
 }
 `;
@@ -239,10 +240,8 @@ margin-top: 15px;
 border-radius: 15px;
 background-color: whitesmoke;
 font-size: 16px;
-font-size: 40px;
-font-family: 'Dongle', sans-serif;
 @media (max-width: 500px) {
-  font-size: 30px;
+  font-size: 15px;
   width: 90%;
 }
 `;
@@ -297,13 +296,33 @@ export const CloseBtnWrap = styled.div`
 `;
 
 export const CloseBtn = styled.button`
-  width: 100px;
+  display: flex;
+  width: 100%;
   height: 40px;
-  background-color: #1dc078;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border: 1px solid #12e272;
+  border-radius: 5px;
+  background-color: #12e272;
   color: white;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 10px;
+  padding: 9px 12px;
+  border-radius: 2px;
+`;
+
+export const CloseBtn2 = styled.button`
+  background-color: initial;
+  background-image: linear-gradient(-180deg, #00D775, #00BD68);
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
+  color: #FFFFFF;
   cursor: pointer;
   display: inline-block;
   font-family: Inter,-apple-system,system-ui,Roboto,"Helvetica Neue",Arial,sans-serif;
+  height: 44px;
   line-height: 44px;
   outline: 0;
   overflow: hidden;
@@ -316,14 +335,11 @@ export const CloseBtn = styled.button`
   -webkit-user-select: none;
   vertical-align: top;
   white-space: nowrap;
+  width: 100%;
+  z-index: 9;
   border: 0;
-  margin: 10px;
-  font-weight: 600;
-  font-size: 20px;
-  border-radius: 5px;
-  
+
   &:hover {
   background: #00bd68;
-
-  
+  }
 `;

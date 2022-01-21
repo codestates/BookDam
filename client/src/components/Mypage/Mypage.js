@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { useInView } from 'react-intersection-observer';
 import { UserModifyModal } from '../UserInfoModify/UserModifyModal';
-import { SetenceModal } from '../SentenceModal/SentenceModal';
+import { SentenceModal } from '../SentenceModal/SentenceModal';
 import { IsGuestNoticeModal } from '../../components/NoticeModal/UserModifyNoticeModal/IsGuestNoticeModal';
 import { Loading } from '../../utils/Loading/Loading';
 import {
@@ -30,17 +30,6 @@ import {
 axios.defaults.withCredentials = true;
 
 export default function MyPage () {
-  // 1. 상태관리 요소 : userImage, userNickName, article, follow, follower
-  // 2. follow, follower : 서버에 count 요청
-  // 3. 함수 :
-  // 3-1. 회원정보수정 버튼을 누를 시 회원정보수정 모달로 연결, 무한스크롤 관련 버튼 실행 또는 액션,
-  // 3-2. 아티클 map으로 출력하기 -> 무한스크롤로 아티클 노출
-  // 3-3. 책 썸네일을 누르면 Sentence Modal이 팝업
-  // 4. 렌더링 : MyPage 접속한 경우, 새로운 article이 생길 경우 -> 회원 정보 조회 GET으로 가져오기
-
-  // axios로 회원 정보 조회(유저 정보 및 아티클)
-  // http://localhost:4000/user/:userId
-
   const userState = useSelector(state => state.userInfoReducer);
   const { userInfo } = userState;
   const [myUserInfo, setMyUserInfo] = useState({
@@ -111,38 +100,43 @@ export default function MyPage () {
 
   // 내 정보 전체를 조회하는 함수 (무한 스크롤 적용)
   useEffect(() => {
+    let cleanUp = true
     const getMyInfoAll = () => {
       if (more) {
         setLoading(true);
         setTimeout(() => {
-          axios
-            .get(`http://localhost:4000/user/${userInfo.id}?page=${page}`,
-              {
-                headers: { 'Content-Type': 'application/json' }
+          if (cleanUp) {
+            axios
+              .get(`http://localhost:4000/user/${userInfo.id}?page=${page}`,
+                {
+                  headers: { 'Content-Type': 'application/json' }
+                })
+              .then((res) => {
+                if (res.data.articleData.rows.length === 0) {
+                  setMore(false);
+                }
+                setMyArticleList(myArticleList => [...myArticleList, ...res.data.articleData.rows]);
+                setMyUserInfo({
+                  id: res.data.userInfo.id,
+                  userId: res.data.userInfo.userId,
+                  userNickName: res.data.userInfo.userNickName,
+                  userImage: res.data.userInfo.userImage
+                });
+                setFollow({
+                  following: res.data.follow.following,
+                  follower: res.data.follow.follower
+                });
               })
-            .then((res) => {
-              if (res.data.articleData.rows.length === 0) {
-                setMore(false);
-              }
-              setMyArticleList(myArticleList => [...myArticleList, ...res.data.articleData.rows]);
-              setMyUserInfo({
-                id: res.data.userInfo.id,
-                userId: res.data.userInfo.userId,
-                userNickName: res.data.userInfo.userNickName,
-                userImage: res.data.userInfo.userImage
+              .catch((err) => {
               });
-              setFollow({
-                following: res.data.follow.following,
-                follower: res.data.follow.follower
-              });
-            })
-            .catch((err) => {
-            });
-          setLoading(false);
-        }, 1000);
+            setLoading(false);
+          }}, 1000);
       }
     };
     getMyInfoAll();
+    return () => {
+      cleanUp = false
+    }
   }, [userInfo.id, page, more]);
 
   useEffect(() => {
@@ -152,10 +146,9 @@ export default function MyPage () {
     }
   }, [inView, loading]);
 
-  console.log('마이아티클리스트: ', myArticleList);
   const myArticles = myArticleList.map((el, index) => {
     return (
-      <ArticleWrap key={index}>
+      <ArticleWrap key={el.id}>
         <Article
           src={el.book_Thumbnail}
           onClick={() => openSentenceModalHandler(el)}
@@ -188,7 +181,7 @@ export default function MyPage () {
               />
             : null}
           {isOpenSentenceModal
-            ? <SetenceModal
+            ? <SentenceModal
                 openSentenceModalHandler={openSentenceModalHandler}
                 setIsOpenSentenceModal={setIsOpenSentenceModal}
                 updateMyArticles={updateMyArticles}
@@ -226,9 +219,12 @@ export default function MyPage () {
             </UserInfoSection>
           </UserInfoContainer>
           <ArticleListContainer>
-            {myArticleList.length === 0 && !loading ? <div className='nodata'>당신의 문장들을 채워주세요!</div> : myArticles}
+            {myArticleList.length === 0 && !loading ? 
+              <div className='nodata'>당신의 문장들을 채워주세요!</div> 
+              : myArticles}
           </ArticleListContainer>
-          <div ref={ref}>{loading && myArticleList.length > 8 ? <Loading /> : null}</div>
+          <div ref={ref}>
+            {loading && myArticleList.length > 8 ? <Loading /> : null}</div>
         </MypageContainer>
       </MyPageWholeContainer>
     </>

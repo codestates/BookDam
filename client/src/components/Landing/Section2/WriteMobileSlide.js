@@ -8,10 +8,10 @@ import {
   SkillSection,
   FeatureGifWrapper,
   PhoneFrame
-} from './WriteSlideStyle';
+} from './WriteMobileSlideStyle';
 import iFrame from '../../../assets/images/phoneFrame.png';
 
-export const WriteSlide = () => {
+export const WriteMobileSlide = () => {
   return (
     <>
       <WriteWholeContainer>

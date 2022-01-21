@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import {
   VerificationBackground,
   VerificationContainer,
+  CloseSection,
+  VerificationSection,
   VerificationTitle,
   ID,
   InputPassword,
@@ -10,6 +12,8 @@ import {
 import { useSelector } from 'react-redux';
 import Axios from 'axios';
 import { ErrorMessage } from '../GlobalMessage/GlobalMessage';
+import { IoClose } from 'react-icons/io5';
+
 
 export const Verification = ({ setIsChecked, closeModal }) => {
   const [errorMessage, setErrorMessage] = useState('');
@@ -39,17 +43,24 @@ export const Verification = ({ setIsChecked, closeModal }) => {
 
   return (
     <>
-      <VerificationBackground onClick={closeModal}>
+      <VerificationBackground>
         <VerificationContainer onClick={(e) => e.stopPropagation()}>
-          <VerificationTitle>본인 인증</VerificationTitle>
-          <ID>ID: {userInfo.userId}</ID>
-          <InputPassword
-            type='password'
-            placeholder='비밀번호를 입력하세요'
-            onChange={passwordInputChangeHandler}
-          />
-          <ErrorMessage>{errorMessage}</ErrorMessage>
-          <Button onClick={passwordChk}>확인</Button>
+          <CloseSection>
+            <div onClick={closeModal}>
+              <IoClose />
+            </div>
+          </CloseSection>
+          <VerificationSection>
+            <VerificationTitle>본인 인증</VerificationTitle>
+            <ID>ID: {userInfo.userId}</ID>
+            <InputPassword
+              type='password'
+              placeholder='비밀번호를 입력하세요'
+              onChange={passwordInputChangeHandler}
+            />
+            <ErrorMessage>{errorMessage}</ErrorMessage>
+            <Button onClick={passwordChk}>확인</Button>
+          </VerificationSection>
         </VerificationContainer>
       </VerificationBackground>
     </>

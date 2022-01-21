@@ -10,6 +10,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/effect-coverflow';
 import './index.css'
 import { bookcover } from '../../../assets/images/bookcover/bookcover'
+import { FaJsfiddle } from 'react-icons/fa';
 
 export const Section1 = () => {
   const onClickHandler = (e) => {
@@ -17,9 +18,9 @@ export const Section1 = () => {
   }
   SwiperCore.use([EffectCoverflow, Autoplay, Navigation, Pagination])
 
-  const booklist = bookcover.map((el, index) => {
+  const booklist = bookcover.map((el) => {
     return (
-      <SwiperSlide className='section1-swiper-slide'>
+      <SwiperSlide className='section1-swiper-slide' key={el.src}>
         <div className="imgBx">
           <img src={el.src} alt=''/>
         </div>

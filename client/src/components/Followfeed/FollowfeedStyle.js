@@ -178,6 +178,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 padding: 10px;
+overflow: auto;
 text-align: center;
 height: 20%;
 width: 95%;

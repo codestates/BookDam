@@ -1,19 +1,19 @@
 import styled from 'styled-components';
 
 // Write 전체 컨테이너
-export const WriteWholeContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-  height: 750px;
-  width: 100%;
-
-  @media screen and (max-width: 650px) {
-    display: none;
-  } 
+export const ShareWholeContainer = styled.div`
+  display: none;
+  
+  @media (max-width: 650px) {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    height: 750px;
+    width: 100%;
+  }
 `;
 
 // 문구 섹션
@@ -22,14 +22,16 @@ export const TypoSection = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 570px;
+  width: 100%;
+  height: 600px;
+  margin: 0;
+  padding: 0;
 
   .fadein {
     /* font-size: 20px; */
     position: relative;
     overflow: hidden;
     animation: fadein 3s ease-in-out;
-    animation-delay: 1s;
     -moz-animation: fadein 3s ease-in-out; /* Firefox */
     -webkit-animation: fadein 3s ease-in-out; /* Safari and Chrome */
     -o-animation: fadein 3s ease-in-out; /* Opera */
@@ -44,32 +46,25 @@ export const TypoSection = styled.section`
       transform: none;
       }
     }
-  
-  @media screen and (max-width: 650px) {
-    display: none;
-  }
 `;
 
 // 타이포그래픽 랩퍼
-export const WriteTypoWrapper = styled.div`
+export const ShareTypoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 400px;
+  justify-content: flex-start;
+  width: 100%;
   height: 150px;
-  margin: 10px 0 30px 0;
-
-  @media screen and (max-width: 650px) {
-    align-items: center;
-    justify-content: flex-start;
-  }
+  margin: 0;
 `;
 
 // 타이포
-export const WriteTypo = styled.h1`
+export const ShareTypo = styled.h1`
   width: 80%;
   max-width: 480px;
+  /* margin: 1.6em 2em; */
   font-family: 'Playfair Display', serif;
   font-size: 4em;
   line-height: 1.4em;
@@ -97,14 +92,14 @@ export const WriteTypo = styled.h1`
 
   @media screen and (max-width: 650px) {
     width: 60%;
-    font-size: 2.5em;
+    font-size: 3em;
   }
 `;
 
 // 소개
-export const WriteIntroduction = styled.div`
-  width: 400px;
-
+export const ShareIntroduction = styled.div`
+  width: 100%;
+  
   @media screen and (max-width: 650px) {
     font-size: 0.8em;
   }
@@ -113,14 +108,13 @@ export const WriteIntroduction = styled.div`
 // 기능 섹션
 export const SkillSection = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 410px;
-  margin-right: 60px;
+  width: 100%;
+  /* border: 1px solid green; */
 
   @media screen and (max-width: 650px) {
-    display: none;
+    
   }
 `;
 
@@ -131,10 +125,6 @@ export const FeatureGifWrapper = styled.div`
   width: 250px;
   height: 500px;
   border-radius: 50px;
-
-  @media screen and (max-width: 650px) {
-    width: 200px;
-  }
 `;
 
 // 아이폰 목업 img

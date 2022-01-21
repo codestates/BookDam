@@ -2,6 +2,9 @@ import styled from 'styled-components';
 
 export const UserPageWholeContainer = styled.div`
   /* padding-top: 50px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: 1px solid #e9ecef;
   overflow: hidden;
   position: relative;
@@ -20,34 +23,49 @@ export const UserPageContainer = styled.div`
   justify-content: center;
   align-items: center;
   padding-top: 30px;
+  width: 970px;
+  margin: 0px;
+  
   /* border: 1px solid black; */
-
+  
   @media (max-width: 500px) {
     width: 100%;
   }
-`;
+  `;
 
 // UserInfo 영역
 export const UserInfoContainer = styled.div`
   display: flex;
-  width: 970px;
+  align-items: center;
+  justify-content: flex-start;
+  width: 72%;
   height: 90px;
-  padding: 20px 0 20px 0;
+  margin: 0;
+  padding: 0;
   background-color: white;
-  /* border: 1px solid skyblue; */
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+
+
 
   @media (max-width: 500px) {
-    width: 100%;
-    padding: 0;
+    width: 355px;
   }
 `;
 
 export const UserImgSection = styled.div`
-  width: 90px;
-  height: 100%;
-  margin-left: 24px;
-  margin-right: 15px;
-  /* border: 1px solid black; */
+  width: 100px;
+  height: 100px;
+  margin: 0;
+  padding: 0;
+  border-radius: 50%;
+
+  @media (max-width: 500px) {
+    width: 80px;
+    height: 80px;
+  }
 `;
 
 export const UserImage = styled.img`
@@ -63,6 +81,9 @@ export const UserInfoSection = styled.div`
   flex-wrap: nowrap;
   margin-left: 25px;
   /* border: 1px solid blue; */
+  @media (max-width: 500px) {
+    width: 70%;
+  }
 `;
 
 export const NickNameFollowSection = styled.div`
@@ -89,8 +110,7 @@ export const NickNameFollowSection = styled.div`
 
 export const NickName = styled.div`
   display: flex;
-  width: 100px;
-  font-size: 1.1rem;
+  font-size: 20px;
   font-weight: 900;
   justify-content: center;
   align-items: center;
@@ -169,14 +189,32 @@ export const ArticleListContainer = styled.ul`
   width: 970px;
   flex-direction: row;
   flex-wrap: wrap;
-  padding: 0;
+  align-content: flex-start;
+  align-items: center;
   list-style-type: none;
   background-color: white;
-  /* border: 1px solid red; */
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  /* padding-inline-start: 40px;
+  padding-inline-end: 0px; */
 
-  @media (max-width: 500px) {
-    width: 100%;
-    padding: 0;
+  >.nodata {
+    margin-top: 50px;
+    width: 647px;
+    text-align: center;
+    font-weight: 800;
+    font-size: 20px;
+  }
+
+  @media screen and (max-width: 500px) {
+    width: 75%;
+    > .nodata {
+      margin: 10px 0 0 0;
+      font-weight: 600;
+      font-size: 18px;
+    }
   }
 `;
 
@@ -211,7 +249,7 @@ export const ArticleWrap = styled.li`
   @media (max-width: 500px) {
     width: 110px;
     height: 140px;
-    margin: 27px;
+    margin: 20px 10px 0px 10px;
     /* box-shadow: -.3em 0 .1rem #adb5bd; */
   }
 `;

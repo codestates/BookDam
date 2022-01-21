@@ -78,7 +78,7 @@ export const SentenceModal = ({
       createdAt: myArticleInfo.createdAt
     };
     axios
-      .delete(`http://localhost:4000/article/${userInfo.id}?article_Id=${myArticleInfo.id}`,
+      .delete(`https://server.bookdam.link/article/${userInfo.id}?article_Id=${myArticleInfo.id}`,
         {
           articleInfo: tempMyArticleInfo
         },

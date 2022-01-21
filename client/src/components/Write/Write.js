@@ -82,7 +82,7 @@ export const Write = () => {
       axios({
         withCredentials: true,
         method: 'get',
-        url: `http://localhost:4000/search/book?query=${inputValue}`,
+        url: `https://server.bookdam.link/search/book?query=${inputValue}`,
         headers: {
           authorization: `Bearer: ${process.env.Client_Secret}`,
           'Content-Type': 'application/json'
@@ -226,7 +226,7 @@ export const Write = () => {
       await axios({
         withCredentials: true,
         method: 'post',
-        url: `http://localhost:4000/article/${userInfo.id}`,
+        url: `https://server.bookdam.link/article/${userInfo.id}`,
         headers: {
           authorization: `Bearer: ${process.env.Client_Secret}`,
           'Content-Type': 'application/json'

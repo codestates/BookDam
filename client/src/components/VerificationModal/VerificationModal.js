@@ -27,7 +27,7 @@ export const Verification = ({ setIsChecked, closeModal }) => {
   };
 
   const passwordChk = () => {
-    Axios.post(`http://localhost:4000/user/validation/${userInfo.id}`,
+    Axios.post(`https://server.bookdam.link/user/validation/${userInfo.id}`,
       {
         userInfo: verifyPassword
       }

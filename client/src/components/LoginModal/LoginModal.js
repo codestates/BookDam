@@ -52,7 +52,7 @@ export const LoginModal = ({
       await axios({
         withCredentials: true,
         method: 'post',
-        url: 'http://localhost:4000/user/login',
+        url: 'https://server.bookdam.link/user/login',
         headers: {
           authorization: `Bearer: ${process.env.ACCESS_SECRET}`,
           'Content-Type': 'application/json'

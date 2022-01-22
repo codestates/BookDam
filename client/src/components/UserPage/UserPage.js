@@ -66,7 +66,7 @@ export default function UserPage () {
         setTimeout(async () => {
           if (cleanUp) {
             await Axios
-              .get(`http://localhost:4000/user/${followInfo.id}?page=${page}`,
+              .get(`https://server.bookdam.link/user/${followInfo.id}?page=${page}`,
                 {
                   headers: { 'Content-Type': 'application/json' }
                 })
@@ -107,7 +107,7 @@ export default function UserPage () {
     if (isfollow === 1) {
       setIsOpenNoticeModal(true);
     } else if (isfollow === 0) {
-      Axios.post(`http://localhost:4000/follow/${userInfo.id}?follow_Id=${followInfo.id}`,
+      Axios.post(`https://server.bookdam.link/follow/${userInfo.id}?follow_Id=${followInfo.id}`,
         {
           headers: { 'Contnet-Type': 'application/json' }
         })

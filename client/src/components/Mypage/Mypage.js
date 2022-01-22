@@ -107,7 +107,7 @@ export default function MyPage () {
         setTimeout(async () => {
           if (cleanUp) {
             await axios
-              .get(`http://localhost:4000/user/${userInfo.id}?page=${page}`,
+              .get(`https://server.bookdam.link/user/${userInfo.id}?page=${page}`,
                 {
                   headers: { 'Content-Type': 'application/json' }
                 })

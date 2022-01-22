@@ -46,7 +46,7 @@ module.exports = {
         book_Author: '시바타 도요 지음, 채숙향 옮김',
         book_Thumbnail: 'https://image.aladin.co.kr/product/785/57/cover/8961091557_3.jpg',
         book_Publisher: '지식여행',
-        sentence: '있잖아, 불행하다고 한숨짓지 마 / 햇살과 산들바람은 한 쪽 편만 들지 않아 / 꿈은 평등하게 꿀 수 있는 거야 / 나도 괴로운 일 많았지만 살아 있어 좋았어 / 너도 약해지지 마”',
+        sentence: '있잖아, 불행하다고 한숨짓지 마 햇살과 산들바람은 한 쪽 편만 들지 않아 꿈은 평등하게 꿀 수 있는 거야 나도 괴로운 일 많았지만 살아 있어 좋았어 너도 약해지지 마”',
         comment: '그저 부끄럽다. 불평가득했던 날들이.. 그리고 그걸 반성하지 못했던 내 자신이..',
         createdAt: '2022-1-19',
         updatedAt: new Date()

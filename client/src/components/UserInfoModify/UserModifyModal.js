@@ -126,7 +126,7 @@ export function UserModifyModal ({
       };
 
       axios
-        .patch(`http://localhost:4000/user/${myUserInfo.id}`,
+        .patch(`https://server.bookdam.link/user/${myUserInfo.id}`,
           {
             userInfo: tempUserInfo
           },
@@ -150,7 +150,7 @@ export function UserModifyModal ({
         });
     } else if (inputPassword.length !== 0) {
       axios
-        .patch(`http://localhost:4000/user/${myUserInfo.id}`,
+        .patch(`https://server.bookdam.link/user/${myUserInfo.id}`,
           {
             userInfo: {
               password: inputPassword
@@ -182,7 +182,7 @@ export function UserModifyModal ({
   // 회원정보 탈퇴 함수
   const signOutHandler = () => {
     axios
-      .delete(`http://localhost:4000/user/${myUserInfo.id}`)
+      .delete(`https://server.bookdam.link/user/${myUserInfo.id}`)
       .then((data) => {
         sessionStorage.removeItem('logged');
         if (data.status === 200) { // 상태코드 확인

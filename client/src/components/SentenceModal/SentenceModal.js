@@ -26,7 +26,6 @@ import {
   CloseBtn
 } from './SentenceModalStyle';
 import { BiDotsVerticalRounded } from 'react-icons/bi';
-import example from '../../assets/images/defaultUserImage.png';
 import { ArticleNoticeModal } from '../NoticeModal/ArticleNoticeModal/ArticlesNoticeModal';
 
 axios.defaults.withCredentials = true;
@@ -78,7 +77,7 @@ export const SentenceModal = ({
       createdAt: myArticleInfo.createdAt
     };
     axios
-      .delete(`http://localhost:4000/article/${userInfo.id}?article_Id=${myArticleInfo.id}`,
+      .delete(`https://server.bookdam.link/article/${userInfo.id}?article_Id=${myArticleInfo.id}`,
         {
           articleInfo: tempMyArticleInfo
         },
@@ -140,7 +139,7 @@ export const SentenceModal = ({
             <UserInfo>
               <UserNameAndImage>
                 <UserImageContainer>
-                  <UserImage src={example} />
+                  <UserImage src={articleInfo.userImage} />
                 </UserImageContainer>
                 <UserNickName>
                   {articleInfo.userNickName}

@@ -48,7 +48,7 @@ export const Followfeed = () => {
           if (cleanUp) {
             await Axios({
               method: 'get',
-              url: `http://localhost:4000/article/${userInfo.userInfo.id}?page=${page}`,
+              url: `https://server.bookdam.link/article/${userInfo.userInfo.id}?page=${page}`,
               withCredentials: true,
               headers: {
                 'Contnet-Type': 'application/json'
@@ -114,7 +114,7 @@ export const Followfeed = () => {
     // el의 key값에 접근해서 핸들러 함수를 실행하면 개별실행도 가능해짐.
     // 실행할 때 조건문으로 article의 id가
     if (el['User.Follows.user_Id'] !== userInfo.id) {
-      Axios.post(`http://localhost:4000/follow/${el['Follows.user_Id']}?follow_Id=${el.id}`,
+      Axios.post(`https://server.bookdam.link/follow/${el['Follows.user_Id']}?follow_Id=${el.id}`,
         {
           headers: { 'Contnet-Type': 'application/json' }
         })

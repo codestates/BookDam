@@ -60,21 +60,17 @@ export const RememberTypoWrapper = styled.div`
   width: 100%;
   height: 150px;
   margin: 0;
-  /* border: 1px solid red; */
 `;
 
 // 타이포
 export const RememberTypo = styled.div`
   width: 100%;
   text-align: center;
-  /* max-width: 480px; */
-  /* margin: 1.6em 2em; */
   font-family: 'Playfair Display', serif;
   font-size: 3em;
   line-height: 1.4em;
   font-weight: 700;
   color: #333333;
-  /* border: 1px solid orange; */
   
   .underline {
     line-height: 0.5em; /* Positive value. */
@@ -116,7 +112,6 @@ export const SkillSection = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  /* border: 1px solid green; */
 
   @media screen and (max-width: 650px) {
     
@@ -135,9 +130,6 @@ export const FeatureGifWrapper = styled.div`
   background-position-y: .7rem;
   background-position-x: .2rem;
   background-repeat: no-repeat;
-  /* border: 1px solid orange; */
-
-  
 `;
 
 // 아이폰 목업 img

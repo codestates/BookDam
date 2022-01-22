@@ -54,5 +54,6 @@ export const Button = styled.button`
   border-radius: 5px;
   
   &:hover {
-  background: #00bd68;  
+  background: #00bd68;
+  }
 `;

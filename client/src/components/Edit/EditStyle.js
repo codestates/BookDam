@@ -305,4 +305,5 @@ export const ButtonsInEdit = styled.button`
 
   &:hover {
   background: #00bd68;
+  }
 `;

@@ -19,7 +19,6 @@ export const Section2WholeContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    /* border: 1px solid black; */
   }
 
 `;

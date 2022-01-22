@@ -81,6 +81,7 @@ export const LoginThemeBtn = styled.button`  // 로그인 페이지 버튼 테�
   
   &:hover {
   background: #00bd68;
+  }
 `;
 
 export const SocialLoginBtn = styled.button`

@@ -152,11 +152,11 @@ export const TextContainer = styled.div`
 
 export const SectionThreeText = styled.div`
    /* border: 1px solid black; */
-   font-size: 40px;
-   font-weight: 600;
-   text-align: center;
+    font-size: 40px;
+    font-weight: 600;
+    text-align: center;
 
-   @media screen and (max-width:500px) {
+    @media screen and (max-width:500px) {
     font-size: 25px;
   }   
 `;
@@ -265,11 +265,3 @@ export const SectionWrapperThree = styled.div`
   /* border: 1px solid red; */
   height: 750px;
 `;
-
-// export const ImageAnimation2 = styled.img.attrs({
-//   src: `${"https://img.icons8.com/bubbles/500/000000/book.png"}`
-// })`
-//   /* border: 1px solid black; */
-//   width: 30%;
-//   animation: ${move} 2s 1s infinite;
-// `;

@@ -9,11 +9,9 @@ export const MyPageWholeContainer = styled.div`
   overflow: hidden;
   position: relative;
   width: 100vw;
-  /* background-color: whitesmoke; */
 
   @media (max-width: 500px) {
     width: 100vw;
-    /* padding-top: 5px; */
   }  
 `;
 
@@ -25,8 +23,6 @@ export const MypageContainer = styled.div`
   padding-top: 30px;
   width: 970px;
   margin: 0px;
-  
-  /* border: 1px solid black; */
   
   @media (max-width: 500px) {
     width: 100%;
@@ -218,8 +214,6 @@ export const ArticleListContainer = styled.ul`
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   padding-bottom: 20px;
-  /* padding-inline-start: 40px;
-  padding-inline-end: 0px; */
   >.nodata {
     margin-top: 50px;
     width: 647px;

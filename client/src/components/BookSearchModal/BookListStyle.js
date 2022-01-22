@@ -14,16 +14,16 @@ export const BookSearchModalContainer = styled.div`
 
 export const BookImageContainer = styled.div`
  /* border: 1px solid black; */
- width: 45%;
- display: flex;
- justify-content: center;
- padding-top: 10px;
- padding-bottom: 10px;
+  width: 45%;
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
 
- /* @media screen and (max-width: 500px) {
-   width: 250px;
-   height: 200px; */
- }
+  /* @media screen and (max-width: 500px) {
+    width: 250px;
+    height: 200px; 
+  }*/
 `;
 
 export const BookThumbnailContainer = styled.img`

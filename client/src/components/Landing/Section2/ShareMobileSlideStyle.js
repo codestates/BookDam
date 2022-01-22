@@ -29,7 +29,6 @@ export const TypoSection = styled.section`
   padding: 0;
 
   .fadein {
-    /* font-size: 20px; */
     position: relative;
     overflow: hidden;
     animation: fadein 3s ease-in-out;
@@ -65,7 +64,6 @@ export const ShareTypoWrapper = styled.div`
 export const ShareTypo = styled.h1`
   width: 80%;
   max-width: 480px;
-  /* margin: 1.6em 2em; */
   font-family: 'Playfair Display', serif;
   font-size: 4em;
   line-height: 1.4em;
@@ -112,7 +110,6 @@ export const SkillSection = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  /* border: 1px solid green; */
 
   @media screen and (max-width: 650px) {
     

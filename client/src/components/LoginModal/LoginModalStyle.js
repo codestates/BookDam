@@ -17,16 +17,6 @@ export const LoginModalWholeBackground = styled.div`
   }
 `;
 
-// export const LoginModalWholeContainer = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-//   padding: 0%;
-//   border: 1px solid black;
-//   z-index: 2;
-// `;
-
 export const LoginModalWrapper = styled.div`
   /* position: fixed;
   left: 50%;

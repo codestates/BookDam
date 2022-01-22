@@ -45,7 +45,6 @@ export const UserInfoSection = styled.div`
   display: flex;
   height: 90px;
   margin: 10px;
-  /* border: 1px solid blue; */
 `;
 
 export const UserImgSection = styled.div`
@@ -54,7 +53,6 @@ export const UserImgSection = styled.div`
   margin-left: 15px;
   margin-right: 15px;
   position: relative;
-  /* border: 1px solid black; */
 `;
 
 export const UserImage = styled.img`
@@ -70,7 +68,6 @@ export const EditPictureWrap = styled.div`
   position: absolute;
   right: 0;
   bottom: 0;
-  /* border: 1px solid black; */
 `;
 
 export const EditPictureBtn = styled.button`
@@ -98,7 +95,6 @@ export const UserNickName = styled.div`
   align-items: center;
   text-align: center;
   margin-left: 5px;
-  /* border: 1px solid green; */
 `;
 
 export const UserInfoEditSection = styled.div`
@@ -111,7 +107,6 @@ export const UserInfoEditSection = styled.div`
   align-items: center;
   flex-direction: column;
   font-size: 14px;
-  /* border: 1px solid skyblue; */
 `;
 
 export const NickNameInput = styled.input.attrs({
@@ -163,7 +158,6 @@ export const UserInfoModifyBtnSection = styled.div`
   width: 100%;
   height: 90px;
   margin: 0;
-  /* border: 1px solid blue; */
 `;
 
 // 사진/닉네임 변경 버튼
@@ -198,6 +192,7 @@ export const ModificationBtn = styled.button`
   
   &:hover {
   background: #00bd68;
+  }
 `;
 
 // 비밀번호 변경 버튼
@@ -228,6 +223,7 @@ export const ModifyPasswordBtn = styled.button`
   
   &:hover {
   background: #00bd68;
+  }
 `;
 
 export const SignOutBtn = styled.button`

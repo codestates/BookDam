@@ -205,21 +205,22 @@ width: 95%;
 `;
 
 export const Sentence = styled.div`
-  display: flex;
-  padding: 10px;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  line-height: 35px;
-  height: 60%;
-  width: 95%;
-  border-radius: 15px;
-  overflow: auto;
-  margin: 0px;
-  background-color: whitesmoke;
-  background-size: contain;
-  font-size: 40px;
-  font-family: 'Dongle', sans-serif;
+display: flex;
+padding: 10px;
+justify-content: center;
+align-items: center;
+text-align: center;
+line-height: 35px;
+height: 60%;
+max-height: 300px;
+width: 95%;
+border-radius: 15px;
+overflow: auto;
+margin: 0px;
+background-color: whitesmoke;
+background-size: contain;
+font-size: 40px;
+font-family: 'Dongle', sans-serif;
 
   @media (max-width: 500px) {
     font-weight: 500;
@@ -227,28 +228,29 @@ export const Sentence = styled.div`
     width: 90%;
   }
 `;
-export const Comment = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  text-align: center;
-  height: 20%;
-  width: 95%;
-  margin-top: 15px;
-  border-radius: 15px;
-  overflow: auto;
-  background-color: whitesmoke;
-  font-size: 16px;
-  font-size: 40px;
-  font-family: 'Dongle', sans-serif;
-  line-height: 40px;
 
-  @media (max-width: 500px) {
-    font-size: 30px;
-    line-height: 30px;
-    width: 90%;
-  }
+export const Comment = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 10px;
+text-align: center;
+height: 20%;
+max-height: 100px;
+width: 95%;
+margin-top: 15px;
+border-radius: 15px;
+overflow: auto;
+background-color: whitesmoke;
+font-size: 40px;
+font-family: 'Dongle', sans-serif;
+line-height: 40px;
+
+@media (max-width: 500px) {
+  font-size: 30px;
+  line-height: 30px;
+  width: 90%;
+}
 `;
 
 // 책 이름, 저자 wrap
@@ -294,6 +296,7 @@ export const CloseBtnWrap = styled.div`
   align-items: center;
   width: 20%;
   height: 90px;
+  
   @media screen and (max-width: 500px) {
     width: 100%;
     justify-content: center;

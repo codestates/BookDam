@@ -6,7 +6,7 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-margin: 16px 0px 0px 0px;
+margin: 16px 40px 0px 0px;
 list-style-type: none;
 padding-top: 80px;
 > .nodata {

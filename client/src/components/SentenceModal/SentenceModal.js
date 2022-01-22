@@ -26,7 +26,6 @@ import {
   CloseBtn
 } from './SentenceModalStyle';
 import { BiDotsVerticalRounded } from 'react-icons/bi';
-import example from '../../assets/images/defaultUserImage.png';
 import { ArticleNoticeModal } from '../NoticeModal/ArticleNoticeModal/ArticlesNoticeModal';
 
 axios.defaults.withCredentials = true;
@@ -140,7 +139,7 @@ export const SentenceModal = ({
             <UserInfo>
               <UserNameAndImage>
                 <UserImageContainer>
-                  <UserImage src={example} />
+                  <UserImage src={articleInfo.userImage} />
                 </UserImageContainer>
                 <UserNickName>
                   {articleInfo.userNickName}

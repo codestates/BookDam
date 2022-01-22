@@ -1,5 +1,13 @@
 import styled from 'styled-components';
 
+export const FixedContainer = styled.div`
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+`;
+
 export const WriteWholeContainer = styled.div`
   padding-top: 100px;
   border: 1px solid #e9ecef;
@@ -48,8 +56,8 @@ export const SearchBookInfoUpper = styled.div`
 
 export const SearchContainer = styled.div`
   width: 80%;
-  border: 3px solid #e5e5e5;
-  height: 53%;
+  /* border: 1px solid black; */
+  height: 60%;
   display: flex;
   justify-content: center;
 `;
@@ -58,12 +66,11 @@ export const SearchInputcontainer = styled.input.attrs({
   placeholder: '책, 저자 입력'
 })`
   width: 100%;
-  border: 2px solid #e5e5e5;
+  border: 4px solid #e5e5e5;
   outline: none;
   font-size: 1rem;
   font-weight: 600;
   padding-left: 10px;
-
 `;
 
 export const SearchClick = styled.div`
@@ -321,7 +328,6 @@ export const ButtonsInWrite = styled.button`
   overflow: hidden;
   padding: 0 20px;
   pointer-events: auto;
-  position: relative;
   text-align: center;
   touch-action: manipulation;
   user-select: none;

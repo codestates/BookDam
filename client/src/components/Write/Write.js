@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import {
+  FixedContainer,
   WriteWholeContainer,
   SearchBookWrapper,
   SearchBookContainer,
@@ -250,99 +251,101 @@ export const Write = () => {
 
   return (
     <>
-      <WriteWholeContainer>
-        {isOpenLoginModal
-          ? <GuestLoginModal
-              setIsOpenLoginModal={setIsOpenLoginModal}
-              handleSignupModal={handleSignupModal}
-            />
-          : null}
+      <FixedContainer>
+        <WriteWholeContainer>
+          {isOpenLoginModal
+            ? <GuestLoginModal
+                setIsOpenLoginModal={setIsOpenLoginModal}
+                handleSignupModal={handleSignupModal}
+              />
+            : null}
 
-        {isOpenSignupModal
-          ? <SignupModal
-              handleCloseSignupModal={handleCloseSignupModal}
-              handleLoginModal={handleLoginModal}
-            />
-          : null}
+          {isOpenSignupModal
+            ? <SignupModal
+                handleCloseSignupModal={handleCloseSignupModal}
+                handleLoginModal={handleLoginModal}
+              />
+            : null}
 
-        {isOpenBookSearchModal
-          ? <BookSearchModal
-              handleSelect={handleSelect}
-              searchData={searchData}
-              setSearchData={setSearchData}
-              isLoading={isLoading}
-              setIsOpenBookSearchModal={setIsOpenBookSearchModal}
-            />
-          : null}
+          {isOpenBookSearchModal
+            ? <BookSearchModal
+                handleSelect={handleSelect}
+                searchData={searchData}
+                setSearchData={setSearchData}
+                isLoading={isLoading}
+                setIsOpenBookSearchModal={setIsOpenBookSearchModal}
+              />
+            : null}
 
-        {isOpenNoticeModal
-          ? <NoInputNoticeModal errorMessage={errorMessage} handleCloseNoticeModal={handleCloseNoticeModal} />
-          : null}
+          {isOpenNoticeModal
+            ? <NoInputNoticeModal errorMessage={errorMessage} handleCloseNoticeModal={handleCloseNoticeModal} />
+            : null}
 
-        {isOpenSubmitModal
-          ? <SubmitConfirmModal errorMessage={errorMessage} handleSubmit={handleSubmit} handleCloseNoticeModal={handleCloseNoticeModal} />
-          : null}
+          {isOpenSubmitModal
+            ? <SubmitConfirmModal errorMessage={errorMessage} handleSubmit={handleSubmit} handleCloseNoticeModal={handleCloseNoticeModal} />
+            : null}
 
-        {isOpenTextLimitNoticeModal
-          ? <TextLimitNoticeModal errorMessage={errorMessage} handleCloseNoticeModal={handleCloseNoticeModal} />
-          : null}
-        <SearchBookWrapper>
-          <SearchBookContainer>
-            <SearchBookInfoContainer>
-              <SearchBookInfoUpper>
-                <SearchContainer>
-                  <SearchInputcontainer onKeyPress={onKeyPress} value={inputValue} onChange={handleInputValue} />
-                  <SearchClick onClick={bookSearch}>검색</SearchClick>
-                </SearchContainer>
-              </SearchBookInfoUpper>
-              <SearchBookInfoLower>
-                <SearchBookTitleContainer>
-                  <BookTitleLeftContainer>도서명</BookTitleLeftContainer>
-                  <BookTitleRightContainer>{selectedData.title}</BookTitleRightContainer>
-                </SearchBookTitleContainer>
-                <SearchBookAuthorContainer>
-                  <BookTitleLeftContainer>저자명</BookTitleLeftContainer>
-                  <BookAuthorRightContainer>{selectedData.author}</BookAuthorRightContainer>
-                </SearchBookAuthorContainer>
-                <SearchBookPublisherContainer>
-                  <BookTitleLeftContainer>출판사</BookTitleLeftContainer>
-                  <BookPublisherRightContainer>{selectedData.publisher}</BookPublisherRightContainer>
-                </SearchBookPublisherContainer>
-              </SearchBookInfoLower>
-            </SearchBookInfoContainer>
-            <SearchBookImageContainer>
-              <BookThumbnailContainer>
-                {selectedData.image
-                  ? <BookThumbnail src={selectedData.image} />
-                  : null}
-              </BookThumbnailContainer>
-            </SearchBookImageContainer>
-          </SearchBookContainer>
-        </SearchBookWrapper>
+          {isOpenTextLimitNoticeModal
+            ? <TextLimitNoticeModal errorMessage={errorMessage} handleCloseNoticeModal={handleCloseNoticeModal} />
+            : null}
+          <SearchBookWrapper>
+            <SearchBookContainer>
+              <SearchBookInfoContainer>
+                <SearchBookInfoUpper>
+                  <SearchContainer>
+                    <SearchInputcontainer onKeyPress={onKeyPress} value={inputValue} onChange={handleInputValue} />
+                    <SearchClick onClick={bookSearch}>검색</SearchClick>
+                  </SearchContainer>
+                </SearchBookInfoUpper>
+                <SearchBookInfoLower>
+                  <SearchBookTitleContainer>
+                    <BookTitleLeftContainer>도서명</BookTitleLeftContainer>
+                    <BookTitleRightContainer>{selectedData.title}</BookTitleRightContainer>
+                  </SearchBookTitleContainer>
+                  <SearchBookAuthorContainer>
+                    <BookTitleLeftContainer>저자명</BookTitleLeftContainer>
+                    <BookAuthorRightContainer>{selectedData.author}</BookAuthorRightContainer>
+                  </SearchBookAuthorContainer>
+                  <SearchBookPublisherContainer>
+                    <BookTitleLeftContainer>출판사</BookTitleLeftContainer>
+                    <BookPublisherRightContainer>{selectedData.publisher}</BookPublisherRightContainer>
+                  </SearchBookPublisherContainer>
+                </SearchBookInfoLower>
+              </SearchBookInfoContainer>
+              <SearchBookImageContainer>
+                <BookThumbnailContainer>
+                  {selectedData.image
+                    ? <BookThumbnail src={selectedData.image} />
+                    : null}
+                </BookThumbnailContainer>
+              </SearchBookImageContainer>
+            </SearchBookContainer>
+          </SearchBookWrapper>
 
-        <WriteArticleWrapper>
-          <WriteArticleContainer>
-            <WriteTextLimitContainer>
-              <WriteTextLimitResult>{sentenceLength}/300자</WriteTextLimitResult>
-            </WriteTextLimitContainer>
-            <WriteSentenceSection value={inputSentence} onChange={handleInputSentence} />
-            <WriteTextLimitContainer>
-              <WriteTextLimitResult>{commentLength}/300자</WriteTextLimitResult>
-            </WriteTextLimitContainer>
-            <WriteCommentSection value={inputComment} onChange={handleInputComment} />
-          </WriteArticleContainer>
-        </WriteArticleWrapper>
+          <WriteArticleWrapper>
+            <WriteArticleContainer>
+              <WriteTextLimitContainer>
+                <WriteTextLimitResult>{sentenceLength}/300자</WriteTextLimitResult>
+              </WriteTextLimitContainer>
+              <WriteSentenceSection value={inputSentence} onChange={handleInputSentence} />
+              <WriteTextLimitContainer>
+                <WriteTextLimitResult>{commentLength}/300자</WriteTextLimitResult>
+              </WriteTextLimitContainer>
+              <WriteCommentSection value={inputComment} onChange={handleInputComment} />
+            </WriteArticleContainer>
+          </WriteArticleWrapper>
 
-        <ArticleButtonWrapper>
-          <ArticleButtonContainer>
-            <ArticleButtonSection>
-              <ButtonContainer>
-                <ButtonsInWrite onClick={submitHandler}>저장하기</ButtonsInWrite>
-              </ButtonContainer>
-            </ArticleButtonSection>
-          </ArticleButtonContainer>
-        </ArticleButtonWrapper>
-      </WriteWholeContainer>
+          <ArticleButtonWrapper>
+            <ArticleButtonContainer>
+              <ArticleButtonSection>
+                <ButtonContainer>
+                  <ButtonsInWrite onClick={submitHandler}>저장하기</ButtonsInWrite>
+                </ButtonContainer>
+              </ArticleButtonSection>
+            </ArticleButtonContainer>
+          </ArticleButtonWrapper>
+        </WriteWholeContainer>
+      </FixedContainer>
     </>
   );
 };

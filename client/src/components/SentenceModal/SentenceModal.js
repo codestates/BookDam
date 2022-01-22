@@ -87,7 +87,7 @@ export const SentenceModal = ({
         }
       )
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data.status === 200) {
           setIsOpenArticleNotice(false);
           setIsOpenSentenceModal(false);

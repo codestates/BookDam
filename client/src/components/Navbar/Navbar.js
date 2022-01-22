@@ -27,7 +27,7 @@ import {
 
 export default function Navbar () {
   const userState = useSelector(state => state.userInfoReducer);
-  const { isLogin, userInfo } = userState;
+  const { isLogin, isGuest, userInfo } = userState;
   const [isOpenNavSidebar, setIsOpenNavSidebar] = useState(false);
   const [navMenu1, setSubNavMenu1] = useState(false);
   const [navMenu2, setSubNavMenu2] = useState(false);
@@ -96,7 +96,6 @@ export default function Navbar () {
       .catch(err => {
       });
   };
-
   return (
     <>
       <NavbarContainer>
@@ -109,7 +108,7 @@ export default function Navbar () {
           <LogoSection>
             <Link to='/myPage'><LogoImage src={Logo} /></Link>
           </LogoSection>
-
+          {userInfo.id.length !== 0 ?
           <NavMenuSection>
             {navMenu1
               ? <NavMenuSub><StyledLink to='/'>소개</StyledLink></NavMenuSub>
@@ -126,7 +125,8 @@ export default function Navbar () {
             {navMenu4
               ? <NavMenuSub><StyledLink to='/mypage'>마이페이지</StyledLink></NavMenuSub>
               : <NavMenu onClick={handleNav4}><StyledLink to='/mypage'>마이페이지</StyledLink></NavMenu>}
-          </NavMenuSection>
+          </NavMenuSection> :
+          null}
           <UserSection>
             <LoginoutSection>
               {isLogin

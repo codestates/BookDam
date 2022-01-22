@@ -20,7 +20,7 @@ export const IntroWrapper = () => {
   const [isOpenSignupModal, setIsOpenSignupModal] = useState(false);
   const [guestInfo, setGuestInfo] = useState({ userId: 'guest', password: '1234' });
   const state = useSelector(state => state.userInfoReducer); // 로그인 상태변경용
-  const { isLogin, userInfo } = state; // 로그인 상태변경용
+  const { isLogin, isGuest, userInfo } = state; // 로그인 상태변경용
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -90,7 +90,6 @@ export const IntroWrapper = () => {
         history.push('/feedPage');
       });
   };
-
   return (
     <>
       <IntroWholeContainer>

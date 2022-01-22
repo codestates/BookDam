@@ -29,7 +29,7 @@ import { userImage } from '../../assets/images/userImage/userImage';
 
 export function NavSidebar ({ menuBtnHandler }) {
   const userState = useSelector(state => state.userInfoReducer);
-  const { isLogin, userInfo } = userState; // 저장된 유저 정보
+  const { isLogin,isGuest, userInfo } = userState; // 저장된 유저 정보
   const dispatch = useDispatch();
 
   // 로그아웃 핸들러
@@ -55,7 +55,6 @@ export function NavSidebar ({ menuBtnHandler }) {
 
       });
   };
-
   return (
     <>
       <UserInfoModifyModalBackground onClick={menuBtnHandler}>
@@ -67,10 +66,11 @@ export function NavSidebar ({ menuBtnHandler }) {
             </SidebarHeader>
             <UserSection>
               <UserImageWrap>
-                {userInfo ? <UserImage src={userInfo.userImage} /> : <UserImage src={userImage.bird} />}
+                {userInfo.length === 0 ? <UserImage src={userInfo.userImage} /> : <UserImage src={userImage.bird} />}
               </UserImageWrap>
               <UserNickNamge>{userInfo.userNickName}</UserNickNamge>
             </UserSection>
+            {userInfo.id.length !== 0 ? 
             <MenuSection>
               <Write onClick={menuBtnHandler}>
                 <Link to='/createPage' style={{ textDecoration: 'none' }}>작성하기</Link>
@@ -81,7 +81,8 @@ export function NavSidebar ({ menuBtnHandler }) {
               <MyPage onClick={menuBtnHandler}>
                 <Link to='/myPage' style={{ textDecoration: 'none' }}>마이페이지</Link>
               </MyPage>
-            </MenuSection>
+            </MenuSection> :
+            null}
           </SidebarTop>
           <SidebarBottom>
             <QuestionSection>

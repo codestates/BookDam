@@ -7,7 +7,7 @@ export const USERINFO_MODIFY_ACTION = 'USERINFO_MODIFY_ACTION';
 export const GuestLoginAction = (userInfo) => {
   return {
     type: GUEST_LOGIN_ACTION,
-    isGuest: false,
+    isGuest: true,
     payload: {
       userInfo: {
         id: userInfo.id,
@@ -22,6 +22,7 @@ export const GuestLoginAction = (userInfo) => {
 export const LoginAction = (userInfo) => {
   return {
     type: LOGIN_ACTION,
+    isGuest: false,
     isLogin: true,
     payload: {
       userInfo: {
@@ -37,6 +38,7 @@ export const LoginAction = (userInfo) => {
 export const LogoutAction = (userInfo) => {
   return {
     type: LOGOUT_ACTION,
+    isGuest: false,
     isLogin: false,
     payload: {
       userInfo: {

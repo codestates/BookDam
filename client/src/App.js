@@ -22,6 +22,13 @@ function App () {
     }
   });
 
+  let cssRule= "font-size:2em;"
+  let cssLogo1 ="color:#fff;" +"font-size: 60px;" +"font-weight: bold;" +"letter-space:-1px;" +"font-family:Tahoma,Arial,sans-serif;" +"background-color:#1dc078";
+  if (window.console !== undefined) {
+    setTimeout(console.log.bind(console,"%cBookDam", cssLogo1),0);
+    setTimeout(console.log.bind(console,"%c당신이 고른 멋진 책, 멋진 문장을 기록하고 공유하세요",cssRule),0);
+  }
+
   return (
     <>
       <Switch>

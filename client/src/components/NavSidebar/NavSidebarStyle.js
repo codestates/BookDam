@@ -120,20 +120,14 @@ export const MenuSection = styled.div`
 `;
 
 export const Write = styled.div`
-  /* margin-top: 30px;
-  margin-bottom: 20px; */
   font-size: 1.2rem;
 `;
 
 export const Feed = styled.div`
-  /* margin-top: 20px;
-  margin-bottom: 30px; */
   font-size: 1.2rem;
 `;
 
 export const MyPage = styled.div`
-  /* margin-top: 30px;
-  margin-bottom: 30px; */
   font-size: 1.2rem;
 `;
 
@@ -146,7 +140,6 @@ export const SidebarBottom = styled.div`
   width: 100%;
   height: 100%;
   margin: 10px;
-  /* border: 1px solid red; */
 `;
 
 // 문의 섹션
@@ -161,7 +154,6 @@ export const QuestionSection = styled.div`
   z-index: 6;
   font-size: 1rem;
   font-weight: 600;
-  /* border: 1px solid blue; */
 
   > a {
       text-decoration: none;
@@ -187,7 +179,6 @@ export const LoginoutSection = styled.div`
   width: 100%;
   height: 100%;
   margin-bottom: 20px;
-  /* border: 1px solid blue; */
 `;
 
 export const Loginout = styled.button`

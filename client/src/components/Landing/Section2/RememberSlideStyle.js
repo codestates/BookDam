@@ -25,7 +25,6 @@ export const TypoSection = styled.section`
   width: 600px;
 
   .fadein {
-    /* font-size: 20px; */
     position: relative;
     overflow: hidden;
     animation: fadein 3s ease-in-out;

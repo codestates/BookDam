@@ -22,9 +22,6 @@ export const SentenceContainer = styled.div`
   justify-content: center;
   align-items: center;
   padding: 0%;
-  /* position: relative; */
-  /* flex-wrap: wrap; */
-  /* border: 1px solid black; */
   width: 100vw;
   
 `;
@@ -47,7 +44,6 @@ export const UserInfoContainer = styled.div`
   text-align: center;
   box-shadow:   
   rgba(0, 0, 0, 0.17) 0px -3px 15px 0px inset;
-  /* background-image: linear-gradient(rgba(0,170, 0, 0.1), rgba(0, 255, 0, 0.5)); */
 
   @media (max-width: 500px){
     height: 630px;
@@ -64,7 +60,6 @@ export const EditWrapper = styled.div`
   padding: 0;
   font-size: 25px;
   color: rgba(0, 0, 0, 0.3);
-  /* border: 1px solid black; */
   > div {
     cursor: pointer;
     margin: 5px 5px 0 0;
@@ -85,7 +80,6 @@ export const EditMenuWrapper = styled.div`
   height: 50px;
   text-align: center;
   font-size: 13px;
-  /* border: 1px solid grey; */
   z-index: 101;
 `;
 
@@ -140,7 +134,6 @@ export const UserInfo = styled.div`
   padding: 0;
   display: flex;
   justify-content: space-between;
-  /* border: 1px solid black; */
   `;
 
 export const UserNameAndImage = styled.div`
@@ -164,11 +157,11 @@ export const UserImageContainer = styled.div`
 `;
 
 export const UserImage = styled.img`
-display: grid;
-justify-items: center;
-align-items: center;
-height: 100%;
-width: 100%;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
 `;
 export const UserNickName = styled.div`
   display: grid;
@@ -196,10 +189,12 @@ export const PostCreatedAt = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-    @media screen and (max-width: 500px) {
-    font-size: 9px;
-    }
+
+  @media screen and (max-width: 500px) {
+  font-size: 9px;
+  }
 `;
+
 export const ContentsContainer = styled.div`
 display: flex;
 flex-direction: column;
@@ -217,6 +212,7 @@ align-items: center;
 text-align: center;
 line-height: 35px;
 height: 60%;
+max-height: 300px;
 width: 95%;
 border-radius: 15px;
 overflow: auto;
@@ -225,12 +221,14 @@ background-color: whitesmoke;
 background-size: contain;
 font-size: 40px;
 font-family: 'Dongle', sans-serif;
-@media (max-width: 500px) {
-  font-weight: 500;
-  font-size: 40px;
-  width: 90%;
-}
+
+  @media (max-width: 500px) {
+    font-weight: 500;
+    font-size: 40px;
+    width: 90%;
+  }
 `;
+
 export const Comment = styled.div`
 display: flex;
 justify-content: center;
@@ -238,15 +236,16 @@ align-items: center;
 padding: 10px;
 text-align: center;
 height: 20%;
+max-height: 100px;
 width: 95%;
 margin-top: 15px;
 border-radius: 15px;
 overflow: auto;
 background-color: whitesmoke;
-font-size: 16px;
 font-size: 40px;
 font-family: 'Dongle', sans-serif;
 line-height: 40px;
+
 @media (max-width: 500px) {
   font-size: 30px;
   line-height: 30px;
@@ -265,7 +264,6 @@ export const BookInfoWrap = styled.div`
   text-align: start;
   font-weight: 500;
   color: grey;
-  /* border: 1px solid black; */
 `;
 
 export const BookTitle = styled.div`
@@ -274,7 +272,6 @@ export const BookTitle = styled.div`
   padding: 0;
   margin: 0;
   margin-left: 7px;
-  /* border: 1px solid black; */
 
   @media screen and (max-width: 500px) {
     font-size: 10px;
@@ -287,7 +284,6 @@ export const BookAuthor = styled.div`
   padding: 0;
   margin: 0;
   margin-left: 15px;
-  /* border: 1px solid black; */
 
   @media screen and (max-width: 500px) {
     font-size: 10px
@@ -300,7 +296,7 @@ export const CloseBtnWrap = styled.div`
   align-items: center;
   width: 20%;
   height: 90px;
-  /* border: 1px solid blue; */
+  
   @media screen and (max-width: 500px) {
     width: 100%;
     justify-content: center;
@@ -332,8 +328,4 @@ export const CloseBtn = styled.button`
   font-weight: 600;
   font-size: 20px;
   border-radius: 5px;
-  
-  &:hover {
-  background: #00bd68;
-  }
 `;

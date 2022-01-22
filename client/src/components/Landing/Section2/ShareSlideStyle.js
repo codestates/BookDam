@@ -26,10 +26,8 @@ export const TypoSection = styled.section`
   align-items: center;
   justify-content: center;
   width: 570px;
-  /* border: 1px solid green; */
 
   .fadein {
-    /* font-size: 20px; */
     position: relative;
     overflow: hidden;
     animation: fadein 3s ease-in-out;
@@ -121,7 +119,6 @@ export const SkillSection = styled.div`
   justify-content: center;
   width: 380px;
   margin-left: 60px;
-  /* border: 1px solid red; */
   
   @media screen and (max-width: 650px) {
     display: none;
@@ -140,10 +137,6 @@ export const FeatureGifWrapper = styled.div`
   background-position-y: .6rem;
   background-position-x: .3rem;
   background-repeat: no-repeat;
-
-  /* @media screen and (max-width: 650px) {
-    width: 200px;
-  } */
 `;
 
 // 아이폰 목업 img

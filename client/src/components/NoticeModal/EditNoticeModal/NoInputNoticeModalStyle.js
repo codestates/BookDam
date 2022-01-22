@@ -56,4 +56,5 @@ export const NoInputButton = styled.button`
   
   &:hover {
   background: #00bd68;
+  }
 `;

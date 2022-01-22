@@ -56,4 +56,5 @@ export const SubmitConfirmButton = styled.button`
     
     &:hover {
     background: #00bd68;
+    }
 `;

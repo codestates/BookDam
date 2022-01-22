@@ -86,6 +86,12 @@ export const LoginModal = ({
     document.body.style.overflow = 'unset'; // 스크롤 방지 해제
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleLogin(); // 인자값이 없어서 엔터나 버튼클릭시 에러 발생
+    }
+  };
+
   return (
     <div>
       <LoginModalWholeBackground onClick={handleCloseLoginModal}>
@@ -99,7 +105,7 @@ export const LoginModal = ({
             <LoginTitle>BookDam</LoginTitle>
             <InputContainer>
               <InputId onChange={handleInputId} />
-              <InputPW onChange={handleInputPW} />
+              <InputPW onChange={handleInputPW} onKeyPress={handleKeyPress}/>
               <ErrorMessage>{errorMessage}</ErrorMessage>
               <LoginThemeBtn onClick={handleLogin}>로그인</LoginThemeBtn>
               <Message>아직 아이디가 없으신가요? 👇</Message>

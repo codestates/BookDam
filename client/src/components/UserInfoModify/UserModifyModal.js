@@ -31,11 +31,7 @@ import { UserImageSelectModal } from './UserImageSelectModal';
 import { userImage } from '../../assets/images/userImage/userImage';
 import { RiUserLine } from 'react-icons/ri'; // 아이디 아이콘
 import { RiShieldKeyholeLine } from 'react-icons/ri'; // 새 비밀번호 아이콘
-import { RiShieldKeyholeFill } from 'react-icons/ri'; // 새 비밀번호 아이콘
-
-// 회원정보수정 PATCH
-// https://server.bookdam.link/user/:user_Id
-// { userInfo: {userId:sangkwon2406, } }
+import { RiShieldKeyholeFill } from 'react-icons/ri'; // 새 비밀번호확인 아이콘
 
 axios.defaults.withCredentials = true;
 
@@ -46,9 +42,7 @@ export function UserModifyModal ({
   setIsOpenModifyModal,
   updateUserInfo
 }) {
-  // const userState = useSelector(state => state.userInfoReducer);
-  // const { userInfo } = userState; // 저장된 유저 정보
-  // input 값 유효성 검사 : 닉네임이 기존과 동일한가? 동일하면 에러메세지, password가 서로 일치한가? 불일치면 에러메세지
+  
   const [modifyUserInputInfo, setModifyUserInputInfo] = useState({
     id: '',
     userId: '',
@@ -73,8 +67,6 @@ export function UserModifyModal ({
   const [isOpenSignoutNotice, setIsOpenSignoutNotice] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
-  // const userState = useSelector(state => state.userInfoReducer);
-  // const { userInfo } = userState;
 
   // 모달 창 닫는 버튼 함수
   const closeModal = () => {
@@ -151,8 +143,6 @@ export function UserModifyModal ({
                 userImage: tempUserInfo.userImage
               });
             setInputUserInfoModifyCheck(false);
-            // closeModal();
-            // document.location.reload();
           }
         })
         .catch((err) => {
@@ -194,7 +184,6 @@ export function UserModifyModal ({
     axios
       .delete(`https://server.bookdam.link/user/${myUserInfo.id}`)
       .then((data) => {
-        // console.log(data);
         sessionStorage.removeItem('logged');
         if (data.status === 200) { // 상태코드 확인
           dispatch(LogoutAction());
@@ -206,7 +195,6 @@ export function UserModifyModal ({
 
   // 회원탈퇴 버튼을 눌렀을 열리는 노티스 모달 여는 함수
   const openSignoutNoticelHandler = () => {
-    // console.log('클릭');
     setisSignoutSuccess(false);
     setIsOpenSignoutNotice(!isOpenSignoutNotice);
   };

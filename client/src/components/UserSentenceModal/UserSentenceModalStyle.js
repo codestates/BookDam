@@ -142,17 +142,19 @@ align-items: center;
 text-align: center;
 line-height: 35px;
 height: 60%;
+max-height: 300px;
 width: 95%;
 border-radius: 15px;
 overflow: auto;
 margin: 0px;
 background-color: whitesmoke;
 background-size: contain;
-font-size: 20px;
+font-size: 40px;
 font-weight: 500;
+font-family: 'Dongle', sans-serif;
 @media (max-width: 500px) {
   font-weight: 500;
-  font-size: 20px;
+  font-size: 40px;
   width: 90%;
 }
 `;
@@ -162,6 +164,7 @@ justify-content: center;
 align-items: center;
 padding: 10px;
 text-align: center;
+max-height: 100px;
 height: 20%;
 width: 95%;
 margin-top: 15px;
@@ -169,9 +172,10 @@ border-radius: 15px;
 background-color: whitesmoke;
 overflow: auto;
 line-height: 40px;
-font-size: 16px;
+font-size: 40px;
+font-family: 'Dongle', sans-serif;
 @media (max-width: 500px) {
-  font-size: 15px;
+  font-size: 30px;
   line-height: 30px;
   width: 90%;
 

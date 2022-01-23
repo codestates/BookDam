@@ -24,24 +24,24 @@
 # Feature
 <details>
   <summary>소개 페이지</summary>
-  <img src="https://media.discordapp.net/attachments/920099251265077290/934381053207003156/0b2fc26902308f19.gif" />
+  <img src="https://user-images.githubusercontent.com/87509645/150669131-3b6009de-672f-49f9-b568-bbda8f961a75.gif" />
 </details>
 <details>
   <summary>작성하기</summary>
-  <img src="https://media.discordapp.net/attachments/920099251265077290/934381053207003156/0b2fc26902308f19.gif" />
+  <img src="https://user-images.githubusercontent.com/87509645/150669122-c73a0b7f-5456-48f1-b233-942bafec2550.gif" />
   <img src="" />
 </details>
 <details>
   <summary>피드</summary>
-  <img src="https://media.discordapp.net/attachments/920099251265077290/934381116738125874/475448a5d9705243.gif" />
+  <img src="https://user-images.githubusercontent.com/87509645/150669134-9aecd76f-6173-4259-b702-21bf286ca518.gif" />
 </details>
 <details>
   <summary>아티클 수정/삭제</summary>
-  <img src="https://media.discordapp.net/attachments/920099251265077290/934702671322038304/cf127286625cfbef.gif" />
+  <img src="https://user-images.githubusercontent.com/87509645/150669137-3b2a34ee-66a1-4abf-9884-a34f9fc60295.gif" />
 </details>
 <details>
   <summary>회원 정보 수정 및 삭제</summary>
-  <img src="https://media.discordapp.net/attachments/920099251265077290/934701390184456222/893458f3a7a52fd9.gif" />
+  <img src="https://user-images.githubusercontent.com/87509645/150669141-fdccb633-bf5c-4991-b1e5-74ef5be99e39.gif" />
 </details>
 
 <br/>

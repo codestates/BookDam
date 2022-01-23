@@ -29,7 +29,6 @@
 <details>
   <summary>작성하기</summary>
   <img src="https://user-images.githubusercontent.com/87509645/150669122-c73a0b7f-5456-48f1-b233-942bafec2550.gif" />
-  <img src="" />
 </details>
 <details>
   <summary>피드</summary>

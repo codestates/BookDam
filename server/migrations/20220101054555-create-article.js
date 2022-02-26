@@ -9,24 +9,31 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       user_Id: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       book_Title: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       book_Author: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       book_Thumbnail: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       book_Publisher: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       sentence: {
+        allowNull: false,
         type: Sequelize.STRING(600)
       },
       comment: {
+        allowNull: false,
         type: Sequelize.STRING(600)
       },
       createdAt: {
